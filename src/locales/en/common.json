@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "Adanex | ATEX Certified Equipment"
+  },
+  "nav": {
+    "label": "Main menu",
+    "items": {
+      "home": "Home",
+      "about": "About",
+      "services": "Services",
+      "projects": "Projects",
+      "contact": "Contact",
+      "knowledgeCenter": "Technical Knowledge Center"
+    }
+  },
+  "language": {
+    "target": "TR",
+    "switch": "Türkçeye geç"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "homeLink": "Adanex home page",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "device": {
+    "mobile": "Mobile",
+    "tabletPortrait": "Tablet portrait",
+    "tabletLandscape": "Tablet landscape",
+    "desktop": "Desktop"
+  },
+  "demo": {
+    "detectedDevice": "Detected device: {{device}}",
+    "dark": {
+      "eyebrow": "Dark surface",
+      "title": "The header turns white on this section."
+    },
+    "light": {
+      "eyebrow": "Light surface",
+      "title": "The header turns black on this section."
+    }
+  }
+}
