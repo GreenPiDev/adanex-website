@@ -19,7 +19,7 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 **Header** (`src/components/layout/Header/`)
 
 - Şeffaf, tam genişlikte ve `RootLayout` içinde.
-- Solda firma logosu, sağda altı menü bağlantısı ve dil değiştirici var. Logo, zemine göre koyu veya açık zemin dosyasına geçiyor. Web için optimize edilmiş dosyalar `public/` altında (7 KB ve 4 KB), orijinaller `design-assets/logos/` altında.
+- Solda firma logosu, sağda altı menü bağlantısı ve dil değiştirici var. Logo, zemine göre koyu veya açık zemin dosyasına geçiyor. Web için optimize edilmiş dosyalar `public/` altında (7 KB ve 4 KB).
 - Altından geçen `data-surface` bölümüne göre beyaz veya siyah oluyor (`useHeaderSurface`).
 - Mobil ve dikey tablette iki çizgili ikon ve tam sayfa menü var. Menü açıkken scroll kilitleniyor, ESC ve sayfa değişimi menüyü kapatıyor.
 - Yatay tablet ve masaüstünde tam menü gösteriliyor.
