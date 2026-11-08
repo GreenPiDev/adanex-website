@@ -29,6 +29,45 @@
     "tabletLandscape": "Yatay tablet",
     "desktop": "Masaüstü"
   },
+  "contact": {
+    "hero": {
+      "tagline": "Profesyonel destek için şimdi bağlantı kurun.",
+      "locationLabel": "Konum",
+      "clockLabel": "Yerel saat",
+      "scrollCue": "Kaydır"
+    },
+    "direct": {
+      "title": "Bizi arayın",
+      "phoneLabel": "Telefon",
+      "emailLabel": "E-posta"
+    },
+    "form": {
+      "title": "Bize yazın",
+      "lead": "Projenizi, ihtiyaç duyduğunuz ekipmanı veya sorunuzu anlatın.",
+      "nameLabel": "Tam ad",
+      "emailLabel": "E-posta",
+      "messageLabel": "Mesaj",
+      "consent": "Talebime dönüş yapılabilmesi için kişisel verilerimin işlenmesini kabul ediyorum.",
+      "submit": "Gönder",
+      "prepared": "Mesajınız e-posta uygulamanızda hazırlandı, oradan gönderebilirsiniz.",
+      "errors": {
+        "name": "Adınızı yazın.",
+        "email": "Geçerli bir e-posta adresi yazın.",
+        "message": "Mesajınızı en az 10 karakterle yazın.",
+        "consent": "Devam etmek için onay vermeniz gerekiyor."
+      },
+      "mail": {
+        "subject": "Web sitesinden mesaj: {{name}}",
+        "body": "Ad: {{name}}\nE-posta: {{email}}\n\n{{message}}"
+      }
+    },
+    "location": {
+      "mapTitle": "Adanex Elektrik konum haritası",
+      "companyLabel": "Firma",
+      "addressLabel": "Adres",
+      "directions": "Yol tarifi al"
+    }
+  },
   "demo": {
     "detectedDevice": "Algılanan cihaz: {{device}}",
     "dark": {

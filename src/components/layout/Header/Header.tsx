@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink, useLocation } from 'react-router';
+import { LOGO_FOR_DARK, LOGO_FOR_LIGHT } from '../../../content/brand';
 import { MAIN_CONTENT_ID, NAV_ITEMS } from '../../../content/navigation';
 import { useDevice, useIsNavCollapsed } from '../../../hooks/useDevice';
 import { useHeaderSurface } from '../../../hooks/useHeaderSurface';
@@ -11,8 +12,6 @@ import { LanguageSwitch } from './LanguageSwitch';
 import { MobileMenu } from './MobileMenu';
 
 const MOBILE_MENU_ID = 'mobile-menu';
-const LOGO_FOR_DARK = '/adanex-logo-koyu-arkaplan-icin.png';
-const LOGO_FOR_LIGHT = '/adanex-logo-acik-arkaplan-icin.png';
 
 export function Header() {
   const { t } = useTranslation();
@@ -73,8 +72,8 @@ export function Header() {
           aria-label={t('a11y.homeLink')}
           onClick={closeMenu}
         >
-          <img className={`${styles.logoImage} ${styles.logoForDark}`} src={LOGO_FOR_DARK} width={265} height={208} alt="" />
-          <img className={`${styles.logoImage} ${styles.logoForLight}`} src={LOGO_FOR_LIGHT} width={278} height={208} alt="" />
+          <img className={`${styles.logoImage} ${styles.logoForDark}`} {...LOGO_FOR_DARK} alt="" />
+          <img className={`${styles.logoImage} ${styles.logoForLight}`} {...LOGO_FOR_LIGHT} alt="" />
         </Link>
 
         {isNavCollapsed ? (

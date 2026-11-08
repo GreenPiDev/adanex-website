@@ -1,0 +1,189 @@
+.section {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--space-lg);
+  padding-block: calc(var(--space-lg) * 2);
+  padding-inline: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-section-title);
+  font-weight: var(--weight-display);
+  line-height: 1.2;
+}
+
+.lead {
+  max-inline-size: 28ch;
+  margin-block-start: var(--space-sm);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+  letter-spacing: var(--tracking-nav);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-lg);
+  min-inline-size: 0;
+}
+
+.label {
+  display: flex;
+  gap: var(--space-sm);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-medium);
+}
+
+.number {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.5;
+}
+
+.control {
+  position: relative;
+  border-block-end: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
+
+.input {
+  display: block;
+  inline-size: 100%;
+  padding-block: var(--space-sm);
+  padding-inline: 0;
+  font: inherit;
+  /* iOS odaklanınca sayfayı büyütmesin diye her zaman 16 px üstünde. */
+  font-size: var(--text-field);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+  color: inherit;
+  letter-spacing: var(--tracking-nav);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  resize: none;
+  field-sizing: content;
+}
+
+.line {
+  position: absolute;
+  inset-block-end: -1px;
+  inset-inline: 0;
+  block-size: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.control:focus-within .line {
+  transform: none;
+}
+
+.error {
+  margin-block-start: 0.5rem;
+  font-size: var(--text-nav);
+  font-weight: var(--weight-medium);
+  color: var(--color-error);
+}
+
+.consent {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+  min-block-size: var(--touch-target);
+  font-size: var(--text-nav);
+  line-height: 1.4;
+}
+
+.checkbox {
+  display: grid;
+  flex: none;
+  place-content: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  margin: 0;
+  color: inherit;
+  appearance: none;
+  background: none;
+  border: 1.5px solid currentColor;
+  border-radius: 0;
+}
+
+.checkbox::before {
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+  content: '';
+  background: currentColor;
+  transform: scale(0);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.checkbox:checked::before {
+  transform: none;
+}
+
+.submit {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  inline-size: 100%;
+  padding: var(--space-md);
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: var(--text-submit);
+  font-weight: var(--weight-display);
+  line-height: 1.2;
+  color: var(--color-amber);
+  isolation: isolate;
+  background: var(--color-black);
+  --roll-hover-color: var(--color-black);
+}
+
+.submit::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background: var(--color-amber);
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.status {
+  min-block-size: 1.4em;
+  margin-block-start: var(--space-sm);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-medium);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .submit:hover::before {
+    transform: none;
+  }
+}
+
+@media (min-width: 64rem) {
+  .section {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .intro {
+    position: sticky;
+    inset-block-start: calc(var(--header-height) + var(--space-md));
+    align-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .checkbox::before,
+  .submit::before {
+    transition: none;
+  }
+}

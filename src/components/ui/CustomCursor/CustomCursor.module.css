@@ -1,6 +1,6 @@
-/* difference karışımı sayesinde imleç koyu zeminde beyaz, açık zeminde siyah görünür. */
 .dot,
-.ring {
+.ring,
+.accentRing {
   position: fixed;
   inset-block-start: 0;
   inset-inline-start: 0;
@@ -8,8 +8,13 @@
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
-  mix-blend-mode: difference;
   will-change: transform;
+}
+
+/* difference karışımı sayesinde imleç koyu zeminde beyaz, açık zeminde siyah görünür. */
+.dot,
+.ring {
+  mix-blend-mode: difference;
 }
 
 .dot {
@@ -18,8 +23,15 @@
   background: var(--color-white);
 }
 
-.ring {
+.ring,
+.accentRing {
   inline-size: 36px;
   block-size: 36px;
   border: 1.5px solid var(--color-white);
+}
+
+/* Sarı halka karışıma girmez, yoksa açık zeminde rengi tersine döner. */
+.accentRing {
+  background: color-mix(in srgb, var(--color-amber) 22%, transparent);
+  border-color: var(--color-amber);
 }

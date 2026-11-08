@@ -27,12 +27,18 @@ export function useHeaderSurface(headerRef: RefObject<HTMLElement | null>): Surf
       const { top, height } = header.getBoundingClientRect();
       const line = Math.round(top + height / 2);
 
+      const intersecting = new Set<Element>();
+
       observer = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {
-            const next = (entry.target as HTMLElement).dataset.surface;
-            if (entry.isIntersecting && isSurface(next)) setSurface(next);
+            if (entry.isIntersecting) intersecting.add(entry.target);
+            else intersecting.delete(entry.target);
           }
+
+          // Yapışık bölümlerin üstüne binen bölüm DOM'da sonra gelir, en üstte görünen odur.
+          const next = Array.from(sections).findLast((section) => intersecting.has(section))?.dataset.surface;
+          if (isSurface(next)) setSurface(next);
         },
         { rootMargin: `-${line}px 0px -${Math.max(window.innerHeight - line - 1, 0)}px 0px` },
       );

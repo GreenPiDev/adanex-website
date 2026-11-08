@@ -1,0 +1,72 @@
+.clip {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+
+.text,
+.hoverText,
+.arrowIcon,
+.arrowHoverIcon {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.text,
+.hoverText {
+  display: block;
+}
+
+.hoverText {
+  position: absolute;
+  inset: 0;
+  color: var(--roll-hover-color, currentColor);
+  transform: translateY(100%);
+}
+
+.arrow {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  inline-size: 1em;
+  block-size: 1em;
+  overflow: hidden;
+}
+
+.arrowIcon,
+.arrowHoverIcon {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.arrowHoverIcon {
+  color: var(--roll-hover-color, currentColor);
+  transform: translate(-100%, 100%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :is(a, button):hover .text {
+    transform: translateY(-100%);
+  }
+
+  :is(a, button):hover .hoverText,
+  :is(a, button):hover .arrowHoverIcon {
+    transform: none;
+  }
+
+  :is(a, button):hover .arrowIcon {
+    transform: translate(100%, -100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text,
+  .hoverText,
+  .arrowIcon,
+  .arrowHoverIcon {
+    transition: none;
+  }
+}

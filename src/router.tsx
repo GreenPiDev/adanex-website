@@ -2,17 +2,27 @@ import { createBrowserRouter, Navigate, type RouteObject } from 'react-router';
 import { RootLayout } from './components/layout/RootLayout';
 import { NAV_ITEMS } from './content/navigation';
 import { DemoPage } from './pages/DemoPage';
+import { SectionPage } from './pages/SectionPage';
 
-// Gerçek sayfalar yazılana kadar tüm yollar test sayfasını gösterir.
-const pageRoutes: RouteObject[] = NAV_ITEMS.map(({ path }) =>
-  path === '/' ? { index: true, element: <DemoPage /> } : { path: path.slice(1), element: <DemoPage /> },
-);
+async function loadContactPage() {
+  const { ContactPage } = await import('./pages/ContactPage');
+  return { Component: ContactPage };
+}
+
+// Ana sayfa hero'suzdur, henüz yazılmamış sayfalar başlıklı hero ve test bölümlerini gösterir.
+const pageRoutes: RouteObject[] = NAV_ITEMS.map(({ key, path }) => {
+  if (path === '/') return { index: true, element: <DemoPage /> };
+  if (path === '/contact') return { path: path.slice(1), lazy: loadContactPage };
+  return { path: path.slice(1), element: <SectionPage navKey={key} /> };
+});
 
 // Header tek layout'ta durur, dil değişse de yeniden oluşturulmaz.
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    // Doğrudan lazy bir sayfadan açılışta paket inene kadar html zemini görünür.
+    hydrateFallbackElement: <></>,
     children: [
       ...pageRoutes,
       { path: 'en', children: pageRoutes },

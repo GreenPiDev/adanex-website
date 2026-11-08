@@ -29,6 +29,45 @@
     "tabletLandscape": "Tablet landscape",
     "desktop": "Desktop"
   },
+  "contact": {
+    "hero": {
+      "tagline": "Connect now for professional support.",
+      "locationLabel": "Location",
+      "clockLabel": "Local time",
+      "scrollCue": "Scroll"
+    },
+    "direct": {
+      "title": "Call us",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email"
+    },
+    "form": {
+      "title": "Write to us",
+      "lead": "Tell us about your project, the equipment you need or your question.",
+      "nameLabel": "Full name",
+      "emailLabel": "Email",
+      "messageLabel": "Message",
+      "consent": "I consent to the processing of my personal data so that my request can be answered.",
+      "submit": "Send",
+      "prepared": "Your message is ready in your email app, you can send it from there.",
+      "errors": {
+        "name": "Enter your name.",
+        "email": "Enter a valid email address.",
+        "message": "Write a message of at least 10 characters.",
+        "consent": "You need to give your consent to continue."
+      },
+      "mail": {
+        "subject": "Message from the website: {{name}}",
+        "body": "Name: {{name}}\nEmail: {{email}}\n\n{{message}}"
+      }
+    },
+    "location": {
+      "mapTitle": "Adanex Elektrik location map",
+      "companyLabel": "Company",
+      "addressLabel": "Address",
+      "directions": "Get directions"
+    }
+  },
   "demo": {
     "detectedDevice": "Detected device: {{device}}",
     "dark": {

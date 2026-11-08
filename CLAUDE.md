@@ -18,12 +18,13 @@ ATEX sertifikalı (yanıcı ve patlayıcı ortamlarda kullanılan) ekipmanlar sa
 
 ## Teknoloji
 
-React, Vite, TypeScript (`strict`), GSAP + `@gsap/react`, Lenis, React Router, i18next + react-i18next, CSS Modules + CSS değişkenleri, Geist Variable. Formlar için `react-hook-form` + `zod`. 3D yalnızca gerçekten değer katan bir an için ve lazy load ile kullanılır.
+React, Vite, TypeScript (`strict`), GSAP + `@gsap/react`, Lenis, React Router, i18next + react-i18next, CSS Modules + CSS değişkenleri, Geist Variable, sayfa geçişi yazısı için Big Shoulders Stencil, sayfalardaki büyük başlıklar için Barlow Semi Condensed (`--font-display`). Formlar için `react-hook-form` + `zod`. 3D yalnızca gerçekten değer katan bir an için ve lazy load ile kullanılır.
 
 ## Kod Kuralları
 
 - Dosya ve tanımlayıcılar İngilizce, kod yorumları Türkçe. `any` kullanılmaz.
 - Header yalnızca `RootLayout` içinde durur, sayfalara eklenmez.
+- Ana sayfa dışındaki her sayfa `PageHero` ile başlar: solda yan yatmış sayfa adı, sağında sayfanın içeriği. Hero scroll'da yukarıda kalır, yapışık değildir (iletişim sayfası istisnadır).
 - `main` içindeki her tam genişlik bölüm `data-surface="dark"` veya `data-surface="light"` taşır, header rengi buradan belirlenir.
 - Renk, boşluk, font boyutu, süre ve easing token'dan gelir (`src/styles/tokens.css`).
 - Büyük/küçük harf dönüşümünde aktif dil kullanılır: `toLocaleUpperCase(i18n.language)` (i/İ, ı/I sorunu).
@@ -52,6 +53,7 @@ Bu site can güvenliğiyle ilgili ürünler satıyor.
 - Referans `sstr.tech`'tir. Hedef aynı deneyim kalitesidir, kodu, metinleri, görselleri ve renk paleti kopyalanmaz.
 - Şablon hissi veren kart ızgaraları, gradient bloblar, stok ikonlar ve jenerik "güvenlik" görselleri kullanılmaz. Fontlar Türkçe karakterleri tam desteklemeli, ücretli fontlar lisanssız kullanılmaz.
 - GSAP, React içinde `useGSAP` ve `scope` ile yazılır, ortak hareketler `src/animations/` altındadır.
+- **Sayfa geçişi:** Sarı perde alttan yukarı hızla gelir, ortasında endüstriyel fontla (`--font-industrial`) gidilen sayfanın adı yazar, sonra yukarı çıkıp gider. Ana sayfaya gidişte yazı yerine şirket logosu görünür, dil değişiminde perde çalışmaz. Tek kaynak `RootLayout` içindeki `PageTransition` bileşenidir, sayfalara ayrı geçiş yazılmaz.
 - Yalnızca `transform` ve `opacity` animasyonu yapılır. Her bölüme efekt yığılmaz.
 - SplitText fontlar yüklendikten sonra çalışır. Her sayfa geçişinde ScrollTrigger'lar temizlenir ve yenilenir.
 - `prefers-reduced-motion` desteklenir, hover efektleri yalnızca fare olan cihazlarda çalışır. Animasyon içeriğin okunmasını engellemez.

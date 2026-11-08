@@ -1,0 +1,110 @@
+.section {
+  position: relative;
+  z-index: 1;
+  padding-block-end: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+.map {
+  --map-crop: 9rem;
+
+  position: relative;
+  block-size: min(62svh, 40rem);
+  overflow: hidden;
+}
+
+/* Üstteki Google adres kartı kırpılır, alttaki Google atfı görünür kalır. */
+.frame {
+  position: absolute;
+  inset-block-start: calc(var(--map-crop) * -1);
+  inset-inline-start: 0;
+  inline-size: 100%;
+  block-size: calc(100% + var(--map-crop));
+  pointer-events: none;
+  border: 0;
+  filter: grayscale(1) invert(0.92) contrast(0.95);
+}
+
+.plate {
+  --rivet: radial-gradient(circle, var(--color-black) 3px, transparent 3.5px);
+
+  margin-block-start: var(--gutter);
+  margin-inline: var(--gutter);
+  padding: var(--space-md);
+  color: var(--color-black);
+  background-color: var(--color-amber);
+  background-image: var(--rivet), var(--rivet), var(--rivet), var(--rivet);
+  background-repeat: no-repeat;
+  background-position:
+    0.25rem 0.25rem,
+    calc(100% - 0.25rem) 0.25rem,
+    0.25rem calc(100% - 0.25rem),
+    calc(100% - 0.25rem) calc(100% - 0.25rem);
+  background-size: 1rem 1rem;
+}
+
+.specs {
+  margin: 0;
+}
+
+.spec {
+  padding-block: var(--space-sm);
+  border-block-end: 1px solid var(--color-black);
+}
+
+.spec:first-child {
+  padding-block-start: 0;
+}
+
+.specLabel {
+  margin-block-end: 0.25rem;
+  font-size: var(--text-nav);
+  font-weight: var(--weight-medium);
+}
+
+.company {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-plate);
+  font-weight: var(--weight-display);
+  line-height: 1.2;
+}
+
+.address {
+  display: grid;
+  margin: 0;
+  font-size: var(--text-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+}
+
+.directions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: var(--touch-target);
+  margin-block-start: var(--space-sm);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+}
+
+/* Masaüstünde plaka sol altta durur, ortadaki Google logosuna uzanmaz. */
+@media (min-width: 64rem) {
+  .section {
+    padding-block-end: 0;
+  }
+
+  .map {
+    block-size: 90svh;
+  }
+
+  .plate {
+    position: absolute;
+    inset-block-end: var(--gutter);
+    inset-inline-start: var(--gutter);
+    inline-size: min(26rem, 36vw);
+    margin: 0;
+  }
+}

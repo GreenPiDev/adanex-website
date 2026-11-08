@@ -38,6 +38,8 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
 
     if (lenisRef.current) lenisRef.current.scrollTo(0, { immediate: true, force: true });
     else window.scrollTo(0, 0);
+
+    ScrollTrigger.refresh();
   }, [route]);
 
   return <SmoothScrollContext value={lenisRef}>{children}</SmoothScrollContext>;

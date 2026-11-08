@@ -5,13 +5,32 @@
   --color-carbon: #0f1011;
   --color-paper: #f2f1ed;
   --color-amber: #f2b01e;
+  --color-error: #b3261e;
 
   /* Tipografi */
   --font-sans: 'Geist Variable', 'Helvetica Neue', Arial, sans-serif;
+  --font-industrial: 'Big Shoulders Stencil Variable', 'Arial Narrow', sans-serif;
+  --font-display: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif;
   --weight-regular: 400;
   --weight-medium: 500;
+  --weight-display: 600;
+  --weight-heavy: 800;
   --text-nav: clamp(0.875rem, 0.82rem + 0.16vw, 1rem);
   --text-display: clamp(2.5rem, 1.4rem + 5.2vw, 7.5rem);
+  /* En uzun tek kelime (ÇALIŞMALARIMIZ, 6,53 em) 320 px ekrana sığacak şekilde hesaplandı. */
+  --text-page-transition: min(13.5vw, 30svh, 13rem);
+  /* Saat (3,66 em) ve slogan kolon genişliğine göre hesaplandı. */
+  --text-hero-tagline: min(5.5vw, 9svh);
+  --text-hero-value: min(7.8vw, 14svh);
+  --text-hero-label: clamp(1.5rem, 1.1rem + 1.6vw, 3rem);
+  --text-scroll-cue: clamp(1.375rem, 1.2rem + 0.5vw, 1.875rem);
+  /* info@adanex.com.tr (8,1 em) 320 px ekrana sığacak şekilde hesaplandı. */
+  --text-contact-line: min(10.8vw, 24svh, 11rem);
+  --text-section-title: clamp(3.5rem, 8vw, 9rem);
+  --text-plate: min(10vw, 2.625rem);
+  --text-submit: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  --text-lead: clamp(1.125rem, 0.9rem + 0.8vw, 1.75rem);
+  --text-field: clamp(1.25rem, 1rem + 1vw, 2rem);
   --tracking-nav: -0.005em;
   --tracking-display: -0.035em;
 
@@ -22,6 +41,7 @@
   --gutter: clamp(1rem, 2.4vw, 2.5rem);
   --header-height: clamp(4rem, 3.5rem + 1.5vw, 5.5rem);
   --logo-height: clamp(2.75rem, 2.4rem + 1vw, 4rem);
+  --curtain-logo-height: min(36vw, 22svh);
   --nav-gap: clamp(1.25rem, 2.2vw, 3rem);
   --touch-target: 2.75rem;
 
@@ -34,6 +54,7 @@
   /* Katmanlar */
   --z-header: 100;
   --z-cursor: 1000;
+  --z-page-transition: 1050;
   --z-skip-link: 1100;
 
   /* Scrollbar */

@@ -27,8 +27,8 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 **Diğer**
 
 - Cihaz hook'ları `src/hooks/useDevice.ts` içinde.
-- Özel imleç yalnızca fare olan cihazlarda çalışıyor (`src/components/ui/CustomCursor/`).
-- Scrollbar ince ve kehribar renkli.
+- Özel imleç yalnızca fare olan cihazlarda çalışıyor (`src/components/ui/CustomCursor/`). Tıklanabilir alanlarda büyüyüp sarıya dönüyor.
+- Scrollbar ince ve sarı. Ortak sarı `tokens.css` içinde `--color-amber`, projede `var(--color-amber)` ile kullanılır.
 - `src/pages/DemoPage.tsx` geçici test sayfası: koyu ve açık iki bölüm içeriyor, tüm yollar burayı gösteriyor.
 
 **Doğrulama**
@@ -45,10 +45,28 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - `vite.config.ts` içinde `server.host` açıldı, geliştirme sunucusu aynı ağdaki telefondan IP ile açılabiliyor.
 - Geliştirme ortamının ağı `*.vercel.app` bağlantılarını kesiyor, canlı adres oradan HTTP ile doğrulanamadı.
 
+### 2026-11-08: Sayfa geçişi
+
+- Sarı perde geçişi eklendi (`src/components/layout/PageTransition/`). Gidilen sayfanın adı Big Shoulders Stencil ile ortada yazıyor, ana sayfaya gidişte yazı yerine logo var, dil değişiminde perde çalışmıyor.
+- `useBlocker` ile kuruldu, linkler ve tarayıcının geri/ileri tuşları aynı akıştan geçiyor. React Router tek blocker destekliyor: ileride form için "kaydedilmemiş değişiklik" uyarısı istenirse bu akışa eklenmeli.
+
+### 2026-11-08: İletişim sayfası
+
+- `/contact` yazıldı (`src/pages/ContactPage.tsx`, `src/components/contact/`), rota lazy yükleniyor. İletişim bilgileri firmanın mevcut sitesinden alındı, `src/content/contact.ts` içinde.
+- Akış: üç kolonlu (yan yatmış sarı stencil başlık, slogan, alt alta konum ve yerel saat) yapışık ve "kaydır" belirteçli hero, üstüne perde gibi binen sarı "bizi arayın" bölümü, numaralı form, koyu harita üzerinde adres plakası.
+- Sayfanın büyük yazılarında okunaklılık için Barlow Semi Condensed kullanılıyor. Big Shoulders Stencil sayfa geçişi perdesinde, hero başlığında ve kısa etiketlerde kullanılıyor.
+- `useHeaderSurface`, üst üste binen bölümlerde en üstte görüneni esas alacak şekilde güncellendi.
+- **Yayından önce:** Form servisi seçilene kadar gönderim kullanıcının e-posta uygulamasını açıyor. KVKK onay metni firma onayından geçmeli, `/privacy-notice` yazılınca forma bağlantısı eklenmeli. Google Maps gömmesi üçüncü taraf çerezi kullanabilir, çerez politikasına yansıtılmalı.
+
+### 2026-11-08: Sayfa başlıklı hero
+
+- `PageHero` eklendi (`src/components/layout/PageHero/`). Ana sayfa dışındaki sayfalarda solda yan yatmış sayfa adı var, yazı boyutu adın uzunluğuna göre aynı yüksekliğe sığacak şekilde ayarlanıyor. İletişim sayfası da bunu kullanıyor.
+- Hakkında, hizmetler, çalışmalar ve teknik bilgi merkezi şimdilik `SectionPage` ile bu hero ve altındaki geçici test bölümlerini gösteriyor.
+
 ## Sıradaki Teknik İşler
 
-- `DemoPage` yerine gerçek sayfaları yazmak.
-- Rota bazlı code splitting: tek JS paketi şu an yaklaşık 519 kB (gzip 174 kB).
+- Diğer gerçek sayfalar (`SectionPage` ve `DemoPage` yerine).
+- Kalan sayfalarda rota bazlı code splitting (ana paket yaklaşık 534 kB, gzip 180 kB).
 - Dil ve sayfa bazlı meta açıklamaları, `canonical` ve `hreflang`.
 - Kurumsal renkler netleşince tokenları güncellemek.
 

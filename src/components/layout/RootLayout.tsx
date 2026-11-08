@@ -6,6 +6,7 @@ import { getLocaleFromPathname } from '../../i18n/locale';
 import { SmoothScrollProvider } from '../../providers/SmoothScrollProvider';
 import { CustomCursor } from '../ui/CustomCursor/CustomCursor';
 import { Header } from './Header/Header';
+import { PageTransition } from './PageTransition/PageTransition';
 import styles from './RootLayout.module.css';
 
 export function RootLayout() {
@@ -32,6 +33,7 @@ export function RootLayout() {
         <Outlet />
       </main>
       <CustomCursor />
+      <PageTransition />
     </SmoothScrollProvider>
   );
 }

@@ -1,3 +1,4 @@
+import '@fontsource-variable/big-shoulders-stencil';
 import '@fontsource-variable/geist';
 import 'lenis/dist/lenis.css';
 import './styles/tokens.css';
