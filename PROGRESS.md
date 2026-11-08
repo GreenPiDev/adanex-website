@@ -38,6 +38,13 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - Fontun 12 Türkçe harfin tamamını içerdiği font dosyasından doğrulandı.
 - Tarayıcıda görsel kontrol yapılmadı, git işlemi yapılmadı.
 
+### 2026-11-08: Yayın ve yerel ağ erişimi
+
+- Vercel'de GREEN-PI takımına production deploy alındı: https://adanex-website.vercel.app
+- `vercel.json` ile tüm yollar `index.html`'e yönlendirildi, sayfa yenilemede 404 alınmıyor.
+- `vite.config.ts` içinde `server.host` açıldı, geliştirme sunucusu aynı ağdaki telefondan IP ile açılabiliyor.
+- Geliştirme ortamının ağı `*.vercel.app` bağlantılarını kesiyor, canlı adres oradan HTTP ile doğrulanamadı.
+
 ## Sıradaki Teknik İşler
 
 - `DemoPage` yerine gerçek sayfaları yazmak.
