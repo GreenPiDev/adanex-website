@@ -1,0 +1,75 @@
+/* Mobilde başlığın sağındaki iki satırı birden kaplar. */
+.content {
+  position: relative;
+  display: grid;
+  grid-row: 1 / -1;
+  grid-column: 2;
+  gap: var(--space-md);
+  align-self: center;
+  min-inline-size: 0;
+  padding-inline-start: var(--space-sm);
+}
+
+.label {
+  font-family: var(--font-industrial);
+  font-size: var(--text-hero-label);
+  font-weight: var(--weight-heavy);
+  line-height: 1.2;
+  color: var(--color-amber);
+}
+
+.message {
+  font-family: var(--font-display);
+  font-size: var(--text-not-found-message);
+  font-weight: var(--weight-display);
+  line-height: 1.1;
+}
+
+.action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: var(--touch-target);
+  padding-block: var(--space-sm);
+  padding-inline: var(--space-sm);
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: var(--text-not-found-link);
+  font-weight: var(--weight-display);
+  line-height: 1.2;
+  isolation: isolate;
+  border-block-start: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  --roll-hover-color: var(--color-black);
+}
+
+/* Perde hareketi burada küçük ölçekte tekrar eder: sarı zemin alttan dolar. */
+.action::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background: var(--color-amber);
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .action:hover::before {
+    transform: none;
+  }
+}
+
+@media (min-width: 37.5rem) {
+  .content {
+    grid-row: auto;
+    padding-inline: var(--space-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action::before {
+    transition: none;
+  }
+}

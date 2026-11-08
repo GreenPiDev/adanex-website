@@ -24,6 +24,8 @@
   --text-hero-value: min(7.8vw, 14svh);
   --text-hero-label: clamp(1.5rem, 1.1rem + 1.6vw, 3rem);
   --text-scroll-cue: clamp(1.375rem, 1.2rem + 0.5vw, 1.875rem);
+  --text-not-found-message: clamp(1.75rem, 1rem + 3.4vw, 4.5rem);
+  --text-not-found-link: clamp(1.5rem, 1rem + 2.4vw, 3.5rem);
   /* info@adanex.com.tr (8,1 em) 320 px ekrana sığacak şekilde hesaplandı. */
   --text-contact-line: min(10.8vw, 24svh, 11rem);
   --text-section-title: clamp(3.5rem, 8vw, 9rem);

@@ -29,6 +29,11 @@
     "tabletLandscape": "Yatay tablet",
     "desktop": "Masaüstü"
   },
+  "notFound": {
+    "code": "404",
+    "label": "Sayfa bulunamadı",
+    "message": "Aradığınız adres burada değil."
+  },
   "contact": {
     "hero": {
       "tagline": "Profesyonel destek için şimdi bağlantı kurun.",

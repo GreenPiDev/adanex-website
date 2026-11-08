@@ -63,6 +63,11 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - `PageHero` eklendi (`src/components/layout/PageHero/`). Ana sayfa dışındaki sayfalarda solda yan yatmış sayfa adı var, yazı boyutu adın uzunluğuna göre aynı yüksekliğe sığacak şekilde ayarlanıyor. İletişim sayfası da bunu kullanıyor.
 - Hakkında, hizmetler, çalışmalar ve teknik bilgi merkezi şimdilik `SectionPage` ile bu hero ve altındaki geçici test bölümlerini gösteriyor.
 
+### 2026-11-08: 404 sayfası
+
+- Bilinmeyen adresler artık ana sayfaya atmak yerine `src/pages/NotFoundPage.tsx` sayfasını gösteriyor. Adres korunuyor, dil URL'den geliyor.
+- Vercel her adrese `index.html` ile 200 döndüğü için arama motorlarına `noindex` veriliyor. Gerçek 404 durum kodu prerender kararına bağlı.
+
 ## Sıradaki Teknik İşler
 
 - Diğer gerçek sayfalar (`SectionPage` ve `DemoPage` yerine).

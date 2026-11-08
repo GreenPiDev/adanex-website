@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, type RouteObject } from 'react-router';
+import { createBrowserRouter, type RouteObject } from 'react-router';
 import { RootLayout } from './components/layout/RootLayout';
 import { NAV_ITEMS } from './content/navigation';
 import { DemoPage } from './pages/DemoPage';
@@ -7,6 +7,11 @@ import { SectionPage } from './pages/SectionPage';
 async function loadContactPage() {
   const { ContactPage } = await import('./pages/ContactPage');
   return { Component: ContactPage };
+}
+
+async function loadNotFoundPage() {
+  const { NotFoundPage } = await import('./pages/NotFoundPage');
+  return { Component: NotFoundPage };
 }
 
 // Ana sayfa hero'suzdur, henüz yazılmamış sayfalar başlıklı hero ve test bölümlerini gösterir.
@@ -26,7 +31,7 @@ export const router = createBrowserRouter([
     children: [
       ...pageRoutes,
       { path: 'en', children: pageRoutes },
-      { path: '*', element: <Navigate to="/" replace /> },
+      { path: '*', lazy: loadNotFoundPage },
     ],
   },
 ]);
