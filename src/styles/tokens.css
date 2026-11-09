@@ -32,14 +32,11 @@
   /* Telefonda oranlar sabittir, ölçek ProjectsHero içinde başlık boyuna göre hesaplanır. */
   --text-bento-phone: 11cqi;
   --text-bento-phone-accent: 13cqi;
-  --text-bento-phone-close: 10.5cqi;
   --text-bento: min(9cqi, 3.2svh);
   --text-bento-wide: min(5.2cqi, 5.4svh);
   --text-bento-accent: min(11cqi, 3.9svh);
   /* Tam genişlik karolarda Türkçe vurgular tek satıra sığar. */
   --text-bento-accent-wide: min(4.9cqi, 6svh);
-  --text-bento-close: min(13cqi, 4.5svh);
-  --text-bento-close-wide: min(6cqi, 4.6svh);
   /* Üç satırlık en uzun başlık kısa ekranlarda da dosyaya sığsın diye yüksekliğe de bağlıdır. */
   --text-work-title: min(clamp(2.5rem, 1.5rem + 3.6vw, 6rem), 9svh);
   --text-work-stamp: min(34vw, 30svh, 14rem);

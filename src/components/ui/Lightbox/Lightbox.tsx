@@ -88,8 +88,11 @@ export function Lightbox({ src, alt, onClose }: LightboxProps) {
         <img ref={imageRef} className={styles.image} src={src} alt={alt} />
       </div>
 
-      <button ref={closeButtonRef} className={styles.close} type="button" onClick={close}>
-        <RollText text={t('a11y.close').toLocaleUpperCase(i18n.language)} />
+      <button ref={closeButtonRef} className={styles.close} type="button" aria-label={t('a11y.close')} onClick={close}>
+        <span className={styles.closeMark} aria-hidden="true" />
+        <span className={styles.closeLabel}>
+          <RollText text={t('a11y.close').toLocaleUpperCase(i18n.language)} />
+        </span>
       </button>
     </div>,
     document.body,

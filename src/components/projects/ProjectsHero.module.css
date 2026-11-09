@@ -19,8 +19,7 @@
   /* Sarı karo her ekranda en üstte durur. */
   grid-template-areas:
     'second'
-    'first'
-    'third';
+    'first';
   grid-template-columns: minmax(0, 1fr);
   /* Satırlar sıkışıp yazıyı kesmesin, ölçüm de gerçek yüksekliği görsün. */
   grid-auto-rows: max-content;
@@ -62,12 +61,6 @@
   background: var(--color-amber);
 }
 
-.third {
-  grid-area: third;
-  color: var(--color-black);
-  background: var(--color-paper);
-}
-
 .text {
   font-family: var(--font-display);
   font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone));
@@ -83,10 +76,6 @@
 
 .second .text {
   font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone-accent));
-}
-
-.third .text {
-  font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone-close));
 }
 
 @media (min-width: 37.5rem) {
@@ -118,10 +107,6 @@
   .second .text {
     font-size: var(--text-bento-accent);
   }
-
-  .third .text {
-    font-size: var(--text-bento-close);
-  }
 }
 
 /*
@@ -146,9 +131,5 @@
 
   .second .text {
     font-size: var(--text-bento-accent-wide);
-  }
-
-  .third .text {
-    font-size: var(--text-bento-close-wide);
   }
 }

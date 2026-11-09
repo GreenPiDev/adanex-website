@@ -7,7 +7,8 @@ import { Lightbox } from '../ui/Lightbox/Lightbox';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
 import styles from './ProjectPanel.module.css';
 
-const REVEAL_START = 'top 60%';
+// Dosya ekrana girer girmez içeriği gelir, yarıya kadar boş beklemez.
+const REVEAL_START = 'top 92%';
 const RECEDE_SCALE = 0.92;
 const RECEDE_OPACITY = 0.25;
 const IMAGE_START_SCALE = 1.18;

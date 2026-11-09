@@ -18,8 +18,8 @@
 
 .frame {
   position: relative;
-  /* Görseller dikey çekildiği için çerçeve de dikeydir, tablette ekranı aşmaz. */
-  aspect-ratio: 4 / 5;
+  /* Mobilde ve dikey tablette kare, yatay kısa ekranlarda da ekranı aşmaz. */
+  aspect-ratio: 1;
   max-block-size: 80svh;
   overflow: hidden;
   color: var(--color-white);

@@ -96,16 +96,10 @@ export function ProjectsHero() {
           </p>
         </div>
 
-        {/* Alttaki karolar cümleden çıkan vurgular olduğu için ekran okuyucuda tekrar edilmez. */}
+        {/* Sarı karo cümleden çıkan vurgudur, ekran okuyucuda tekrar edilmez. */}
         <div className={`${styles.tile} ${styles.second}`} data-bento-tile aria-hidden="true">
           <p key={i18n.language} className={styles.text} data-bento-text>
             {t('projects.hero.bento.products').toLocaleUpperCase(i18n.language)}
-          </p>
-        </div>
-
-        <div className={`${styles.tile} ${styles.third}`} data-bento-tile aria-hidden="true">
-          <p key={i18n.language} className={styles.text} data-bento-text>
-            {t('projects.hero.bento.approach')}
           </p>
         </div>
       </div>

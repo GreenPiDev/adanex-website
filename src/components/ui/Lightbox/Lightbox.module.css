@@ -31,18 +31,64 @@
   object-fit: contain;
 }
 
+/* Mobilde sarı kare içinde siyah çarpı, daha geniş ekranlarda yazı. */
 .close {
   position: absolute;
   inset-block-start: calc(var(--space-sm) + env(safe-area-inset-top));
   inset-inline-end: var(--gutter);
   display: flex;
   align-items: center;
+  justify-content: center;
   min-inline-size: var(--touch-target);
   min-block-size: var(--touch-target);
-  padding-inline: var(--space-sm);
   font-family: var(--font-industrial);
   font-size: var(--text-scroll-cue);
   font-weight: var(--weight-heavy);
   color: var(--color-amber);
+  background: var(--color-amber);
   --roll-hover-color: var(--color-white);
+}
+
+.closeMark {
+  position: relative;
+  display: block;
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+}
+
+.closeMark::before,
+.closeMark::after {
+  position: absolute;
+  inset-block-start: calc(50% - 1px);
+  inset-inline: 0;
+  block-size: 2px;
+  content: '';
+  background: var(--color-black);
+}
+
+.closeMark::before {
+  transform: rotate(45deg);
+}
+
+.closeMark::after {
+  transform: rotate(-45deg);
+}
+
+.closeLabel {
+  display: none;
+}
+
+@media (min-width: 37.5rem) {
+  .close {
+    padding-inline: var(--space-sm);
+    background: none;
+  }
+
+  .closeMark {
+    display: none;
+  }
+
+  .closeLabel {
+    display: block;
+  }
 }

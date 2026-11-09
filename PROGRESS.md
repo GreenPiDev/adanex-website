@@ -78,7 +78,7 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 ### 2026-11-09: Çalışmalarımız sayfası
 
 - `/projects` yazıldı (`src/pages/ProjectsPage.tsx`, `src/components/projects/`), rota lazy yükleniyor. Teknik veriler `src/content/projects.ts`, metinler çeviri dosyalarında.
-- Akış: `PageHero` içinde üstte giriş cümlesi, altta iki kısa vurgu taşıyan tipografik bento karoları ile "Kaydır" belirteci, ardından altı tam ekran dosya. Masaüstünde her dosya bir öncekinin üstüne perde gibi biner. Mobilde ve kısa ekranlarda doğal scroll ile sırayla akar. Sayfa sonunda Zone sınıflandırması uyarısı var.
+- Akış: `PageHero` içinde sarı vurgu ve giriş cümlesini taşıyan tipografik bento karoları ile "Kaydır" belirteci, ardından altı tam ekran dosya. Masaüstünde her dosya bir öncekinin üstüne perde gibi biner. Mobilde ve kısa ekranlarda doğal scroll ile sırayla akar. Sayfa sonunda Zone sınıflandırması uyarısı var.
 - Dosyalar arasında konum, ilerleme ve atlama için `ProjectsNav` eklendi: masaüstünde sağda dikey ray, mobilde ve dikey tablette altta şerit. Yalnızca dosyalar görünürken çıkar.
 - Dosyalardaki görseller tıklanınca tam ekran açılır (`src/components/ui/Lightbox/`).
 - Bu sayfada footer bağlantısı ürün kategorisine gider (`FOOTER_LINK_OVERRIDES`, `src/content/contact.ts`).
