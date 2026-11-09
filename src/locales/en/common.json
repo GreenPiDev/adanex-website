@@ -101,9 +101,7 @@
   },
   "contact": {
     "hero": {
-      "tagline": "Connect now for professional support.",
-      "locationLabel": "Location",
-      "clockLabel": "Local time"
+      "tagline": "Connect now for professional support."
     },
     "direct": {
       "title": "Call us",

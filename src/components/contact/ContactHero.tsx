@@ -1,34 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
-import { CONTACT } from '../../content/contact';
 import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { PageHero } from '../layout/PageHero/PageHero';
 import { ScrollCue } from '../ui/ScrollCue/ScrollCue';
+import { ContactDirectLines } from './ContactDirectLines';
 import styles from './ContactHero.module.css';
-
-function LocalClock({ locale }: { locale: string }) {
-  const [now, setNow] = useState(() => new Date());
-  const formatter = useMemo(
-    () =>
-      new Intl.DateTimeFormat(locale, {
-        timeZone: CONTACT.timeZone,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hourCycle: 'h23',
-      }),
-    [locale],
-  );
-
-  useEffect(() => {
-    const interval = window.setInterval(() => setNow(new Date()), 1000);
-    return () => window.clearInterval(interval);
-  }, []);
-
-  return <time className={`${styles.value} ${styles.clock}`}>{formatter.format(now)}</time>;
-}
 
 export function ContactHero() {
   const { t, i18n } = useTranslation();
@@ -73,7 +51,7 @@ export function ContactHero() {
         delay: getPageIntroDelay() + 0.25,
       });
 
-      // Sarı bölüm üstüne binerken hero geriye çekilir. Mobilde doğal scroll hafif kalsın diye yok.
+      // Form bölümü üstüne binerken hero geriye çekilir. Mobilde doğal scroll hafif kalsın diye yok.
       if (isNavCollapsed) return;
       gsap.to('[data-page-hero-inner]', {
         scale: 0.9,
@@ -103,17 +81,7 @@ export function ContactHero() {
           {t('contact.hero.tagline')}
         </p>
 
-        <div className={styles.details}>
-          <p data-hero-meta>
-            <span className={styles.label}>{t('contact.hero.locationLabel').toLocaleUpperCase(i18n.language)}</span>
-            <span className={styles.value}>{CONTACT.city}</span>
-          </p>
-
-          <p data-hero-meta>
-            <span className={styles.label}>{t('contact.hero.clockLabel').toLocaleUpperCase(i18n.language)}</span>
-            <LocalClock locale={i18n.language} />
-          </p>
-        </div>
+        <ContactDirectLines />
       </div>
 
       <ScrollCue data-hero-meta />

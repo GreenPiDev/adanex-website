@@ -3,6 +3,7 @@ import { CONTACT } from '../../content/contact';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
 import styles from './ContactDirectLines.module.css';
 
+/** İletişim hero'sunun sağ kolonu: telefon ve e-posta doğrudan bağlantıları. */
 export function ContactDirectLines() {
   const { t, i18n } = useTranslation();
 
@@ -12,15 +13,14 @@ export function ContactDirectLines() {
   ];
 
   return (
-    // Header'ın siyah görünmesi için sarı zemin açık yüzey sayılır.
-    <section className={styles.section} data-surface="light">
-      <h2 className={styles.title} data-reveal>
+    <div className={styles.block}>
+      <h2 className={styles.title} data-hero-meta>
         {t('contact.direct.title').toLocaleUpperCase(i18n.language)}
       </h2>
 
-      <ul className={styles.list}>
+      <ul>
         {lines.map(({ key, label, value, href }) => (
-          <li key={key} className={styles.item} data-reveal>
+          <li key={key} className={styles.item} data-hero-meta>
             <a className={styles.row} href={href}>
               <span className={styles.rowTop}>
                 <RollText text={label} />
@@ -31,6 +31,6 @@ export function ContactDirectLines() {
           </li>
         ))}
       </ul>
-    </section>
+    </div>
   );
 }

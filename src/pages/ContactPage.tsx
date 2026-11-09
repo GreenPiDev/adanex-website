@@ -1,7 +1,6 @@
 import '@fontsource/barlow-semi-condensed/600.css';
 import { useRef } from 'react';
 import { gsap, MOTION, useGSAP } from '../animations/gsap';
-import { ContactDirectLines } from '../components/contact/ContactDirectLines';
 import { ContactForm } from '../components/contact/ContactForm';
 import { ContactHero } from '../components/contact/ContactHero';
 import { ContactMap } from '../components/contact/ContactMap';
@@ -30,12 +29,11 @@ export function ContactPage() {
 
   return (
     <div ref={rootRef}>
-      {/* Hero'nun yapışık kalacağı alan yalnızca sarı bölümün sonuna kadar sürer. */}
+      {/* Hero'nun yapışık kalacağı alan yalnızca form bölümünün sonuna kadar sürer. */}
       <div>
         <ContactHero />
-        <ContactDirectLines />
+        <ContactForm />
       </div>
-      <ContactForm />
       <ContactMap />
     </div>
   );

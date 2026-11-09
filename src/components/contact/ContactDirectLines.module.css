@@ -1,35 +1,40 @@
-.section {
-  position: relative;
-  z-index: 1;
+/* Yazı boyutları kolon genişliğine bağlıdır (cqi), telefon ve e-posta her ekranda tek satıra sığar. */
+.block {
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  padding-block-start: var(--space-md);
-  color: var(--color-black);
-  background: var(--color-amber);
+  align-self: stretch;
+  min-inline-size: 0;
+  text-align: end;
 }
 
 .title {
-  padding-inline: var(--gutter);
+  padding-inline-start: var(--space-sm);
   font-family: var(--font-display);
-  font-size: var(--text-section-title);
+  font-size: var(--text-contact-hero-title);
   font-weight: var(--weight-display);
   line-height: 1.2;
+  color: var(--color-amber);
 }
 
 .item {
-  border-block-start: 1px solid var(--color-black);
+  border-block-start: 1px solid color-mix(in srgb, currentColor 30%, transparent);
 }
 
-/* Perde hareketi burada küçük ölçekte tekrar eder: siyah zemin alttan dolar. */
+/* Perde hareketi burada küçük ölçekte tekrar eder: sarı zemin alttan dolar. */
 .row {
   position: relative;
   display: block;
   padding-block: var(--space-sm);
-  padding-inline: var(--gutter);
+  padding-inline: var(--space-sm) 0;
   overflow: hidden;
   isolation: isolate;
-  --roll-hover-color: var(--color-amber);
+  --roll-hover-color: var(--color-black);
+}
+
+.item:last-child .row {
+  padding-block-end: 0;
 }
 
 .row::before {
@@ -37,7 +42,7 @@
   inset: 0;
   z-index: -1;
   content: '';
-  background: var(--color-black);
+  background: var(--color-amber);
   transform: scaleY(0);
   transform-origin: 50% 100%;
   transition: transform var(--duration-base) var(--ease-out);
@@ -45,9 +50,10 @@
 
 .rowTop {
   display: flex;
+  gap: var(--space-sm);
   align-items: center;
-  justify-content: space-between;
-  font-size: var(--text-lead);
+  justify-content: flex-end;
+  font-size: var(--text-nav);
   font-weight: var(--weight-medium);
   line-height: 1.2;
 }
@@ -55,9 +61,30 @@
 .value {
   display: block;
   font-family: var(--font-display);
-  font-size: var(--text-contact-line);
+  font-size: var(--text-contact-hero-line);
   font-weight: var(--weight-display);
   line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 37.5rem) {
+  .block {
+    align-self: center;
+  }
+
+  /* Başlığın sağ kenarı alttaki satırların yazılarıyla aynı hizada durur. */
+  .title {
+    padding-inline-end: var(--space-sm);
+  }
+
+  .row,
+  .item:last-child .row {
+    padding: var(--space-sm);
+  }
+
+  .rowTop {
+    font-size: var(--text-lead);
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {

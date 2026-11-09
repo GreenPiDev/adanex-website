@@ -93,9 +93,15 @@ export function ProjectsNav({ sequenceRef }: ProjectsNavProps) {
 
   const jumpTo = (index: number) => {
     const trigger = triggersRef.current[index];
-    if (!trigger) return;
+    const panel = trigger?.trigger;
+    if (!(panel instanceof HTMLElement)) return;
 
-    const target = trigger.start + (window.innerHeight * ACTIVE_LINE_PERCENT) / 100;
+    // Mobilde adres çubuğu yüzünden innerHeight ile ScrollTrigger yüksekliği sapabilir.
+    // Yapışık (sticky) dosyada kendi konumu değil, akıştaki yeri esas alınır.
+    const isSticky = getComputedStyle(panel).position === 'sticky';
+    const target = isSticky
+      ? trigger.start + (window.innerHeight * ACTIVE_LINE_PERCENT) / 100
+      : panel.getBoundingClientRect().top + window.scrollY;
     if (lenisRef.current) lenisRef.current.scrollTo(target, { force: true });
     else window.scrollTo(0, target);
   };

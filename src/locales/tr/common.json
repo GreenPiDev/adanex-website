@@ -101,9 +101,7 @@
   },
   "contact": {
     "hero": {
-      "tagline": "Profesyonel destek için şimdi bağlantı kurun.",
-      "locationLabel": "Konum",
-      "clockLabel": "Yerel saat"
+      "tagline": "Profesyonel destek için şimdi bağlantı kurun."
     },
     "direct": {
       "title": "Bizi arayın",

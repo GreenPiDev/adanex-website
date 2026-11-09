@@ -53,7 +53,7 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 ### 2026-11-08: İletişim sayfası
 
 - `/contact` yazıldı (`src/pages/ContactPage.tsx`, `src/components/contact/`), rota lazy yükleniyor. İletişim bilgileri firmanın mevcut sitesinden alındı, `src/content/contact.ts` içinde.
-- Akış: üç kolonlu (yan yatmış sarı stencil başlık, slogan, alt alta konum ve yerel saat) yapışık ve "kaydır" belirteçli hero, üstüne perde gibi binen sarı "bizi arayın" bölümü, numaralı form, koyu harita üzerinde adres plakası.
+- Akış: üç kolonlu (yan yatmış sarı stencil başlık, slogan, "bizi arayın" telefon ve e-posta bağlantıları) yapışık ve "kaydır" belirteçli hero, üstüne perde gibi binen numaralı form, koyu harita üzerinde adres plakası.
 - Sayfanın büyük yazılarında okunaklılık için Barlow Semi Condensed kullanılıyor. Big Shoulders Stencil sayfa geçişi perdesinde, hero başlığında ve kısa etiketlerde kullanılıyor.
 - `useHeaderSurface`, üst üste binen bölümlerde en üstte görüneni esas alacak şekilde güncellendi.
 - **Yayından önce:** Form servisi seçilene kadar gönderim kullanıcının e-posta uygulamasını açıyor. KVKK onay metni firma onayından geçmeli, `/privacy-notice` yazılınca forma bağlantısı eklenmeli. Google Maps gömmesi üçüncü taraf çerezi kullanabilir, çerez politikasına yansıtılmalı.
