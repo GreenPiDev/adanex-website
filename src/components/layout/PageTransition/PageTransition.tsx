@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { type BlockerFunction, NavigationType, useBlocker } from 'react-router';
 import { gsap, MOTION, useGSAP } from '../../../animations/gsap';
-import { LOGO_FOR_LIGHT } from '../../../content/brand';
+import { LOGO_FOR_TRANSITION } from '../../../content/brand';
 import { NAV_ITEMS } from '../../../content/navigation';
 import { REDUCED_MOTION_QUERY } from '../../../hooks/useDevice';
 import { getLocaleFromPathname, stripLocale } from '../../../i18n/locale';
@@ -141,7 +141,7 @@ export function PageTransition() {
         <div className={styles.mask}>
           <span ref={labelRef} className={styles.label}>
             {/* Ana sayfaya dönüşte yazı yerine logo görünür. */}
-            {isHomeTarget ? <img className={styles.logo} {...LOGO_FOR_LIGHT} alt="" /> : label}
+            {isHomeTarget ? <img className={styles.logo} {...LOGO_FOR_TRANSITION} alt="" /> : label}
           </span>
         </div>
       </div>
