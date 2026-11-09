@@ -68,6 +68,13 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - Bilinmeyen adresler artık ana sayfaya atmak yerine `src/pages/NotFoundPage.tsx` sayfasını gösteriyor. Adres korunuyor, dil URL'den geliyor.
 - Vercel her adrese `index.html` ile 200 döndüğü için arama motorlarına `noindex` veriliyor. Gerçek 404 durum kodu prerender kararına bağlı.
 
+### 2026-11-09: Footer
+
+- Her sayfanın altına minimal, tek satırlık koyu footer eklendi (`src/components/layout/Footer/`, `RootLayout` içinde). Solda dile bağlı "Detaylı bilgi için tıklayın", sağda sarı `www.adanex.com.tr` ve ok var. Tüm satır https://www.adanex.com.tr adresine yeni sekmede giden tek bağlantı, dar ekranda iki parça alt alta geçiyor.
+- `useHeaderSurface` artık `main` dışındaki footer'ı da izliyor.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+- Çerezler bağlantısı `/cookie-policy` yazılınca eklenmeli.
+
 ## Sıradaki Teknik İşler
 
 - Diğer gerçek sayfalar (`SectionPage` ve `DemoPage` yerine).

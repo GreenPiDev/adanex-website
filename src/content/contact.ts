@@ -5,6 +5,7 @@ export const CONTACT = {
   city: 'İzmit, Kocaeli',
   phone: { display: '+90 530 457 01 94', href: 'tel:+905304570194' },
   email: 'info@adanex.com.tr',
+  website: { display: 'www.adanex.com.tr', href: 'https://www.adanex.com.tr' },
   mapQuery: 'Koray Sk. No:16 D:a, Sanayi, 41040 İzmit/Kocaeli, Türkiye',
   timeZone: 'Europe/Istanbul',
 } as const;

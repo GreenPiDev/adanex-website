@@ -29,6 +29,10 @@
     "tabletLandscape": "Yatay tablet",
     "desktop": "Masaüstü"
   },
+  "footer": {
+    "moreInfo": "Detaylı bilgi için tıklayın",
+    "linkLabel": "Detaylı bilgi için tıklayın: {{site}}, yeni sekmede açılır"
+  },
   "notFound": {
     "code": "404",
     "label": "Sayfa bulunamadı",

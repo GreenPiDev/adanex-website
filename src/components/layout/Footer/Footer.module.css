@@ -1,0 +1,38 @@
+.footer {
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+  border-block-start: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  --roll-hover-color: var(--surface-fg);
+}
+
+/* Dar ekranda ibare ve adres alt alta geçer. */
+.link {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: var(--touch-target);
+  padding-block: var(--space-md) max(var(--space-md), env(safe-area-inset-bottom));
+  padding-inline: var(--footer-gutter);
+}
+
+/* Footer tam genişlik olduğu için odak çizgisi içeride çizilir. */
+.link:focus-visible {
+  outline-offset: -0.5rem;
+}
+
+.label {
+  font-size: var(--text-nav);
+  color: color-mix(in srgb, currentColor 65%, transparent);
+}
+
+.site {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  font-size: var(--text-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+  color: var(--color-amber);
+}

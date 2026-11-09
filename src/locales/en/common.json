@@ -29,6 +29,10 @@
     "tabletLandscape": "Tablet landscape",
     "desktop": "Desktop"
   },
+  "footer": {
+    "moreInfo": "Click for more information",
+    "linkLabel": "Click for more information: {{site}}, opens in a new tab"
+  },
   "notFound": {
     "code": "404",
     "label": "Page not found",

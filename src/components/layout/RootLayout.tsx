@@ -5,6 +5,7 @@ import { MAIN_CONTENT_ID } from '../../content/navigation';
 import { getLocaleFromPathname } from '../../i18n/locale';
 import { SmoothScrollProvider } from '../../providers/SmoothScrollProvider';
 import { CustomCursor } from '../ui/CustomCursor/CustomCursor';
+import { Footer } from './Footer/Footer';
 import { Header } from './Header/Header';
 import { PageTransition } from './PageTransition/PageTransition';
 import styles from './RootLayout.module.css';
@@ -32,6 +33,7 @@ export function RootLayout() {
       <main id={MAIN_CONTENT_ID} tabIndex={-1}>
         <Outlet />
       </main>
+      <Footer />
       <CustomCursor />
       <PageTransition />
     </SmoothScrollProvider>

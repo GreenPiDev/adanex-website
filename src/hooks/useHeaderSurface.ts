@@ -17,7 +17,7 @@ export function useHeaderSurface(headerRef: RefObject<HTMLElement | null>): Surf
 
   useEffect(() => {
     const header = headerRef.current;
-    const sections = document.querySelectorAll<HTMLElement>('main [data-surface]');
+    const sections = document.querySelectorAll<HTMLElement>('main [data-surface], footer[data-surface]');
     if (!header || sections.length === 0) return;
 
     let observer: IntersectionObserver | undefined;
