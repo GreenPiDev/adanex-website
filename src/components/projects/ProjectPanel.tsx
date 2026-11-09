@@ -125,10 +125,7 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
               type="button"
               aria-label={t('projects.openImage', { title })}
               onClick={() => setIsLightboxOpen(true)}
-            >
-              {/* Dokunmatikte hover olmadığı için büyütülebildiği her zaman görünür. */}
-              <span className={styles.zoomMark} aria-hidden="true" />
-            </button>
+            />
           )}
 
           <span ref={curtainRef} className={styles.curtain} />

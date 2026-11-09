@@ -64,51 +64,6 @@
   outline-offset: -0.5rem;
 }
 
-/* Sağ üst köşedeki artı işareti. */
-.zoomMark {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-end: 0;
-  display: block;
-  inline-size: var(--touch-target);
-  block-size: var(--touch-target);
-  background: var(--color-amber);
-}
-
-.zoomMark::before,
-.zoomMark::after {
-  position: absolute;
-  inset-block-start: 50%;
-  inset-inline-start: 50%;
-  inline-size: 1.125rem;
-  block-size: 2px;
-  content: '';
-  background: var(--color-black);
-  transform: translate(-50%, -50%);
-  transition: transform var(--duration-base) var(--ease-out);
-}
-
-.zoomMark::after {
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .zoom:hover .zoomMark::before {
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-
-  .zoom:hover .zoomMark::after {
-    transform: translate(-50%, -50%) rotate(180deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .zoomMark::before,
-  .zoomMark::after {
-    transition: none;
-  }
-}
-
 .curtain {
   position: absolute;
   inset: 0;
