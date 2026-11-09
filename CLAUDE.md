@@ -10,6 +10,7 @@ ATEX sertifikalı (yanıcı ve patlayıcı ortamlarda kullanılan) ekipmanlar sa
 - **Kullanıcıya sormadan tarayıcı testi yapılmaz.** Tarayıcı açma, otomasyon (Chrome eklentisi, Playwright vb.) ve ekran görüntüsü alma buna dahildir.
 - **Kullanıcıya sormadan sunucu ayağa kaldırılmaz.** `npm run dev`, `npm run preview` ve benzeri tüm sunucular buna dahildir.
 - Kullanıcı istemedikçe commit veya push yapma.
+- **Ayrı branch açılmaz.** Kullanıcı aksini söylemedikçe geliştirme doğrudan `main` üzerinde yapılır ve push `main`'e atılır.
 - **Commit ve push'lar kullanıcının adına atılır. Claude co-author olarak EKLENMEZ**, commit mesajlarına `Co-Authored-By` satırı veya Claude'a ait imza yazılmaz.
 - İş bitmeden `npm run typecheck`, `npm run lint` ve `npm run build` çalıştır. `build`, çeviri anahtarı kontrolünü de içerir.
 - API kullanmadan önce context7 ile güncel dokümana bak.
