@@ -81,6 +81,7 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - Akış: `PageHero` içinde üstte giriş cümlesi, altta iki kısa vurgu taşıyan tipografik bento karoları ile "Kaydır" belirteci, ardından altı tam ekran dosya. Masaüstünde her dosya bir öncekinin üstüne perde gibi biner. Mobilde ve kısa ekranlarda doğal scroll ile sırayla akar. Sayfa sonunda Zone sınıflandırması uyarısı var.
 - Dosyalar arasında konum, ilerleme ve atlama için `ProjectsNav` eklendi: masaüstünde sağda dikey ray, mobilde ve dikey tablette altta şerit. Yalnızca dosyalar görünürken çıkar.
 - Dosyalardaki görseller tıklanınca tam ekran açılır (`src/components/ui/Lightbox/`).
+- Bu sayfada footer bağlantısı ürün kategorisine gider (`FOOTER_LINK_OVERRIDES`, `src/content/contact.ts`).
 - "Kaydır" belirteci ortak bileşen oldu (`src/components/ui/ScrollCue/`), iletişim sayfası da bunu kullanıyor.
 - **Yayından önce:** Görseller Metinler mevcut siteden kısaltılarak yazıldı, teknik içerik ve İngilizce çeviri firma onayından geçmeli.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.

@@ -1,7 +1,7 @@
 /** Firmanın mevcut sitesinden alınan teknik veriler. Dile bağlı değildir, metinler `projects.items.<key>` çevirisindedir. */
 type SpecLabel = 'series' | 'zone' | 'certification' | 'ingress' | 'efficacy' | 'protection' | 'body' | 'temperature';
 
-type ProjectLink = { href: string; labelKey: 'detail' | 'panels' };
+type ProjectLink = { href: string; labelKey: 'panels' };
 
 type Project = {
   key: 'lighting' | 'controlBoxes' | 'emergencyExit' | 'cableGlands' | 'floodlights' | 'panels';
@@ -10,7 +10,6 @@ type Project = {
   link?: ProjectLink;
 };
 
-const PRODUCTS_URL = 'https://www.adanex.com.tr/urun-kategori/exproof-urunler/';
 const PANELS_URL = 'https://www.adanex.com.tr/urunler/exproof-urunler/exproof-terminal-kutulari-panolar';
 
 // Dosyaların zemin sırası. Üçüncü dosya sarıdır, header siyah kalsın diye açık yüzey sayılır.
@@ -42,7 +41,6 @@ export const PROJECTS: readonly Project[] = [
       { label: 'certification', value: 'ATEX' },
       { label: 'zone', value: 'Zone 1, 2, 21, 22' },
     ],
-    link: { href: PRODUCTS_URL, labelKey: 'detail' },
   },
   {
     key: 'cableGlands',

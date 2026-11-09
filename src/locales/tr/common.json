@@ -6,7 +6,7 @@
     "label": "Ana menü",
     "items": {
       "home": "Ana Sayfa",
-      "about": "Hakkında",
+      "about": "Hakkımızda",
       "services": "Hizmetlerimiz",
       "projects": "Çalışmalarımız",
       "contact": "İletişim",
@@ -50,7 +50,6 @@
       "temperature": "Çalışma sıcaklığı"
     },
     "links": {
-      "detail": "Detaylı bilgi için tıklayın",
       "panels": "Adanex exproof pano modellerini inceleyin"
     },
     "nav": {

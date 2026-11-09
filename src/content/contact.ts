@@ -9,3 +9,8 @@ export const CONTACT = {
   mapQuery: 'Koray Sk. No:16 D:a, Sanayi, 41040 İzmit/Kocaeli, Türkiye',
   timeZone: 'Europe/Istanbul',
 } as const;
+
+/** Footer bağlantısı varsayılan olarak ana siteye gider, burada yazan sayfalarda bu adrese gider. */
+export const FOOTER_LINK_OVERRIDES: Readonly<Record<string, string>> = {
+  '/projects': 'https://www.adanex.com.tr/urun-kategori/exproof-urunler/',
+};
