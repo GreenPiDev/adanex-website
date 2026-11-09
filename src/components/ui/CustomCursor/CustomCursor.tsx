@@ -5,7 +5,19 @@ import styles from './CustomCursor.module.css';
 
 const INTERACTIVE_SELECTOR = 'a, button, [role="button"], label, summary';
 const HIDE_NATIVE_CURSOR_CLASS = 'has-custom-cursor';
-const INTERACTIVE_RING_SCALE = 1.8;
+// Halkalar büyük halleriyle çizilir, normalde küçültülür. Tersi olursa büyürken bulanıklaşır.
+const RING_REST_SCALE = 0.72;
+
+/** `quickTo`, iki özelliğe açılan `scale` kısayolunu çalıştırmaz, eksenler ayrı ayrı sürülür. */
+function quickScale(element: HTMLElement, duration: number, ease: string) {
+  const scaleX = gsap.quickTo(element, 'scaleX', { duration, ease });
+  const scaleY = gsap.quickTo(element, 'scaleY', { duration, ease });
+
+  return (value: number) => {
+    scaleX(value);
+    scaleY(value);
+  };
+}
 
 function CursorElements() {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -24,10 +36,10 @@ function CursorElements() {
     const ease = 'power3.out';
 
     gsap.set([dot, ring, accentRing], { xPercent: -50, yPercent: -50 });
+    gsap.set([ring, accentRing], { scale: RING_REST_SCALE });
 
     const dotX = gsap.quickTo(dot, 'x', { duration: dotDuration, ease });
     const dotY = gsap.quickTo(dot, 'y', { duration: dotDuration, ease });
-    const dotScale = gsap.quickTo(dot, 'scale', { duration: 0.3, ease });
     const dotOpacity = gsap.quickTo(dot, 'opacity', { duration: 0.2, ease: 'none' });
     const ringOpacity = gsap.quickTo(ring, 'opacity', { duration: 0.2, ease: 'none' });
     const accentRingOpacity = gsap.quickTo(accentRing, 'opacity', { duration: 0.2, ease: 'none' });
@@ -36,7 +48,7 @@ function CursorElements() {
     const ringTrackers = [ring, accentRing].map((element) => ({
       x: gsap.quickTo(element, 'x', { duration: ringDuration, ease }),
       y: gsap.quickTo(element, 'y', { duration: ringDuration, ease }),
-      scale: gsap.quickTo(element, 'scale', { duration: 0.35, ease }),
+      scale: quickScale(element, 0.35, ease),
     }));
 
     let isVisible = false;
@@ -44,9 +56,8 @@ function CursorElements() {
     let isPressed = false;
 
     const updateAppearance = () => {
-      const ringScale = (isInteractive ? INTERACTIVE_RING_SCALE : 1) * (isPressed ? 0.8 : 1);
+      const ringScale = (isInteractive ? 1 : RING_REST_SCALE) * (isPressed ? 0.8 : 1);
 
-      dotScale(isInteractive ? 0 : 1);
       dotOpacity(isVisible ? 1 : 0);
       ringOpacity(isVisible && !isInteractive ? 1 : 0);
       accentRingOpacity(isVisible && isInteractive ? 1 : 0);

@@ -1,0 +1,48 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-lightbox);
+  color: var(--color-white);
+}
+
+.curtain {
+  position: absolute;
+  inset: 0;
+  background: var(--color-black);
+  transform-origin: 50% 100%;
+}
+
+/* Üstte kapatma düğmesi ve çentik, altta güvenli alan payı bırakılır. */
+.stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: calc(var(--touch-target) + var(--space-md) + env(safe-area-inset-top))
+    calc(var(--space-md) + env(safe-area-inset-bottom));
+  padding-inline: var(--gutter);
+}
+
+.image {
+  display: block;
+  max-inline-size: 100%;
+  max-block-size: 100%;
+  object-fit: contain;
+}
+
+.close {
+  position: absolute;
+  inset-block-start: calc(var(--space-sm) + env(safe-area-inset-top));
+  inset-inline-end: var(--gutter);
+  display: flex;
+  align-items: center;
+  min-inline-size: var(--touch-target);
+  min-block-size: var(--touch-target);
+  padding-inline: var(--space-sm);
+  font-family: var(--font-industrial);
+  font-size: var(--text-scroll-cue);
+  font-weight: var(--weight-heavy);
+  color: var(--color-amber);
+  --roll-hover-color: var(--color-white);
+}

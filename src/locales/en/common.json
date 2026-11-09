@@ -21,13 +21,76 @@
     "skipToContent": "Skip to content",
     "homeLink": "Adanex home page",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "close": "Close"
   },
   "device": {
     "mobile": "Mobile",
     "tabletPortrait": "Tablet portrait",
     "tabletLandscape": "Tablet landscape",
     "desktop": "Desktop"
+  },
+  "scrollCue": "Scroll",
+  "projects": {
+    "hero": {
+      "lead": "To keep industrial facilities running safely and efficiently, Adanex Elektrik provides all the explosion-proof products and electrical equipment they need, with a professional engineering approach.",
+      "bento": {
+        "products": "Explosion-proof products and electrical equipment",
+        "approach": "A professional engineering approach"
+      }
+    },
+    "specs": {
+      "series": "Series",
+      "zone": "Area of use",
+      "certification": "Certification",
+      "ingress": "Ingress protection",
+      "efficacy": "Efficacy",
+      "protection": "Protection type",
+      "body": "Enclosure",
+      "temperature": "Operating temperature"
+    },
+    "links": {
+      "detail": "Click for more information",
+      "panels": "Explore Adanex explosion-proof panel models"
+    },
+    "nav": {
+      "label": "Navigate between projects"
+    },
+    "openImage": "Enlarge image: {{title}}",
+    "linkLabel": "{{text}}, opens in a new tab",
+    "zoneNote": "Zone classification and product selection must be carried out by competent specialists for your specific facility.",
+    "items": {
+      "lighting": {
+        "title": "Explosion-Proof Lighting Fixtures",
+        "short": "Lighting",
+        "summary": "The new SEDEX series complies with ATEX and is used in Zone 2/22 environments. Lighting and emergency exit fixtures offer durability in harsh conditions."
+      },
+      "controlBoxes": {
+        "title": "Explosion-Proof Control Boxes",
+        "short": "Control boxes",
+        "summary": "ATEX/IECEx certified boxes available with Start, Stop, Emergency Stop, Locking Emergency Stop, signal lamp and cam switch variants. Enclosures are aluminium."
+      },
+      "emergencyExit": {
+        "title": "Explosion-Proof Emergency Exit Fixtures",
+        "short": "Emergency exit",
+        "summary": "ATEX certified emergency exit fixtures suitable for Zone 1, 2, 21 and 22 environments."
+      },
+      "cableGlands": {
+        "title": "E1W Explosion-Proof Armoured Brass Cable Gland",
+        "short": "Cable gland",
+        "summary": "ATEX certified armoured cable glands with brass, stainless steel and nickel-plated options. Used in refineries, petrochemical, paint and chemical plants and power stations."
+      },
+      "floodlights": {
+        "title": "Zone 2/22 Explosion-Proof LED Floodlights",
+        "short": "LED floodlight",
+        "summary": "ATEX certified LED floodlights with impact-resistant housings. Used in areas such as refineries, food, pharmaceutical plants and power stations."
+      },
+      "panels": {
+        "title": "Explosion-Proof Panels and Junction Boxes",
+        "short": "Panels and boxes",
+        "summary": "Aluminium-bodied models, from compact terminal boxes to large windowed panels for contactors, relays and PLCs. Used in refineries, LNG/LPG, chemical plants, paint shops and gas filling sites."
+      }
+    }
   },
   "footer": {
     "moreInfo": "Click for more information",
@@ -42,8 +105,7 @@
     "hero": {
       "tagline": "Connect now for professional support.",
       "locationLabel": "Location",
-      "clockLabel": "Local time",
-      "scrollCue": "Scroll"
+      "clockLabel": "Local time"
     },
     "direct": {
       "title": "Call us",

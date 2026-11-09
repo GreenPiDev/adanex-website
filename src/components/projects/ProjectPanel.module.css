@@ -1,0 +1,234 @@
+.panel {
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+.panel.amber {
+  --surface-bg: var(--color-amber);
+  --surface-fg: var(--color-black);
+}
+
+/* Mobilde sırayla akar: görsel, başlık, metin, teknik değerler. */
+.inner {
+  display: grid;
+  gap: var(--space-md);
+  padding-block: var(--header-height) var(--space-lg);
+  padding-inline: var(--gutter);
+}
+
+.frame {
+  position: relative;
+  /* Görseller dikey çekildiği için çerçeve de dikeydir, tablette ekranı aşmaz. */
+  aspect-ratio: 4 / 5;
+  max-block-size: 80svh;
+  overflow: hidden;
+  color: var(--color-white);
+  background: var(--color-black);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: var(--text-work-stamp);
+  font-weight: var(--weight-display);
+  line-height: 1;
+  color: color-mix(in srgb, currentColor 25%, transparent);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  /* Görseller üzerinde yazı olan afişler, kırpılmadan tamamı görünür. */
+  object-fit: contain;
+}
+
+.zoom {
+  position: absolute;
+  inset: 0;
+  display: block;
+  inline-size: 100%;
+}
+
+.zoom:focus-visible {
+  outline-offset: -0.5rem;
+}
+
+/* Sağ üst köşedeki artı işareti. */
+.zoomMark {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  display: block;
+  inline-size: var(--touch-target);
+  block-size: var(--touch-target);
+  background: var(--color-amber);
+}
+
+.zoomMark::before,
+.zoomMark::after {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 1.125rem;
+  block-size: 2px;
+  content: '';
+  background: var(--color-black);
+  transform: translate(-50%, -50%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.zoomMark::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .zoom:hover .zoomMark::before {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .zoom:hover .zoomMark::after {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zoomMark::before,
+  .zoomMark::after {
+    transition: none;
+  }
+}
+
+.curtain {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-bg);
+  transform: scaleY(0);
+  transform-origin: 50% 0%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-inline-size: 0;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-work-title);
+  font-weight: var(--weight-display);
+  line-height: 1.05;
+}
+
+/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse y, ş, p gibi harflerin altı kesilir. */
+.title > * {
+  padding-block: 0.15em;
+  margin-block: -0.15em;
+}
+
+.details {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.summary {
+  max-inline-size: 42em;
+  font-size: var(--text-work-summary);
+  line-height: 1.45;
+}
+
+.specs {
+  display: grid;
+  margin: 0;
+}
+
+.spec {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: baseline;
+  justify-content: space-between;
+  padding-block: var(--space-sm);
+  border-block-start: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
+
+.specLabel {
+  font-family: var(--font-industrial);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-heavy);
+}
+
+.specValue {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-work-spec);
+  font-weight: var(--weight-display);
+  line-height: 1.1;
+  text-align: end;
+}
+
+.link {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: var(--touch-target);
+  font-size: var(--text-work-summary);
+  font-weight: var(--weight-medium);
+  --roll-hover-color: var(--surface-fg);
+}
+
+@media (min-width: 37.5rem) {
+  .specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-lg);
+  }
+}
+
+@media (min-width: 64rem) {
+  .inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg);
+    min-block-size: 100svh;
+    padding-block: var(--header-height) var(--space-md);
+    /* Sağdaki gezinme rayı içeriğin üstüne binmesin. */
+    padding-inline-end: calc(var(--gutter) + var(--rail-width));
+  }
+
+  .frame {
+    aspect-ratio: auto;
+    min-block-size: 20rem;
+    max-block-size: none;
+  }
+
+  .frameEnd {
+    order: 1;
+  }
+
+  /* Metin dosyanın altına inmez, sıradaki dosya üstüne binerken daha uzun süre okunur. */
+  .body {
+    gap: var(--space-lg);
+  }
+}
+
+/* Dosyaların üst üste binmesi yalnızca içeriğin ekrana sığdığı yükseklikte açılır. */
+@media (min-width: 64rem) and (min-height: 43.75rem) {
+  .panel {
+    position: sticky;
+    inset-block-start: 0;
+  }
+
+  .inner {
+    will-change: transform;
+  }
+}

@@ -9,6 +9,11 @@ async function loadContactPage() {
   return { Component: ContactPage };
 }
 
+async function loadProjectsPage() {
+  const { ProjectsPage } = await import('./pages/ProjectsPage');
+  return { Component: ProjectsPage };
+}
+
 async function loadNotFoundPage() {
   const { NotFoundPage } = await import('./pages/NotFoundPage');
   return { Component: NotFoundPage };
@@ -18,6 +23,7 @@ async function loadNotFoundPage() {
 const pageRoutes: RouteObject[] = NAV_ITEMS.map(({ key, path }) => {
   if (path === '/') return { index: true, element: <DemoPage /> };
   if (path === '/contact') return { path: path.slice(1), lazy: loadContactPage };
+  if (path === '/projects') return { path: path.slice(1), lazy: loadProjectsPage };
   return { path: path.slice(1), element: <SectionPage navKey={key} /> };
 });
 

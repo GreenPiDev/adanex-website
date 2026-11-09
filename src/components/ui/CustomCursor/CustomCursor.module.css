@@ -25,9 +25,10 @@
 
 .ring,
 .accentRing {
-  inline-size: 36px;
-  block-size: 36px;
-  border: 1.5px solid var(--color-white);
+  /* Normalde 36 px görünür, tıklanabilir alanda bu boyuta çıkar. */
+  inline-size: 50px;
+  block-size: 50px;
+  border: 2px solid var(--color-white);
 }
 
 /* Sarı halka karışıma girmez, yoksa açık zeminde rengi tersine döner. */

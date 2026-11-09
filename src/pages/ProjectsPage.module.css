@@ -1,0 +1,15 @@
+/* Yapışık dosyaların altından geçmesin diye kendi katmanında durur. */
+.note {
+  position: relative;
+  z-index: 1;
+  padding-block: var(--space-lg);
+  padding-inline: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+.noteText {
+  max-inline-size: 42em;
+  font-size: var(--text-work-summary);
+  line-height: 1.45;
+}

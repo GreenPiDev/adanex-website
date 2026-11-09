@@ -1,0 +1,154 @@
+.hero {
+  /* Alttaki kaydırma belirteci karoların üstüne binmesin. */
+  --hero-padding-end: calc(var(--space-md) + 5rem);
+}
+
+/*
+ * Mobilde üst kenar başlıktaki Z'nin, alt kenar Ç'nin hizasındadır.
+ * Yazı boyutu bu yüksekliğe ProjectsHero içinde ölçülerek oturtulur (--bento-fit).
+ */
+.bento {
+  --unit: calc(var(--page-title-size) * var(--title-ink-em, 3.3) / 100);
+  --bento-fit: 1;
+
+  position: relative;
+  inset-block-start: calc(var(--page-title-size) * var(--title-ink-offset-em, 0));
+  display: grid;
+  grid-row: 1 / -1;
+  grid-column: 2;
+  /* Sarı karo her ekranda en üstte durur. */
+  grid-template-areas:
+    'second'
+    'first'
+    'third';
+  grid-template-columns: minmax(0, 1fr);
+  /* Satırlar sıkışıp yazıyı kesmesin, ölçüm de gerçek yüksekliği görsün. */
+  grid-auto-rows: max-content;
+  gap: var(--space-sm);
+  align-content: space-between;
+  align-self: center;
+  block-size: calc(var(--unit) * 100);
+  min-inline-size: 0;
+  /* Başlıkla aynı dikey ortalamayı alır. */
+  margin-top: calc((var(--header-height) - var(--hero-padding-end)) * -1);
+  margin-inline-start: var(--space-sm);
+}
+
+/* Mobilde belirteç kartların altındaki dar alana sığar. */
+.hero .cue {
+  --scroll-cue-track: 1.25rem;
+
+  inset-block-end: var(--space-sm);
+}
+
+/* Yazı boyutu karonun genişliğinden gelir, karonun yüksekliği de yazının yüksekliği kadardır. */
+.tile {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--space-sm);
+  overflow: hidden;
+  text-align: end;
+  container-type: inline-size;
+}
+
+.first {
+  grid-area: first;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
+
+.second {
+  grid-area: second;
+  color: var(--color-black);
+  background: var(--color-amber);
+}
+
+.third {
+  grid-area: third;
+  color: var(--color-black);
+  background: var(--color-paper);
+}
+
+.text {
+  font-family: var(--font-display);
+  font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone));
+  font-weight: var(--weight-display);
+  line-height: 1.05;
+}
+
+/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse y, ş, p gibi harflerin altı kesilir. */
+.text > * {
+  padding-block: 0.15em;
+  margin-block: -0.15em;
+}
+
+.second .text {
+  font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone-accent));
+}
+
+.third .text {
+  font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone-close));
+}
+
+@media (min-width: 37.5rem) {
+  .bento {
+    --bento-fit: 0;
+
+    inset-block-start: 0;
+    grid-row: auto;
+    align-content: normal;
+    block-size: auto;
+    margin-top: 0;
+    margin-inline: var(--space-md);
+  }
+
+  .hero .cue {
+    --scroll-cue-track: 2rem;
+
+    inset-block-end: var(--space-md);
+  }
+
+  .tile {
+    padding: var(--space-md);
+  }
+
+  .text {
+    font-size: var(--text-bento);
+  }
+
+  .second .text {
+    font-size: var(--text-bento-accent);
+  }
+
+  .third .text {
+    font-size: var(--text-bento-close);
+  }
+}
+
+/*
+ * Başlığın dikey ortalaması bu değer header yüksekliğini aştığında hero'yu iki katı kadar uzatır.
+ * Eşit tutulunca hero tam ekran kalır, karolara binmeme payı yazı boyutlarının svh sınırındadır.
+ */
+@media (min-width: 64rem) {
+  .hero {
+    --hero-padding-end: var(--header-height);
+  }
+
+  .hero .cue {
+    inset-block-end: calc(var(--space-md) + var(--space-sm));
+  }
+}
+
+/* Masaüstü ve yatay ekranlarda karolar tam genişliktir, yazı boyutları buna göre ayarlanır. */
+@media (min-width: 64rem), (orientation: landscape) {
+  .first .text {
+    font-size: var(--text-bento-wide);
+  }
+
+  .second .text {
+    font-size: var(--text-bento-accent-wide);
+  }
+
+  .third .text {
+    font-size: var(--text-bento-close-wide);
+  }
+}

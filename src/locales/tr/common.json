@@ -21,13 +21,76 @@
     "skipToContent": "İçeriğe geç",
     "homeLink": "Adanex ana sayfası",
     "openMenu": "Menüyü aç",
-    "closeMenu": "Menüyü kapat"
+    "closeMenu": "Menüyü kapat",
+    "close": "Kapat"
   },
   "device": {
     "mobile": "Mobil",
     "tabletPortrait": "Dikey tablet",
     "tabletLandscape": "Yatay tablet",
     "desktop": "Masaüstü"
+  },
+  "scrollCue": "Kaydır",
+  "projects": {
+    "hero": {
+      "lead": "Adanex Elektrik, endüstriyel tesislerin güvenli ve verimli çalışması için gerekli tüm exproof ürünleri ve elektrik ekipmanlarını profesyonel mühendislik yaklaşımıyla sunar.",
+      "bento": {
+        "products": "Exproof ürünler ve elektrik ekipmanları",
+        "approach": "Profesyonel mühendislik yaklaşımı"
+      }
+    },
+    "specs": {
+      "series": "Seri",
+      "zone": "Kullanım alanı",
+      "certification": "Sertifika",
+      "ingress": "Koruma sınıfı",
+      "efficacy": "Verimlilik",
+      "protection": "Koruma tipi",
+      "body": "Gövde",
+      "temperature": "Çalışma sıcaklığı"
+    },
+    "links": {
+      "detail": "Detaylı bilgi için tıklayın",
+      "panels": "Adanex exproof pano modellerini inceleyin"
+    },
+    "nav": {
+      "label": "Çalışmalar arasında gezinme"
+    },
+    "openImage": "{{title}} görselini büyüt",
+    "linkLabel": "{{text}}, yeni sekmede açılır",
+    "zoneNote": "Zone sınıflandırması ve ürün seçimi, tesisinize özel olarak yetkin uzmanlarca yapılmalıdır.",
+    "items": {
+      "lighting": {
+        "title": "Exproof Aydınlatma Armatürleri",
+        "short": "Aydınlatma",
+        "summary": "Yeni SEDEX serisi ATEX'e uygundur ve Zone 2/22 ortamlarında kullanılır. Aydınlatma ve acil çıkış armatürleri zorlu koşullarda dayanıklılık sunar."
+      },
+      "controlBoxes": {
+        "title": "Exproof Kumanda Kontrol Kutuları",
+        "short": "Kumanda kutuları",
+        "summary": "Start, Stop, Acil Stop, Kilitli Acil Stop, sinyal lambası ve pako şalter varyasyonlarıyla sunulan ATEX/IECEx sertifikalı kutular. Gövdeleri alüminyumdur."
+      },
+      "emergencyExit": {
+        "title": "Exproof Acil Çıkış Armatürleri",
+        "short": "Acil çıkış",
+        "summary": "ATEX sertifikalı acil çıkış armatürleri, Zone 1, 2, 21 ve 22 ortamları için uygundur."
+      },
+      "cableGlands": {
+        "title": "E1W Exproof Zırhlı Pirinç Kablo Rakoru",
+        "short": "Kablo rakoru",
+        "summary": "Pirinç, paslanmaz çelik ve nikel kaplama seçenekleriyle ATEX sertifikalı zırhlı kablo rakorları. Rafineri, petrokimya, boya, kimya ve enerji santrallerinde kullanılır."
+      },
+      "floodlights": {
+        "title": "Zone 2/22 Exproof LED Projektörler",
+        "short": "LED projektör",
+        "summary": "Darbelere dayanıklı gövdeli, ATEX belgeli LED projektörler. Rafineri, gıda, ilaç ve enerji santralleri gibi alanlarda kullanılır."
+      },
+      "panels": {
+        "title": "Exproof Pano ve Bağlantı Kutuları",
+        "short": "Pano ve kutular",
+        "summary": "Kompakt klemens kutularından kontaktör, röle ve PLC için cam pencereli geniş panolara uzanan alüminyum gövdeli modeller. Rafineri, LNG/LPG, kimya, boyahane ve gaz dolum sahalarında kullanılır."
+      }
+    }
   },
   "footer": {
     "moreInfo": "Detaylı bilgi için tıklayın",
@@ -42,8 +105,7 @@
     "hero": {
       "tagline": "Profesyonel destek için şimdi bağlantı kurun.",
       "locationLabel": "Konum",
-      "clockLabel": "Yerel saat",
-      "scrollCue": "Kaydır"
+      "clockLabel": "Yerel saat"
     },
     "direct": {
       "title": "Bizi arayın",
