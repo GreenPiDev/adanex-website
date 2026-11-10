@@ -34,3 +34,16 @@ export function RollArrow() {
     </span>
   );
 }
+
+/** Metin içindeki dış bağlantının sonuna gelen ok. */
+export function InlineLinkArrow() {
+  return (
+    <>
+      {/* Görünmez birleştirici, okun satır başına tek başına düşmesini önler. */}
+      {'\u2060'}
+      <span className={styles.inlineArrow}>
+        <RollArrow />
+      </span>
+    </>
+  );
+}

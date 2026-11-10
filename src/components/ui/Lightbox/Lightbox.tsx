@@ -13,13 +13,15 @@ type LightboxProps = {
   src: string;
   alt: string;
   onClose: () => void;
+  /** Küçük yazılı belgeler ekrana sığdırılmaz, gerçek boyutunda açılır ve kaydırılır. */
+  isDocument?: boolean;
 };
 
 /**
  * Görseli tam ekran gösterir. Yapışık bölümlerdeki transform'lardan etkilenmemesi için `body` altına kurulur.
  * Yerel `dialog` kullanılmaz, üst katmana çıkıp özel imlecin altında kalırdı.
  */
-export function Lightbox({ src, alt, onClose }: LightboxProps) {
+export function Lightbox({ src, alt, onClose, isDocument = false }: LightboxProps) {
   const { t, i18n } = useTranslation();
   const prefersReducedMotion = usePrefersReducedMotion();
   const rootRef = useRef<HTMLDivElement>(null);
@@ -84,8 +86,12 @@ export function Lightbox({ src, alt, onClose }: LightboxProps) {
     <div ref={rootRef} className={styles.root} role="dialog" aria-modal="true" aria-label={alt}>
       <div ref={curtainRef} className={styles.curtain} />
 
-      <div className={styles.stage} onClick={handleBackdropClick}>
-        <img ref={imageRef} className={styles.image} src={src} alt={alt} />
+      <div
+        className={`${styles.stage} ${isDocument ? styles.documentStage : ''}`}
+        onClick={handleBackdropClick}
+        data-lenis-prevent={isDocument ? true : undefined}
+      >
+        <img ref={imageRef} className={`${styles.image} ${isDocument ? styles.documentImage : ''}`} src={src} alt={alt} />
       </div>
 
       <button ref={closeButtonRef} className={styles.close} type="button" aria-label={t('a11y.close')} onClick={close}>

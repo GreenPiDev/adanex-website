@@ -1,0 +1,218 @@
+.root {
+  --hairline: color-mix(in srgb, currentColor 22%, transparent);
+
+  position: relative;
+  display: grid;
+  gap: var(--space-lg);
+  padding-block: calc(var(--header-height) + var(--space-lg)) calc(var(--space-lg) * 2);
+  padding-inline: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+.root:focus,
+.cell:focus {
+  outline: none;
+}
+
+.head {
+  --chapter-accent: var(--color-amber);
+
+  display: grid;
+  gap: var(--space-md);
+}
+
+.intro {
+  max-inline-size: 34em;
+  font-size: var(--text-kb-lead);
+  line-height: 1.35;
+}
+
+/* Telefonda eksenler yerine her hücredeki etiket okunur. */
+.matrix {
+  display: grid;
+  border-block-end: 1px solid var(--hairline);
+}
+
+.axis {
+  display: none;
+}
+
+.cell {
+  position: relative;
+  display: grid;
+  gap: var(--space-sm);
+  align-content: start;
+  padding-block: var(--space-md);
+  border-block-start: 1px solid var(--hairline);
+  scroll-margin-top: calc(var(--header-height) + var(--space-sm));
+}
+
+.mark {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: calc(var(--gutter) * -1);
+  inline-size: 0.375rem;
+  visibility: hidden;
+  background: var(--color-amber);
+  opacity: 0;
+  transform-origin: 50% 0;
+}
+
+.title {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-end;
+  font-family: var(--font-industrial);
+  font-weight: var(--weight-heavy);
+  line-height: 0.85;
+  color: var(--color-amber);
+}
+
+.word {
+  padding-block-end: 0.3em;
+  font-size: var(--text-kb-number);
+  line-height: 1;
+}
+
+.digits {
+  font-size: var(--text-kb-zone);
+}
+
+.tags {
+  font-size: var(--text-nav);
+  font-weight: var(--weight-medium);
+  color: var(--color-amber);
+}
+
+.definition {
+  max-inline-size: 30em;
+  font-size: var(--text-kb-lead);
+  line-height: 1.35;
+}
+
+.note {
+  max-inline-size: 42em;
+  font-size: var(--text-kb-body);
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
+@media (min-width: 48rem) {
+  .matrix {
+    grid-template-columns: var(--touch-target) repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto repeat(2, auto);
+  }
+
+  .axis {
+    display: block;
+    font-family: var(--font-industrial);
+    font-size: var(--text-hero-label);
+    font-weight: var(--weight-heavy);
+    line-height: 1.1;
+    color: var(--color-white);
+  }
+
+  .columnGas,
+  .columnDust {
+    grid-row: 1;
+    padding-block-end: var(--space-sm);
+    padding-inline-start: var(--space-md);
+  }
+
+  .columnGas {
+    grid-column: 2;
+  }
+
+  .columnDust {
+    grid-column: 3;
+  }
+
+  /* Satır eksenleri sayfa başlığı gibi aşağıdan yukarı okunur. */
+  .rowAxis {
+    grid-column: 1;
+    place-self: center start;
+    font-size: var(--text-nav);
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .cell {
+    padding: var(--space-md);
+    border-inline-start: 1px solid var(--hairline);
+  }
+
+  /* İlk satır ve ilk sütun eksen etiketlerinindir, hücreler otomatik yerleşirse oraya kayar. */
+  .gas {
+    grid-column: 2;
+  }
+
+  .dust {
+    grid-column: 3;
+  }
+
+  .occasional {
+    grid-row: 2;
+  }
+
+  .brief {
+    grid-row: 3;
+  }
+
+  .tags {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .mark {
+    inset-inline-start: 0;
+  }
+}
+
+/* Ray sağda durduğu için matris ondan pay bırakır. */
+@media (min-width: 64rem) {
+  .root {
+    padding-inline-end: calc(var(--gutter) + var(--rail-width) + var(--space-md));
+  }
+
+  .head {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: end;
+  }
+
+  .rowAxis {
+    font-size: var(--text-kb-lead);
+  }
+}
+
+/* Akan metinler iki yana yaslıdır. Dar sütunda kelime araları açılmasın diye heceleme açıktır. */
+.intro,
+.definition,
+.note {
+  text-align: justify;
+  hyphens: auto;
+}
+
+@media (min-width: 64rem) {
+  .note {
+    max-inline-size: none;
+  }
+}
+
+/* --note-em, cümlenin uzunluğudur ve ZoneMatrix tarafından ölçülür. Daha dar ekranda yazı fazla küçülürdü. */
+@media (min-width: 80rem) {
+  .root {
+    container-type: inline-size;
+  }
+
+  .note {
+    font-size: min(var(--text-kb-body), calc(100cqi / var(--note-em, 100)));
+    text-align: start;
+    white-space: nowrap;
+  }
+}

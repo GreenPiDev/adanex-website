@@ -10,6 +10,11 @@
   transition: color var(--duration-base) var(--ease-standard);
 }
 
+/* Beyaz çizilir, altından geçen içeriğin negatifi olarak görünür. Tam sayfa menü de header içinde olduğu için o açıkken kapanır. */
+.header[data-negative='true'] {
+  mix-blend-mode: difference;
+}
+
 .bar {
   position: relative;
   z-index: 2;

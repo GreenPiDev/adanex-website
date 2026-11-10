@@ -1,10 +1,21 @@
-import { useRef, useState } from 'react';
+import { type ComponentProps, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { type Project, PROJECT_AMBER_TONE, PROJECT_SURFACES } from '../../content/projects';
 import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { Lightbox } from '../ui/Lightbox/Lightbox';
+import { InlineLinkArrow } from '../ui/RollText/RollText';
 import styles from './ProjectPanel.module.css';
+
+/** Özet metnindeki dış bağlantı. Yazısı çeviri metninden `Trans` ile gelir. */
+function SummaryLink({ children, ...rest }: ComponentProps<'a'>) {
+  return (
+    <a {...rest}>
+      {children}
+      <InlineLinkArrow />
+    </a>
+  );
+}
 
 // Dosya ekrana girer girmez içeriği gelir, yarıya kadar boş beklemez.
 const REVEAL_START = 'top 92%';
@@ -99,6 +110,7 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
       ref={rootRef}
       className={`${styles.panel} ${tone === PROJECT_AMBER_TONE ? styles.amber : ''}`}
       data-surface={PROJECT_SURFACES[tone]}
+      data-tone={tone === PROJECT_AMBER_TONE ? 'amber' : undefined}
     >
       <div ref={innerRef} className={styles.inner}>
         <div className={`${styles.frame} ${isReversed ? styles.frameEnd : ''}`}>
@@ -142,7 +154,7 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
                 i18nKey={`projects.items.${project.key}.summary`}
                 components={{
                   anchor: project.link ? (
-                    <a
+                    <SummaryLink
                       className={styles.inlineLink}
                       href={project.link.href}
                       target="_blank"

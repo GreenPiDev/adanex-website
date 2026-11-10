@@ -94,6 +94,22 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - **Yayından önce:** "Maksimum güvenlik/koruma", "uluslararası standartlara uygun", "Zone‑1 D tipi" ve 03/06'daki "acil kitli" ifadeleri firmaya doğrulatılmalı.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
+### 2026-11-10: Teknik bilgi merkezi
+
+- `/knowledge-center` yazıldı (`src/pages/KnowledgePage.tsx`, `src/components/knowledge/`), rota lazy yükleniyor. Sayfa, baştan sona okunan bir yazı değil aranıp açılan bir başvuru kitabı olarak kurgulandı.
+- Hero aynı zamanda dizindir: `PageHero` içinde büyük arama satırı ve altı bölüm satırı var, yazmaya başlayınca satırların yerini sonuçlar alır. Arama büyük harf ve aksan farkını yok sayar. "Kaydır" belirteci ortak bileşenden gelir.
+- Akış: Temeller, Zone Sınıfları (gaz/toz ve sıklık eksenli matris), Ürün Çeşitleri, Aydınlatma, Seçim Rehberi (sarı zeminde işaretlenebilir yedi kriterli liste), Sık Sorulan Sorular. Her maddenin numarası, sayfa içi adresi (`#zone-21` gibi) ve gerektiğinde "Bkz." bağlantısı var.
+- Sağdaki ray `ProjectsNav` içinden ortak `src/components/ui/SectionRail/` bileşenine taşındı. Çalışmalar sayfası da bunu kullanıyor.
+- Metinler `src/locales/{tr,en}/knowledge.json` içinde ve yalnızca bu sayfayla yüklenir. Yapı ve bağlantılar `src/content/knowledge.ts` içinde.
+- Görseller `public/tbm-1..4.webp`, yerleri ve ölçüleri `KNOWLEDGE_IMAGES` içinde.
+- **Yayından önce:** İngilizce çeviri ve teknik içerik firma onayından geçmeli. Kaynak sayfa yalnızca Zone 1, 2, 21 ve 22'yi anlatıyor, Zone 0 ve 20 eklenecekse firma metni gerekir (`tbm-2` şemasında Zone 0 görünüyor). `tbm-3` görselindeki "Maksimum Güvenlik" ifadesi ve `tbm-4` veri föyündeki değerler firmaya doğrulatılmalı.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
+### 2026-11-10: Negatif header
+
+- Header artık `mix-blend-mode: difference` ile altından geçen içeriğin negatifi olarak çiziliyor. Sarı bölümlerde (`data-tone="amber"`) düz siyah, mobil menü açıkken normal çiziliyor.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
 ## Sıradaki Teknik İşler
 
 - Diğer gerçek sayfalar (`SectionPage` ve `DemoPage` yerine).

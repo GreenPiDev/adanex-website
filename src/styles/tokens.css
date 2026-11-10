@@ -47,6 +47,22 @@
   --text-submit: clamp(2rem, 1.5rem + 2vw, 3.5rem);
   --text-lead: clamp(1.125rem, 0.9rem + 0.8vw, 1.75rem);
   --text-field: clamp(1.25rem, 1rem + 1vw, 2rem);
+  /* Teknik bilgi merkezi: arama satırı ve dizin hero'ya, kısa ekranlarda da sığsın diye yüksekliğe bağlıdır. */
+  --text-kb-search: min(clamp(1.625rem, 1rem + 3vw, 5rem), 8.5svh);
+  --text-kb-row: min(clamp(1.375rem, 0.9rem + 2.2vw, 3.5rem), 6.2svh);
+  --text-kb-result: min(clamp(1.125rem, 0.9rem + 1.2vw, 2.25rem), 4.4svh);
+  /* En uzun tek kelime (Fundamentals) yapışık sütuna sığacak şekilde hesaplandı. */
+  --text-kb-chapter: min(clamp(3rem, 1.5rem + 3.6vw, 6rem), 13svh);
+  /* Yan sütun ekranın %24'üdür, en uzun tek kelime bu genişliğe sığar. */
+  --text-kb-chapter-side: min(clamp(2.75rem, 4.4vw, 5.5rem), 13svh);
+  --text-kb-number: clamp(1.75rem, 1.4rem + 1.2vw, 3rem);
+  --text-kb-entry: clamp(1.75rem, 1.35rem + 1.7vw, 3.25rem);
+  --text-kb-lead: clamp(1.1875rem, 1.05rem + 0.55vw, 1.625rem);
+  --text-kb-body: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --text-kb-flow: clamp(1.5rem, 1.15rem + 1.5vw, 2.75rem);
+  --text-kb-callout: clamp(1.5rem, 1.2rem + 1.2vw, 2.5rem);
+  --text-kb-zone: min(34vw, 13rem, 24svh);
+  --text-kb-counter: min(clamp(4rem, 2rem + 7vw, 10rem), 16svh);
   --tracking-nav: -0.005em;
   --tracking-display: -0.035em;
 

@@ -2,6 +2,7 @@ import { type RefObject, useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 
 export type Surface = 'dark' | 'light';
+export type HeaderBackdrop = Surface | 'amber';
 
 function isSurface(value: string | undefined): value is Surface {
   return value === 'dark' || value === 'light';
@@ -9,11 +10,11 @@ function isSurface(value: string | undefined): value is Surface {
 
 /**
  * Header'ın dikey ortasından geçen 1 px'lik çizgiyi izler ve o çizginin üzerindeki
- * `data-surface` bölümünün zeminini döndürür.
+ * `data-surface` bölümünün zeminini döndürür. Sarı bölümler `data-tone="amber"` ile işaretlenir.
  */
-export function useHeaderSurface(headerRef: RefObject<HTMLElement | null>): Surface {
+export function useHeaderSurface(headerRef: RefObject<HTMLElement | null>): HeaderBackdrop {
   const { pathname } = useLocation();
-  const [surface, setSurface] = useState<Surface>('dark');
+  const [surface, setSurface] = useState<HeaderBackdrop>('dark');
 
   useEffect(() => {
     const header = headerRef.current;
@@ -37,8 +38,9 @@ export function useHeaderSurface(headerRef: RefObject<HTMLElement | null>): Surf
           }
 
           // Yapışık bölümlerin üstüne binen bölüm DOM'da sonra gelir, en üstte görünen odur.
-          const next = Array.from(sections).findLast((section) => intersecting.has(section))?.dataset.surface;
-          if (isSurface(next)) setSurface(next);
+          const top = Array.from(sections).findLast((section) => intersecting.has(section));
+          if (top?.dataset.tone === 'amber') setSurface('amber');
+          else if (isSurface(top?.dataset.surface)) setSurface(top.dataset.surface);
         },
         { rootMargin: `-${line}px 0px -${Math.max(window.innerHeight - line - 1, 0)}px 0px` },
       );

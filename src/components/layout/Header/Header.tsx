@@ -22,7 +22,7 @@ export function Header() {
 
   const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
-  const sectionSurface = useHeaderSurface(headerRef);
+  const backdrop = useHeaderSurface(headerRef);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuCovering, setIsMenuCovering] = useState(false);
@@ -57,12 +57,16 @@ export function Header() {
   }, [isMenuOpen]);
 
   const closeMenu = () => setIsMenuOpen(false);
+  const isMenuShown = isMenuOpen || isMenuCovering;
+  // Sarının negatifi mavidir ve palette yoktur, sarı bölümde header düz siyah çizilir.
+  const isOnAmber = !isMenuShown && backdrop === 'amber';
 
   return (
     <header
       ref={headerRef}
       className={styles.header}
-      data-surface={isMenuOpen || isMenuCovering ? 'dark' : sectionSurface}
+      data-surface={isOnAmber ? 'light' : 'dark'}
+      data-negative={!isMenuShown && !isOnAmber}
       data-device={device}
     >
       <div className={styles.bar}>

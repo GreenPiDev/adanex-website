@@ -34,6 +34,14 @@
   overflow: hidden;
 }
 
+.inlineArrow {
+  display: inline-block;
+  margin-inline-start: 0.3em;
+  font-size: 0.8em;
+  line-height: 1;
+  vertical-align: -0.05em;
+}
+
 .arrowIcon,
 .arrowHoverIcon {
   position: absolute;
@@ -59,6 +67,37 @@
 
   :is(a, button):hover .arrowIcon {
     transform: translate(100%, -100%);
+  }
+}
+
+/* Metin içi dış bağlantılarda ok, hover sürdükçe sağ üstten çıkıp sol alttan girmeye devam eder. */
+@keyframes arrowLoopOut {
+  from {
+    transform: none;
+  }
+
+  to {
+    transform: translate(100%, -100%);
+  }
+}
+
+@keyframes arrowLoopIn {
+  from {
+    transform: translate(-100%, 100%);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :is(a, button):hover .inlineArrow .arrowIcon {
+    animation: arrowLoopOut var(--duration-slow) var(--ease-standard) infinite;
+  }
+
+  :is(a, button):hover .inlineArrow .arrowHoverIcon {
+    animation: arrowLoopIn var(--duration-slow) var(--ease-standard) infinite;
   }
 }
 

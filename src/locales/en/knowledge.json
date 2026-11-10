@@ -1,0 +1,326 @@
+{
+  "hero": {
+    "searchLabel": "Search the knowledge center",
+    "placeholder": "Search a term",
+    "hint": "Zone 21, weatherproof, gland, IP65…",
+    "clear": "Clear search",
+    "indexLabel": "Chapters",
+    "resultsLabel": "Search results",
+    "resultCount_one": "{{count}} entry found",
+    "resultCount_other": "{{count}} entries found",
+    "noResults": "We couldn't find an entry for this term.",
+    "noResultsLink": "Ask us"
+  },
+  "rail": {
+    "label": "Navigate between chapters"
+  },
+  "common": {
+    "seeAlso": "See",
+    "newTab": "opens in a new tab",
+    "entryIndex": "Entries in this chapter",
+    "note": "Exproof equipment must be selected and installed by competent persons, taking into account the facility's hazardous area classification and the relevant technical requirements."
+  },
+  "images": {
+    "1": "ATEX Ex mark",
+    "2": "Diagram showing Zone 0, Zone 1 and Zone 2 areas around a fuel tanker, underground tank and fuel pump",
+    "3": "Promotional image showing an Adanex linear luminaire, LED floodlight and emergency exit luminaire with their areas of use",
+    "4": "Adanex LED floodlight technical datasheet"
+  },
+  "zoneAxes": {
+    "gas": "Gas, vapour, mist",
+    "dust": "Combustible dust",
+    "occasional": "May occur occasionally",
+    "brief": "Short-lived if it occurs"
+  },
+  "checklist": {
+    "progress": "{{done}} / {{total}} criteria reviewed",
+    "reset": "Reset the list"
+  },
+  "chapters": {
+    "basics": {
+      "title": "Fundamentals",
+      "short": "Fundamentals"
+    },
+    "zones": {
+      "title": "Zone Classes",
+      "short": "Zone Classes",
+      "intro": "One of the most important points in selecting exproof equipment is the correct classification of the area where it will be used. Zone classification is one of the basic criteria for selecting exproof equipment."
+    },
+    "products": {
+      "title": "Product Types",
+      "short": "Product Types"
+    },
+    "lighting": {
+      "title": "Lighting",
+      "short": "Lighting"
+    },
+    "selection": {
+      "title": "Selection Guide",
+      "short": "Selection Guide"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "short": "FAQ"
+    }
+  },
+  "entries": {
+    "whatIs": {
+      "title": "What Is Exproof?",
+      "lead": "Exproof refers to electrical and mechanical equipment designed for use in hazardous environments where explosive gas, vapour, mist or combustible dust may be present, and manufactured according to suitable protection methods and the relevant standards.",
+      "body": [
+        "In areas where an explosive atmosphere may form, such as oil and chemical plants, refineries, paint factories, pharmaceutical plants, fuel stations, and grain and food facilities, using standard electrical equipment can create a serious safety risk.",
+        "For this reason, hazardous areas call for exproof equipment that suits the classification of the environment and the protection features the equipment must have."
+      ]
+    },
+    "meaning": {
+      "title": "What Does Exproof Mean?",
+      "lead": "The word \"exproof\" is derived from the English term \"explosion proof\" and is generally used to mean equipment protected against explosion.",
+      "body": ["However, it does not simply mean that a product is \"explosion resistant\"."],
+      "listIntro": "For equipment to be used in a hazardous environment, it must suit the following:",
+      "list": [
+        "The hazardous area class where it will be used",
+        "The properties of the gas or dust environment",
+        "The equipment's protection type",
+        "The temperature class",
+        "The gas/dust group",
+        "The IP protection level",
+        "The relevant standard and certification requirements"
+      ],
+      "callout": "Exproof products should therefore not be selected based only on external appearance or wattage.",
+      "more": "<panels>Exproof panels and terminal boxes</panels>"
+    },
+    "atex": {
+      "title": "How Are ATEX and Exproof Related?",
+      "lead": "ATEX refers to the European Union's legislation and conformity requirements for equipment and protective systems used in explosive atmospheres.",
+      "body": ["For exproof products, ATEX conformity is an important criterion in assessing the hazardous environments and conditions in which a product can be used."],
+      "callout": "It is therefore not enough for a product simply to be called \"exproof\".",
+      "outro": ["The product's technical documentation, certification, protection type and area of use must be assessed together."]
+    },
+    "importance": {
+      "title": "Why Does Exproof Equipment Matter?",
+      "lead": "In environments with an explosive atmosphere, sparks, arcs or high surface temperatures produced by electrical equipment can be a potential source of ignition.",
+      "body": ["Properly selected and correctly installed exproof equipment provides protection aimed at reducing the risk of igniting an explosive atmosphere during normal operation or under certain fault conditions."],
+      "callout": "Correct installation and maintenance are therefore as important as correct product selection."
+    },
+    "usage": {
+      "title": "Where Is Exproof Equipment Used?",
+      "lead": "Exproof equipment is used in various industrial facilities where a flammable or explosive atmosphere may form.",
+      "list": [
+        "Oil refineries",
+        "Petrochemical plants",
+        "Chemical factories",
+        "Paint and solvent plants",
+        "Fuel filling and storage facilities",
+        "Fuel stations",
+        "LPG and LNG facilities",
+        "Pharmaceutical plants",
+        "Food and feed facilities",
+        "Grain silos",
+        "Flour mills",
+        "Sugar factories",
+        "Wood and furniture plants",
+        "Waste and recycling facilities",
+        "Industrial production facilities"
+      ],
+      "outro": ["The equipment to be used must be selected according to the facility's hazardous area classification."]
+    },
+    "zone1": {
+      "title": "Zone 1",
+      "lead": "An area where an explosive atmosphere containing flammable gas, vapour or mist may occur occasionally during normal operation."
+    },
+    "zone2": {
+      "title": "Zone 2",
+      "lead": "An area where an explosive atmosphere containing flammable gas, vapour or mist is not expected to be continuously present during normal operation, but may exist for a short time if it occurs."
+    },
+    "zone21": {
+      "title": "Zone 21",
+      "lead": "A hazardous area where a cloud of combustible dust may occur occasionally during normal operation."
+    },
+    "zone22": {
+      "title": "Zone 22",
+      "lead": "An area where a combustible dust atmosphere is not expected to be continuously present during normal operation, but may exist for a short time if it occurs."
+    },
+    "productLighting": {
+      "title": "Exproof Lighting",
+      "lead": "Used to provide safe and efficient lighting in hazardous areas.",
+      "listIntro": "For example, these products are preferred in different applications:",
+      "list": [
+        "<ledluminaire>Exproof LED luminaire</ledluminaire>",
+        "<slimlinear>Exproof linear luminaire</slimlinear>",
+        "<floodlight>Exproof floodlight</floodlight>",
+        "<emergency>Exproof emergency luminaire</emergency>",
+        "<handlamp>Exproof hand lamps</handlamp>"
+      ]
+    },
+    "glands": {
+      "title": "Exproof Cable Glands",
+      "lead": "Used to connect cables to exproof equipment safely.",
+      "listIntro": "When selecting a gland, these technical properties should be considered:",
+      "list": ["Cable diameter", "Thread size", "Material", "Protection class", "Zone of use", "Protection type of the equipment"],
+      "more": "<glands>Browse exproof cable glands</glands>"
+    },
+    "boxes": {
+      "title": "Exproof Junction and Combination Boxes",
+      "lead": "Help electrical connections and equipment to be used safely in hazardous areas.",
+      "body": ["Depending on the application, solutions can be built in different sizes, entry counts and equipment combinations."],
+      "more": "<boxes>Exproof junction boxes and enclosures</boxes>"
+    },
+    "panels": {
+      "title": "Exproof Panels and Control Equipment",
+      "lead": "Equipment specially designed for electrical control, distribution and command operations in hazardous areas.",
+      "more": "<panels>Exproof panels and terminal boxes</panels>"
+    },
+    "solutions": {
+      "title": "ADANEX Exproof Solutions",
+      "lead": "ADANEX offers solutions in exproof lighting and electrical equipment for use in hazardous areas.",
+      "listIntro": "Depending on the product group, products for these applications can be considered:",
+      "list": [
+        "Exproof LED luminaires",
+        "Exproof floodlights",
+        "Exproof cable glands",
+        "<boxes>Exproof junction boxes and enclosures</boxes>",
+        "<combo>Exproof electrical equipment</combo>",
+        "Zone 1 / Zone 2 solutions",
+        "Zone 21 / Zone 22 solutions"
+      ],
+      "outro": ["To select the right exproof equipment, the properties of the environment and its Zone class must be determined first."],
+      "more": "<catalog>Browse ADANEX exproof products</catalog>"
+    },
+    "lightingTypes": {
+      "title": "What Types of Exproof Lighting Are There?",
+      "lead": "Exproof lighting refers to special lighting systems used in hazardous areas where explosive gas, vapour, mist or combustible dust may be present. However, not every exproof luminaire lights a space in the same way.",
+      "body": [
+        "Depending on the size of the area, the mounting height, the structure of the zone to be lit and the desired light distribution, different solutions are preferred, such as exproof floodlights, linear luminaires, weatherproof luminaires, globe luminaires, tank lighting and high-bay luminaires.",
+        "Choosing the right exproof lighting therefore means assessing not only the ATEX certificate, Zone class or IP rating, but also the luminaire's purpose and the character of its light."
+      ]
+    },
+    "floodlight": {
+      "title": "What Is an Exproof Floodlight?",
+      "short": "Floodlight",
+      "lead": "<floodlight>Exproof floodlights</floodlight> are LED lighting products used to light large areas powerfully.",
+      "body": [
+        "They can be preferred especially at refinery sites, oil and petrochemical plants, tank farms, fuel facilities, open production areas and large industrial sites.",
+        "In floodlight-type exproof luminaires, light can be directed more precisely at a particular area. This helps provide effective lighting from tall masts or across large open spaces.",
+        "When selecting an <floodlight>exproof LED floodlight</floodlight>, lumens, beam angle, mounting height and the size of the area should be considered as well as wattage."
+      ]
+    },
+    "linear": {
+      "title": "What Is an Exproof Linear Luminaire?",
+      "short": "Linear",
+      "lead": "Exproof linear luminaires are LED lighting products with a long, narrow body.",
+      "body": [
+        "They can be preferred for long production lines, corridors, platforms, process areas, maintenance walkways and industrial work areas.",
+        "Their linear form allows light to be distributed more evenly along a long area.",
+        "Exproof linear LED luminaires used in hazardous areas such as Zone 1, Zone 2, Zone 21 and Zone 22 must meet the relevant ATEX and Ex requirements.",
+        "An exproof LED linear luminaire is an effective solution where long areas need to be lit uniformly."
+      ]
+    },
+    "weatherproof": {
+      "title": "What Is an Exproof Weatherproof Luminaire?",
+      "short": "Weatherproof",
+      "lead": "Exproof weatherproof luminaires are lighting products used in industrial areas, known for their durable bodies and high protection against environmental conditions.",
+      "body": [
+        "They can be used in production facilities, warehouses, technical areas, tunnels, passageways and industrial environments with demanding working conditions.",
+        "Weatherproof luminaires generally aim for a wide, uniform light distribution."
+      ],
+      "callout": "There is an important distinction here: not every weatherproof luminaire is exproof.",
+      "outro": ["For a weatherproof luminaire used in a hazardous area, a protection class such as IP65 or IP66 alone is not enough. The Zone of use, the Ex protection type and ATEX/IECEx conformity must also be checked."]
+    },
+    "globe": {
+      "title": "What Is an Exproof Globe Luminaire?",
+      "short": "Globe",
+      "lead": "Exproof globe luminaires are lighting products with a round or spherical body that can spread light around them at a wide angle.",
+      "body": [
+        "They can therefore be preferred where general area lighting is needed rather than intense light on a single point.",
+        "They can be used on platforms, stairs, passageways, process zones and in various industrial facilities.",
+        "Thanks to their wide light distribution, globe-type exproof luminaires help light the surrounding area more evenly."
+      ]
+    },
+    "tank": {
+      "title": "What Is Exproof Tank Lighting?",
+      "short": "Tank",
+      "lead": "<tank>Exproof tank lighting</tank> refers to special lighting solutions for the inside or surroundings of tanks in oil, chemical, petrochemical, pharmaceutical and other process facilities.",
+      "body": ["Adequate lighting is very important for inspection, maintenance, cleaning and process work carried out inside a tank."],
+      "callout": "A lighting product for use inside a tank and a product for the general lighting of a tank yard should not be assessed for the same purpose.",
+      "outro": ["When selecting an <tank>exproof tank luminaire</tank>, the structure of the tank, mounting method, direction of light, Zone of use, Ex certification and the required light level should be considered."]
+    },
+    "highBay": {
+      "title": "What Is an Exproof High-Bay Luminaire?",
+      "short": "High-bay",
+      "lead": "Exproof high-bay luminaires are lighting solutions designed for factories, warehouses, production plants and industrial areas with high mounting points.",
+      "body": [
+        "In high-ceiling areas the distance between the luminaire and the work surface increases, so choosing a product with high wattage alone is not enough.",
+        "Lumen output, light distribution angle, mounting height and the target lux level must be assessed together.",
+        "An exproof high-bay LED luminaire with the right optics can help light reach the work area more efficiently."
+      ]
+    },
+    "whereToUse": {
+      "title": "Which Exproof Luminaire Is Used Where?",
+      "columns": ["Luminaire", "Area of use"],
+      "rows": [
+        { "type": "Exproof floodlight", "use": "For large open sites, tank farms, refineries and outdoor lighting." },
+        { "type": "Exproof linear luminaire", "use": "For long production lines, corridors, platforms and process areas." },
+        { "type": "Exproof weatherproof luminaire", "use": "For general industrial areas, warehouses, technical spaces and areas needing durable lighting." },
+        { "type": "Exproof globe luminaire", "use": "For applications needing wide-angle general area lighting." },
+        { "type": "Exproof tank lighting", "use": "For the inside of tanks or for inspection and maintenance areas around them." },
+        { "type": "Exproof high-bay luminaire", "use": "For high-ceiling factories, warehouses and production areas." }
+      ]
+    },
+    "productChecklist": {
+      "title": "What Should You Consider When Selecting an Exproof Product?",
+      "lead": "Before purchasing exproof equipment, the following information must be assessed.",
+      "steps": [
+        { "title": "Zone class of the area", "text": "Zone 1, Zone 2, Zone 21 or Zone 22?" },
+        { "title": "Nature of the environment", "text": "Is gas, vapour, mist or dust present?" },
+        { "title": "Gas or dust group", "text": "What are the properties of the hazardous substance in the environment?" },
+        { "title": "Temperature class", "text": "Is the equipment's surface temperature suitable for the application?" },
+        { "title": "Protection type", "text": "Is the product's Ex protection method suitable for the application?" },
+        { "title": "IP protection class", "text": "Does the product have adequate protection against water, dust and outdoor conditions?" },
+        { "title": "Certification and technical documents", "text": "Are the required conformity and certification documents available for the product?" }
+      ],
+      "callout": "Selecting a product based only on price or physical appearance, without assessing these criteria together, is not correct."
+    },
+    "lightingSelection": {
+      "title": "What Should You Consider When Selecting Exproof Lighting?",
+      "steps": [
+        { "title": "Zone class", "text": "When selecting the right exproof luminaire, the Zone class of the area must be determined first." },
+        { "title": "Environment", "text": "Next, assess whether the environment contains gas, vapour, mist or combustible dust." },
+        { "title": "Certification and marking", "text": "The product's ATEX or IECEx certification, Ex marking, gas group, dust group and temperature class must be checked." },
+        { "title": "Light properties", "text": "In addition, review the luminaire's IP protection class, operating temperature and lighting properties such as wattage, lumens, lm/W, colour temperature, CRI and light distribution." },
+        { "title": "Mounting and photometry", "text": "Finally, a suitable product can be determined by assessing lux and photometric distribution according to the mounting height and the size of the area to be lit." }
+      ]
+    },
+    "rightLight": {
+      "title": "The Right Exproof Luminaire Is the Right Light in the Right Place",
+      "lead": "In exproof lighting, no single product is ideal for every application.",
+      "body": [
+        "An exproof floodlight for a large site, a linear luminaire for a long production line, weatherproof or globe luminaires for general area lighting, and tank lighting for work areas inside tanks may be more suitable solutions.",
+        "What matters is not simply buying an \"exproof luminaire\", but choosing an exproof product that suits the area, Zone class, certification requirements and the required light level.",
+        "ADANEX offers exproof LED floodlights, linear luminaires, weatherproof luminaires, globe luminaires, tank lighting and other exproof lighting solutions for hazardous and industrial areas."
+      ],
+      "more": "<catalog>Browse ADANEX products</catalog>"
+    },
+    "faqWhat": {
+      "title": "What is exproof?",
+      "lead": "Exproof refers to equipment designed according to suitable protection methods for use in hazardous areas where an explosive atmosphere may form."
+    },
+    "faqZone1": {
+      "title": "Can every exproof product be used in Zone 1?",
+      "verdict": "No.",
+      "lead": "The Zone in which a product can be used must be determined by considering its technical properties, certification and conditions of use."
+    },
+    "faqZoneDiff": {
+      "title": "What is the difference between Zone 1 and Zone 2?",
+      "lead": "In Zone 1, an explosive gas atmosphere may be expected to occur occasionally during normal operation. In Zone 2, such an atmosphere is not expected during normal operation; if it does occur, it is expected to be short-lived."
+    },
+    "faqDust": {
+      "title": "What are Zone 21 and Zone 22?",
+      "lead": "Zone 21 and Zone 22 are the zones used to classify hazardous areas where combustible dust is present."
+    },
+    "faqAtex": {
+      "title": "Is checking only the ATEX certificate enough when selecting an exproof product?",
+      "verdict": "No.",
+      "lead": "Zone class, gas or dust group, temperature class, protection type, IP class, technical properties and conditions of use must be assessed together."
+    }
+  }
+}

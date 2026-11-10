@@ -1,0 +1,326 @@
+{
+  "hero": {
+    "searchLabel": "Teknik bilgi merkezinde ara",
+    "placeholder": "Ne arıyorsunuz?",
+    "hint": "Zone 21, etanj, rakor, IP65…",
+    "clear": "Aramayı temizle",
+    "indexLabel": "Bölümler",
+    "resultsLabel": "Arama sonuçları",
+    "resultCount_one": "{{count}} madde bulundu",
+    "resultCount_other": "{{count}} madde bulundu",
+    "noResults": "Bu terimle bir madde bulamadık.",
+    "noResultsLink": "Bize sorun"
+  },
+  "rail": {
+    "label": "Bölümler arasında gezinme"
+  },
+  "common": {
+    "seeAlso": "Bkz.",
+    "newTab": "yeni sekmede açılır",
+    "entryIndex": "Bu bölümdeki maddeler",
+    "note": "Exproof ekipman seçimi ve kurulumu, tesisin tehlikeli alan sınıflandırması ve ilgili teknik gereklilikler dikkate alınarak yetkin kişiler tarafından yapılmalıdır."
+  },
+  "images": {
+    "1": "ATEX Ex işareti",
+    "2": "Akaryakıt tankeri, yer altı tankı ve yakıt pompası çevresindeki Zone 0, Zone 1 ve Zone 2 alanlarını gösteren şema",
+    "3": "Adanex lineer armatür, LED projektör ve acil çıkış armatürü ile kullanım alanlarını gösteren tanıtım görseli",
+    "4": "Adanex LED projektör teknik veri föyü"
+  },
+  "zoneAxes": {
+    "gas": "Gaz, buhar, sis",
+    "dust": "Yanıcı toz",
+    "occasional": "Zaman zaman oluşabilir",
+    "brief": "Oluşursa kısa süreli"
+  },
+  "checklist": {
+    "progress": "{{done}} / {{total}} kriter değerlendirildi",
+    "reset": "Listeyi sıfırla"
+  },
+  "chapters": {
+    "basics": {
+      "title": "Temeller",
+      "short": "Temeller"
+    },
+    "zones": {
+      "title": "Zone Sınıfları",
+      "short": "Zone Sınıfları",
+      "intro": "Exproof ekipman seçiminde en önemli konulardan biri, ekipmanın kullanılacağı alanın doğru şekilde sınıflandırılmasıdır. Zone sınıflandırması, kullanılacak exproof ekipmanın seçiminde temel kriterlerden biridir."
+    },
+    "products": {
+      "title": "Ürün Çeşitleri",
+      "short": "Ürün Çeşitleri"
+    },
+    "lighting": {
+      "title": "Aydınlatma",
+      "short": "Aydınlatma"
+    },
+    "selection": {
+      "title": "Seçim Rehberi",
+      "short": "Seçim Rehberi"
+    },
+    "faq": {
+      "title": "Sık Sorulan Sorular",
+      "short": "Sık Sorulan Sorular"
+    }
+  },
+  "entries": {
+    "whatIs": {
+      "title": "Exproof Nedir?",
+      "lead": "Exproof, patlayıcı gaz, buhar, sis veya yanıcı tozların bulunabileceği tehlikeli ortamlarda kullanılmak üzere tasarlanmış, uygun koruma yöntemlerine ve ilgili standartlara göre üretilen elektrikli ve mekanik ekipmanları ifade eder.",
+      "body": [
+        "Petrol ve kimya tesisleri, rafineriler, boya fabrikaları, ilaç üretim tesisleri, yakıt istasyonları, tahıl ve gıda tesisleri gibi patlayıcı atmosfer oluşma ihtimali bulunan alanlarda standart elektrik ekipmanlarının kullanılması ciddi güvenlik riski oluşturabilir.",
+        "Bu nedenle tehlikeli alanlarda, ortamın sınıflandırmasına ve ekipmanın sahip olması gereken koruma özelliklerine uygun Exproof ekipmanlar tercih edilir."
+      ]
+    },
+    "meaning": {
+      "title": "Exproof Ne Demektir?",
+      "lead": "\"Exproof\" kelimesi, İngilizcedeki \"Explosion Proof\" ifadesinden türetilmiştir ve genel olarak patlamaya karşı korumalı ekipman anlamında kullanılır.",
+      "body": ["Ancak exproof bir ürünün yalnızca \"patlamaya dayanıklı\" olması anlamına gelmez."],
+      "listIntro": "Bir ekipmanın tehlikeli bir ortamda kullanılabilmesi için şunlara uygun olması gerekir:",
+      "list": [
+        "Kullanılacağı tehlikeli alan sınıfı",
+        "Gaz veya toz ortamının özellikleri",
+        "Ekipmanın koruma tipi",
+        "Sıcaklık sınıfı",
+        "Gaz/toz grubu",
+        "IP koruma seviyesi",
+        "İlgili standart ve sertifikasyon gereklilikleri"
+      ],
+      "callout": "Bu nedenle exproof ürün seçimi yalnızca ürünün dış görünüşüne veya watt değerine göre yapılmamalıdır.",
+      "more": "<panels>Exproof panolar ve terminal kutuları</panels>"
+    },
+    "atex": {
+      "title": "ATEX ile Exproof Arasındaki İlişki Nedir?",
+      "lead": "ATEX, Avrupa Birliği'nde patlayıcı atmosferlerde kullanılan ekipman ve koruyucu sistemlerle ilgili mevzuat ve uygunluk gerekliliklerini ifade eder.",
+      "body": ["Exproof ürünlerde ATEX uygunluğu, ürünün hangi tehlikeli ortamlarda ve hangi şartlarda kullanılabileceğinin değerlendirilmesinde önemli bir kriterdir."],
+      "callout": "Bu nedenle bir ürünün yalnızca \"Exproof\" olarak adlandırılması yeterli değildir.",
+      "outro": ["Ürünün teknik dokümantasyonu, sertifikasyonu, koruma tipi ve kullanım alanı birlikte değerlendirilmelidir."]
+    },
+    "importance": {
+      "title": "Exproof Ekipman Neden Önemlidir?",
+      "lead": "Patlayıcı atmosfer bulunan ortamlarda elektrikli ekipmanların oluşturabileceği kıvılcım, ark veya yüksek yüzey sıcaklığı potansiyel bir ateşleme kaynağı olabilir.",
+      "body": ["Uygun şekilde seçilmiş ve doğru monte edilmiş exproof ekipmanlar, ekipmanın normal çalışması veya belirli arıza koşullarında patlayıcı atmosferin ateşlenmesi riskini azaltmaya yönelik koruma sağlar."],
+      "callout": "Bu nedenle doğru ürün seçimi kadar doğru montaj ve bakım da önemlidir."
+    },
+    "usage": {
+      "title": "Exproof Ekipmanlar Nerelerde Kullanılır?",
+      "lead": "Exproof ekipmanlar, yanıcı veya patlayıcı atmosfer oluşma ihtimali bulunan çeşitli endüstriyel tesislerde kullanılır.",
+      "list": [
+        "Petrol rafinerileri",
+        "Petrokimya tesisleri",
+        "Kimya fabrikaları",
+        "Boya ve solvent üretim tesisleri",
+        "Yakıt dolum ve depolama tesisleri",
+        "Akaryakıt istasyonları",
+        "LPG ve LNG tesisleri",
+        "İlaç üretim tesisleri",
+        "Gıda ve yem tesisleri",
+        "Tahıl siloları",
+        "Un fabrikaları",
+        "Şeker fabrikaları",
+        "Ahşap ve mobilya üretim tesisleri",
+        "Atık ve geri dönüşüm tesisleri",
+        "Endüstriyel üretim tesisleri"
+      ],
+      "outro": ["Kullanılacak ekipmanın seçimi, tesisin tehlikeli alan sınıflandırmasına göre yapılmalıdır."]
+    },
+    "zone1": {
+      "title": "Zone 1",
+      "lead": "Yanıcı gaz, buhar veya sis içeren patlayıcı atmosferin normal çalışma sırasında zaman zaman oluşabileceği alanları ifade eder."
+    },
+    "zone2": {
+      "title": "Zone 2",
+      "lead": "Yanıcı gaz, buhar veya sis içeren patlayıcı atmosferin normal çalışma sırasında sürekli olarak bulunmasının beklenmediği, ancak oluşması halinde kısa süreli olarak mevcut olabileceği alanlardır."
+    },
+    "zone21": {
+      "title": "Zone 21",
+      "lead": "Yanıcı toz bulutunun normal çalışma sırasında zaman zaman oluşabileceği tehlikeli alanlardır."
+    },
+    "zone22": {
+      "title": "Zone 22",
+      "lead": "Yanıcı toz atmosferinin normal çalışma sırasında sürekli bulunmasının beklenmediği, ancak oluşması halinde kısa süreli olarak mevcut olabileceği alanlardır."
+    },
+    "productLighting": {
+      "title": "Exproof Aydınlatma",
+      "lead": "Tehlikeli alanlarda güvenli ve verimli aydınlatma sağlamak amacıyla kullanılır.",
+      "listIntro": "Örneğin şu ürünler farklı uygulamalarda tercih edilir:",
+      "list": [
+        "<ledluminaire>Exproof LED armatür</ledluminaire>",
+        "<slimlinear>Exproof lineer armatür</slimlinear>",
+        "<floodlight>Exproof projektör</floodlight>",
+        "<emergency>Acil durumlu exproof armatür</emergency>",
+        "<handlamp>Exproof el fenerleri</handlamp>"
+      ]
+    },
+    "glands": {
+      "title": "Exproof Kablo Rakorları",
+      "lead": "Kabloların exproof ekipmanlara güvenli şekilde bağlanmasını sağlamak amacıyla kullanılır.",
+      "listIntro": "Rakor seçiminde şu teknik özellikler dikkate alınmalıdır:",
+      "list": ["Kablo çapı", "Diş ölçüsü", "Malzeme", "Koruma sınıfı", "Kullanılacağı Zone", "Ekipmanın koruma tipi"],
+      "more": "<glands>Exproof kablo rakorlarını inceleyin</glands>"
+    },
+    "boxes": {
+      "title": "Exproof Buat ve Kombinasyon Kutuları",
+      "lead": "Elektrik bağlantılarının ve ekipmanların tehlikeli alanlarda güvenli şekilde kullanılmasına yardımcı olur.",
+      "body": ["Uygulamaya göre farklı ölçülerde, giriş sayılarında ve ekipman kombinasyonlarında çözümler oluşturulabilir."],
+      "more": "<boxes>Exproof buat ve kutular</boxes>"
+    },
+    "panels": {
+      "title": "Exproof Pano ve Kumanda Ekipmanları",
+      "lead": "Tehlikeli alanlarda elektriksel kontrol, dağıtım ve kumanda işlemleri için özel olarak tasarlanmış ekipmanlardır.",
+      "more": "<panels>Exproof panolar ve terminal kutuları</panels>"
+    },
+    "solutions": {
+      "title": "ADANEX Exproof Çözümleri",
+      "lead": "ADANEX, tehlikeli alanlarda kullanılmak üzere exproof aydınlatma ve elektrik ekipmanları alanında çözümler sunmaktadır.",
+      "listIntro": "Ürün grubuna göre şu uygulamalara yönelik ürünler değerlendirilebilir:",
+      "list": [
+        "Exproof LED armatürler",
+        "Exproof projektörler",
+        "Exproof kablo rakorları",
+        "<boxes>Exproof buat ve kutular</boxes>",
+        "<combo>Exproof elektrik ekipmanları</combo>",
+        "Zone 1 / Zone 2 çözümleri",
+        "Zone 21 / Zone 22 çözümleri"
+      ],
+      "outro": ["Doğru exproof ekipman seçimi için öncelikle kullanılacak ortamın özellikleri ve Zone sınıfı belirlenmelidir."],
+      "more": "<catalog>ADANEX exproof ürünlerini inceleyin</catalog>"
+    },
+    "lightingTypes": {
+      "title": "Exproof Aydınlatma Çeşitleri Nelerdir?",
+      "lead": "Exproof aydınlatma, patlayıcı gaz, buhar, sis veya yanıcı toz bulunma ihtimali olan tehlikeli alanlarda kullanılan özel aydınlatma sistemleridir. Ancak her Exproof armatür aynı şekilde aydınlatma yapmaz.",
+      "body": [
+        "Kullanılacak alanın büyüklüğü, montaj yüksekliği, aydınlatılacak bölgenin yapısı ve istenen ışık dağılımına göre Exproof projektör, Exproof lineer armatür, Exproof etanj armatür, Exproof glob armatür, Exproof tank aydınlatma ve Exproof yüksek tavan armatürü gibi farklı çözümler tercih edilir.",
+        "Bu nedenle doğru Exproof aydınlatma seçiminde yalnızca ATEX sertifikası, Zone sınıfı veya IP koruma sınıfı değil, armatürün kullanım amacı ve ışık karakteri de değerlendirilmelidir."
+      ]
+    },
+    "floodlight": {
+      "title": "Exproof Projektör Nedir?",
+      "short": "Projektör",
+      "lead": "<floodlight>Exproof projektörler</floodlight>, geniş alanların güçlü şekilde aydınlatılması amacıyla kullanılan LED aydınlatma ürünleridir.",
+      "body": [
+        "Özellikle rafineri sahaları, petrol ve petrokimya tesisleri, tank sahaları, akaryakıt tesisleri, açık üretim alanları ve geniş endüstriyel sahalarda tercih edilebilir.",
+        "Projektör tipi Exproof armatürlerde ışık daha belirli bir bölgeye yönlendirilebilir. Bu özellik, yüksek direklerde veya geniş açık alanlarda etkili bir aydınlatma sağlanmasına yardımcı olur.",
+        "<floodlight>Exproof LED projektör</floodlight> seçerken watt değerinin yanı sıra lümen, ışık açısı, montaj yüksekliği ve aydınlatılacak alanın büyüklüğü dikkate alınmalıdır."
+      ]
+    },
+    "linear": {
+      "title": "Exproof Lineer Armatür Nedir?",
+      "short": "Lineer",
+      "lead": "Exproof lineer armatürler, uzun ve dar gövde yapısına sahip LED aydınlatma ürünleridir.",
+      "body": [
+        "Uzun üretim hatları, koridorlar, platformlar, proses alanları, bakım yolları ve endüstriyel çalışma alanlarında tercih edilebilir.",
+        "Lineer yapısı sayesinde ışığın uzun bir alan boyunca daha dengeli şekilde dağıtılması mümkün olur.",
+        "Özellikle Zone 1, Zone 2, Zone 21 ve Zone 22 gibi tehlikeli alanlarda kullanılacak Exproof lineer LED armatürlerin ilgili ATEX ve Ex gerekliliklerine uygun olması gerekir.",
+        "Exproof LED lineer armatür, uzun alanların homojen şekilde aydınlatılmasının istendiği uygulamalarda etkili bir çözümdür."
+      ]
+    },
+    "weatherproof": {
+      "title": "Exproof Etanj Armatür Nedir?",
+      "short": "Etanj",
+      "lead": "Exproof etanj armatürler, dayanıklı gövde yapısı ve çevresel koşullara karşı yüksek koruma özellikleriyle endüstriyel alanlarda kullanılan aydınlatma ürünleridir.",
+      "body": [
+        "Üretim tesisleri, depolar, teknik alanlar, tüneller, geçiş alanları ve zorlu çalışma koşullarına sahip endüstriyel ortamlarda kullanılabilir.",
+        "Etanj tipi armatürlerde genellikle geniş ve homojen bir ışık dağılımı hedeflenir."
+      ],
+      "callout": "Burada önemli bir ayrım vardır: Her etanj armatür Exproof değildir.",
+      "outro": ["Tehlikeli bir alanda kullanılacak etanj armatürün yalnızca IP65 veya IP66 gibi bir koruma sınıfına sahip olması yeterli değildir. Ürünün kullanılacağı Zone, Ex koruma tipi ve ATEX/IECEx uygunluğu da kontrol edilmelidir."]
+    },
+    "globe": {
+      "title": "Exproof Glob Armatür Nedir?",
+      "short": "Glob",
+      "lead": "Exproof glob armatürler, yuvarlak veya küresel gövde tasarımıyla öne çıkan ve ışığı geniş bir açıyla çevresine dağıtabilen aydınlatma ürünleridir.",
+      "body": [
+        "Bu nedenle belirli bir noktaya yoğun ışık vermekten ziyade genel alan aydınlatması gereken uygulamalarda tercih edilebilir.",
+        "Platformlar, merdivenler, geçiş alanları, proses bölgeleri ve çeşitli endüstriyel tesislerde kullanılabilir.",
+        "Glob tipi Exproof armatürler, geniş ışık dağılımları sayesinde çevredeki alanın daha dengeli şekilde aydınlatılmasına yardımcı olur."
+      ]
+    },
+    "tank": {
+      "title": "Exproof Tank Aydınlatma Nedir?",
+      "short": "Tank",
+      "lead": "<tank>Exproof tank aydınlatma</tank>, petrol, kimya, petrokimya, ilaç ve farklı proses tesislerinde bulunan tankların iç veya çevresindeki alanların aydınlatılması için kullanılan özel aydınlatma çözümleridir.",
+      "body": ["Tank içerisinde gerçekleştirilen kontrol, bakım, temizlik ve proses işlemlerinde yeterli aydınlatma büyük önem taşır."],
+      "callout": "Tankın içerisinde kullanılacak bir aydınlatma ürünü ile tank sahasının genel aydınlatması için kullanılacak ürün aynı amaçla değerlendirilmemelidir.",
+      "outro": ["<tank>Exproof tank aydınlatma armatürü</tank> seçiminde tankın yapısı, montaj şekli, ışığın yönü, kullanılacak Zone, Ex sertifikasyonu ve ihtiyaç duyulan aydınlatma seviyesi dikkate alınmalıdır."]
+    },
+    "highBay": {
+      "title": "Exproof Yüksek Tavan Armatürü Nedir?",
+      "short": "Yüksek tavan",
+      "lead": "Exproof yüksek tavan armatürleri, yüksek montaj noktalarına sahip fabrika, depo, üretim tesisi ve endüstriyel alanlarda kullanılmak üzere tasarlanmış aydınlatma çözümleridir.",
+      "body": [
+        "Yüksek tavanlı alanlarda armatür ile çalışma yüzeyi arasındaki mesafe arttığı için yalnızca yüksek watt değerine sahip bir ürün seçmek yeterli değildir.",
+        "Lümen değeri, ışık dağılım açısı, montaj yüksekliği ve hedeflenen lux seviyesi birlikte değerlendirilmelidir.",
+        "Doğru optik yapıya sahip Exproof yüksek tavan LED armatürü, ışığın çalışma alanına daha verimli ulaşmasına yardımcı olabilir."
+      ]
+    },
+    "whereToUse": {
+      "title": "Hangi Exproof Armatür Nerede Kullanılır?",
+      "columns": ["Armatür", "Kullanım alanı"],
+      "rows": [
+        { "type": "Exproof projektör", "use": "Geniş açık sahalar, tank sahaları, rafineri ve dış ortam aydınlatmaları için." },
+        { "type": "Exproof lineer armatür", "use": "Uzun üretim hatları, koridorlar, platformlar ve proses alanları için." },
+        { "type": "Exproof etanj armatür", "use": "Genel endüstriyel alan, depo, teknik hacim ve dayanıklı aydınlatma gereken alanlar için." },
+        { "type": "Exproof glob armatür", "use": "Geniş açılı genel alan aydınlatması gereken uygulamalar için." },
+        { "type": "Exproof tank aydınlatma", "use": "Tankların içi veya tank çevresindeki kontrol ve bakım alanları için." },
+        { "type": "Exproof yüksek tavan armatürü", "use": "Yüksek tavanlı fabrika, depo ve üretim alanları için." }
+      ]
+    },
+    "productChecklist": {
+      "title": "Exproof Ürün Seçerken Nelere Dikkat Edilmeli?",
+      "lead": "Bir exproof ekipman satın almadan önce aşağıdaki bilgiler mutlaka değerlendirilmelidir.",
+      "steps": [
+        { "title": "Kullanılacak alanın Zone sınıfı", "text": "Zone 1, Zone 2, Zone 21 veya Zone 22?" },
+        { "title": "Ortamın yapısı", "text": "Gaz, buhar, sis veya toz mu bulunuyor?" },
+        { "title": "Gaz veya toz grubu", "text": "Ortamda bulunan tehlikeli maddenin özellikleri nedir?" },
+        { "title": "Sıcaklık sınıfı", "text": "Ekipmanın yüzey sıcaklığı uygulama için uygun mu?" },
+        { "title": "Koruma tipi", "text": "Ürünün sahip olduğu Ex koruma yöntemi uygulamaya uygun mu?" },
+        { "title": "IP koruma sınıfı", "text": "Ürün su, toz ve dış ortam şartlarına karşı yeterli korumaya sahip mi?" },
+        { "title": "Sertifikasyon ve teknik belgeler", "text": "Ürünün gerekli uygunluk ve sertifikasyon belgeleri mevcut mu?" }
+      ],
+      "callout": "Bu kriterler birlikte değerlendirilmeden yalnızca fiyat veya ürünün fiziksel görünüşüne göre seçim yapılması doğru değildir."
+    },
+    "lightingSelection": {
+      "title": "Exproof Aydınlatma Seçerken Nelere Dikkat Edilmeli?",
+      "steps": [
+        { "title": "Zone sınıfı", "text": "Doğru Exproof armatür seçimi yapılırken öncelikle kullanılacak alanın Zone sınıfı belirlenmelidir." },
+        { "title": "Ortam", "text": "Bunun ardından ortamın gaz, buhar, sis veya yanıcı toz içerip içermediği değerlendirilmelidir." },
+        { "title": "Sertifika ve işaretleme", "text": "Ürünün ATEX veya IECEx sertifikasyonu, Ex işaretlemesi, gaz grubu, toz grubu ve sıcaklık sınıfı kontrol edilmelidir." },
+        { "title": "Işık özellikleri", "text": "Bunların yanında armatürün IP koruma sınıfı, çalışma sıcaklığı, watt, lümen, lm/W, renk sıcaklığı, CRI ve ışık dağılımı gibi aydınlatma özellikleri de incelenmelidir." },
+        { "title": "Montaj ve fotometri", "text": "Son olarak armatürün montaj yüksekliği ve aydınlatılacak alanın büyüklüğüne göre lux ve fotometrik dağılım değerlendirilerek uygun ürün belirlenebilir." }
+      ]
+    },
+    "rightLight": {
+      "title": "Doğru Exproof Armatür, Doğru Alanda Doğru Işıktır",
+      "lead": "Exproof aydınlatmada tek bir ürün her uygulama için ideal değildir.",
+      "body": [
+        "Geniş bir saha için Exproof projektör, uzun bir üretim hattı için Exproof lineer armatür, genel alan aydınlatması için Exproof etanj veya glob, tank içerisindeki çalışma alanları için ise Exproof tank aydınlatma daha uygun bir çözüm olabilir.",
+        "Önemli olan yalnızca \"Exproof armatür\" satın almak değil; kullanılacak alana, Zone sınıfına, sertifikasyon gerekliliklerine ve ihtiyaç duyulan aydınlatma seviyesine uygun Exproof ürünü seçmektir.",
+        "ADANEX, tehlikeli ve endüstriyel alanlar için Exproof LED projektör, Exproof lineer armatür, Exproof etanj, Exproof glob, tank aydınlatma ve farklı Exproof aydınlatma çözümleri sunmaktadır."
+      ],
+      "more": "<catalog>ADANEX ürünlerini inceleyin</catalog>"
+    },
+    "faqWhat": {
+      "title": "Exproof nedir?",
+      "lead": "Exproof, patlayıcı atmosfer oluşma ihtimali bulunan tehlikeli alanlarda kullanılmak üzere uygun koruma yöntemlerine göre tasarlanmış ekipmanları ifade eder."
+    },
+    "faqZone1": {
+      "title": "Her exproof ürün Zone 1'de kullanılabilir mi?",
+      "verdict": "Hayır.",
+      "lead": "Bir ürünün kullanılabileceği Zone, ürünün teknik özellikleri, sertifikasyonu ve kullanım koşulları dikkate alınarak belirlenmelidir."
+    },
+    "faqZoneDiff": {
+      "title": "Zone 1 ve Zone 2 arasındaki fark nedir?",
+      "lead": "Zone 1'de patlayıcı gaz atmosferinin normal çalışma sırasında zaman zaman oluşması beklenebilir. Zone 2'de ise böyle bir atmosferin normal çalışma sırasında oluşması beklenmez; oluşması halinde kısa süreli olması öngörülür."
+    },
+    "faqDust": {
+      "title": "Zone 21 ve Zone 22 nedir?",
+      "lead": "Zone 21 ve Zone 22, yanıcı toz bulunan tehlikeli alanların sınıflandırılmasında kullanılan bölgelerdir."
+    },
+    "faqAtex": {
+      "title": "Exproof ürün seçerken sadece ATEX belgesine bakmak yeterli midir?",
+      "verdict": "Hayır.",
+      "lead": "Zone sınıfı, gaz veya toz grubu, sıcaklık sınıfı, koruma tipi, IP sınıfı, teknik özellikler ve kullanım koşulları birlikte değerlendirilmelidir."
+    }
+  }
+}
