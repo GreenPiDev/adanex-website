@@ -59,6 +59,7 @@
   grid-area: second;
   color: var(--color-black);
   background: var(--color-amber);
+  --selection-bg: var(--color-white);
 }
 
 .text {

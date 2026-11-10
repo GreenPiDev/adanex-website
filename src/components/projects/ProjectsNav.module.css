@@ -58,6 +58,7 @@
   color: var(--color-black);
   background: var(--color-amber);
   --item-opacity: 1;
+  --selection-bg: var(--color-white);
 }
 
 .label,

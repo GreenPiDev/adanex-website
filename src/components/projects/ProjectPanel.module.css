@@ -6,6 +6,7 @@
 .panel.amber {
   --surface-bg: var(--color-amber);
   --surface-fg: var(--color-black);
+  --selection-bg: var(--color-white);
 }
 
 /* Mobilde sırayla akar: görsel, başlık, metin, teknik değerler. */
@@ -101,6 +102,9 @@
   max-inline-size: 42em;
   font-size: var(--text-work-summary);
   line-height: 1.45;
+
+  /* Özet içindeki boş satırlar paragraf ayracı olarak korunur. */
+  white-space: pre-line;
 }
 
 .specs {
@@ -132,15 +136,10 @@
   text-align: end;
 }
 
-.link {
-  display: flex;
-  gap: var(--space-sm);
-  align-items: center;
-  justify-content: space-between;
-  min-block-size: var(--touch-target);
-  font-size: var(--text-work-summary);
+.inlineLink {
   font-weight: var(--weight-medium);
-  --roll-hover-color: var(--surface-fg);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 @media (min-width: 37.5rem) {

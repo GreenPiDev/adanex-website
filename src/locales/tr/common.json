@@ -61,32 +61,32 @@
       "lighting": {
         "title": "Exproof Aydınlatma Armatürleri",
         "short": "Aydınlatma",
-        "summary": "Yeni SEDEX serisi ATEX'e uygundur ve Zone 2/22 ortamlarında kullanılır. Aydınlatma ve acil çıkış armatürleri zorlu koşullarda dayanıklılık sunar."
+        "summary": "Armatürler, ATEX direktiflerine uygun olarak güvenle kullanılmak üzere tasarlanmıştır. Exproof aydınlatma ve acil çıkış armatürleri, zorlu endüstriyel koşullarda maksimum güvenlik ve uzun ömürlü performans sağlar. Adanex Elektrik, uluslararası standartlara uygun çözümleriyle her projede güvenin adresidir."
       },
       "controlBoxes": {
         "title": "Exproof Kumanda Kontrol Kutuları",
         "short": "Kumanda kutuları",
-        "summary": "Start, Stop, Acil Stop, Kilitli Acil Stop, sinyal lambası ve pako şalter varyasyonlarıyla sunulan ATEX/IECEx sertifikalı kutular. Gövdeleri alüminyumdur."
+        "summary": "Kutular; Start, Stop, Acil Stop, Kilitli Acil Stop, kırmızı/yeşil sinyal lambaları ve pako şalter gibi farklı varyasyonlarla ihtiyaca uygun çözümler sunar. Dayanıklı alüminyum gövde, patlayıcı atmosferlerde maksimum güvenlik ve uzun ömürlü performans sağlar."
       },
       "emergencyExit": {
         "title": "Exproof Acil Çıkış Armatürleri",
         "short": "Acil çıkış",
-        "summary": "ATEX sertifikalı acil çıkış armatürleri, Zone 1, 2, 21 ve 22 ortamları için uygundur."
+        "summary": "Exit, acil çıkış ve acil kitli armatür seçenekleri, patlayıcı atmosferlerde maksimum koruma ve uzun ömürlü performans sunar. Adanex Elektrik, kritik endüstriyel projelerde güvenilir çözümler üretir."
       },
       "cableGlands": {
         "title": "E1W Exproof Zırhlı Pirinç Kablo Rakoru",
         "short": "Kablo rakoru",
-        "summary": "Pirinç, paslanmaz çelik ve nikel kaplama seçenekleriyle ATEX sertifikalı zırhlı kablo rakorları. Rafineri, petrokimya, boya, kimya ve enerji santrallerinde kullanılır."
+        "summary": "Zırhlı kabloların bağlantı noktalarında kritik rol oynayan exproof kablo rakorları, kabloların güvenli sonlandırılmasını sağlar. Özellikle Zone‑1 D tipi ürünler, en yüksek riskli ortamlarda patlamaya dayanıklı yapıyla işletmelerin güvenlik standartlarını yükseltir. Rakorlar, yüksek sıcaklık ve zorlu endüstriyel koşullarda sızdırmazlık, maksimum güvenlik ve uzun ömürlü performans sunar. Pirinç, paslanmaz çelik ve nikel kaplama gibi dayanıklı malzeme seçenekleriyle farklı ihtiyaçlara cevap verir. Rafinerilerden petrokimya tesislerine, boya ve kimya fabrikalarından enerji santrallerine kadar geniş kullanım alanlarında işletmelerin üretim sürekliliğini destekler. Adanex Elektrik güvencesiyle sunulan kablo rakorları, yalnızca bir bağlantı elemanı değil, endüstriyel güvenlik kültürünü güçlendiren stratejik bir yatırım olarak öne çıkar."
       },
       "floodlights": {
         "title": "Zone 2/22 Exproof LED Projektörler",
         "short": "LED projektör",
-        "summary": "Darbelere dayanıklı gövdeli, ATEX belgeli LED projektörler. Rafineri, gıda, ilaç ve enerji santralleri gibi alanlarda kullanılır."
+        "summary": "Exproof LED projektör (floodlight) tasarımı, patlayıcı gaz ve toz ortamlarında güvenli ışık sağlamak için geliştirilmiştir. Darbelere dirençli gövde yapısıyla zorlu koşullarda dayanıklılık sunar. Rafineriler, petrokimya tesisleri, boya ve kimya fabrikaları, gıda üretim alanları, ilaç endüstrisi ve enerji santralleri gibi yüksek riskli bölgelerde kullanılabilir. Patlamaya dayanıklılık özelliği işletmelerin üretim sürekliliğini desteklerken, yüksek ürün kalitesi uzun yıllar performans sağlar. Adanex Elektrik, exproof projektör ve aydınlatma çözümleriyle endüstriyel tesislerde maksimum güvenlik üretir ve işletmelerin enerji verimliliğini artırır."
       },
       "panels": {
         "title": "Exproof Pano ve Bağlantı Kutuları",
         "short": "Pano ve kutular",
-        "summary": "Kompakt klemens kutularından kontaktör, röle ve PLC için cam pencereli geniş panolara uzanan alüminyum gövdeli modeller. Rafineri, LNG/LPG, kimya, boyahane ve gaz dolum sahalarında kullanılır."
+        "summary": "Exproof pano ve bağlantı kutuları, patlayıcı gaz ve toz ortamlarında elektrik bağlantılarını güvenle muhafaza etmek için tasarlanmış alev sızdırmaz gövdelerdir. İçeride oluşabilecek ark veya kıvılcımın dış ortama yayılmasını engeller.\n\nKüçük klemens bağlantıları için kompakt terminal kutuları, kontaktör, röle ve PLC gibi kontrol ekipmanları için ise geniş hacimli, isteğe bağlı cam pencereli alüminyum gövdeli pano modelleri sunulur.\n\nRafineriler, LNG/LPG tesisleri, kimya sanayi, boyahaneler ve gaz dolum sahaları başlıca kullanım alanlarıdır. Model, ölçü ve iç hacim tablosu için <anchor>Adanex exproof pano modellerini inceleyin</anchor>."
       }
     }
   },

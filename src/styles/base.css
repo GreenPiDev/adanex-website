@@ -59,9 +59,10 @@ main:focus {
   outline-offset: 3px;
 }
 
+/* Sarı zeminli alanlar `--selection-bg` ile seçim rengini beyaza çevirir, yoksa seçim zeminde kaybolur. */
 ::selection {
   color: var(--color-black);
-  background: var(--color-amber);
+  background: var(--selection-bg, var(--color-amber));
 }
 
 html[data-scroll-locked],

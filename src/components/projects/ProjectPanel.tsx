@@ -1,10 +1,9 @@
 import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { type Project, PROJECT_AMBER_TONE, PROJECT_SURFACES } from '../../content/projects';
 import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { Lightbox } from '../ui/Lightbox/Lightbox';
-import { RollArrow, RollText } from '../ui/RollText/RollText';
 import styles from './ProjectPanel.module.css';
 
 // Dosya ekrana girer girmez içeriği gelir, yarıya kadar boş beklemez.
@@ -139,7 +138,22 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
 
           <div className={styles.details}>
             <p className={styles.summary} data-panel-reveal>
-              {t(`projects.items.${project.key}.summary`)}
+              <Trans
+                i18nKey={`projects.items.${project.key}.summary`}
+                components={{
+                  anchor: project.link ? (
+                    <a
+                      className={styles.inlineLink}
+                      href={project.link.href}
+                      target="_blank"
+                      rel="noopener"
+                      aria-label={t('projects.linkLabel', { text: t(`projects.links.${project.link.labelKey}`) })}
+                    />
+                  ) : (
+                    <span />
+                  ),
+                }}
+              />
             </p>
 
             <dl className={styles.specs}>
@@ -150,20 +164,6 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
                 </div>
               ))}
             </dl>
-
-            {project.link && (
-              <a
-                className={styles.link}
-                href={project.link.href}
-                target="_blank"
-                rel="noopener"
-                aria-label={t('projects.linkLabel', { text: t(`projects.links.${project.link.labelKey}`) })}
-                data-panel-reveal
-              >
-                <RollText text={t(`projects.links.${project.link.labelKey}`)} />
-                <RollArrow />
-              </a>
-            )}
           </div>
         </div>
       </div>

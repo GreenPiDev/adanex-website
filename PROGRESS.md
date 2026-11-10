@@ -86,6 +86,14 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - **Yayından önce:** Görseller Metinler mevcut siteden kısaltılarak yazıldı, teknik içerik ve İngilizce çeviri firma onayından geçmeli.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
+### 2026-11-10: Çalışmalar özet metinleri ve seçim rengi
+
+- Altı dosyanın özet metinleri firmanın verdiği metinlerle değiştirildi. Künyede zaten yazan bilgiler (seri, Zone, sertifika, IP, verimlilik, sıcaklık vb.) metinden çıkarıldı. "Garanti eder", "tam uyum" gibi mutlak ifadeler yumuşatıldı.
+- 06/06 özetinde "Adanex exproof pano modellerini inceleyin" metin içi bağlantı oldu (yeni sekmede açılır). Özet metni `white-space: pre-line` ile paragraflı gösteriliyor, çeviride bağlantı `<anchor>` etiketiyle işaretli (`<link>` HTML'de içeriksiz etiket olduğu için çalışmaz).
+- Sarı zeminli alanlarda metin seçimi beyaz görünür: `--selection-bg` değişkeni (`base.css`), sarı alanlarda beyaza çevrilir.
+- **Yayından önce:** "Maksimum güvenlik/koruma", "uluslararası standartlara uygun", "Zone‑1 D tipi" ve 03/06'daki "acil kitli" ifadeleri firmaya doğrulatılmalı.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
 ## Sıradaki Teknik İşler
 
 - Diğer gerçek sayfalar (`SectionPage` ve `DemoPage` yerine).

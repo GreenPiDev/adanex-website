@@ -34,6 +34,7 @@
   padding: var(--space-md);
   color: var(--color-black);
   background-color: var(--color-amber);
+  --selection-bg: var(--color-white);
   background-image: var(--rivet), var(--rivet), var(--rivet), var(--rivet);
   background-repeat: no-repeat;
   background-position:
