@@ -5,6 +5,8 @@
   --color-carbon: #0f1011;
   --color-paper: #f2f1ed;
   --color-amber: #f2b01e;
+  /* Yaklaşım bölümündeki nokta tabelasının grisi. */
+  --color-steel: #8a8a86;
   --color-error: #b3261e;
 
   /* Tipografi */
@@ -63,6 +65,25 @@
   --text-kb-callout: clamp(1.5rem, 1.2rem + 1.2vw, 2.5rem);
   --text-kb-zone: min(34vw, 13rem, 24svh);
   --text-kb-counter: min(clamp(4rem, 2rem + 7vw, 10rem), 16svh);
+  /* Hizmetler: hero cümlesi kendi kolonunun genişliğine, kısa ekranlarda yüksekliğe bağlıdır. */
+  --text-sv-statement: min(12.5cqi, 8svh);
+  /* Telefonda cümle, karolar ve sayaç birlikte tam ekrana sığsın diye yükseklik payı daha dardır. */
+  --text-sv-statement-phone: min(12.5cqi, 4.6svh);
+  /* Görselle yan yana durduğunda cümle kolonun yarısına yakın genişliktedir. */
+  --text-sv-statement-split: min(7cqi, 7.5svh);
+  /* Hero kartları: yan yana durduklarında ad ayrıca kartın genişliğine göre küçülür (ServicesHero). */
+  --text-sv-card: min(clamp(1.375rem, 1rem + 1.6vw, 3.25rem), 4.4svh);
+  --text-sv-card-number: min(clamp(1.25rem, 0.9rem + 1.1vw, 2.5rem), 3.2svh);
+  --text-sv-manifesto: clamp(1.875rem, 1.1rem + 3.4vw, 5.25rem);
+  /* En uzun tek kelime (fiyatlandırma, Installation) başlık kolonuna sığacak şekilde hesaplandı. */
+  --text-sv-title: min(clamp(2.5rem, 1.4rem + 3.8vw, 6.25rem), 12svh);
+  --text-sv-lead: clamp(1.25rem, 1.05rem + 0.8vw, 2rem);
+  --text-sv-body: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --text-sv-scope: clamp(1.25rem, 1.05rem + 0.6vw, 1.75rem);
+  /* Hero'daki 81 sayacı: kolon genişliğine (cqi) ve kısa ekranlarda yüksekliğe bağlıdır. */
+  --text-sv-stat: min(36cqi, 18svh, 14rem);
+  --text-sv-stat-caption: clamp(1rem, 4.2cqi, 2.25rem);
+  --text-sv-closing: clamp(2.25rem, 1.2rem + 4.6vw, 7rem);
   --tracking-nav: -0.005em;
   --tracking-display: -0.035em;
 
@@ -78,6 +99,9 @@
   --nav-gap: clamp(1.25rem, 2.2vw, 3rem);
   --touch-target: 2.75rem;
   --rail-width: 4.5rem;
+  /* Hizmetler sayfasındaki tek hat şemasının sütunu. */
+  --bus-column: 2rem;
+  --bus-node: 0.875rem;
 
   /* Hareket */
   --duration-base: 0.45s;
@@ -97,6 +121,19 @@
   --scrollbar-size: 8px;
   --scrollbar-track: var(--color-carbon);
   --scrollbar-thumb: var(--color-amber);
+}
+
+@media (min-width: 37.5rem) {
+  :root {
+    --bus-column: 3.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --bus-column: clamp(4rem, 6vw, 7rem);
+    --bus-node: 1rem;
+  }
 }
 
 [data-surface='dark'] {

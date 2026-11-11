@@ -1,0 +1,72 @@
+{
+  "hero": {
+    "statement": "Patlamadan korunma çözümleri: <accent>satıştan uygulamaya.</accent>",
+    "routeLabel": "Hizmet aşamaları",
+    "imageAlt": "Gece ışıklandırılmış bir rafinerinin önünde, üzerinde Ex işareti bulunan exproof bağlantı kutusu"
+  },
+  "manifesto": {
+    "text": "ADANEX ELEKTRİK yalnızca ürün satmaz. Projelendirme, risk analizi ve uygun ürün seçiminde uzman kadrosuyla yol gösterir, satıştan devreye almaya kadar tüm aşamalarda iş ortağınız olur."
+  },
+  "station": {
+    "stage": "Aşama {{number}}/{{total}}",
+    "scope": "Kapsam"
+  },
+  "stations": {
+    "survey": {
+      "short": "Keşif",
+      "title": "Proje ön keşif hizmeti",
+      "lead": "Endüstriyel tesislerde exproof ürün seçimi ve montaj öncesi teknik keşif hizmeti sunuyoruz.",
+      "body": "ADANEX mühendisleri, sahada risk analizinden uygun ürün tespitine kadar tüm süreci yerinde değerlendirir.",
+      "scope": {
+        "first": "Sahada risk analizi",
+        "second": "Uygun ürün tespiti",
+        "third": "Montaj öncesi teknik keşif"
+      }
+    },
+    "consulting": {
+      "short": "Danışmanlık",
+      "title": "Exproof ürün danışmanlığı",
+      "lead": "ATEX standartlarına uygun ürün seçimi, saha uygulaması ve teknik değerlendirme süreçlerinde işletmelere uzman desteği sağlıyoruz.",
+      "body": "Satıştan montaja kadar her aşamada güvenliği mühendislik hassasiyetiyle ele alıyoruz.",
+      "scope": {
+        "first": "ATEX standartlarına uygun ürün seçimi",
+        "second": "Saha uygulaması",
+        "third": "Teknik değerlendirme"
+      }
+    },
+    "quotation": {
+      "short": "Teklif",
+      "title": "Teklif ve fiyatlandırma hazırlığı",
+      "lead": "Her proje için teknik şartnameye uygun exproof ürünleri titizlikle analiz ediyoruz.",
+      "body": "Fiyatlandırmada mühendislik doğruluğu, kalite ve kurumsal güven ilkesiyle hareket ediyor, her teklifi sahadaki ihtiyaca en uygun çözümü sunacak şekilde hazırlıyoruz.",
+      "scope": {
+        "first": "Teknik şartname analizi",
+        "second": "Mühendislik doğruluğuyla fiyatlandırma",
+        "third": "Sahadaki ihtiyaca göre teklif"
+      }
+    },
+    "implementation": {
+      "short": "Uygulama",
+      "title": "Montaj ve saha uygulaması",
+      "lead": "Fabrika dönüşümü ve ATEX direktiflerine uygun montajla işletmelere tam kapsamlı çözüm sunuyoruz.",
+      "body": "Endüstriyel tesislerin güvenlik standartlarını yükseltmek için sahada uygulama desteği sağlıyor, devreye almaya kadar sürecin içinde kalıyoruz.",
+      "scope": {
+        "first": "Fabrika dönüşümü",
+        "second": "ATEX direktiflerine uygun montaj",
+        "third": "Devreye alma"
+      }
+    }
+  },
+  "stat": {
+    "caption": "ilde sahada uygulama desteği",
+    "full": "Türkiye'nin {{count}} ilinde sahada uygulama desteği"
+  },
+  "closing": {
+    "title": "Tesisinizi sahada birlikte değerlendirelim.",
+    "cta": "İletişime geçin",
+    "note": "Zone sınıflandırması ve ürün seçimi, tesisinize özel olarak yetkin uzmanlarca yapılmalıdır."
+  },
+  "rail": {
+    "label": "Hizmet aşamaları"
+  }
+}

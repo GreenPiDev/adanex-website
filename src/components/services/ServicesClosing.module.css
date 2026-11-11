@@ -1,0 +1,107 @@
+.closing {
+  --surface-bg: var(--color-amber);
+  --surface-fg: var(--color-black);
+  --selection-bg: var(--color-white);
+
+  display: grid;
+  gap: calc(var(--space-lg) * 1.5);
+  padding-block: calc(var(--header-height) + var(--space-lg)) var(--space-lg);
+  padding-inline: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+.title {
+  max-inline-size: 14em;
+  font-family: var(--font-display);
+  font-size: var(--text-sv-closing);
+  font-weight: var(--weight-display);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  hyphens: manual;
+}
+
+/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse ş, ç, y gibi harflerin altı kesilir. */
+.title > * {
+  padding-block: 0.15em;
+  margin-block: -0.15em;
+}
+
+.footer {
+  display: grid;
+  gap: var(--space-md);
+}
+
+/* Düğme siyahtır, üzerine gelince alttan beyaz dolar. */
+.cta {
+  position: relative;
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  justify-content: space-between;
+  inline-size: 100%;
+  min-block-size: calc(var(--touch-target) * 1.5);
+  padding-inline: var(--space-md);
+  overflow: hidden;
+  font-family: var(--font-industrial);
+  font-size: var(--text-hero-label);
+  font-weight: var(--weight-heavy);
+  color: var(--color-amber);
+  isolation: isolate;
+  background: var(--color-black);
+  --roll-hover-color: var(--color-black);
+}
+
+.cta::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background: var(--color-white);
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 3px;
+}
+
+.note {
+  max-inline-size: 36em;
+  font-size: var(--text-sv-body);
+  line-height: 1.5;
+}
+
+@media (min-width: 48rem) {
+  .footer {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .cta {
+    order: 1;
+    inline-size: auto;
+    min-inline-size: 22rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .closing {
+    padding-inline-start: calc(var(--gutter) + var(--bus-column));
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover::before {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta::before {
+    transition: none;
+  }
+}

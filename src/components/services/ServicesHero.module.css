@@ -1,0 +1,391 @@
+/*
+ * Bilgi merkezi hero'suyla aynı paylar: hero her ekranda tam ekran kalır, "kaydır" belirteci ekranın altında durur.
+ * Bunun için içerik boyutları ekran yüksekliğiyle de sınırlanır.
+ */
+.hero {
+  --hero-padding-end: var(--header-height);
+  --hairline: color-mix(in srgb, currentColor 24%, transparent);
+}
+
+/*
+ * Sıra her ekranda aynıdır: cümle, kartlar, sayaç. Kolonun üst kenarı başlıktaki Z'nin, alt kenarı H'nin hizasıdır.
+ * Başlığın harf kenarları PageHero tarafından ölçülür (--title-ink-em, --title-ink-offset-em).
+ * Yazı boyutları kolonun genişliğinden gelir.
+ */
+.panel {
+  position: relative;
+  inset-block-start: calc(var(--page-title-size) * var(--title-ink-offset-em, 0));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  justify-content: space-between;
+  grid-row: 1 / -1;
+  grid-column: 2;
+  align-self: center;
+  block-size: calc(var(--page-title-size) * var(--title-ink-em, 5));
+  min-inline-size: 0;
+  /* Başlıkla aynı dikey ortalamayı alır. */
+  margin-top: calc((var(--header-height) - var(--hero-padding-end)) * -1);
+  margin-inline-start: var(--space-sm);
+  container-type: inline-size;
+}
+
+.statement {
+  font-family: var(--font-display);
+  font-size: var(--text-sv-statement-phone);
+  font-weight: var(--weight-display);
+  line-height: 1.02;
+  letter-spacing: var(--tracking-display);
+  hyphens: manual;
+  /* Üst kenar satır boşluğuna değil, büyük harflerin tepesine göre hizalanır. */
+  text-box: trim-start cap alphabetic;
+}
+
+/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse ş, ç, y gibi harflerin altı kesilir. */
+.statement > *,
+.accent > * {
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+
+.accent {
+  color: var(--color-amber);
+}
+
+/* Telefonda yalnızca cümle vardır. Görsel olan ekranlarda cümle solda, görsel sağda aynı yükseklikte durur. */
+.introWithImage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: stretch;
+}
+
+.introWithImage .statement {
+  font-size: var(--text-sv-statement-split);
+}
+
+/*
+ * Görsel sola yatık, köşeleri yuvarlak bir paralelkenarın içindedir ve sağda ekranın kenarına kadar uzanır.
+ * Biçim skewX ile kurulur, böylece yatık kenarlar da yuvarlanır. Görsel ters yatırılarak düz kalır.
+ */
+.figure {
+  --skew: -20deg;
+  --radius: clamp(0.75rem, 1.4vw, 1.5rem);
+  /* Panelin sağındaki boşluk kadar taşar, görsel ekranın kenarına değer. */
+  --bleed: calc(var(--space-md) + var(--gutter));
+
+  position: relative;
+  min-block-size: 9rem;
+  margin: 0;
+  margin-inline-end: calc(var(--bleed) * -1);
+}
+
+/* Sağ uç ekranın dışında kalır, yatık sağ kenar ve köşeler görünmez. */
+.frame {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: calc(var(--space-sm) * -1) calc(var(--space-lg) * -2);
+  overflow: hidden;
+  background: var(--color-black);
+  border-radius: var(--radius);
+  transform: skewX(var(--skew));
+}
+
+/* Görsel ters yatırılır. Yatık çerçevenin köşelerini de doldursun diye iki yandan eğim payı kadar geniştir. */
+.unskew {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: -12%;
+  transform: skewX(calc(var(--skew) * -1));
+}
+
+/* Sol taraf hafifçe kararır, görsel zemine yumuşak geçer. */
+.unskew::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-black) 55%, transparent) 18%, transparent 55%);
+  pointer-events: none;
+}
+
+/* Ex kutusu görselin sağındadır, dar çerçevede de görünsün diye kırpma sağa yaslanır. */
+.image {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 65% 50%;
+}
+
+/* Kartlar cümle ile sayaç arasında kalan bütün yüksekliği kaplar. */
+.stages {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+/*
+ * Dar kolonda (dikey telefon ve tablet) dört kart yan yana yatay yazıya yer bırakmaz,
+ * tam genişlikte alt alta dizilir. Kartlar eşit uzar ama içeriklerinden kısa olamaz.
+ */
+.cards {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-rows: repeat(4, 1fr);
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cardItem {
+  display: flex;
+  min-inline-size: 0;
+}
+
+/* Dar kolonda tek satır: numara, ad, ok. Üzerine gelince alttan sarı dolar, yazılar siyah kopyalarına döner. */
+.card {
+  --card-pad: var(--space-sm);
+
+  position: relative;
+  display: grid;
+  flex: 1;
+  grid-template-areas: 'number label arrow';
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--space-sm);
+  align-items: center;
+  min-inline-size: 0;
+  min-block-size: var(--touch-target);
+  padding: 0.25rem var(--card-pad);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--hairline);
+  --roll-hover-color: var(--color-black);
+}
+
+.card::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background: var(--color-amber);
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+/*
+ * Arka plan görseli en altta, üstünde yazıyı okutan koyu katman, en üstte hover'daki sarı dolgu durur.
+ * Katman alttan koyulaşır, adın durduğu kenar her görselde okunur.
+ */
+.cardImage {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.card::after {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  content: '';
+  background: linear-gradient(
+    0deg,
+    color-mix(in srgb, var(--color-black) 88%, transparent) 0%,
+    color-mix(in srgb, var(--color-black) 55%, transparent) 100%
+  );
+  pointer-events: none;
+}
+
+.card:focus-visible {
+  outline-offset: -4px;
+}
+
+.cardNumber {
+  grid-area: number;
+  justify-self: start;
+  font-family: var(--font-industrial);
+  font-size: var(--text-sv-card-number);
+  font-weight: var(--weight-heavy);
+  line-height: 1.1;
+  color: var(--color-amber);
+}
+
+.cardLabel {
+  grid-area: label;
+  justify-self: start;
+  max-inline-size: 100%;
+  font-family: var(--font-display);
+  font-size: var(--text-sv-card);
+  font-weight: var(--weight-display);
+  line-height: 1.1;
+}
+
+.arrow {
+  display: block;
+  grid-area: arrow;
+  inline-size: calc(var(--text-sv-card-number) * 0.8);
+  block-size: calc(var(--text-sv-card-number) * 0.8);
+  opacity: 0.6;
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    opacity var(--duration-base) var(--ease-out);
+}
+
+.arrowIcon {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+/* Kartlar ve sayaç: cümlenin altında kalan yüksekliği paylaşırlar. */
+.lower {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-block-size: 0;
+}
+
+/* Dalganın konumlandığı kutu. Kartlar ve sayaç dalganın üstünde durur. */
+.counterRow {
+  position: relative;
+}
+
+.stages,
+.counter {
+  position: relative;
+  z-index: 1;
+}
+
+/*
+ * Altın noktalar denizinin alanı (noktaları DotMorph çizer). Sayacın arkasından başlayıp sağındaki boşluğu doldurur,
+ * yukarıda kartların alt kenarını biraz geçer. Görsel gibi sağda ekranın kenarına, aşağıda hero'nun en altına kadar uzanır.
+ * Sol ve üst kenardaki yumuşak kaybolma çizimde yapılır. Yerleşimi etkilemez.
+ *
+ * Panelin alt kenarından hero'nun altına kalan mesafe: alttaki iç boşluk, başlık satırında ortalamadan
+ * kalan pay ve başlığın harf kaymasıdır (PageHero.module.css ile aynı ölçüler).
+ */
+.wave {
+  --to-hero-bottom: calc(
+    var(--hero-padding-end) +
+      (100svh - var(--header-height) - var(--hero-padding-end) - var(--page-title-size) * var(--title-ink-em, 5)) / 2 -
+      var(--page-title-size) * var(--title-ink-offset-em, 0)
+  );
+
+  /* Kartlarla sayaç arasındaki boşluk ve kartların altına binen pay. */
+  --above-row: calc(var(--space-md) + clamp(1.5rem, 5svh, 3.5rem));
+
+  position: absolute;
+  inset-block: calc(var(--above-row) * -1) calc(var(--to-hero-bottom) * -1);
+  inset-inline: 12% calc((var(--space-md) + var(--gutter)) * -1);
+  pointer-events: none;
+}
+
+/* Belirteç başlığın altındaki header yüksekliği kadar boşluğa sığar, sayaca binmez. Çizgi bu yüzden her ekranda kısadır. */
+.hero .cue {
+  --scroll-cue-track: 1.25rem;
+
+  inset-block-end: var(--space-sm);
+}
+
+@media (min-width: 37.5rem) {
+  .panel {
+    margin-inline: var(--space-md);
+  }
+
+  .statement {
+    font-size: var(--text-sv-statement);
+  }
+
+  .card {
+    --card-pad: var(--space-md);
+  }
+}
+
+/*
+ * Geniş ve yatay ekranlarda dört dikey kart yan yana durur: numara sol üstte, ok sağ üstte, ad altta.
+ * Adın boyu kartın genişliğinden gelir, en uzun ad (Danışmanlık, Installation, yaklaşık 5,3 em) tek satıra sığar.
+ */
+@media (min-width: 64rem), (orientation: landscape) and (min-width: 37.5rem) {
+  .cards {
+    grid-template-rows: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+
+  .cardItem {
+    container-type: inline-size;
+  }
+
+  /* Kısa ekranlarda üst ve alt iç boşluk daralır. */
+  .card {
+    grid-template-areas:
+      'number arrow'
+      'label label';
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    min-block-size: calc(var(--touch-target) * 2);
+    padding: min(var(--card-pad), 2.4svh) var(--card-pad);
+  }
+
+  .cardLabel {
+    align-self: end;
+    font-size: min(var(--text-sv-card), calc((100cqi - var(--card-pad) * 2) / 5.4));
+  }
+}
+
+/*
+ * Yatay telefonda üç öğe üst üste sığmaz: cümle üstte, kartlar ve sayaç altta yan yana durur.
+ * Sıra soldan sağa yine cümle, kartlar, sayaçtır.
+ */
+@media (orientation: landscape) and (max-height: 31.25rem) {
+  .panel {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    column-gap: var(--space-lg);
+  }
+
+  .intro {
+    grid-column: 1 / -1;
+  }
+
+  .lower {
+    display: contents;
+  }
+
+  .stages {
+    min-block-size: 0;
+  }
+
+  .counterRow {
+    align-self: end;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover::before {
+    transform: none;
+  }
+
+  .card:hover .arrow {
+    color: var(--color-black);
+    opacity: 1;
+    transform: translateY(0.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card::before,
+  .arrow {
+    transition: none;
+  }
+}

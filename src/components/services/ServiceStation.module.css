@@ -1,0 +1,254 @@
+/*
+ * Telefonda solda dar bara sütunu, sağında sırayla başlık, metin ve kapsam durur.
+ * Bara mutlak konumludur, aşamalar art arda geldiği için tek bir kesintisiz hat gibi görünür.
+ */
+.station {
+  --hairline: color-mix(in srgb, currentColor 18%, transparent);
+
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--bus-column) minmax(0, 1fr);
+  align-content: start;
+  padding-block: calc(var(--header-height) + var(--space-lg)) calc(var(--space-lg) * 2);
+  padding-inline: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+  /* Atlamada başlık header'ın altında kalmaz, üst boşluk zaten header kadardır. */
+  scroll-margin-top: 0;
+}
+
+.station:focus {
+  outline: none;
+}
+
+.bus {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: calc(var(--gutter) + var(--bus-column) / 2 - 1px);
+  inline-size: 2px;
+  background: var(--hairline);
+}
+
+.busFill {
+  display: block;
+  block-size: 100%;
+  background: var(--color-amber);
+  transform-origin: 50% 0;
+}
+
+/* Klemens aşama etiketinin satırında durur, kolu başlığa doğru uzanır. */
+.junction {
+  position: relative;
+  display: flex;
+  grid-row: 1;
+  grid-column: 1;
+  align-items: center;
+  align-self: start;
+  block-size: calc(var(--text-nav) * 1.2);
+  /* Telefonda sütun dar olduğu için kol başlığa kadar uzanır, genişte başlıktan pay bırakır. */
+  padding-inline: calc(var(--bus-column) / 2 - var(--bus-node) / 2) var(--junction-gap, 0px);
+}
+
+@media (min-width: 37.5rem) {
+  .junction {
+    --junction-gap: var(--space-sm);
+  }
+}
+
+.node {
+  position: relative;
+  flex: none;
+  inline-size: var(--bus-node);
+  block-size: var(--bus-node);
+  background: var(--surface-bg);
+  border: 2px solid color-mix(in srgb, currentColor 45%, transparent);
+}
+
+.node::after {
+  position: absolute;
+  inset: -2px;
+  content: '';
+  background: var(--color-amber);
+}
+
+.branch {
+  flex: 1;
+  block-size: 2px;
+  background: var(--color-amber);
+  transform-origin: 0 50%;
+}
+
+/* Hareket açıkken klemens söner, dolan uç gelince yanar. Hareket azaltma tercihinde hep yanıktır. */
+[data-motion] .node::after {
+  opacity: 0;
+  transform: scale(0.3);
+}
+
+[data-motion] .branch {
+  transform: scaleX(0);
+}
+
+[data-motion] .node::after,
+[data-motion] .branch {
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+[data-motion] .lit .node::after,
+[data-motion] .lit .branch {
+  opacity: 1;
+  transform: none;
+}
+
+.head {
+  grid-row: 1;
+  grid-column: 2;
+  min-inline-size: 0;
+}
+
+.stage {
+  font-family: var(--font-industrial);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-heavy);
+  line-height: 1.2;
+  color: var(--color-amber);
+}
+
+.title {
+  margin-block-start: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: var(--text-sv-title);
+  font-weight: var(--weight-display);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  hyphens: manual;
+}
+
+/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse ş, ç, y gibi harflerin altı kesilir. */
+.title > * {
+  padding-block: 0.15em;
+  margin-block: -0.15em;
+}
+
+.body {
+  display: grid;
+  grid-row: 2;
+  grid-column: 2;
+  gap: var(--space-md);
+  align-content: start;
+  min-inline-size: 0;
+  margin-block-start: var(--space-lg);
+}
+
+.lead {
+  max-inline-size: 30em;
+  font-size: var(--text-sv-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.3;
+}
+
+.text {
+  max-inline-size: 38em;
+  font-size: var(--text-sv-body);
+  line-height: 1.6;
+  opacity: 0.78;
+}
+
+.lead,
+.text {
+  hyphens: auto;
+}
+
+.scope {
+  margin-block-start: var(--space-md);
+}
+
+.scopeLabel {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-industrial);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-heavy);
+  opacity: 0.6;
+}
+
+.scopeList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scopeItem {
+  position: relative;
+  padding-block: var(--space-sm);
+}
+
+.scopeItem:last-child {
+  border-block-end: 1px solid var(--hairline);
+}
+
+.scopeRule {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 1px;
+  background: color-mix(in srgb, currentColor 35%, transparent);
+  transform-origin: 0 50%;
+}
+
+/* Satır yazısı kendi penceresinden aşağıdan çıkar. Pay verilmezse alt uzantılar kesilir. */
+.scopeClip {
+  display: block;
+  padding-block: 0.15em;
+  margin-block: -0.15em;
+  overflow: hidden;
+}
+
+.scopeText {
+  display: flex;
+  gap: var(--space-md);
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-size: var(--text-sv-scope);
+  font-weight: var(--weight-display);
+  line-height: 1.15;
+}
+
+.scopeCode {
+  flex: none;
+  min-inline-size: 2.75rem;
+  font-family: var(--font-industrial);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-heavy);
+  color: var(--color-amber);
+}
+
+/* Masaüstünde başlık solda, metin ve kapsam sağda yan yana okunur. Ray için sağda pay bırakılır. */
+@media (min-width: 64rem) {
+  .station {
+    --content-end: calc(var(--gutter) + var(--rail-width) + var(--space-md));
+
+    grid-template-columns: var(--bus-column) minmax(0, 5fr) minmax(0, 6fr);
+    min-block-size: 90svh;
+    padding-inline-end: var(--content-end);
+  }
+
+  .head {
+    padding-inline-end: var(--space-lg);
+  }
+
+  /* Metin başlığın ilk satırıyla aynı hizadan başlar. */
+  .body {
+    grid-row: 1;
+    grid-column: 3;
+    margin-block-start: 0;
+    padding-block-start: calc(var(--text-nav) * 1.2 + var(--space-sm) + 0.15em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-motion] .node::after,
+  [data-motion] .branch {
+    transition: none;
+  }
+}

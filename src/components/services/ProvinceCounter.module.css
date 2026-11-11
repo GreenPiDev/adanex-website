@@ -1,0 +1,81 @@
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/*
+ * Açıklama her ekranda sayının hemen yanında durur. Sayının ve açıklamanın son satırının
+ * taban çizgisi bileşenin alt kenarıdır, hero'da bu kenar başlıktaki H'nin hizasıdır.
+ */
+.figure {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-end;
+}
+
+/* Yazı boyutu hero kolonunun genişliğinden (cqi), kısa ekranlarda yüksekliğinden gelir. */
+.digits {
+  --glyph-gap: 0.1em;
+
+  display: flex;
+  flex: none;
+  font-family: var(--font-industrial);
+  font-size: var(--text-sv-stat);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+  color: var(--color-amber);
+}
+
+/*
+ * Her rakam kutusu büyük harf yüksekliğine kırpılır, alt ve üstünde silindirdeki komşusundan ayıran pay vardır.
+ * Negatif margin bu payı dışarıda bırakır: görünen kutu tam olarak rakamın tepesinden taban çizgisine uzanır.
+ * Pencere yalnızca dikeyde keser, dönerken geçen geniş rakamlar yanlara taşabilir.
+ */
+.cell {
+  position: relative;
+  display: block;
+  margin-block: calc(var(--glyph-gap) * -1);
+  clip-path: inset(0 -0.5em);
+}
+
+.sizer,
+.glyph {
+  display: block;
+  padding-block: var(--glyph-gap);
+  text-box: trim-both cap alphabetic;
+}
+
+/* Kutunun genişliği son rakamın kendisidir, "1" geniş rakamlar kadar yer kaplamaz. */
+.sizer {
+  visibility: hidden;
+}
+
+.drum {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(var(--drum-offset, 0));
+}
+
+/* Rakam kutudan genişse iki yana eşit taşar, son rakam kutuya tam oturur. */
+.glyph {
+  margin-inline: -0.5em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.caption {
+  min-inline-size: 0;
+  max-inline-size: 11em;
+  font-family: var(--font-display);
+  font-size: var(--text-sv-stat-caption);
+  font-weight: var(--weight-display);
+  line-height: 1.08;
+  text-box: trim-end cap alphabetic;
+}

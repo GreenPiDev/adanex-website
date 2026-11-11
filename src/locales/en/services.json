@@ -1,0 +1,72 @@
+{
+  "hero": {
+    "statement": "Explosion protection solutions: <accent>from sale to site.</accent>",
+    "routeLabel": "Service stages",
+    "imageAlt": "An explosion-proof junction box marked with the Ex symbol, in front of a refinery lit up at dusk"
+  },
+  "manifesto": {
+    "text": "ADANEX ELEKTRİK does more than sell products. Our expert team guides you through project design, risk analysis and the selection of suitable products, and stays your partner from sale to commissioning at every stage."
+  },
+  "station": {
+    "stage": "Stage {{number}}/{{total}}",
+    "scope": "Scope"
+  },
+  "stations": {
+    "survey": {
+      "short": "Survey",
+      "title": "Preliminary project survey",
+      "lead": "We provide technical surveys for explosion-proof product selection and pre-installation planning at industrial facilities.",
+      "body": "ADANEX engineers assess the entire process on site, from risk analysis to identifying suitable products.",
+      "scope": {
+        "first": "On-site risk analysis",
+        "second": "Identifying suitable products",
+        "third": "Pre-installation technical survey"
+      }
+    },
+    "consulting": {
+      "short": "Consulting",
+      "title": "Explosion-proof product consulting",
+      "lead": "We give businesses expert support in selecting products that comply with ATEX standards, in field application and in technical assessment.",
+      "body": "From sale to installation, we treat safety with engineering precision at every stage.",
+      "scope": {
+        "first": "Product selection in line with ATEX standards",
+        "second": "Field application",
+        "third": "Technical assessment"
+      }
+    },
+    "quotation": {
+      "short": "Quotation",
+      "title": "Quotation and pricing",
+      "lead": "For every project, we carefully analyse the explosion-proof products that meet the technical specification.",
+      "body": "Our pricing is guided by engineering accuracy, quality and corporate trust, and every quotation is prepared to offer the solution best suited to the needs on site.",
+      "scope": {
+        "first": "Technical specification analysis",
+        "second": "Pricing with engineering accuracy",
+        "third": "Quotation based on site needs"
+      }
+    },
+    "implementation": {
+      "short": "Installation",
+      "title": "Installation and field application",
+      "lead": "We offer businesses comprehensive solutions through plant conversion and installation in line with ATEX directives.",
+      "body": "We provide on-site application support to raise the safety standards of industrial facilities, and stay involved until commissioning.",
+      "scope": {
+        "first": "Plant conversion",
+        "second": "Installation in line with ATEX directives",
+        "third": "Commissioning"
+      }
+    }
+  },
+  "stat": {
+    "caption": "provinces with on-site application support",
+    "full": "On-site application support in all {{count}} provinces of Türkiye"
+  },
+  "closing": {
+    "title": "Let’s assess your facility together, on site.",
+    "cta": "Get in touch",
+    "note": "Zone classification and product selection must be carried out by competent experts, specifically for your facility."
+  },
+  "rail": {
+    "label": "Service stages"
+  }
+}

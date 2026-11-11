@@ -1,0 +1,48 @@
+.manifesto {
+  display: grid;
+  padding-block: calc(var(--header-height) + var(--space-lg)) calc(var(--space-lg) * 2.5);
+  padding-inline: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+/* Metin ve tabela aynı hücrededir. Metin konumlanmıştır, noktaların çizildiği tuvalin üstünde kalır. */
+.text {
+  position: relative;
+  grid-area: 1 / 1;
+  max-inline-size: 19em;
+  font-family: var(--font-display);
+  font-size: var(--text-sv-manifesto);
+  font-weight: var(--weight-display);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+/*
+ * Tabela bölümün sağ üst köşesindedir: metinle aynı hücrede sağa ve yukarı yaslanır.
+ * Metnin arkasında kalır. Bölüm konumlandırılmaz, yoksa zemini tuvalin üstüne çıkıp tabelayı örter.
+ * Telefonda hero'da dalga olmadığı için tabela alanı kurulmaz.
+ */
+.sign {
+  grid-area: 1 / 1;
+  align-self: start;
+  justify-self: end;
+  inline-size: clamp(12rem, 28vw, 28rem);
+  max-inline-size: 100%;
+  aspect-ratio: 1 / 0.9;
+  /* Üstteki ve sağdaki iç boşluğa taşar, köşeye yaslanır. Sağda ekran kenarından küçük bir pay kalır. */
+  margin-block-start: calc(var(--space-lg) * -1.75);
+  margin-inline-end: calc(var(--gutter) * -0.75);
+}
+
+/* Metin, aşamaların içerik kolonuyla aynı hizadan başlar. Ray için sağda pay bırakılır. */
+@media (min-width: 64rem) {
+  .manifesto {
+    padding-inline: calc(var(--gutter) + var(--bus-column)) calc(var(--gutter) + var(--rail-width) + var(--space-md));
+  }
+
+  /* Ray bu bölümde görünmez, tabela onun payına uzanır. */
+  .sign {
+    margin-inline-end: calc((var(--rail-width) + var(--space-md) + var(--gutter) * 0.5) * -1);
+  }
+}

@@ -1,0 +1,14 @@
+/*
+ * Ekrana sabit, tam ekran tuval. Konumlanmış bir eleman olarak bölüm zeminlerinin üstünde çizilir.
+ * Sayfada hero'dan önce geldiği için ondan sonra gelen konumlanmış içerik (hero yazıları, kartlar,
+ * Yaklaşım metni, aşamalar) tuvalin üstünde kalır. Tıklamaları engellemez.
+ */
+.canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+}

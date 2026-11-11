@@ -61,7 +61,7 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 ### 2026-11-08: Sayfa başlıklı hero
 
 - `PageHero` eklendi (`src/components/layout/PageHero/`). Ana sayfa dışındaki sayfalarda solda yan yatmış sayfa adı var, yazı boyutu adın uzunluğuna göre aynı yüksekliğe sığacak şekilde ayarlanıyor. İletişim sayfası da bunu kullanıyor.
-- Hakkında, hizmetler, çalışmalar ve teknik bilgi merkezi şimdilik `SectionPage` ile bu hero ve altındaki geçici test bölümlerini gösteriyor.
+- Hakkında, hizmetler, çalışmalar ve teknik bilgi merkezi o tarihte `SectionPage` ile bu hero ve altındaki geçici test bölümlerini gösteriyor.
 
 ### 2026-11-08: 404 sayfası
 
@@ -118,6 +118,21 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - Seçim Rehberi'nde yedi kriter işaretlenince alttan perdeyle açılan bir pencere iletişim sayfasına yönlendiriyor (`ChecklistCompleteDialog`). Telefonda altta, geniş ekranda ortada duruyor. Ürün önermiyor, uzman doğrulamasına yönlendiriyor.
 - Özel imleç sarı zeminli bölümlerde (`data-tone="amber"`) tıklanabilir alanda sarı yerine siyah halka gösteriyor.
 - **Yayından önce:** Pencere metni (iki dil) firma onayından geçmeli.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
+### 2026-11-11: Hizmetlerimiz sayfası
+
+- `/services` yazıldı (`src/pages/ServicesPage.tsx`, `src/components/services/`), rota lazy yükleniyor. Metinler `src/locales/{tr,en}/services.json` içinde ve yalnızca bu sayfayla yüklenir, yapı `src/content/services.ts` içinde.
+- Kurgu: hizmetler satıştan uygulamaya giden tek bir hat, yani bir **tek hat şeması** olarak anlatılıyor. Sıra işin sahadaki akışı: Keşif, Danışmanlık, Teklif, Uygulama.
+- Hero: `PageHero` içinde her ekranda sırasıyla "Patlamadan korunma çözümleri: satıştan uygulamaya." cümlesi (dikey tablet, yatay ekran ve masaüstünde yanında `public/services-1.webp`: sola yatık, köşeleri yuvarlak paralelkenar çerçeve, sağda ekranın kenarına kadar uzanıyor, sol tarafı hafifçe kararıyor; telefonda görsel kurulmuyor ve dosya inmiyor), dört aşamaya götüren yan yana dört dikey kart ve "81 il" sayacı. Kartlar cümle ile sayaç arasındaki bütün yüksekliği kaplıyor. Masaüstü ve yatay ekranlarda kartlar yan yana: numara sol üstte, ok sağ üstte, yatay ad altta, ad boyu kart genişliğine göre ayarlanıyor. Dikey telefon ve tablette kolon yatay yazılı dört karta dar olduğu için kartlar tam genişlikte alt alta, her biri tek satır (numara, ad, ok). Yatay telefonda kartlar ile sayaç yan yana. Üzerine gelince kart alttan sarıyla doluyor. Sayacın sağını dolduran ve yukarıda kartların alt kenarını biraz geçen, salınan altın noktalar denizi var: perspektifli, tepeleri parlak, sol ve üst kenarı yumuşakça kayboluyor, sağda ekranın kenarına, aşağıda hero'nun dibine uzanıyor. Ekran dışında ve gizli sekmede duruyor, dikey tablette daha az nokta çiziyor, hareket azaltma tercihinde tek kare. Telefonda kurulmuyor. Sayaç mekanik sayaç gibi dönüyor, açıklaması her ekranda sayının hemen yanında. Basamak kutusu son rakamın genişliğinde, ekran okuyucu tam cümleyi okuyor. Sağ kolonun üst kenarı yan yatmış başlıktaki Z'nin, alt kenarı H'nin hizasında: kolon `PageHero`'nun ölçtüğü harf kenarlarına oturuyor, cümlenin üstü büyük harf tepesinden, 81'in altı taban çizgisinden kırpılıyor (`text-box`, Firefox henüz desteklemiyor, orada birkaç piksel sapar). Hero tam ekran kalıyor, "Kaydır" belirteci başlığın altındaki header yüksekliği kadar boşlukta duruyor.
+- Hero'daki dalga ile Yaklaşım'daki tabela aynı noktalardır (`DotMorph`, ekrana sabit tek tuval, hero'dan önce durur; bölüm zeminlerinin üstünde, yazıların ve kartların altında çizilir). Aşağı kaydırınca noktalar soldan sağa sırayla kalkıp yayla süzülür, bölümün sağ üstündeki, metnin arkasında kalan gri "üçgen içinde EX" tabelasına dönüşür, tabelada her nokta kendi fazıyla yerinde hafifçe kıpırdar, geri kaydırınca yeniden dalga olur. Konumlar her karede `data-wave-anchor`, `data-sign-anchor` ve `data-morph-section` yer tutucularından okunur. Telefonda kurulmaz, hareket azaltma tercihinde noktalar uçmadan doğrudan tabela olur.
+- Yaklaşım (açık zemin): giriş metni bölüm ekrana geldiğinde baştan tam opaklıkta, vurgusuz düz metin. Başlık yok, nokta tabelası geniş ekranlarda bölümün sağ üstünde, metnin arkasında soluk duruyor.
+- Dört aşama (koyu zemin): solda aşamalar boyunca kesintisiz bir bara var, scroll ile sarıyla doluyor. Dolan uç her aşamanın klemensine gelince klemens yanıyor ve başlığa kol çıkıyor. Her aşamada başlık, iki paragraf ve numaralı kapsam satırları (01.1 gibi) var.
+- Kapanış (sarı zemin): iletişim sayfasına giden düğme ve Zone sınıflandırması uyarısı.
+- Sağdaki ray ortak `SectionRail` bileşeninden geliyor, dört aşamayı gösteriyor.
+- `revealWordsOnScroll`, `src/animations/knowledge.ts` içinden ortak `src/animations/reveal.ts` dosyasına taşındı.
+- Mevcut sayfadaki üç görsel kullanılmadı. Üçü de yapay zekâ üretimi (biri "Made with AI" filigranlı), biri de doğrulanmamış "Zone 1, Zone 21 Approved" ve "IP69K" ibareleri taşıyor.
+- **Yayından önce:** `services-1.webp` görselinin kaynağı ve kullanım hakkı netleşmeli (görünüşe göre yapay zekâ üretimi, üzerinde yalnızca genel Ex sembolü var). Metinler mevcut siteden düzenlenerek yazıldı, iki dil firma onayından geçmeli. "Güvenliği mühendislik hassasiyetiyle garanti eder" ifadesi "ele alıyoruz" olarak yumuşatıldı. "Montaj ve saha uygulaması" aşaması, eski sayfanın giriş metnindeki fabrika dönüşümü, ATEX direktiflerine uygun montaj ve devreye alma bilgilerinden kuruldu. Firmanın bu hizmetleri ayrı bir aşama olarak sunduğu doğrulatılmalı. "81 ilde saha desteği" ifadesi de doğrulatılmalı.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
 ## Sıradaki Teknik İşler

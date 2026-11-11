@@ -19,6 +19,11 @@ async function loadKnowledgePage() {
   return { Component: KnowledgePage };
 }
 
+async function loadServicesPage() {
+  const { ServicesPage } = await import('./pages/ServicesPage');
+  return { Component: ServicesPage };
+}
+
 async function loadNotFoundPage() {
   const { NotFoundPage } = await import('./pages/NotFoundPage');
   return { Component: NotFoundPage };
@@ -30,6 +35,7 @@ const pageRoutes: RouteObject[] = NAV_ITEMS.map(({ key, path }) => {
   if (path === '/contact') return { path: path.slice(1), lazy: loadContactPage };
   if (path === '/projects') return { path: path.slice(1), lazy: loadProjectsPage };
   if (path === '/knowledge-center') return { path: path.slice(1), lazy: loadKnowledgePage };
+  if (path === '/services') return { path: path.slice(1), lazy: loadServicesPage };
   return { path: path.slice(1), element: <SectionPage navKey={key} /> };
 });
 
