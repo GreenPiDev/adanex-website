@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getKnowledgeChapter, getKnowledgeEntry } from '../../content/knowledge';
 import { Chapter } from './Chapter';
+import { ChecklistCompleteDialog } from './ChecklistCompleteDialog';
 import { Entry } from './Entry';
 import { useKnowledge } from './knowledgeHooks';
 import styles from './SelectionChapter.module.css';
@@ -62,15 +63,16 @@ function Checklist({ steps, checked, onToggle, onReset }: ChecklistProps) {
 export function SelectionChapter() {
   const { entries } = useKnowledge();
   const [checked, setChecked] = useState<ReadonlySet<number>>(new Set());
+  const [isCompleteOpen, setIsCompleteOpen] = useState(false);
   const chapter = getKnowledgeChapter('selection');
   const steps = entries.productChecklist.steps ?? [];
 
+  // Pencere yalnızca son kutu işaretlendiği anda açılır. Kaldırılıp yeniden tamamlanırsa tekrar açılır.
   const toggle = (index: number) => {
-    setChecked((current) => {
-      const next = new Set(current);
-      if (!next.delete(index)) next.add(index);
-      return next;
-    });
+    const next = new Set(checked);
+    if (!next.delete(index)) next.add(index);
+    setChecked(next);
+    if (steps.length > 0 && next.size === steps.length) setIsCompleteOpen(true);
   };
 
   return (
@@ -88,6 +90,9 @@ export function SelectionChapter() {
     >
       <Entry entry={getKnowledgeEntry('productChecklist')}>
         <Checklist steps={steps} checked={checked} onToggle={toggle} onReset={() => setChecked(new Set())} />
+        {isCompleteOpen && (
+          <ChecklistCompleteDialog total={steps.length} onClose={() => setIsCompleteOpen(false)} />
+        )}
       </Entry>
       <Entry entry={getKnowledgeEntry('lightingSelection')} />
       <Entry entry={getKnowledgeEntry('rightLight')} className={styles.closing} />

@@ -4,6 +4,8 @@ import { REDUCED_MOTION_QUERY, useHasFinePointer } from '../../../hooks/useDevic
 import styles from './CustomCursor.module.css';
 
 const INTERACTIVE_SELECTOR = 'a, button, [role="button"], label, summary';
+// Sarı zeminli bölümlerde sarı halka kaybolur, orada siyah çizilir.
+const AMBER_SURFACE_SELECTOR = '[data-tone="amber"]';
 const HIDE_NATIVE_CURSOR_CLASS = 'has-custom-cursor';
 // Halkalar büyük halleriyle çizilir, normalde küçültülür. Tersi olursa büyürken bulanıklaşır.
 const RING_REST_SCALE = 0.72;
@@ -93,7 +95,12 @@ function CursorElements() {
     };
 
     const handlePointerOver = (event: PointerEvent) => {
-      const interactive = event.target instanceof Element && event.target.closest(INTERACTIVE_SELECTOR) !== null;
+      const target = event.target instanceof Element ? event.target : null;
+      const interactive = target !== null && target.closest(INTERACTIVE_SELECTOR) !== null;
+
+      // Renk geçişsiz değişir. Halka yalnızca tıklanabilir alanda göründüğü için fark edilmez.
+      if (interactive) accentRing.classList.toggle(styles.onAmber, target.closest(AMBER_SURFACE_SELECTOR) !== null);
+
       if (interactive === isInteractive) return;
       isInteractive = interactive;
       updateAppearance();

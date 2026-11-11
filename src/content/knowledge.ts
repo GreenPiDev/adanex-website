@@ -39,6 +39,8 @@ type EntryDefinition = {
   slug: string;
   listKind?: ListKind;
   image?: KnowledgeImageNumber;
+  /** Yan sütunlu ekranda görsel metnin yanında değil, sol sütunda madde dizininin altında durur. */
+  imageInAside?: boolean;
   /** "Bkz." satırında gösterilecek maddelerin anahtarları. */
   seeAlso?: readonly string[];
 };
@@ -86,14 +88,15 @@ const CHAPTERS: readonly ChapterDefinition[] = [
     key: 'lighting',
     slug: 'lighting',
     entries: [
-      { key: 'lightingTypes', slug: 'lighting-types', image: 3 },
-      { key: 'floodlight', slug: 'floodlight', image: 4, seeAlso: ['whereToUse'] },
+      { key: 'lightingTypes', slug: 'lighting-types', image: 3, imageInAside: true },
+      // Tablo genel bakıştır. Ayrıca iki görselli maddeyi ayırır, ilk görsel ekranda daha uzun kalır.
+      { key: 'whereToUse', slug: 'which-luminaire-where' },
+      { key: 'floodlight', slug: 'floodlight', image: 4, imageInAside: true, seeAlso: ['whereToUse'] },
       { key: 'linear', slug: 'linear-luminaire', seeAlso: ['zone1'] },
       { key: 'weatherproof', slug: 'weatherproof-luminaire', seeAlso: ['atex'] },
       { key: 'globe', slug: 'globe-luminaire' },
       { key: 'tank', slug: 'tank-lighting' },
       { key: 'highBay', slug: 'high-bay-luminaire', seeAlso: ['lightingSelection'] },
-      { key: 'whereToUse', slug: 'which-luminaire-where' },
     ],
   },
   {

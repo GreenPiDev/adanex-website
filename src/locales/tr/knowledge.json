@@ -34,7 +34,13 @@
   },
   "checklist": {
     "progress": "{{done}} / {{total}} kriter değerlendirildi",
-    "reset": "Listeyi sıfırla"
+    "reset": "Listeyi sıfırla",
+    "complete": {
+      "title": "{{total}} kriterin hepsini değerlendirdiniz",
+      "text": "Doğru ürün, bu kriterlerin sahadaki koşullarla birlikte ele alınmasıyla belirlenir ve Zone sınıflandırması yetkin bir uzman tarafından yapılmalıdır. Kriterlerinizi bizimle paylaşın, ATEX sertifikalı ürünler arasından ihtiyacınıza uygun seçenekleri birlikte değerlendirelim.",
+      "cta": "Bizimle iletişime geçin",
+      "back": "Listeye dön"
+    }
   },
   "chapters": {
     "basics": {

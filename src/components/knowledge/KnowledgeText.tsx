@@ -132,7 +132,7 @@ const IMAGE_SIZE_CLASSES: Readonly<Record<KnowledgeImageSize, string>> = {
   document: styles.imageDocument,
 };
 
-export function KnowledgeImage({ number }: { number: KnowledgeImageNumber }) {
+export function KnowledgeImage({ number, className = '' }: { number: KnowledgeImageNumber; className?: string }) {
   const { t } = useTranslation();
   const { images } = useKnowledge();
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -140,7 +140,7 @@ export function KnowledgeImage({ number }: { number: KnowledgeImageNumber }) {
   const alt = images[number];
 
   return (
-    <figure className={`${styles.figure} ${IMAGE_SIZE_CLASSES[size]}`}>
+    <figure className={`${styles.figure} ${IMAGE_SIZE_CLASSES[size]} ${className}`}>
       <button
         className={styles.zoom}
         type="button"

@@ -34,7 +34,13 @@
   },
   "checklist": {
     "progress": "{{done}} / {{total}} criteria reviewed",
-    "reset": "Reset the list"
+    "reset": "Reset the list",
+    "complete": {
+      "title": "You have reviewed all {{total}} criteria",
+      "text": "The right product is determined by considering these criteria together with the conditions on site, and Zone classification must be carried out by a competent expert. Share your criteria with us and we will review suitable ATEX-certified products with you.",
+      "cta": "Contact us",
+      "back": "Back to the list"
+    }
   },
   "chapters": {
     "basics": {

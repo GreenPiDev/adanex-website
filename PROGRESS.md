@@ -110,6 +110,16 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - Header artık `mix-blend-mode: difference` ile altından geçen içeriğin negatifi olarak çiziliyor. Sarı bölümlerde (`data-tone="amber"`) düz siyah, mobil menü açıkken normal çiziliyor.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
+### 2026-11-11: Teknik bilgi merkezi düzenlemeleri
+
+- Zone matrisinin eksen etiketleri (Yanıcı gaz/toz ve sıklık) bölüm başlığıyla aynı fontta (Barlow Semi Condensed).
+- Aydınlatma bölümünde `tbm-3` ve `tbm-4`, yan sütunlu ekranda (1024 px ve üstü) madde dizininin altında, sütunda kalan alanı dolduracak boyutta ve ortalı duruyor. Yalnızca kendi maddesi okunurken görünüyor (`imageInAside`). Daha dar ekranda metnin yanında kalıyor.
+- "Hangi Exproof Armatür Nerede Kullanılır?" tablosu giriş maddesinin arkasına taşındı (4.2), iki görselli madde arasına mesafe girdi. Sonraki madde numaraları birer kaydı.
+- Seçim Rehberi'nde yedi kriter işaretlenince alttan perdeyle açılan bir pencere iletişim sayfasına yönlendiriyor (`ChecklistCompleteDialog`). Telefonda altta, geniş ekranda ortada duruyor. Ürün önermiyor, uzman doğrulamasına yönlendiriyor.
+- Özel imleç sarı zeminli bölümlerde (`data-tone="amber"`) tıklanabilir alanda sarı yerine siyah halka gösteriyor.
+- **Yayından önce:** Pencere metni (iki dil) firma onayından geçmeli.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
 ## Sıradaki Teknik İşler
 
 - Diğer gerçek sayfalar (`SectionPage` ve `DemoPage` yerine).

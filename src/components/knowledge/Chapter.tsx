@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { KnowledgeChapter } from '../../content/knowledge';
 import styles from './Chapter.module.css';
 import { Entry } from './Entry';
-import { EntryLink } from './KnowledgeText';
+import { EntryLink, KnowledgeImage } from './KnowledgeText';
 import { useActiveEntry, useChapterReveal, useKnowledge } from './knowledgeHooks';
 
 type ChapterProps = {
@@ -28,6 +28,12 @@ export function Chapter({ chapter, surface, tone, className = '', aside, childre
   const entriesRef = useRef<HTMLDivElement>(null);
   const activeIndex = useActiveEntry(entriesRef);
 
+  // Sol sütundaki görsel yalnızca kendi maddesi okunurken görünür.
+  const asideImages = chapter.entries.flatMap((entry, index) =>
+    entry.image && entry.imageInAside ? [{ number: entry.image, index }] : [],
+  );
+  const activeAsideImage = asideImages.find((item) => item.index === activeIndex);
+
   useChapterReveal(rootRef);
 
   return (
@@ -39,7 +45,8 @@ export function Chapter({ chapter, surface, tone, className = '', aside, childre
       data-tone={tone}
       tabIndex={-1}
     >
-      <header className={styles.head}>
+      {/* Görsel gizlendiğinde sütun yüksekliği değişmesin diye alan her zaman ayrılır. */}
+      <header className={`${styles.head} ${asideImages.length > 0 ? styles.headWithImage : ''}`}>
         <p className={styles.number} aria-hidden="true">
           {chapter.number}
         </p>
@@ -64,6 +71,18 @@ export function Chapter({ chapter, surface, tone, className = '', aside, childre
             ))}
           </ol>
         </nav>
+
+        {asideImages.length > 0 && (
+          <div className={styles.asideImages}>
+            {asideImages.map(({ number }) => (
+              <KnowledgeImage
+                key={number}
+                number={number}
+                className={number === activeAsideImage?.number ? styles.asideImageActive : ''}
+              />
+            ))}
+          </div>
+        )}
 
         {aside}
       </header>

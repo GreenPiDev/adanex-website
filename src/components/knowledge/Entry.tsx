@@ -58,7 +58,12 @@ export function Entry({ entry, className = '', children }: EntryProps) {
   const image = entry.image && <KnowledgeImage number={entry.image} />;
 
   return (
-    <article id={entry.slug} className={`${styles.entry} ${className}`} tabIndex={-1} data-entry>
+    <article
+      id={entry.slug}
+      className={`${styles.entry} ${entry.imageInAside ? styles.entryAsideImage : ''} ${className}`}
+      tabIndex={-1}
+      data-entry
+    >
       <span className={styles.mark} aria-hidden="true" data-entry-mark />
 
       <p className={styles.code} aria-hidden="true">

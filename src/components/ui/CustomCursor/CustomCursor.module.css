@@ -36,3 +36,9 @@
   background: color-mix(in srgb, var(--color-amber) 22%, transparent);
   border-color: var(--color-amber);
 }
+
+/* Sarı zeminde halka siyahtır, aynı saydamlıkta dolguyla sarı halkanın karşılığıdır. */
+.accentRing.onAmber {
+  background: color-mix(in srgb, var(--color-black) 12%, transparent);
+  border-color: var(--color-black);
+}

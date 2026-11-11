@@ -58,6 +58,11 @@
   display: none;
 }
 
+/* Dar ekranda bu görseller maddenin içinde, metnin yanında durur. */
+.asideImages {
+  display: none;
+}
+
 .tocList {
   margin: 0;
   padding: 0;
@@ -467,6 +472,67 @@
     margin-block-start: var(--space-md);
   }
 
+  /* Sütun ekran yüksekliğindedir, dizinden geriye kalan alanı görsel doldurur. */
+  .headWithImage {
+    display: flex;
+    flex-direction: column;
+    block-size: calc(100svh - var(--header-height) - var(--space-sm) * 2);
+  }
+
+  .headWithImage > * {
+    flex: none;
+  }
+
+  .headWithImage > .asideImages {
+    position: relative;
+    display: block;
+    flex: 1 1 0;
+    min-block-size: 10rem;
+    margin-block-start: var(--space-md);
+  }
+
+  /* Görseller üst üste durur, okunan maddeninki görünür. Oranı korunur, tıklama alanı görselin kendisidir. */
+  .asideImages .figure {
+    position: absolute;
+    inset: 0;
+    max-inline-size: none;
+    container-type: size;
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      opacity var(--duration-base) var(--ease-out),
+      visibility 0s linear var(--duration-base);
+  }
+
+  .asideImages .asideImageActive {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity var(--duration-base) var(--ease-out);
+  }
+
+  /* Görsel sütunda yatay olarak ortalanır. */
+  .asideImages .zoom {
+    inline-size: fit-content;
+    margin-inline: auto;
+  }
+
+  .asideImages .image {
+    inline-size: auto;
+    max-inline-size: 100cqi;
+    max-block-size: 100cqb;
+  }
+
+  /* Görsel sol sütuna taşındığı için büyük metin satırın tamamını kullanır. */
+  .entryAsideImage .leadRow {
+    --lead-fit: 0;
+
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .entryAsideImage .leadRow .figure {
+    display: none;
+  }
+
   .mark {
     inset-inline-start: calc(var(--space-lg) * -0.5);
   }
@@ -484,7 +550,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tocLink {
+  .tocLink,
+  .asideImages .figure {
     transition: none;
   }
 }
