@@ -31,11 +31,8 @@ function useFamilyJump() {
   );
 }
 
-// Hero görselleri: tanıtım afişi kolonu doldurur, sahadan bir kare ona yarı biner. Dar ekranda hiç yüklenmez.
-const HERO_VISUALS = [
-  { key: 'poster', src: '/a1.webp', slot: 'primary' },
-  { key: 'field', src: '/a2.webp', slot: 'secondary' },
-] as const;
+// Hero görseli: tanıtım afişi kolonu doldurur. Dar ekranda hiç yüklenmez.
+const HERO_VISUALS = [{ key: 'poster', src: '/a1.webp' }] as const;
 
 const HERO_VISUAL_SIZE = { width: 1024, height: 1536 } as const;
 
@@ -116,7 +113,7 @@ export function AboutHero() {
         {hasVisuals && (
           <div className={styles.visuals}>
             {HERO_VISUALS.map((visual) => (
-              <figure key={visual.key} className={`${styles.visual} ${styles[visual.slot]}`} data-hero-reveal>
+              <figure key={visual.key} className={`${styles.visual} ${styles.primary}`} data-hero-reveal>
                 <span className={styles.media}>
                   <img
                     className={styles.image}

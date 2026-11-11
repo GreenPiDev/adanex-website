@@ -31,11 +31,10 @@
 
 /*
  * Görseller yalnızca geniş ekranda vardır (dar ekranda hiç render edilmez). Tanıtım afişi kolonu doldurur ve
- * alt kenarda karanlık zemine erir. Sahadan kare ona yarı biner, kolonun dışına, metne doğru taşar.
+ * alt kenarda karanlık zemine erir.
  */
 .visuals {
   --primary-size: min(100cqi, 66cqb);
-  --secondary-size: calc(var(--primary-size) * 0.46);
 
   position: relative;
   min-inline-size: 0;
@@ -50,9 +49,12 @@
 }
 
 .primary {
-  inset-block-start: 0;
+  /* Dikey ortadan --space-lg kadar aşağıda durur: üst ve alt kenar aynı miktarda kaydırılır. */
+  inset-block: var(--space-lg) calc(var(--space-lg) * -1);
   inset-inline-end: 0;
   inline-size: var(--primary-size);
+  block-size: calc(var(--primary-size) * 1.5);
+  margin-block: auto;
 }
 
 /* Alt kenar zemine erir, görsel sayfaya ait görünür. */
@@ -76,18 +78,6 @@
     linear-gradient(var(--color-amber), var(--color-amber)) bottom right / 1px 1.75rem no-repeat;
   content: '';
   pointer-events: none;
-}
-
-.secondary {
-  inset-block-end: 0;
-  inset-inline-end: calc(var(--primary-size) - var(--secondary-size) * 0.55);
-  z-index: 2;
-  inline-size: var(--secondary-size);
-}
-
-/* Gölge ve yükselme figürde değil görselde durur: GSAP giriş animasyonu figürün transform'unu elinde tutar. */
-.secondary .media {
-  box-shadow: 0 1.5rem 3rem color-mix(in srgb, var(--color-black) 70%, transparent);
 }
 
 /* Görselin tamamını kaplayan tıklama alanı. Fotoğraftaki sarı işaretlerin üstünde kalmaz, odak halkası içeride çizilir. */
@@ -214,10 +204,6 @@
 
   .primary:hover::before {
     transform: scale(1.035);
-  }
-
-  .secondary:hover .media {
-    transform: translateY(-0.75rem);
   }
 }
 
