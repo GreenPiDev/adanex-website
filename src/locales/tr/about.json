@@ -2,7 +2,11 @@
   "hero": {
     "statement": "Patlamayı önleyen <accent>çözümler geliştiriyoruz.</accent>",
     "intro": "ADANEX ELEKTRİK, endüstriyel tesisler için ATEX ve IECEx sertifikalı exproof ürünler sunar. Ürün gamımız aydınlatmadan havalandırmaya beş aileden oluşur.",
-    "familiesLabel": "Ürün aileleri"
+    "familiesLabel": "Ürün aileleri",
+    "visuals": {
+      "poster": "Patlamaya karşı korumalı ürünlerin tanıtım afişi: ADANEX logosu, ATEX, IECEx, CE ve IP68 işaretleri, projektör, kablo rakoru ve esnek boru",
+      "field": "Rafineri sahasında çalışan iki teknisyen ve ön planda, kablo rakorlarıyla bağlanmış exproof bir buton kutusu"
+    }
   },
   "ledger": {
     "title": "Kutudan çıktığı gibi sahaya.",
@@ -163,14 +167,16 @@
         "facts": {
           "series": "Exproof fan serisi",
           "speed": "Devir seçenekleri",
-          "airflow": "Hava debisi, küçük tiplerden büyük endüstriyel modellere",
-          "pressure": "Basınç, aksiyal fanlardan radyal fanlara"
+          "airflowSmall": "Hava debisi, küçük tipler",
+          "airflowLarge": "Hava debisi, büyük endüstriyel modeller",
+          "pressureAxial": "Basınç, aksiyal fanlar",
+          "pressureRadial": "Basınç, radyal fanlar"
         }
       }
     }
   },
   "sectors": {
-    "lead": "Zorlu endüstriyel ortamlarda işletmelerin kesintisiz çalışmasına katkı sunuyoruz.",
+    "lead": "Global ölçekte güvenilir bir tedarikçi olarak, zorlu endüstriyel ortamlarda işletmelerin kesintisiz çalışmasına katkı sunuyoruz.",
     "listLabel": "Çalıştığımız ortamlar",
     "items": {
       "refinery": "Rafineriler",

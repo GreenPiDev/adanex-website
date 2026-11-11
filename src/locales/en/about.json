@@ -2,7 +2,11 @@
   "hero": {
     "statement": "We develop solutions <accent>that prevent explosions.</accent>",
     "intro": "ADANEX ELEKTRİK supplies ATEX and IECEx certified explosion-proof products for industrial facilities. Our range covers five product families, from lighting to ventilation.",
-    "familiesLabel": "Product families"
+    "familiesLabel": "Product families",
+    "visuals": {
+      "poster": "Promotional poster for explosion-protected products: ADANEX logo, ATEX, IECEx, CE and IP68 marks, a floodlight, a cable gland and flexible conduit",
+      "field": "Two technicians working at a refinery site, with an explosion-proof push-button station fitted with cable glands in the foreground"
+    }
   },
   "ledger": {
     "title": "Straight from the box to the site.",
@@ -163,14 +167,16 @@
         "facts": {
           "series": "Explosion-proof fan series",
           "speed": "Speed options",
-          "airflow": "Airflow, from small units to large industrial models",
-          "pressure": "Pressure, from axial to radial fans"
+          "airflowSmall": "Airflow, small units",
+          "airflowLarge": "Airflow, large industrial models",
+          "pressureAxial": "Pressure, axial fans",
+          "pressureRadial": "Pressure, radial fans"
         }
       }
     }
   },
   "sectors": {
-    "lead": "We help businesses keep running in demanding industrial environments.",
+    "lead": "As a trusted supplier on a global scale, we help businesses keep running in demanding industrial environments.",
     "listLabel": "Environments we work in",
     "items": {
       "refinery": "Refineries",

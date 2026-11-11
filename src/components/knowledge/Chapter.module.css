@@ -573,7 +573,6 @@
   .stepText,
   .callout,
   .chapterNote,
-  .listFlow,
   .table td {
     text-align: justify;
   }

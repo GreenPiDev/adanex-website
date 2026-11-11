@@ -1,11 +1,12 @@
-import { type MouseEvent, useCallback, useRef } from 'react';
+import { type MouseEvent, useCallback, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
 import { PRODUCT_FAMILIES } from '../../content/about';
-import { usePrefersReducedMotion } from '../../hooks/useDevice';
+import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 import { PageHero } from '../layout/PageHero/PageHero';
+import { Lightbox } from '../ui/Lightbox/Lightbox';
 import { ScrollCue } from '../ui/ScrollCue/ScrollCue';
 import styles from './AboutHero.module.css';
 import { useAboutCopy } from './useAboutCopy';
@@ -30,6 +31,14 @@ function useFamilyJump() {
   );
 }
 
+// Hero görselleri: tanıtım afişi kolonu doldurur, sahadan bir kare ona yarı biner. Dar ekranda hiç yüklenmez.
+const HERO_VISUALS = [
+  { key: 'poster', src: '/a1.webp', slot: 'primary' },
+  { key: 'field', src: '/a2.webp', slot: 'secondary' },
+] as const;
+
+const HERO_VISUAL_SIZE = { width: 1024, height: 1536 } as const;
+
 /**
  * Sayfanın girişi: üstte slogan, altta firmayı anlatan kısa giriş ve beş ürün ailesi.
  * Aileler eğik çizgiyle ayrılmış bağlantılardır, her biri ürün gamındaki kendi satırına götürür.
@@ -41,6 +50,8 @@ export function AboutHero() {
   const prefersReducedMotion = usePrefersReducedMotion();
   const rootRef = useRef<HTMLElement>(null);
   const jump = useFamilyJump();
+  const hasVisuals = !useIsNavCollapsed();
+  const [openVisual, setOpenVisual] = useState<(typeof HERO_VISUALS)[number] | null>(null);
 
   // Slogan dil değişince yeniden bölünür. Ardından paragraf ve aileler sırayla aşağıdan yerine oturur.
   useGSAP(
@@ -79,29 +90,60 @@ export function AboutHero() {
       className={styles.hero}
       title={tCommon('nav.items.about').toLocaleUpperCase(i18n.language)}
     >
-      <div className={styles.panel}>
-        <p key={i18n.language} className={styles.statement} data-hero-statement>
-          <Trans t={t} i18nKey="hero.statement" components={{ accent: <span className={styles.accent} /> }} />
-        </p>
+      <div className={hasVisuals ? `${styles.panel} ${styles.withVisuals}` : styles.panel}>
+        <div className={styles.copy}>
+          <p key={i18n.language} className={styles.statement} data-hero-statement>
+            <Trans t={t} i18nKey="hero.statement" components={{ accent: <span className={styles.accent} /> }} />
+          </p>
 
-        <p className={styles.intro} data-hero-reveal>
-          {t('hero.intro')}
-        </p>
+          <p className={styles.intro} data-hero-reveal>
+            {t('hero.intro')}
+          </p>
 
-        <nav className={styles.nav} aria-label={t('hero.familiesLabel')} data-hero-reveal>
-          <ul className={styles.families}>
-            {PRODUCT_FAMILIES.map(({ key, slug }) => (
-              <li key={key} className={styles.family}>
-                <a className={styles.familyLink} href={`#${slug}`} onClick={(event) => handleFamilyClick(event, slug)}>
-                  {ledger.families[key].name}
-                </a>
-              </li>
+          <nav className={styles.nav} aria-label={t('hero.familiesLabel')} data-hero-reveal>
+            <ul className={styles.families}>
+              {PRODUCT_FAMILIES.map(({ key, slug }) => (
+                <li key={key} className={styles.family}>
+                  <a className={styles.familyLink} href={`#${slug}`} onClick={(event) => handleFamilyClick(event, slug)}>
+                    {ledger.families[key].name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        {hasVisuals && (
+          <div className={styles.visuals}>
+            {HERO_VISUALS.map((visual) => (
+              <figure key={visual.key} className={`${styles.visual} ${styles[visual.slot]}`} data-hero-reveal>
+                <span className={styles.media}>
+                  <img
+                    className={styles.image}
+                    src={visual.src}
+                    alt={t(`hero.visuals.${visual.key}`)}
+                    width={HERO_VISUAL_SIZE.width}
+                    height={HERO_VISUAL_SIZE.height}
+                    decoding="async"
+                  />
+                </span>
+                <button
+                  className={styles.zoom}
+                  type="button"
+                  aria-label={tCommon('projects.openImage', { title: t(`hero.visuals.${visual.key}`) })}
+                  onClick={() => setOpenVisual(visual)}
+                />
+              </figure>
             ))}
-          </ul>
-        </nav>
+          </div>
+        )}
       </div>
 
       <ScrollCue className={styles.cue} />
+
+      {openVisual && (
+        <Lightbox src={openVisual.src} alt={t(`hero.visuals.${openVisual.key}`)} onClose={() => setOpenVisual(null)} />
+      )}
     </PageHero>
   );
 }

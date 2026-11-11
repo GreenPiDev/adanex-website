@@ -9,10 +9,8 @@
 .panel {
   position: relative;
   inset-block-start: calc(var(--page-title-size) * var(--title-ink-offset-em, 0));
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-row: 1 / -1;
   grid-column: 2;
   align-self: center;
@@ -20,29 +18,105 @@
   min-inline-size: 0;
   margin-top: calc((var(--header-height) - var(--hero-padding-end)) * -1);
   margin-inline-start: var(--space-sm);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  justify-content: space-between;
+  min-inline-size: 0;
   container-type: inline-size;
 }
 
-.statement {
-  max-inline-size: 11em;
-  font-family: var(--font-display);
-  font-size: var(--text-ab-statement);
-  font-weight: var(--weight-display);
-  line-height: 1.02;
-  letter-spacing: var(--tracking-display);
-  hyphens: manual;
-  text-box: trim-start cap alphabetic;
+/*
+ * Görseller yalnızca geniş ekranda vardır (dar ekranda hiç render edilmez). Tanıtım afişi kolonu doldurur ve
+ * alt kenarda karanlık zemine erir. Sahadan kare ona yarı biner, kolonun dışına, metne doğru taşar.
+ */
+.visuals {
+  --primary-size: min(100cqi, 66cqb);
+  --secondary-size: calc(var(--primary-size) * 0.46);
+
+  position: relative;
+  min-inline-size: 0;
+  margin-inline-start: var(--space-lg);
+  container-type: size;
 }
 
-/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse ş, ç, y gibi harflerin altı kesilir. */
-.statement > *,
-.accent > * {
-  padding-block: 0.12em;
-  margin-block: -0.12em;
+.visual {
+  position: absolute;
+  margin: 0;
+  aspect-ratio: 2 / 3;
 }
 
-.accent {
-  color: var(--color-amber);
+.primary {
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  inline-size: var(--primary-size);
+}
+
+/* Alt kenar zemine erir, görsel sayfaya ait görünür. */
+.primary::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--color-carbon) 0%, transparent 45%);
+  content: '';
+  pointer-events: none;
+}
+
+/* Sarı kesim işaretleri: sol üst ve sağ alt köşe. */
+.primary::before {
+  position: absolute;
+  inset: -0.75rem;
+  z-index: 1;
+  background:
+    linear-gradient(var(--color-amber), var(--color-amber)) top left / 1.75rem 1px no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) top left / 1px 1.75rem no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) bottom right / 1.75rem 1px no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) bottom right / 1px 1.75rem no-repeat;
+  content: '';
+  pointer-events: none;
+}
+
+.secondary {
+  inset-block-end: 0;
+  inset-inline-end: calc(var(--primary-size) - var(--secondary-size) * 0.55);
+  z-index: 2;
+  inline-size: var(--secondary-size);
+}
+
+/* Gölge ve yükselme figürde değil görselde durur: GSAP giriş animasyonu figürün transform'unu elinde tutar. */
+.secondary .media {
+  box-shadow: 0 1.5rem 3rem color-mix(in srgb, var(--color-black) 70%, transparent);
+}
+
+/* Görselin tamamını kaplayan tıklama alanı. Fotoğraftaki sarı işaretlerin üstünde kalmaz, odak halkası içeride çizilir. */
+.zoom {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  inline-size: 100%;
+}
+
+.zoom:focus-visible {
+  outline-offset: -0.5rem;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.image {
+  display: block;
+  transform-origin: 50% 60%;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  outline: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  outline-offset: -1px;
 }
 
 /* Slogan, paragraf ve aileler kolona eşit aralıkla dağılır: paragraf ikisinin tam ortasında kalır. */
@@ -102,7 +176,7 @@
 
 /* Yatay telefonda slogan solda, paragraf ve aileler sağda alt alta durur. */
 @media (orientation: landscape) and (max-height: 31.25rem) {
-  .panel {
+  .copy {
     display: grid;
     grid-template-columns: minmax(0, 9fr) minmax(0, 11fr);
     gap: var(--space-md) var(--space-lg);
@@ -121,9 +195,40 @@
   }
 }
 
+/*
+ * Görsel üzerine gelince: büyük görsel yavaşça yaklaşır, sarı kesim işaretleri dışa açılır, öndeki kare büyükten ayrılıp
+ * biraz yukarı kalkar. Yalnızca transform kullanılır, hareketi azaltan kullanıcılarda hiçbiri çalışmaz.
+ */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .image,
+  .media,
+  .primary::before {
+    transition:
+      transform var(--duration-slow) var(--ease-out),
+      box-shadow var(--duration-slow) var(--ease-out);
+  }
+
+  .visual:hover .image {
+    transform: scale(1.06);
+  }
+
+  .primary:hover::before {
+    transform: scale(1.035);
+  }
+
+  .secondary:hover .media {
+    transform: translateY(-0.75rem);
+  }
+}
+
 /* Üzerine gelinen aile sarıya döner (renk geçişi animasyonsuzdur). */
 @media (hover: hover) and (pointer: fine) {
   .familyLink:hover {
     color: var(--color-amber);
   }
+}
+
+/* Görseller varsa metnin sağındaki boşluğa girer. */
+.withVisuals {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.55fr);
 }

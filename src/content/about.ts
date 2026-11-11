@@ -6,7 +6,8 @@
 /** Sayısal değerler aktif dile göre biçimlenir, model kodları ve markalar olduğu gibi yazılır. */
 export type FactValue =
   | { kind: 'list'; items: readonly (string | number)[]; prefix?: string; unit?: string }
-  | { kind: 'range'; from: number; to: number; isOpenEnded: boolean; unit: string };
+  | { kind: 'range'; from: number; to: number; unit: string }
+  | { kind: 'min'; from: number; unit: string };
 
 type Fact = { key: string; value: FactValue };
 
@@ -49,8 +50,10 @@ export const PRODUCT_FAMILIES: readonly { key: ProductFamilyKey; slug: string; f
     facts: [
       { key: 'series', value: { kind: 'list', items: ['ALBATROX'] } },
       { key: 'speed', value: { kind: 'list', items: [750, 1500, 3000], unit: 'rpm' } },
-      { key: 'airflow', value: { kind: 'range', from: 500, to: 20000, isOpenEnded: true, unit: 'm³/h' } },
-      { key: 'pressure', value: { kind: 'range', from: 100, to: 1000, isOpenEnded: true, unit: 'Pa' } },
+      { key: 'airflowSmall', value: { kind: 'range', from: 500, to: 1000, unit: 'm³/h' } },
+      { key: 'airflowLarge', value: { kind: 'min', from: 20000, unit: 'm³/h' } },
+      { key: 'pressureAxial', value: { kind: 'range', from: 100, to: 300, unit: 'Pa' } },
+      { key: 'pressureRadial', value: { kind: 'min', from: 1000, unit: 'Pa' } },
     ],
   },
 ];
@@ -67,10 +70,8 @@ export function formatFactValue(value: FactValue, locale: string): string {
   const number = new Intl.NumberFormat(locale, { useGrouping: 'min2' });
   const format = (item: string | number) => (typeof item === 'number' ? number.format(item) : item);
 
-  if (value.kind === 'range') {
-    const end = `${number.format(value.to)}${value.isOpenEnded ? '+' : ''}`;
-    return `${number.format(value.from)}–${end} ${value.unit}`;
-  }
+  if (value.kind === 'range') return `${number.format(value.from)}–${number.format(value.to)} ${value.unit}`;
+  if (value.kind === 'min') return `${number.format(value.from)}+ ${value.unit}`;
 
   const items = value.items.map(format).join(' · ');
   return [value.prefix, items, value.unit].filter(Boolean).join(' ');
