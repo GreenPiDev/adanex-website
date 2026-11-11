@@ -159,8 +159,13 @@
   }
 }
 
-/* Akan metinler iki yana yaslıdır. Dar sütunda kelime araları açılmasın diye heceleme açıktır. */
+/* Akan metinler geniş ekranda iki yana yaslıdır. Telefonda sütun dar olduğundan kelime araları açılmasın diye sola yaslı kalır, heceleme her yerde açıktır. */
 .question {
-  text-align: justify;
   hyphens: auto;
+}
+
+@media (min-width: 600px) {
+  .question {
+    text-align: justify;
+  }
 }
