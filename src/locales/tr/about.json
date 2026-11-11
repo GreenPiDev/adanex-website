@@ -1,0 +1,188 @@
+{
+  "hero": {
+    "statement": "Patlamayı önleyen <accent>çözümler geliştiriyoruz.</accent>",
+    "intro": "ADANEX ELEKTRİK, endüstriyel tesisler için ATEX ve IECEx sertifikalı exproof ürünler sunar. Ürün gamımız aydınlatmadan havalandırmaya beş aileden oluşur.",
+    "familiesLabel": "Ürün aileleri"
+  },
+  "ledger": {
+    "title": "Kutudan çıktığı gibi sahaya.",
+    "lead": "Ürün gamımız geniştir. Ürünler sahada ek montaj veya aksesuar gerektirmeden, doğrudan kullanıma hazır şekilde sevk edilir.",
+    "aliasLabel": "Sahada bilinen adları:",
+    "columns": {
+      "family": "Ürün ailesi",
+      "items": "İçerik",
+      "facts": "Değerler"
+    },
+    "stamp": {
+      "title": "Sevke hazır",
+      "caption": "Sertifikalı, tam donanımlı"
+    },
+    "families": {
+      "lighting": {
+        "short": "Aydınlatma",
+        "name": "Aydınlatma",
+        "text": "Yüksek ışık verimi ve uzun ömür için tasarlanmış exproof armatürler.",
+        "items": [
+          {
+            "name": "LED projektörler",
+            "aliases": ["flood", "spot", "proje lambası"]
+          },
+          {
+            "name": "Lineer armatürler",
+            "aliases": ["çubuk tip", "floresan kasa"]
+          },
+          {
+            "name": "Glob armatürler",
+            "aliases": ["küre lamba"]
+          },
+          {
+            "name": "Seyyar el baladozu",
+            "aliases": ["el lambası", "baladoz"]
+          },
+          {
+            "name": "Exit yönlendirme armatürleri"
+          }
+        ],
+        "facts": {
+          "zones": "Kullanım ortamları"
+        }
+      },
+      "combination": {
+        "short": "Kombinasyon",
+        "name": "Kombinasyon kutuları",
+        "aliases": ["priz kutusu", "kombine pano"],
+        "text": "D Type ATEX sertifikalı kutular, ihtiyaca göre yapılandırılır.",
+        "items": [
+          {
+            "name": "ABB veya Schneider marka iç şalt malzeme"
+          },
+          {
+            "name": "Amper değeri ve adet seçimi"
+          },
+          {
+            "name": "Fiş ve priz kombinasyonları"
+          },
+          {
+            "name": "Trifaze ve monofaze dağılım"
+          }
+        ],
+        "facts": {
+          "sockets": "Fiş-priz kombinasyonu seçenekleri",
+          "switchgear": "İç şalt malzemesi"
+        }
+      },
+      "glands": {
+        "short": "Rakor",
+        "name": "Kablo ve rakor sistemleri",
+        "aliases": ["gland", "rekor"],
+        "text": "Kablo girişlerinde sızdırmazlık ve alev iletimine karşı koruma için.",
+        "items": [
+          {
+            "name": "Zırhsız pirinç rakorlar"
+          },
+          {
+            "name": "Zırhlı pirinç rakorlar"
+          },
+          {
+            "name": "Polyamid rakorlar"
+          },
+          {
+            "name": "Körtapalar"
+          },
+          {
+            "name": "Spiral tutuculu rakorlar"
+          },
+          {
+            "name": "Ağır hizmet kablo tutucuları"
+          },
+          {
+            "name": "Redüksiyon, adaptör ve EPDM rakor kılıfları"
+          }
+        ],
+        "facts": {
+          "unarmoured": "Zırhsız pirinç rakor",
+          "armoured": "Zırhlı pirinç rakor"
+        }
+      },
+      "control": {
+        "short": "Kontrol",
+        "name": "Kontrol ve güvenlik",
+        "text": "Patlayıcı ortamlarda kumanda, uyarı ve izleme ekipmanları.",
+        "items": [
+          {
+            "name": "Elektrik anahtarları",
+            "aliases": ["switch"]
+          },
+          {
+            "name": "Acil stop butonları",
+            "aliases": ["mantar buton"]
+          },
+          {
+            "name": "Camlı yangın butonları"
+          },
+          {
+            "name": "Limit switchler"
+          },
+          {
+            "name": "Topraklama ekipmanları"
+          },
+          {
+            "name": "Siren ve kornalar"
+          },
+          {
+            "name": "Flaşörlü uyarı sistemleri"
+          },
+          {
+            "name": "Kamera muhafazaları"
+          }
+        ],
+        "facts": {}
+      },
+      "ventilation": {
+        "short": "Havalandırma",
+        "name": "Havalandırma",
+        "aliases": ["hava motoru"],
+        "text": "Alüminyum veya çelik gövdeli, exproof motorlu fanlar. Monofaze veya trifaze motor, frekans invertörüyle devir kontrolü.",
+        "items": [
+          {
+            "name": "Aksiyal fanlar",
+            "aliases": ["axial", "kanatlı fan", "hava pervanesi"]
+          },
+          {
+            "name": "Radyal fanlar",
+            "aliases": ["blower", "salyangoz fan"]
+          },
+          {
+            "name": "Çatı tipi fanlar",
+            "aliases": ["aspiratör"]
+          },
+          {
+            "name": "Kanal tipi fanlar"
+          }
+        ],
+        "facts": {
+          "series": "Exproof fan serisi",
+          "speed": "Devir seçenekleri",
+          "airflow": "Hava debisi, küçük tiplerden büyük endüstriyel modellere",
+          "pressure": "Basınç, aksiyal fanlardan radyal fanlara"
+        }
+      }
+    }
+  },
+  "sectors": {
+    "lead": "Zorlu endüstriyel ortamlarda işletmelerin kesintisiz çalışmasına katkı sunuyoruz.",
+    "listLabel": "Çalıştığımız ortamlar",
+    "items": {
+      "refinery": "Rafineriler",
+      "chemical": "Kimya tesisleri",
+      "paint": "Boya atölyeleri",
+      "food": "Gıda üretim alanları",
+      "storage": "Depolama sahaları"
+    },
+    "cta": "İletişime geçin",
+    "note": "Hangi bölgede hangi ürünün kullanılacağı, tesisin Zone sınıflandırmasına göre yetkin uzmanlarca belirlenmelidir."
+  },
+  "rail": {
+    "label": "Ürün aileleri"
+  }
+}

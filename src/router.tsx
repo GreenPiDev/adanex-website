@@ -2,7 +2,11 @@ import { createBrowserRouter, type RouteObject } from 'react-router';
 import { RootLayout } from './components/layout/RootLayout';
 import { NAV_ITEMS } from './content/navigation';
 import { DemoPage } from './pages/DemoPage';
-import { SectionPage } from './pages/SectionPage';
+
+async function loadAboutPage() {
+  const { AboutPage } = await import('./pages/AboutPage');
+  return { Component: AboutPage };
+}
 
 async function loadContactPage() {
   const { ContactPage } = await import('./pages/ContactPage');
@@ -29,15 +33,21 @@ async function loadNotFoundPage() {
   return { Component: NotFoundPage };
 }
 
-// Ana sayfa hero'suzdur, henüz yazılmamış sayfalar başlıklı hero ve test bölümlerini gösterir.
-const pageRoutes: RouteObject[] = NAV_ITEMS.map(({ key, path }) => {
-  if (path === '/') return { index: true, element: <DemoPage /> };
-  if (path === '/contact') return { path: path.slice(1), lazy: loadContactPage };
-  if (path === '/projects') return { path: path.slice(1), lazy: loadProjectsPage };
-  if (path === '/knowledge-center') return { path: path.slice(1), lazy: loadKnowledgePage };
-  if (path === '/services') return { path: path.slice(1), lazy: loadServicesPage };
-  return { path: path.slice(1), element: <SectionPage navKey={key} /> };
-});
+type PagePath = Exclude<(typeof NAV_ITEMS)[number]['path'], '/'>;
+
+// Her sayfa kendi parçasıyla yüklenir. Menüye eklenen yeni sayfanın yükleyicisi yoksa tip hatası verir.
+const PAGE_LOADERS: Record<PagePath, NonNullable<RouteObject['lazy']>> = {
+  '/about': loadAboutPage,
+  '/contact': loadContactPage,
+  '/projects': loadProjectsPage,
+  '/knowledge-center': loadKnowledgePage,
+  '/services': loadServicesPage,
+};
+
+// Ana sayfa henüz yazılmadığı için geçici test sayfasını gösterir.
+const pageRoutes: RouteObject[] = NAV_ITEMS.map(({ path }) =>
+  path === '/' ? { index: true, element: <DemoPage /> } : { path: path.slice(1), lazy: PAGE_LOADERS[path] },
+);
 
 // Header tek layout'ta durur, dil değişse de yeniden oluşturulmaz.
 export const router = createBrowserRouter([

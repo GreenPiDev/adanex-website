@@ -1,0 +1,188 @@
+{
+  "hero": {
+    "statement": "We develop solutions <accent>that prevent explosions.</accent>",
+    "intro": "ADANEX ELEKTRİK supplies ATEX and IECEx certified explosion-proof products for industrial facilities. Our range covers five product families, from lighting to ventilation.",
+    "familiesLabel": "Product families"
+  },
+  "ledger": {
+    "title": "Straight from the box to the site.",
+    "lead": "Our product range is broad. Products are shipped ready to use on site, with no extra assembly or accessories required.",
+    "aliasLabel": "Also known on site as:",
+    "columns": {
+      "family": "Product family",
+      "items": "Contents",
+      "facts": "Values"
+    },
+    "stamp": {
+      "title": "Ready to ship",
+      "caption": "Certified, fully equipped"
+    },
+    "families": {
+      "lighting": {
+        "short": "Lighting",
+        "name": "Lighting",
+        "text": "Explosion-proof luminaires designed for high luminous efficiency and long service life.",
+        "items": [
+          {
+            "name": "LED floodlights",
+            "aliases": ["flood", "spot", "projector lamp"]
+          },
+          {
+            "name": "Linear luminaires",
+            "aliases": ["batten", "tube fitting"]
+          },
+          {
+            "name": "Globe luminaires",
+            "aliases": ["well-glass"]
+          },
+          {
+            "name": "Portable hand lamps",
+            "aliases": ["inspection lamp", "lead light"]
+          },
+          {
+            "name": "Exit and wayfinding luminaires"
+          }
+        ],
+        "facts": {
+          "zones": "Areas of use"
+        }
+      },
+      "combination": {
+        "short": "Combination",
+        "name": "Combination boxes",
+        "aliases": ["socket box", "combo panel"],
+        "text": "D Type ATEX certified boxes, configured to your requirements.",
+        "items": [
+          {
+            "name": "ABB or Schneider internal switchgear"
+          },
+          {
+            "name": "Choice of ampere rating and quantity"
+          },
+          {
+            "name": "Plug and socket combinations"
+          },
+          {
+            "name": "Three-phase and single-phase distribution"
+          }
+        ],
+        "facts": {
+          "sockets": "Plug and socket combination options",
+          "switchgear": "Internal switchgear"
+        }
+      },
+      "glands": {
+        "short": "Glands",
+        "name": "Cable and gland systems",
+        "aliases": ["gland", "connector"],
+        "text": "For sealing at cable entries and protection against flame transmission.",
+        "items": [
+          {
+            "name": "Unarmoured brass glands"
+          },
+          {
+            "name": "Armoured brass glands"
+          },
+          {
+            "name": "Polyamide glands"
+          },
+          {
+            "name": "Blanking plugs"
+          },
+          {
+            "name": "Glands with spiral cable holders"
+          },
+          {
+            "name": "Heavy-duty cable holders"
+          },
+          {
+            "name": "Reducers, adaptors and EPDM gland shrouds"
+          }
+        ],
+        "facts": {
+          "unarmoured": "Unarmoured brass gland",
+          "armoured": "Armoured brass gland"
+        }
+      },
+      "control": {
+        "short": "Control",
+        "name": "Control and safety",
+        "text": "Control, warning and monitoring equipment for explosive atmospheres.",
+        "items": [
+          {
+            "name": "Electrical switches",
+            "aliases": ["Ex switch"]
+          },
+          {
+            "name": "Emergency stop buttons",
+            "aliases": ["mushroom button"]
+          },
+          {
+            "name": "Break-glass fire call points"
+          },
+          {
+            "name": "Limit switches"
+          },
+          {
+            "name": "Earthing equipment"
+          },
+          {
+            "name": "Sirens and horns"
+          },
+          {
+            "name": "Flashing warning systems"
+          },
+          {
+            "name": "Camera housings"
+          }
+        ],
+        "facts": {}
+      },
+      "ventilation": {
+        "short": "Ventilation",
+        "name": "Ventilation",
+        "aliases": ["air mover"],
+        "text": "Fans with aluminium or steel housings and explosion-proof motors. Single-phase or three-phase motors, speed control with a frequency inverter.",
+        "items": [
+          {
+            "name": "Axial fans",
+            "aliases": ["axial", "propeller fan", "air propeller"]
+          },
+          {
+            "name": "Radial fans",
+            "aliases": ["blower", "snail fan"]
+          },
+          {
+            "name": "Roof fans",
+            "aliases": ["roof extractor"]
+          },
+          {
+            "name": "Duct fans"
+          }
+        ],
+        "facts": {
+          "series": "Explosion-proof fan series",
+          "speed": "Speed options",
+          "airflow": "Airflow, from small units to large industrial models",
+          "pressure": "Pressure, from axial to radial fans"
+        }
+      }
+    }
+  },
+  "sectors": {
+    "lead": "We help businesses keep running in demanding industrial environments.",
+    "listLabel": "Environments we work in",
+    "items": {
+      "refinery": "Refineries",
+      "chemical": "Chemical plants",
+      "paint": "Paint shops",
+      "food": "Food production areas",
+      "storage": "Storage sites"
+    },
+    "cta": "Get in touch",
+    "note": "Which product is used in which area must be determined by competent experts based on the site's Zone classification."
+  },
+  "rail": {
+    "label": "Product families"
+  }
+}

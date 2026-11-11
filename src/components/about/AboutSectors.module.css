@@ -1,0 +1,140 @@
+.sectors {
+  --surface-bg: var(--color-amber);
+  --surface-fg: var(--color-black);
+  --selection-bg: var(--color-white);
+  --hairline: color-mix(in srgb, currentColor 28%, transparent);
+
+  display: grid;
+  gap: calc(var(--space-lg) * 1.25);
+  padding-block: calc(var(--header-height) + var(--space-lg)) var(--space-lg);
+  padding-inline: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+.lead {
+  max-inline-size: 24em;
+  font-size: var(--text-ab-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.3;
+}
+
+/*
+ * Teknik bilgi merkezindeki tesis listesiyle aynı biçim: madde madde değil, eğik çizgiyle ayrılmış tek bir yazı
+ * bloğu. Sarı zeminde sarı çizgi görünmeyeceği için çizgi soluk siyahtır.
+ */
+.list {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-kb-flow);
+  font-weight: var(--weight-display);
+  line-height: 1.18;
+  list-style: none;
+}
+
+.sector {
+  display: inline;
+}
+
+.sector:not(:last-child)::after {
+  margin-inline: 0.28em;
+  color: color-mix(in srgb, currentColor 40%, transparent);
+  content: '/';
+}
+
+.footer {
+  display: grid;
+  gap: var(--space-md);
+}
+
+/* Düğme siyahtır, üzerine gelince alttan beyaz dolar. */
+.cta {
+  position: relative;
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: calc(var(--touch-target) * 1.5);
+  padding-inline: var(--space-md);
+  overflow: hidden;
+  font-family: var(--font-industrial);
+  font-size: var(--text-hero-label);
+  font-weight: var(--weight-heavy);
+  color: var(--color-amber);
+  isolation: isolate;
+  background: var(--color-black);
+  --roll-hover-color: var(--color-black);
+}
+
+.cta::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background: var(--color-white);
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 3px;
+}
+
+.note {
+  max-inline-size: 36em;
+  font-size: var(--text-ab-body);
+  line-height: 1.5;
+}
+
+@media (min-width: 37.5rem) {
+  .sectors {
+    padding-inline: calc(var(--gutter) + var(--space-md));
+  }
+}
+
+/* Masaüstünde giriş solda, satırlar geniş sütunda. Düğme satırı en altta tam genişliktedir. */
+@media (min-width: 64rem) {
+  .sectors {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 8fr);
+    column-gap: var(--space-lg);
+  }
+
+  /* Giriş metninin ilk satırı, sağdaki listenin ilk satırıyla aynı taban çizgisine oturur. */
+  .lead,
+  .list {
+    align-self: baseline;
+  }
+
+  /* Uyarı metninin üst kenarı düğmenin üst kenarıyla hizalıdır. */
+  .footer {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  /* Satır aralığının üstteki payı kırpılır, metin büyük harf tepesinden başlar (Firefox henüz desteklemiyor). */
+  .note {
+    text-box: trim-start cap alphabetic;
+  }
+
+  .cta {
+    order: 1;
+    min-inline-size: 22rem;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover::before {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta::before {
+    transition: none;
+  }
+}

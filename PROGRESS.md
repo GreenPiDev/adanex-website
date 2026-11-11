@@ -135,9 +135,22 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - **Yayından önce:** `services-1.webp` görselinin kaynağı ve kullanım hakkı netleşmeli (görünüşe göre yapay zekâ üretimi, üzerinde yalnızca genel Ex sembolü var). Metinler mevcut siteden düzenlenerek yazıldı, iki dil firma onayından geçmeli. "Güvenliği mühendislik hassasiyetiyle garanti eder" ifadesi "ele alıyoruz" olarak yumuşatıldı. "Montaj ve saha uygulaması" aşaması, eski sayfanın giriş metnindeki fabrika dönüşümü, ATEX direktiflerine uygun montaj ve devreye alma bilgilerinden kuruldu. Firmanın bu hizmetleri ayrı bir aşama olarak sunduğu doğrulatılmalı. "81 ilde saha desteği" ifadesi de doğrulatılmalı.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
+### 2026-11-11: Hakkımızda sayfası
+
+- `/about` yazıldı (`src/pages/AboutPage.tsx`, `src/components/about/`), rota lazy yükleniyor. Metinler `src/locales/{tr,en}/about.json` içinde ve yalnızca bu sayfayla yüklenir, yapı ve teknik değerler `src/content/about.ts` içinde.
+- Kurgu: kaynak sayfa şirket geçmişi değil ürün tanıtımı içerdiği için sayfa oradaki gerçek malzemeye dayanıyor: slogan, ürün aileleri, ustaların ürünlere taktığı adlar ve "kullanıma hazır sevk" vurgusu.
+- Hero: `PageHero` içinde üstte "Patlamayı önleyen çözümler geliştiriyoruz." sloganı, altta kısa giriş paragrafı ve beş ürün ailesi. Aileler saha bölümündeki gibi eğik çizgiyle ayrılmış bağlantılar, her biri ürün gamındaki kendi satırına kaydırıyor. Slogan kelime kelime açılıyor, ardından paragraf ve aileler sırayla aşağıdan yerine oturuyor. Kolon yan yatmış başlığın harf kenarlarına hizalı, içerik sığmazsa hero uzuyor. Yatay telefonda slogan ile alt kısım yan yana. İlk sürümdeki etiket plakası (künye) kullanıcı anlamsız bulduğu için kaldırıldı.
+- **Sahanın dili** bölümü kaldırıldı (önce yapışık sahne, sonra hareketsiz liste olarak denendi, kullanıcı yorucu buldu). Ürünlerin sahada bilinen adları artık ürün gamında ilgili kalemin yanında tırnak içinde, soluk yazılıyor (ör. LED projektörler “flood” “spot” “proje lambası”). Bir aileye bütünüyle söylenen adlar (kombinasyon kutusu: priz kutusu, kombine pano; rakor: gland, rekor; fan: hava motoru) aile adının altında sarı yazılıyor.
+- **Ürün gamı** (koyu zemin, hero'nun hemen altında): beş ürün ailesi bir **sevk listesi** gibi numaralı satırlar: aile adı ve açıklaması, içerik kalemleri, teknik değerler (Zone 1 · 2 · 21 · 22, 2–10'lu priz seçenekleri, A2 · E1W · CW · CWY, 750 · 1500 · 3000 rpm, 500–20.000+ m³/h, 100–1000+ Pa). Sayılar aktif dile göre biçimleniyor. Telefonda satırlar kart gibi alt alta. Liste bitince üzerine çift çerçeveli **"Sevke hazır"** damgası basılıyor. Sağdaki `SectionRail` beş aileyi gösteriyor.
+- **Saha** (sarı zemin): beş saha türü, teknik bilgi merkezindeki "Exproof Ekipmanlar Nerelerde Kullanılır?" listesiyle aynı biçimde eğik çizgiyle ayrılmış tek bir yazı bloğu (çizgi sarı zeminde soluk siyah). Altında iletişime giden düğme ve Zone uyarısı.
+- Tüm sayfalar yazıldığı için `SectionPage` silindi. `router.tsx` artık yol → yükleyici tablosu kullanıyor, menüye eklenen yeni sayfanın yükleyicisi yoksa tip hatası verir.
+- Mevcut sayfadaki iki görsel kullanılmadı. İkisi de yapay zekâ üretimi görünüyor, afiş olanı doğrulanmamış "IP68" ve "CE" ibareleri taşıyor.
+- **Yayından önce:** Metinler mevcut siteden kısaltılarak yazıldı, iki dil firma onayından geçmeli. Özellikle doğrulatılacaklar: kombinasyon kutularındaki "D Type ATEX sertifikalı" ifadesi (anlamı belirsiz), aydınlatmanın Zone 1/2/21/22 uygunluğu (ürün bazında değişebilir), fan debi ve basınç aralıkları, damgadaki "Sertifikalı, tam donanımlı" ifadesi (kaynakta "ürünlerimizin tamamı sertifikalı"). Kaynaktaki "global ölçekte güvenilir tedarikçi" ifadesi doğrulanamadığı için kullanılmadı, "alev iletimini engeller" ifadesi "alev iletimine karşı koruma için" olarak yumuşatıldı. İngilizcedeki sahadaki adlar (batten, well-glass, lead light, Ex switch vb.) Türkçe argo adların karşılığı olarak seçildi, firmaya veya yerel bir uzmana doğrulatılmalı. "Kutudan çıktığı gibi sahaya." başlığı yeni yazıldı.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
 ## Sıradaki Teknik İşler
 
-- Diğer gerçek sayfalar (`SectionPage` ve `DemoPage` yerine).
+- Ana sayfa (`DemoPage` yerine).
 - Kalan sayfalarda rota bazlı code splitting (ana paket yaklaşık 534 kB, gzip 180 kB).
 - Dil ve sayfa bazlı meta açıklamaları, `canonical` ve `hreflang`.
 - Kurumsal renkler netleşince tokenları güncellemek.

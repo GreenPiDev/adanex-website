@@ -84,6 +84,19 @@
   --text-sv-stat: min(36cqi, 18svh, 14rem);
   --text-sv-stat-caption: clamp(1rem, 4.2cqi, 2.25rem);
   --text-sv-closing: clamp(2.25rem, 1.2rem + 4.6vw, 7rem);
+  /* Hakkımızda: hero sloganı kolon genişliğine, kısa ekranlarda yüksekliğe bağlıdır. */
+  --text-ab-statement: min(13cqi, 6svh);
+  --text-ab-statement-wide: min(8.4cqi, 9svh);
+  /* Hero'daki eğik çizgili ürün aileleri. */
+  --text-ab-families: min(clamp(1.375rem, 0.9rem + 1.6vw, 2.5rem), 4.5svh);
+  /* Ürün gamında sahada bilinen adlar. */
+  --text-ab-alias: clamp(0.9375rem, 0.85rem + 0.3vw, 1.1875rem);
+  --text-ab-title: clamp(2.75rem, 1.2rem + 5.4vw, 8rem);
+  --text-ab-lead: clamp(1.125rem, 0.95rem + 0.7vw, 1.75rem);
+  --text-ab-body: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --text-ab-family: clamp(1.875rem, 1.3rem + 2.2vw, 3.75rem);
+  --text-ab-fact: clamp(1.375rem, 1.1rem + 0.9vw, 2.25rem);
+  --text-ab-stamp: clamp(2.25rem, 1.5rem + 2.8vw, 4.5rem);
   --tracking-nav: -0.005em;
   --tracking-display: -0.035em;
 

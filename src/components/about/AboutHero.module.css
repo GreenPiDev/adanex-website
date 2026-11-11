@@ -1,0 +1,129 @@
+/*
+ * Hizmetler hero'suyla aynı paylar: kolonun üst kenarı yan yatmış başlığın ilk harfinin, alt kenarı son harfinin
+ * hizasıdır (PageHero harf kenarlarını ölçer). İçerik sığmazsa kolon uzar, hero da onunla uzar, hiçbir şey kesilmez.
+ */
+.hero {
+  --hero-padding-end: var(--header-height);
+}
+
+.panel {
+  position: relative;
+  inset-block-start: calc(var(--page-title-size) * var(--title-ink-offset-em, 0));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  justify-content: space-between;
+  grid-row: 1 / -1;
+  grid-column: 2;
+  align-self: center;
+  min-block-size: calc(var(--page-title-size) * var(--title-ink-em, 5));
+  min-inline-size: 0;
+  margin-top: calc((var(--header-height) - var(--hero-padding-end)) * -1);
+  margin-inline-start: var(--space-sm);
+  container-type: inline-size;
+}
+
+.statement {
+  max-inline-size: 11em;
+  font-family: var(--font-display);
+  font-size: var(--text-ab-statement);
+  font-weight: var(--weight-display);
+  line-height: 1.02;
+  letter-spacing: var(--tracking-display);
+  hyphens: manual;
+  text-box: trim-start cap alphabetic;
+}
+
+/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse ş, ç, y gibi harflerin altı kesilir. */
+.statement > *,
+.accent > * {
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+
+.accent {
+  color: var(--color-amber);
+}
+
+/* Slogan, paragraf ve aileler kolona eşit aralıkla dağılır: paragraf ikisinin tam ortasında kalır. */
+.intro {
+  max-inline-size: 30em;
+  font-size: var(--text-ab-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  opacity: 0.85;
+}
+
+/* Saha bölümündeki gibi eğik çizgiyle ayrılmış tek bir yazı bloğu. */
+.families {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-ab-families);
+  font-weight: var(--weight-display);
+  line-height: 1.25;
+  list-style: none;
+}
+
+.family {
+  display: inline;
+}
+
+.family:not(:last-child)::after {
+  margin-inline: 0.28em;
+  color: var(--color-amber);
+  content: '/';
+}
+
+/* Satır içi bağlantı: iç boşluk satır yüksekliğini değiştirmez, dokunma alanını büyütür. */
+.familyLink {
+  padding-block: 0.35em;
+}
+
+.familyLink:focus-visible {
+  outline-offset: 0;
+}
+
+.hero .cue {
+  --scroll-cue-track: 1.25rem;
+
+  inset-block-end: var(--space-sm);
+}
+
+@media (min-width: 37.5rem) {
+  .panel {
+    margin-inline: var(--space-md);
+  }
+
+  .statement {
+    font-size: var(--text-ab-statement-wide);
+  }
+}
+
+/* Yatay telefonda slogan solda, paragraf ve aileler sağda alt alta durur. */
+@media (orientation: landscape) and (max-height: 31.25rem) {
+  .panel {
+    display: grid;
+    grid-template-columns: minmax(0, 9fr) minmax(0, 11fr);
+    gap: var(--space-md) var(--space-lg);
+    align-content: end;
+  }
+
+  .statement {
+    grid-row: 1 / span 2;
+    align-self: end;
+    font-size: min(7cqi, 12svh);
+  }
+
+  .intro,
+  .nav {
+    grid-column: 2;
+  }
+}
+
+/* Üzerine gelinen aile sarıya döner (renk geçişi animasyonsuzdur). */
+@media (hover: hover) and (pointer: fine) {
+  .familyLink:hover {
+    color: var(--color-amber);
+  }
+}

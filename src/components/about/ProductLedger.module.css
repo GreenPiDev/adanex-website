@@ -1,0 +1,305 @@
+/*
+ * Sevk listesi. Telefonda her satır kart gibi alt alta okunur: numara, ad ve açıklama, kalemler, değerler.
+ * Dikey tablette kalemler ile değerler yan yana, masaüstünde tüm sütunlar tek satırdadır.
+ */
+.ledger {
+  --hairline: color-mix(in srgb, currentColor 16%, transparent);
+  --row-columns: minmax(0, 1fr);
+
+  padding-block: calc(var(--header-height) + var(--space-lg)) calc(var(--space-lg) * 2);
+  padding-inline: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+.head {
+  display: grid;
+  gap: var(--space-md);
+  margin-block-end: calc(var(--space-lg) * 1.5);
+}
+
+.title {
+  max-inline-size: 12em;
+  font-family: var(--font-display);
+  font-size: var(--text-ab-title);
+  font-weight: var(--weight-display);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-display);
+  hyphens: manual;
+}
+
+/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse ş, ç, y gibi harflerin altı kesilir. */
+.title > * {
+  padding-block: 0.15em;
+  margin-block: -0.15em;
+}
+
+.lead {
+  max-inline-size: 32em;
+  font-size: var(--text-ab-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  opacity: 0.85;
+}
+
+/* Sahada bilinen adlar: tırnak içinde, soluk ve adın yanında. */
+.alias + .alias {
+  margin-inline-start: 0.75em;
+}
+
+.familyAliases {
+  font-size: var(--text-ab-alias);
+  line-height: 1.3;
+  color: var(--color-amber);
+}
+
+.itemAliases {
+  font-size: var(--text-ab-alias);
+  line-height: 1.3;
+  opacity: 0.55;
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.columns {
+  display: none;
+}
+
+.rows {
+  border-block-end: 1px solid var(--hairline);
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--row-columns);
+  gap: var(--space-md);
+  padding-block: var(--space-lg);
+  /* Raydan atlamada satır header'ın altında kalmasın. */
+  scroll-margin-top: var(--header-height);
+}
+
+.row:focus {
+  outline: none;
+}
+
+.rule {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 1px;
+  background: color-mix(in srgb, currentColor 32%, transparent);
+  transform-origin: 0 50%;
+}
+
+.code {
+  font-family: var(--font-industrial);
+  font-size: var(--text-ab-fact);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+  color: var(--color-amber);
+}
+
+.family {
+  display: grid;
+  gap: var(--space-sm);
+  align-content: start;
+  min-inline-size: 0;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--text-ab-family);
+  font-weight: var(--weight-display);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  hyphens: manual;
+}
+
+.text {
+  max-inline-size: 28em;
+  font-size: var(--text-ab-body);
+  line-height: 1.55;
+  opacity: 0.72;
+}
+
+.items {
+  align-self: start;
+  min-inline-size: 0;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem var(--space-sm);
+  align-items: baseline;
+  padding-block: 0.55rem;
+  font-size: var(--text-ab-body);
+  line-height: 1.35;
+  border-block-start: 1px solid var(--hairline);
+}
+
+.item:first-child {
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-md);
+  align-content: start;
+  margin: 0;
+}
+
+.fact {
+  display: grid;
+  gap: 0.3rem;
+}
+
+/* Etiketin değerden önce okunması için DOM'da önce gelir, ekranda değerin altında durur. */
+.factLabel {
+  order: 1;
+  font-size: var(--text-ab-body);
+  line-height: 1.35;
+  opacity: 0.62;
+}
+
+/* Değerler stencil yerine başlık fontuyla yazılır, rakamlar ve birimler küçük boyda da okunur. */
+.factValue {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-ab-fact);
+  font-weight: var(--weight-display);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-amber);
+}
+
+/*
+ * Damga listenin sağ altına basılır, son satırın üstüne biraz biner. Çerçevesi çift çizgilidir,
+ * hafif yatıktır. Eğim CSS `rotate` ile verilir, giriş hareketi transform ile üstüne eklenir.
+ */
+.stampArea {
+  display: flex;
+  justify-content: center;
+  margin-block-start: var(--space-lg);
+}
+
+.stamp {
+  position: relative;
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+  padding: 0.35em 0.7em 0.45em;
+  color: var(--color-amber);
+  text-align: center;
+  border: 3px solid currentColor;
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+  rotate: -6deg;
+}
+
+.stampRing {
+  position: absolute;
+  inset: -0.6rem;
+  border: 2px solid currentColor;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stampTitle {
+  font-family: var(--font-industrial);
+  font-size: var(--text-ab-stamp);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+}
+
+.stampCaption {
+  font-family: var(--font-industrial);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-heavy);
+  line-height: 1.2;
+}
+
+@media (min-width: 37.5rem) {
+  /* Numara solda dar sütunda, ad ve açıklama üstte, kalemler ile değerler altında yan yana. */
+  .ledger {
+    --row-columns: 4rem minmax(0, 1fr) minmax(0, 1fr);
+
+    padding-inline: calc(var(--gutter) + var(--space-md));
+  }
+
+  .row {
+    column-gap: var(--space-lg);
+  }
+
+  .code {
+    grid-row: 1 / span 2;
+  }
+
+  .family {
+    grid-column: 2 / -1;
+  }
+
+  .items {
+    grid-column: 2;
+  }
+
+  .facts {
+    grid-column: 3;
+  }
+
+  .stampArea {
+    justify-content: flex-end;
+    margin-block-start: calc(var(--space-lg) * -0.5);
+    padding-inline-end: var(--space-lg);
+  }
+}
+
+/* Masaüstünde tek satır: numara, aile, içerik, değerler. Ray için sağda pay bırakılır. */
+@media (min-width: 64rem) {
+  .ledger {
+    --row-columns: 5rem minmax(0, 4fr) minmax(0, 3.5fr) minmax(0, 3fr);
+
+    padding-inline-end: calc(var(--gutter) + var(--rail-width) + var(--space-md));
+  }
+
+  .head {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    column-gap: var(--space-lg);
+    align-items: end;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: var(--row-columns);
+    column-gap: var(--space-lg);
+    padding-block: var(--space-sm);
+    font-family: var(--font-industrial);
+    font-size: var(--text-nav);
+    font-weight: var(--weight-heavy);
+    opacity: 0.5;
+  }
+
+  .code {
+    grid-row: auto;
+  }
+
+  .family,
+  .items,
+  .facts {
+    grid-column: auto;
+  }
+
+  .family {
+    padding-inline-end: var(--space-md);
+  }
+}
