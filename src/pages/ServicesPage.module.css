@@ -1,0 +1,7 @@
+/*
+ * Aşamaların ortak zemini. Kap konumlandırılmadığı için zemini noktaların çizildiği tuvalin altında kalır,
+ * aşamaların başlığının altındaki nokta şekilleri görünür.
+ */
+.sequence {
+  background: var(--color-carbon);
+}

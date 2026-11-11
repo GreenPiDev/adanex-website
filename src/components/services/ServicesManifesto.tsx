@@ -12,9 +12,9 @@ export function ServicesManifesto() {
   const showSign = !useIsMobile();
 
   return (
-    <section className={styles.manifesto} data-surface="light" data-morph-section>
+    <section className={styles.manifesto} data-surface="light">
       {/* Hero'daki altın noktalar metnin arkasında gri EX tabelasına dönüşür. Noktaları sayfadaki DotMorph çizer. */}
-      {showSign && <span className={styles.sign} data-sign-anchor aria-hidden="true" />}
+      {showSign && <span className={styles.sign} data-dot-shape="ex" data-dot-tone="steel" aria-hidden="true" />}
       <p className={styles.text}>{t('manifesto.text')}</p>
     </section>
   );

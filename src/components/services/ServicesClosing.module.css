@@ -11,7 +11,12 @@
   background: var(--surface-bg);
 }
 
+/*
+ * Bölüm konumlandırılmaz, zemini noktaların çizildiği tuvalin altında kalır.
+ * Başlık ve düğme satırı konumlanmıştır, tuvalin üstünde kalır.
+ */
 .title {
+  position: relative;
   max-inline-size: 14em;
   font-family: var(--font-display);
   font-size: var(--text-sv-closing);
@@ -28,8 +33,14 @@
 }
 
 .footer {
+  position: relative;
   display: grid;
   gap: var(--space-md);
+}
+
+/* Noktaların tesis silüetine dönüştüğü alan. Tek sütunlu düzende kurulmaz, masaüstünde başlığın sağında durur. */
+.shape {
+  display: none;
 }
 
 /* Düğme siyahtır, üzerine gelince alttan beyaz dolar. */
@@ -90,7 +101,21 @@
 
 @media (min-width: 64rem) {
   .closing {
+    grid-template-columns: minmax(0, 1fr) auto;
     padding-inline-start: calc(var(--gutter) + var(--bus-column));
+  }
+
+  .shape {
+    display: block;
+    grid-row: 1;
+    grid-column: 2;
+    align-self: center;
+    /* Nokta sayısı sabittir, alan büyüdükçe noktalar aralanır: silüet seyrek, büyük bir çizim gibi okunur. */
+    block-size: clamp(18rem, 50svh, 34rem);
+  }
+
+  .footer {
+    grid-column: 1 / -1;
   }
 }
 

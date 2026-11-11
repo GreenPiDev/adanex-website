@@ -12,7 +12,11 @@
   padding-block: calc(var(--header-height) + var(--space-lg)) calc(var(--space-lg) * 2);
   padding-inline: var(--gutter);
   color: var(--surface-fg);
-  background: var(--surface-bg);
+  /*
+   * Zemin aşamaları saran kaptadır (ServicesPage). Aşama konumlandırılmış olduğu için kendi zemini
+   * noktaların çizildiği tuvalin üstüne çıkıp şekilleri örterdi.
+   */
+  background: transparent;
   /* Atlamada başlık header'ın altında kalmaz, üst boşluk zaten header kadardır. */
   scroll-margin-top: 0;
 }
@@ -123,6 +127,25 @@
   line-height: 1;
   letter-spacing: var(--tracking-display);
   hyphens: manual;
+}
+
+/*
+ * Noktaların aşamanın şekline dönüştüğü alan, başlığın altında. Şekiller aynı yükseklikte görünsün diye boy
+ * yükseklikten kurulur, genişliği şeklin oranından (satır içi aspect-ratio) gelir.
+ * Tek sütunlu düzende başlıkla metnin arasını açmasın diye yalnızca masaüstü düzeninde kurulur.
+ */
+.shape {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .shape {
+    display: block;
+    /* Nokta sayısı sabittir, alan büyüdükçe noktalar aralanır. Sütundan genişse şekil alanın içinde küçülür. */
+    block-size: clamp(14rem, 40svh, 26rem);
+    max-inline-size: 100%;
+    margin-block-start: calc(var(--space-lg) * 1.5);
+  }
 }
 
 /* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse ş, ç, y gibi harflerin altı kesilir. */

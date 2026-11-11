@@ -8,7 +8,8 @@ import {
   SERVICE_STATIONS,
   type ServiceStation as Station,
 } from '../../content/services';
-import { usePrefersReducedMotion } from '../../hooks/useDevice';
+import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
+import { DOT_SHAPES } from './dotShapes';
 import styles from './ServiceStation.module.css';
 
 // Hattın dolan ucu her zaman ekranın bu yüksekliğindedir, klemensler bu çizgiyi geçince yanar.
@@ -26,6 +27,8 @@ type ServiceStationProps = {
 export function ServiceStation({ station, index }: ServiceStationProps) {
   const { t, i18n } = useTranslation('services');
   const prefersReducedMotion = usePrefersReducedMotion();
+  // Telefonda noktalar hiç kurulmadığı için şekil alanı da yoktur (ServicesPage ile aynı koşul).
+  const showShape = !useIsMobile();
   const rootRef = useRef<HTMLElement>(null);
   const junctionRef = useRef<HTMLDivElement>(null);
 
@@ -109,6 +112,16 @@ export function ServiceStation({ station, index }: ServiceStationProps) {
         <h2 key={i18n.language} id={`${station.slug}-title`} className={styles.title} data-station-title>
           {text('title')}
         </h2>
+        {/* Noktalar aşamaya gelince bu alanda aşamanın şekline dönüşür (DotMorph). Masaüstü düzeninde görünür. */}
+        {showShape && (
+          <span
+            className={styles.shape}
+            style={{ aspectRatio: `1 / ${DOT_SHAPES[station.key].ratio}` }}
+            data-dot-shape={station.key}
+            data-dot-tone="amber"
+            aria-hidden="true"
+          />
+        )}
       </header>
 
       <div className={styles.body}>

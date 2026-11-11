@@ -11,6 +11,7 @@ import { ServiceStation } from '../components/services/ServiceStation';
 import { SectionRail } from '../components/ui/SectionRail/SectionRail';
 import { SERVICE_STATIONS } from '../content/services';
 import { useIsMobile } from '../hooks/useDevice';
+import styles from './ServicesPage.module.css';
 
 /**
  * Hizmetler, satıştan uygulamaya giden tek bir hat olarak anlatılır: aşamalar bir tek hat şemasının
@@ -19,7 +20,7 @@ import { useIsMobile } from '../hooks/useDevice';
 export function ServicesPage() {
   const { t } = useTranslation('services');
   const sequenceRef = useRef<HTMLDivElement>(null);
-  // Telefonda hero'da dalga, Yaklaşım'da tabela yoktur.
+  // Telefonda hero'da dalga, Yaklaşım'da tabela, aşamalarda şekil yoktur.
   const showDots = !useIsMobile();
 
   // Büyük başlıklar font inince boy değiştirir, tetikleyici konumları yeniden ölçülür.
@@ -44,7 +45,7 @@ export function ServicesPage() {
       <ServicesHero />
       <ServicesManifesto />
 
-      <div ref={sequenceRef}>
+      <div ref={sequenceRef} className={styles.sequence}>
         {SERVICE_STATIONS.map((station, index) => (
           <ServiceStation key={station.key} station={station} index={index} />
         ))}
