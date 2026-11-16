@@ -149,6 +149,13 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - **Yayından önce:** Metinler mevcut siteden kısaltılarak yazıldı, iki dil firma onayından geçmeli. Özellikle doğrulatılacaklar: kombinasyon kutularındaki "D Type ATEX sertifikalı" ifadesi (anlamı belirsiz), aydınlatmanın Zone 1/2/21/22 uygunluğu (ürün bazında değişebilir), fan debi ve basınç değerleri (tip bazlı ayrım eski sitedeki metinden alındı), hero afişindeki IP68/CE ibareleri ve görselin kaynağı/kullanım hakkı, damgadaki "Sertifikalı, tam donanımlı" ifadesi (kaynakta "ürünlerimizin tamamı sertifikalı"). Kaynaktaki "global ölçekte güvenilir tedarikçi" ifadesi kullanıcı isteğiyle saha bölümünün giriş cümlesine eklendi, ölçülebilir bir veriye dayanmadığı için firmaya doğrulatılmalı. "alev iletimini engeller" ifadesi "alev iletimine karşı koruma için" olarak yumuşatıldı. İngilizcedeki sahadaki adlar (batten, well-glass, lead light, Ex switch vb.) Türkçe argo adların karşılığı olarak seçildi, firmaya veya yerel bir uzmana doğrulatılmalı. "Kutudan çıktığı gibi sahaya." başlığı yeni yazıldı.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
+### 2026-11-16: Ana sayfa hero videosu
+
+- Ana sayfa hâlâ geçici `DemoPage`. İlk (koyu) bölümü tam ekran ürün videolu hero oldu: video arka planda `object-fit: cover`, metin altta zemine eriyen gölgenin üstünde.
+- Kaynak `public/hero-video.mp4` (10 MB, 720p, 7,2 Mbps, sessiz) ffmpeg ile `public/home-hero.mp4` olarak yeniden kodlandı (H.264 CRF 23, `faststart`, 1,25 MB). İlk kare `public/home-hero-poster.webp` (12 KB) poster olarak kullanılıyor.
+- Video sessiz, döngülü, `playsInline`, dekoratif olduğu için ekran okuyuculardan gizli. `prefers-reduced-motion` açıksa durur ve poster görünür.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
 ## Sıradaki Teknik İşler
 
 - Ana sayfa (`DemoPage` yerine).
