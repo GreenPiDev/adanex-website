@@ -109,6 +109,7 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 
 - Header artık `mix-blend-mode: difference` ile altından geçen içeriğin negatifi olarak çiziliyor. Sarı bölümlerde (`data-tone="amber"`) düz siyah, mobil menü açıkken normal çiziliyor.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+- **2026-11-17:** Logo negatif efektten çıkarıldı. `<header>` artık `display: contents`. Logo, ayrı bir sabit katmanda (`.logoLayer`) duruyor ve zemine göre kendi renkli sürümüyle görünüyor: koyu zeminde ve açık menüde koyu zemin logosu, açık ve sarı zeminde açık zemin logosu. Menü, dil seçici ve hamburger negatif katmanda (`.chrome`) kalmaya devam ediyor. Tarayıcıda görsel kontrol yapılmadı.
 
 ### 2026-11-11: Teknik bilgi merkezi düzenlemeleri
 
@@ -153,7 +154,7 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 
 - Ana sayfa hâlâ geçici `DemoPage`. İlk (koyu) bölümü tam ekran ürün videolu hero oldu: video arka planda `object-fit: cover`, metin altta zemine eriyen gölgenin üstünde.
 - Kaynak `public/hero-video.mp4` (10 MB, 720p, 7,2 Mbps, sessiz) ffmpeg ile `public/home-hero.mp4` olarak yeniden kodlandı (H.264 CRF 23, `faststart`, 1,25 MB). İlk kare `public/home-hero-poster.webp` (12 KB) poster olarak kullanılıyor.
-- Video sessiz, döngülü, `playsInline`, dekoratif olduğu için ekran okuyuculardan gizli. `prefers-reduced-motion` açıksa durur ve poster görünür.
+- Video sessiz, bir kez oynar ve son karede durur (döngü yok), `playsInline`, dekoratif olduğu için ekran okuyuculardan gizli. `prefers-reduced-motion` açıksa durur ve poster görünür.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
 ## Sıradaki Teknik İşler

@@ -1,4 +1,9 @@
+/* Kutusu yok: logo ile negatif çizilen katman ayrı sabit katmanlardır, landmark tek kalır. */
 .header {
+  display: contents;
+}
+
+.chrome {
   position: fixed;
   inset-block-start: 0;
   inset-inline: 0;
@@ -10,8 +15,8 @@
   transition: color var(--duration-base) var(--ease-standard);
 }
 
-/* Beyaz çizilir, altından geçen içeriğin negatifi olarak görünür. Tam sayfa menü de header içinde olduğu için o açıkken kapanır. */
-.header[data-negative='true'] {
+/* Beyaz çizilir, altından geçen içeriğin negatifi olarak görünür. Tam sayfa menü de bu katmanda olduğu için o açıkken kapanır. Logo bu katmanın dışındadır. */
+.chrome[data-negative='true'] {
   mix-blend-mode: difference;
 }
 
@@ -20,11 +25,25 @@
   z-index: 2;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: var(--space-md);
   block-size: var(--header-height);
   padding-block-start: env(safe-area-inset-top);
   padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
+}
+
+/* Logo negatife dönmez, altındaki zemine göre kendi renkli sürümü gösterilir. Açık menünün de üstünde kalır. */
+.logoLayer {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: calc(var(--z-header) + 1);
+  display: flex;
+  align-items: center;
+  block-size: var(--header-height);
+  padding-block-start: env(safe-area-inset-top);
+  padding-inline-start: max(var(--gutter), env(safe-area-inset-left));
+  pointer-events: none;
 }
 
 .logo,
@@ -46,8 +65,8 @@
   transition: opacity var(--duration-base) var(--ease-standard);
 }
 
-.header[data-surface='dark'] .logoForLight,
-.header[data-surface='light'] .logoForDark {
+.logoLayer[data-backdrop='dark'] .logoForLight,
+.logoLayer[data-backdrop='light'] .logoForDark {
   opacity: 0;
 }
 
@@ -58,7 +77,7 @@
   gap: var(--nav-gap);
 }
 
-.header[data-device='tabletLandscape'] {
+.chrome[data-device='tabletLandscape'] {
   --nav-gap: var(--space-sm);
 }
 

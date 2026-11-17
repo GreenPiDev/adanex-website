@@ -20,7 +20,7 @@ export function Header() {
   const device = useDevice();
   const isNavCollapsed = useIsNavCollapsed();
 
-  const headerRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const backdrop = useHeaderSurface(headerRef);
 
@@ -61,15 +61,12 @@ export function Header() {
   // Sarının negatifi mavidir ve palette yoktur, sarı bölümde header düz siyah çizilir.
   const isOnAmber = !isMenuShown && backdrop === 'amber';
 
+  // Logo negatife dönmez; açık menü koyu zemindir, sarı ve açık bölümlerde koyu logo görünür.
+  const logoBackdrop = isMenuShown || backdrop === 'dark' ? 'dark' : 'light';
+
   return (
-    <header
-      ref={headerRef}
-      className={styles.header}
-      data-surface={isOnAmber ? 'light' : 'dark'}
-      data-negative={!isMenuShown && !isOnAmber}
-      data-device={device}
-    >
-      <div className={styles.bar}>
+    <header className={styles.header}>
+      <div className={styles.logoLayer} data-backdrop={logoBackdrop}>
         <Link
           className={styles.logo}
           to={localizePath('/', locale)}
@@ -79,55 +76,65 @@ export function Header() {
           <img className={`${styles.logoImage} ${styles.logoForDark}`} {...LOGO_FOR_DARK} alt="" />
           <img className={`${styles.logoImage} ${styles.logoForLight}`} {...LOGO_FOR_LIGHT} alt="" />
         </Link>
-
-        {isNavCollapsed ? (
-          <button
-            ref={toggleRef}
-            type="button"
-            className={styles.toggle}
-            data-open={isMenuOpen}
-            aria-expanded={isMenuOpen}
-            aria-controls={MOBILE_MENU_ID}
-            aria-label={t(isMenuOpen ? 'a11y.closeMenu' : 'a11y.openMenu')}
-            onClick={() => setIsMenuOpen((open) => !open)}
-          >
-            <span className={styles.toggleLine} />
-            <span className={styles.toggleLine} />
-          </button>
-        ) : (
-          <nav className={styles.nav} aria-label={t('nav.label')}>
-            <ul className={styles.navList}>
-              {NAV_ITEMS.map(({ key, path }) => {
-                const label = t(`nav.items.${key}`);
-                return (
-                  <li key={key}>
-                    <NavLink
-                      className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`}
-                      to={localizePath(path, locale)}
-                      end={path === '/'}
-                    >
-                      <span className={styles.roll}>
-                        <span>{label}</span>
-                        <span aria-hidden="true">{label}</span>
-                      </span>
-                    </NavLink>
-                  </li>
-                );
-              })}
-            </ul>
-            <LanguageSwitch />
-          </nav>
-        )}
       </div>
 
-      {isNavCollapsed && (
-        <MobileMenu
-          id={MOBILE_MENU_ID}
-          isOpen={isMenuOpen}
-          onNavigate={closeMenu}
-          onCoverChange={setIsMenuCovering}
-        />
-      )}
+      <div
+        ref={headerRef}
+        className={styles.chrome}
+        data-surface={isOnAmber ? 'light' : 'dark'}
+        data-negative={!isMenuShown && !isOnAmber}
+        data-device={device}
+      >
+        <div className={styles.bar}>
+          {isNavCollapsed ? (
+            <button
+              ref={toggleRef}
+              type="button"
+              className={styles.toggle}
+              data-open={isMenuOpen}
+              aria-expanded={isMenuOpen}
+              aria-controls={MOBILE_MENU_ID}
+              aria-label={t(isMenuOpen ? 'a11y.closeMenu' : 'a11y.openMenu')}
+              onClick={() => setIsMenuOpen((open) => !open)}
+            >
+              <span className={styles.toggleLine} />
+              <span className={styles.toggleLine} />
+            </button>
+          ) : (
+            <nav className={styles.nav} aria-label={t('nav.label')}>
+              <ul className={styles.navList}>
+                {NAV_ITEMS.map(({ key, path }) => {
+                  const label = t(`nav.items.${key}`);
+                  return (
+                    <li key={key}>
+                      <NavLink
+                        className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`}
+                        to={localizePath(path, locale)}
+                        end={path === '/'}
+                      >
+                        <span className={styles.roll}>
+                          <span>{label}</span>
+                          <span aria-hidden="true">{label}</span>
+                        </span>
+                      </NavLink>
+                    </li>
+                  );
+                })}
+              </ul>
+              <LanguageSwitch />
+            </nav>
+          )}
+        </div>
+
+        {isNavCollapsed && (
+          <MobileMenu
+            id={MOBILE_MENU_ID}
+            isOpen={isMenuOpen}
+            onNavigate={closeMenu}
+            onCoverChange={setIsMenuCovering}
+          />
+        )}
+      </div>
     </header>
   );
 }
