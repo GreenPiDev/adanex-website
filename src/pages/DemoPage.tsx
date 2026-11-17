@@ -36,7 +36,7 @@ export function DemoPage() {
           data-surface={surface}
         >
           {surface === 'dark' && (
-            // Dekoratif arka plan videosu: sessiz, döngülü, ekran okuyuculardan gizli.
+            // Dekoratif arka plan videosu: sessiz, bir kez oynar ve son karede kalır, ekran okuyuculardan gizli.
             <video
               ref={videoRef}
               className={styles.heroVideo}
@@ -44,7 +44,6 @@ export function DemoPage() {
               poster={HERO_POSTER_SRC}
               autoPlay={!prefersReducedMotion}
               muted
-              loop
               playsInline
               preload="auto"
               aria-hidden="true"
