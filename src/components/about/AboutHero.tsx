@@ -4,7 +4,7 @@ import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
 import { PRODUCT_FAMILIES } from '../../content/about';
-import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
+import { useDevice, useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { useSmoothScroll } from '../../hooks/useSmoothScroll';
 import { PageHero } from '../layout/PageHero/PageHero';
 import { Lightbox } from '../ui/Lightbox/Lightbox';
@@ -50,6 +50,7 @@ export function AboutHero() {
   const rootRef = useRef<HTMLElement>(null);
   const jump = useFamilyJump();
   const hasVisuals = !useIsNavCollapsed();
+  const isDesktop = useDevice() === 'desktop';
   const [openVisual, setOpenVisual] = useState<(typeof HERO_VISUALS)[number] | null>(null);
 
   // Slogan dil değişince yeniden bölünür. Ardından paragraf ve aileler sırayla aşağıdan yerine oturur.
@@ -139,7 +140,8 @@ export function AboutHero() {
         )}
       </div>
 
-      <ScrollCue className={hasVisuals ? `${styles.cue} ${styles.cueAligned}` : styles.cue} />
+      {/* Masaüstünde belirteç afişe değil, header'daki dil seçiciye hizalanır (ScrollCue içinde). */}
+      <ScrollCue className={hasVisuals && !isDesktop ? `${styles.cue} ${styles.cueAligned}` : styles.cue} />
 
       {openVisual && (
         <Lightbox src={openVisual.src} alt={t(`hero.visuals.${openVisual.key}`)} onClose={() => setOpenVisual(null)} />

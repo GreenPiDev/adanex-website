@@ -42,7 +42,8 @@
   align-items: center;
   block-size: var(--header-height);
   padding-block-start: env(safe-area-inset-top);
-  padding-inline-start: max(var(--gutter), env(safe-area-inset-left));
+  /* Logonun solu, iç sayfalardaki yan yatmış başlığın harf kenarıyla aynı çizgidedir; ana sayfada da yeri değişmez. */
+  padding-inline-start: max(var(--page-title-inset), env(safe-area-inset-left));
   pointer-events: none;
 }
 
@@ -79,6 +80,11 @@
 
 .chrome[data-device='tabletLandscape'] {
   --nav-gap: var(--space-sm);
+}
+
+/* Masaüstünde dil seçicinin sağı, sayfa içeriğinin sağ kenarıyla (kenar payı + --space-md) aynı çizgidedir. */
+.chrome[data-device='desktop'] .nav {
+  margin-inline-end: var(--space-md);
 }
 
 .link {

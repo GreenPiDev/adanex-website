@@ -4,7 +4,7 @@ import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
 import { LOGO_FOR_TRANSITION } from '../../content/brand';
 import { formatStageNumber, SERVICE_HERO_IMAGE, SERVICE_STATIONS } from '../../content/services';
-import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
+import { useDevice, useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { useSectionJump } from '../../hooks/useSectionJump';
 import { PageHero } from '../layout/PageHero/PageHero';
 import { RollText } from '../ui/RollText/RollText';
@@ -28,6 +28,8 @@ export function ServicesHero() {
   const prefersReducedMotion = usePrefersReducedMotion();
   // Telefonda kolon dar ve kısadır, görsel ve dalga sığmaz. Hiç kurulmadıkları için dosya inmez, tuval çalışmaz.
   const showImage = !useIsMobile();
+  // Masaüstünde görsel, header'daki dil seçici kadar sola kayar.
+  const isDesktop = useDevice() === 'desktop';
   const rootRef = useRef<HTMLElement>(null);
   const jump = useSectionJump();
 
@@ -81,7 +83,7 @@ export function ServicesHero() {
           </p>
 
           {showImage && (
-            <figure className={styles.figure}>
+            <figure className={`${styles.figure} ${isDesktop ? styles.figureDesktop : ''}`}>
               <span className={styles.frame} data-hero-frame>
                 <span className={styles.unskew}>
                   <img

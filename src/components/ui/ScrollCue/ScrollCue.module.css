@@ -16,6 +16,11 @@
   }
 }
 
+/* Masaüstünde header'daki dil seçici gibi sayfa içeriğinin sağ kenarında (kenar payı + --space-md) biter. */
+.cue.desktop {
+  padding-inline-end: calc(var(--gutter) + var(--space-md));
+}
+
 .inner {
   display: flex;
   flex-direction: column;

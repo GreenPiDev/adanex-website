@@ -2,13 +2,15 @@ import { type ComponentProps, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap, MOTION, useGSAP } from '../../../animations/gsap';
 import { getPageIntroDelay } from '../../../animations/pageIntro';
-import { usePrefersReducedMotion } from '../../../hooks/useDevice';
+import { useDevice, usePrefersReducedMotion } from '../../../hooks/useDevice';
 import styles from './ScrollCue.module.css';
 
 /** Hero'nun altındaki "kaydır" belirteci. Harfler sayaç silindiri gibi döner, yanlarından çizgi akar. */
 export function ScrollCue({ className = '', ...rest }: ComponentProps<'div'>) {
   const { t, i18n } = useTranslation();
   const prefersReducedMotion = usePrefersReducedMotion();
+  // Masaüstünde son harfin sağı, header'daki dil seçicinin sağıyla aynı çizgidedir.
+  const isDesktop = useDevice() === 'desktop';
   const rootRef = useRef<HTMLDivElement>(null);
 
   // Harf sayısı dile göre değiştiği için silindirler dil değişince yeniden kurulur.
@@ -40,7 +42,7 @@ export function ScrollCue({ className = '', ...rest }: ComponentProps<'div'>) {
   );
 
   return (
-    <div {...rest} ref={rootRef} className={`${styles.cue} ${className}`} aria-hidden="true">
+    <div {...rest} ref={rootRef} className={`${styles.cue} ${isDesktop ? styles.desktop : ''} ${className}`} aria-hidden="true">
       <span className={styles.inner}>
         <span key={i18n.language} className={styles.word}>
           {Array.from(t('scrollCue').toLocaleUpperCase(i18n.language)).map((letter, index) => (

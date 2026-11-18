@@ -80,6 +80,20 @@
   margin-inline-end: calc(var(--bleed) * -1);
 }
 
+/*
+ * Masaüstünde görsel taşmaz: paralelkenarın sağ üst köşesi panelin sağ kenarında, yani header'daki dil seçici
+ * ve alttaki kartlarla aynı çizgide biter. Sol kenar --space-md kadar sola kaymıştır.
+ * Eğim, yüksekliğin yarısı kadar yana açılır; yükseklik container sorgusu ile okunur.
+ */
+.figureDesktop {
+  margin-inline: calc(var(--space-md) * -1) 0;
+  container-type: size;
+}
+
+.figureDesktop .frame {
+  inset-inline-end: calc(50cqh * tan(var(--skew)) * -1);
+}
+
 /* Sağ uç ekranın dışında kalır, yatık sağ kenar ve köşeler görünmez. */
 .frame {
   position: absolute;
@@ -162,6 +176,8 @@
   isolation: isolate;
   border: 1px solid var(--hairline);
   --roll-hover-color: var(--color-black);
+  /* Kart yatırıldığında içerik bununla düz tutulur. Dar kolonda kart yatık değildir. */
+  --unskew: skewX(0deg);
 }
 
 .card::before {
@@ -187,6 +203,7 @@
   block-size: 100%;
   object-fit: cover;
   pointer-events: none;
+  transform: var(--unskew);
 }
 
 .card::after {
@@ -217,7 +234,7 @@
   object-fit: contain;
   pointer-events: none;
   opacity: 0;
-  transform: scale(0.85);
+  transform: var(--unskew) scale(0.85);
   transition:
     opacity calc(var(--duration-base) * 0.5) var(--ease-out),
     transform calc(var(--duration-base) * 0.5) var(--ease-out);
@@ -253,6 +270,7 @@
   inline-size: calc(var(--text-sv-card-number) * 0.8);
   block-size: calc(var(--text-sv-card-number) * 0.8);
   opacity: 0.6;
+  transform: var(--unskew);
   transition:
     transform var(--duration-base) var(--ease-out),
     opacity var(--duration-base) var(--ease-out);
@@ -335,26 +353,63 @@
  * Adın boyu kartın genişliğinden gelir, en uzun ad (Danışmanlık, Installation, yaklaşık 5,3 em) tek satıra sığar.
  */
 @media (min-width: 64rem), (orientation: landscape) and (min-width: 37.5rem) {
-  .cards {
-    grid-template-rows: none;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-md);
-  }
-
-  .cardItem {
+  .stages {
     container-type: inline-size;
   }
 
-  /* Kısa ekranlarda üst ve alt iç boşluk daralır. */
+  /*
+   * Kartların yatık kenarları paraleldir, aralarında yalnızca --cards-gap kalır. Kartlar hücreyi tam doldurur;
+   * yalnızca ilk kartın sol alt ve son kartın sağ üst köşesi yana taştığı için satır iki yandan eğim payı kadar içeridedir.
+   */
+  .cards {
+    --cards-gap: var(--space-sm);
+    --cards-cell: calc((100cqi - var(--cards-gap) * 3) / (4 + tan(20deg)));
+
+    grid-template-rows: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--cards-gap);
+    padding-inline: calc(var(--cards-cell) * tan(20deg) / 2);
+  }
+
+  /* Hücrenin iki ölçüsü de bilinir, kart genişliği doldurur, boyu ise kareyi geçmez. */
+  .cardItem {
+    container-type: size;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /*
+   * Kart, üstteki görselle aynı eğimde yatık bir paralelkenardır; yer yettiğinde karedir, kısa ekranda boyu kısalır.
+   * Yazılar ve görseller ters yatırılarak düz kalır. Kısa ekranlarda üst ve alt iç boşluk daralır.
+   */
   .card {
+    --card-skew: -20deg;
+    --unskew: skewX(calc(var(--card-skew) * -1));
+
+    flex: none;
     grid-template-areas:
       'number arrow'
       'label label';
     grid-template-rows: auto minmax(0, 1fr);
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: start;
-    min-block-size: calc(var(--touch-target) * 2);
+    inline-size: 100cqi;
+    block-size: min(100cqh, 100cqi);
+    min-block-size: 0;
     padding: min(var(--card-pad), 2.4svh) var(--card-pad);
+    border-radius: clamp(0.75rem, 1.4vw, 1.5rem);
+    transform: skewX(var(--card-skew));
+  }
+
+  /* Ters yatırılan görsel, yatık köşeleri de doldursun diye iki yandan eğim payı kadar geniştir. */
+  .cardImage {
+    inset-inline-start: calc(tan(20deg) * -50%);
+    inline-size: calc(100% * (1 + tan(20deg)));
+  }
+
+  .cardNumber,
+  .cardLabel {
+    transform: var(--unskew);
   }
 
   .cardLabel {
@@ -399,7 +454,7 @@
 
   .card:hover .cardLogo {
     opacity: 1;
-    transform: none;
+    transform: var(--unskew);
     transition-duration: var(--duration-base);
     transition-delay: calc(var(--duration-base) * 0.5);
   }
@@ -407,7 +462,7 @@
   .card:hover .arrow {
     color: var(--color-black);
     opacity: 1;
-    transform: translateY(0.25rem);
+    transform: var(--unskew) translateY(0.25rem);
   }
 }
 

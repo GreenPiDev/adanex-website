@@ -21,7 +21,7 @@ function measureTitle(element: HTMLElement, text: string) {
   const context = document.createElement('canvas').getContext('2d');
   if (!context) return null;
 
-  const { fontWeight, fontFamily } = getComputedStyle(element);
+  const { fontWeight, fontFamily, fontSize, lineHeight } = getComputedStyle(element);
   context.font = `${fontWeight} 100px ${fontFamily}`;
   // SplitText harfleri ayırdığı için ekrandaki metinde kerning yoktur.
   context.fontKerning = 'none';
@@ -30,11 +30,19 @@ function measureTitle(element: HTMLElement, text: string) {
   const startBearing = -actualBoundingBoxLeft;
   const endBearing = width - actualBoundingBoxRight;
 
+  // Başlık ters döndüğü için harflerin üstü solda kalır: satır kutusunun solundan büyük harf kenarına olan mesafe.
+  const capMetrics = context.measureText('H');
+  const lineHeightEm = parseFloat(lineHeight) / parseFloat(fontSize);
+  const contentEm = (capMetrics.fontBoundingBoxAscent + capMetrics.fontBoundingBoxDescent) / 100;
+  const capStartEm =
+    (lineHeightEm - contentEm) / 2 + (capMetrics.fontBoundingBoxAscent - capMetrics.actualBoundingBoxAscent) / 100;
+
   return {
     em: width / 100,
     inkEm: (actualBoundingBoxLeft + actualBoundingBoxRight) / 100,
     // Başlık aşağıdan yukarı okunduğu için bitiş boşluğu üstte, başlangıç boşluğu alttadır.
     inkOffsetEm: (endBearing - startBearing) / 200,
+    capStartEm: Number.isFinite(capStartEm) ? capStartEm : null,
   };
 }
 
@@ -59,6 +67,9 @@ export function PageHero({ title, columns = 1, className = '', ref, children }: 
       inner.style.setProperty('--title-em', String(measured.em * TITLE_FIT_MARGIN));
       inner.style.setProperty('--title-ink-em', String(measured.inkEm));
       inner.style.setProperty('--title-ink-offset-em', String(measured.inkOffsetEm));
+      if (measured.capStartEm !== null) {
+        inner.style.setProperty('--title-cap-start-em', String(measured.capStartEm));
+      }
     };
 
     applyFit();
