@@ -1,6 +1,7 @@
-import { createBrowserRouter, type RouteObject } from 'react-router';
+import { createBrowserRouter, replace, type RouteObject } from 'react-router';
 import { RootLayout } from './components/layout/RootLayout';
 import { NAV_ITEMS } from './content/navigation';
+import { type Locale, localizePath } from './i18n/locale';
 import { HomePage } from './pages/HomePage';
 
 async function loadAboutPage() {
@@ -33,7 +34,7 @@ async function loadNotFoundPage() {
   return { Component: NotFoundPage };
 }
 
-type PagePath = Exclude<(typeof NAV_ITEMS)[number]['path'], '/'>;
+type PagePath = Exclude<(typeof NAV_ITEMS)[number]['path'], '/home'>;
 
 // Her sayfa kendi parçasıyla yüklenir. Menüye eklenen yeni sayfanın yükleyicisi yoksa tip hatası verir.
 const PAGE_LOADERS: Record<PagePath, NonNullable<RouteObject['lazy']>> = {
@@ -46,8 +47,14 @@ const PAGE_LOADERS: Record<PagePath, NonNullable<RouteObject['lazy']>> = {
 
 // Ana sayfa giriş noktası olduğu için ana paketle gelir, diğer sayfalar kendi parçalarıyla yüklenir.
 const pageRoutes: RouteObject[] = NAV_ITEMS.map(({ path }) =>
-  path === '/' ? { index: true, element: <HomePage /> } : { path: path.slice(1), lazy: PAGE_LOADERS[path] },
+  path === '/home' ? { path: 'home', element: <HomePage /> } : { path: path.slice(1), lazy: PAGE_LOADERS[path] },
 );
+
+// Kök adres ana sayfaya yönlenir: `/` → `/home`, `/en` → `/en/home`. Replace olduğu için perde çalışmaz.
+const homeRedirect = (locale: Locale): RouteObject => ({
+  index: true,
+  loader: () => replace(localizePath('/home', locale)),
+});
 
 // Header tek layout'ta durur, dil değişse de yeniden oluşturulmaz.
 export const router = createBrowserRouter([
@@ -57,8 +64,9 @@ export const router = createBrowserRouter([
     // Doğrudan lazy bir sayfadan açılışta paket inene kadar html zemini görünür.
     hydrateFallbackElement: <></>,
     children: [
+      homeRedirect('tr'),
       ...pageRoutes,
-      { path: 'en', children: pageRoutes },
+      { path: 'en', children: [homeRedirect('en'), ...pageRoutes] },
       { path: '*', lazy: loadNotFoundPage },
     ],
   },

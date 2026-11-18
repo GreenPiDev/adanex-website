@@ -11,7 +11,7 @@ import { getLocaleFromPathname, localizePath } from '../i18n/locale';
 import styles from './NotFoundPage.module.css';
 
 const ACTIONS = [
-  { key: 'home', path: '/' },
+  { key: 'home', path: '/home' },
   { key: 'contact', path: '/contact' },
 ] as const;
 

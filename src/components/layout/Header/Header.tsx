@@ -69,7 +69,7 @@ export function Header() {
       <div className={styles.logoLayer} data-backdrop={logoBackdrop}>
         <Link
           className={styles.logo}
-          to={localizePath('/', locale)}
+          to={localizePath('/home', locale)}
           aria-label={t('a11y.homeLink')}
           onClick={closeMenu}
         >
@@ -110,7 +110,6 @@ export function Header() {
                       <NavLink
                         className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`}
                         to={localizePath(path, locale)}
-                        end={path === '/'}
                       >
                         <span className={styles.roll}>
                           <span>{label}</span>
