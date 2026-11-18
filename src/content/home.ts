@@ -49,26 +49,3 @@ export const HOME_CHAPTERS: readonly {
     ],
   },
 ];
-
-/** Teknik terim, iki dilde de aynı yazılır. */
-export const ZONE_TERM = 'Zone';
-
-/** Aydınlatmanın kullanıldığı Zone'lar. `slug`, teknik bilgi merkezindeki maddenin sayfa içi adresidir. */
-export const LIGHTING_ZONES: readonly { medium: 'gas' | 'dust'; zones: readonly { zone: number; slug: string }[] }[] = [
-  {
-    medium: 'gas',
-    zones: [
-      { zone: 1, slug: 'zone-1' },
-      { zone: 2, slug: 'zone-2' },
-    ],
-  },
-  {
-    medium: 'dust',
-    zones: [
-      { zone: 21, slug: 'zone-21' },
-      { zone: 22, slug: 'zone-22' },
-    ],
-  },
-];
-
-export const LIGHTING_SECTOR_KEYS = ['refinery', 'chemical', 'paint', 'food', 'storage'] as const;

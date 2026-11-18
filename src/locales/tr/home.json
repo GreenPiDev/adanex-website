@@ -41,9 +41,9 @@
       "link": "Hizmetlerimiz"
     },
     "lighting": {
-      "short": "Aydınlatma",
-      "name": "Aydınlatma",
-      "title": "Exproof aydınlatma",
+      "short": "Endüstriyel",
+      "name": "Endüstriyel çözümler",
+      "title": "Exproof endüstriyel çözümler",
       "lead": "Exproof armatürler, patlayıcı gaz ve toz ortamlarında güvenli aydınlatma için geliştirilmiş, ATEX ve IECEx sertifikalı endüstriyel ürünlerdir.",
       "body": "Zone 1, Zone 2, Zone 21 ve Zone 22 kapsamındaki riskli bölgelerde kullanılan bu armatürler, yüksek ışık verimi ve enerji tasarrufu sağlayan LED teknolojisiyle uzun ömürlü performans sunar.",
       "facts": {
@@ -54,23 +54,22 @@
     }
   },
   "photos": {
-    "glands": "ADANEX tabelasının önünde basamaklara dizilmiş pirinç, nikel kaplı ve siyah plastik kablo rakorları"
-  },
-  "zones": {
-    "title": "Kullanım bölgeleri",
-    "media": {
-      "gas": "Gaz",
-      "dust": "Toz"
+    "glands": "ADANEX tabelası ile Zone 1, Zone 21 ve IP68 / IP69K rozetlerinin önünde basamaklara dizilmiş pirinç, nikel kaplı ve siyah plastik kablo rakorları",
+    "industrial": {
+      "facility": {
+        "name": "Tesis ekipmanları",
+        "alt": "Karanlık bir tesis koridorunda exproof LED projektör, aspiratörler, acil çıkış armatürü ve şalter; aydınlatma, havalandırma, yönlendirme ve enerji kontrolü çözümlerini gösteren tanıtım görseli"
+      },
+      "lighting": {
+        "name": "Aydınlatma ürünleri",
+        "alt": "Platform üzerinde exproof floresan armatür, LED projektör ve acil çıkış armatürü; yanında gaz dolum, toz patlama alanları ve boya fabrikaları görselleri"
+      },
+      "enclosures": {
+        "name": "Kutu ve kumanda ürünleri",
+        "alt": "Platform üzerinde exproof pano, bağlantı kutusu ve priz; yanında gaz dolum, toz patlama alanları ve boya fabrikaları görselleri"
+      }
     },
-    "zoneLink": "Zone {{zone}} nedir?",
-    "sectorsLabel": "Kullanıldığı tesisler",
-    "sectors": {
-      "refinery": "Rafineriler",
-      "chemical": "Kimya tesisleri",
-      "paint": "Boya atölyeleri",
-      "food": "Gıda üretim alanları",
-      "storage": "Depolama sahaları"
-    }
+    "combination": "Endüstriyel tesis arka planında, siyah bir platform üzerinde şalterli ana kutu ve iki fiş-priz ünitesinden oluşan exproof kombinasyon kutusu"
   },
   "closing": {
     "title": "Doğru ürün, doğru zamanda, eksiksiz.",

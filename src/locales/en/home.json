@@ -41,9 +41,9 @@
       "link": "Our services"
     },
     "lighting": {
-      "short": "Lighting",
-      "name": "Lighting",
-      "title": "Explosion-proof lighting",
+      "short": "Industrial",
+      "name": "Industrial solutions",
+      "title": "Explosion-proof industrial solutions",
       "lead": "Explosion-proof luminaires are ATEX and IECEx certified industrial products designed for safe lighting in explosive gas and dust atmospheres.",
       "body": "Used in hazardous areas covered by Zone 1, Zone 2, Zone 21 and Zone 22, these luminaires deliver long-lasting performance with LED technology that offers high luminous efficacy and energy savings.",
       "facts": {
@@ -54,23 +54,22 @@
     }
   },
   "photos": {
-    "glands": "Brass, nickel-plated and black plastic cable glands arranged on steps in front of an ADANEX sign"
-  },
-  "zones": {
-    "title": "Areas of use",
-    "media": {
-      "gas": "Gas",
-      "dust": "Dust"
+    "glands": "Brass, nickel-plated and black plastic cable glands arranged on steps in front of an ADANEX sign and Zone 1, Zone 21 and IP68 / IP69K badges",
+    "industrial": {
+      "facility": {
+        "name": "Facility equipment",
+        "alt": "Promotional image of an explosion-proof LED floodlight, extractor fans, an emergency exit luminaire and a switch in a dark plant corridor, showing lighting, ventilation, wayfinding and power control solutions"
+      },
+      "lighting": {
+        "name": "Lighting products",
+        "alt": "Explosion-proof fluorescent luminaire, LED floodlight and emergency exit luminaire on a platform, beside images of gas filling stations, dust explosion areas and paint factories"
+      },
+      "enclosures": {
+        "name": "Enclosures and controls",
+        "alt": "Explosion-proof panel, junction box and socket on a platform, beside images of gas filling stations, dust explosion areas and paint factories"
+      }
     },
-    "zoneLink": "What is Zone {{zone}}?",
-    "sectorsLabel": "Facilities where they are used",
-    "sectors": {
-      "refinery": "Refineries",
-      "chemical": "Chemical plants",
-      "paint": "Paint shops",
-      "food": "Food production areas",
-      "storage": "Storage sites"
-    }
+    "combination": "Explosion-proof combination box with a switched main enclosure and two plug and socket units, on a black platform against an industrial plant backdrop"
   },
   "closing": {
     "title": "The right product, at the right time, in full.",

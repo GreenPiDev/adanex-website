@@ -1,3 +1,4 @@
+/* Telefonda hero'nun altında ortada, tablet ve üstünde sağ altta (sayfa kenar payı kadar içeride) durur. */
 .cue {
   position: absolute;
   inset-block-end: var(--space-md);
@@ -6,6 +7,13 @@
   justify-content: center;
   color: var(--color-amber);
   pointer-events: none;
+}
+
+@media (min-width: 37.5rem) {
+  .cue {
+    justify-content: flex-end;
+    padding-inline-end: var(--gutter);
+  }
 }
 
 .inner {

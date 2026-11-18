@@ -1,7 +1,6 @@
 /*
- * Çözüm bölümü. Telefonda başlık, metin, künye ve çizim alt alta okunur. Geniş ekranda metin ile çizim
- * yan yana durur. Bölümler sırayla sağa ve sola yaslanır: sağa yaslı (aynalı) bölümde görsel solda, başlık ve
- * metin sağdaki kolonda durur. Sağda bölüm rayına yer bırakılır.
+ * Çözüm bölümü. Telefonda başlık, metin, künye ve görsel alt alta okunur. Geniş ekranda bütün bölümler sola
+ * yaslıdır: başlık ve metin solda, varsa fotoğraf sağda durur. Sağda bölüm rayına yer bırakılır.
  */
 .chapter {
   --hairline: color-mix(in srgb, currentColor 16%, transparent);
@@ -78,6 +77,11 @@
   font-size: var(--text-home-body-lead);
   font-weight: var(--weight-medium);
   line-height: 1.38;
+}
+
+/* Paragraf grubu normalde metin akışına karışır; yalnızca görselsiz bölümün iki kolonlu düzeninde kutu olur. */
+.paragraphs {
+  display: contents;
 }
 
 .text {
@@ -196,6 +200,26 @@
   min-inline-size: 0;
 }
 
+/* Bölümün altındaki görsel dizisi: telefonda alt alta, tablet ve üstünde üçlü. Kesim işaretlerine pay bırakılır. */
+.gallery {
+  display: grid;
+  gap: calc(var(--space-lg) * 1.25);
+  padding: 0;
+  margin: var(--space-md) 0 0;
+  list-style: none;
+}
+
+.galleryItem {
+  min-inline-size: 0;
+}
+
+@media (min-width: 37.5rem) {
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--chapter-gap, var(--space-lg));
+  }
+}
+
 @media (min-width: 64rem) {
   /* Geniş ekranda her bölüm en az bir ekran boyundadır, içerik dikeyde ortalanır. İçerik daha uzunsa bölüm uzar. */
   .chapter {
@@ -213,30 +237,26 @@
   }
 
   /*
-   * Sağa yaslı bölüm: görsel sol kolonda başlıktan itibaren yukarıdan aşağı uzanır, başlık ve metin sağ kolonda
-   * alt alta durur. Böylece başlık iki satıra inse de görsel aşağı itilmez.
+   * Fotoğraflı bölüm: başlık ve metin sol kolonda, fotoğraf sağ kolonda başlıktan itibaren uzanır, künye ikisinin
+   * altındadır. Böylece başlık iki satıra inse de fotoğraf aşağı itilmez.
+   * Metin kolonu bölüm genişliğinin 5/11'idir, fotoğraf kolonu fotoğrafın ölçülen genişliği kadardır ve ikili
+   * bölüm genişliğinde ortalanır. Metin kolonu sabit olduğundan fotoğrafın boyu değişmez, ölçüm döngüye girmez.
    */
-  .mirrored {
-    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  .withPhoto {
+    grid-template-columns:
+      calc((100% - var(--chapter-gap)) * 5 / 11)
+      var(--photo-inline, calc((100% - var(--chapter-gap)) * 6 / 11));
+    justify-content: center;
     column-gap: var(--chapter-gap);
   }
 
-  .mirrored .body {
+  .withPhoto .body {
     display: contents;
   }
 
-  .mirrored .head,
-  .mirrored .copy {
-    grid-column: 2;
-  }
-
-  .mirrored .visual {
-    display: flex;
-    flex-direction: column;
-    grid-row: 1 / span 2;
+  .withPhoto .head,
+  .withPhoto .copy {
     grid-column: 1;
-    /* Kolondan dar görseller (dikey fotoğraf) metne yakın tarafa yaslanır. */
-    align-items: flex-end;
   }
 
   /*
@@ -245,40 +265,91 @@
    */
   .photoVisual {
     display: grid;
+    grid-row: 1 / span 2;
+    grid-column: 2;
     grid-template-rows: minmax(0, 1fr);
     justify-items: start;
     contain: size;
   }
 
-  .mirrored .photoVisual {
-    display: grid;
+  /* Fotoğrafı solda olan bölüm: kolonlar yer değiştirir, fotoğraf metne yakın tarafa (sağa) yaslanır. */
+  .photoLeft {
+    grid-template-columns:
+      var(--photo-inline, calc((100% - var(--chapter-gap)) * 6 / 11))
+      calc((100% - var(--chapter-gap)) * 5 / 11);
+  }
+
+  .photoLeft .head,
+  .photoLeft .copy {
+    grid-column: 2;
+  }
+
+  .photoLeft .photoVisual {
+    grid-column: 1;
     justify-items: end;
   }
 
-  /*
-   * Fotoğraflı bölümün künyesi görselin ve metnin altında tek satır boyunca uzanır: bir kenarı fotoğrafın
-   * kenarına, öbür kenarı metin kolonunun kenarına hizalıdır. Fotoğraf kolondan darsa aradaki pay boş kalır;
-   * fotoğrafın genişliği ölçülüp --photo-inline olarak verilir.
-   */
+  /* Fotoğraf solda olduğunda numara, başlık ve metin sağa yaslıdır. */
+  .photoLeft .head {
+    justify-items: end;
+    text-align: end;
+  }
+
+  .photoLeft .copy {
+    align-items: flex-end;
+    text-align: end;
+  }
+
+  /* Fotoğraflı bölümün künyesi metnin solundan fotoğrafın sağ kenarına kadar tek satır boyunca uzanır. */
   .factsWide {
-    --photo-inset: max(0px, calc((100% - var(--chapter-gap)) * 6 / 11 - var(--photo-inline, 0px)));
-
-    grid-column: 1 / -1;
-    margin-inline-end: var(--photo-inset);
-  }
-
-  .mirrored .factsWide {
     grid-row: 3;
-    margin-inline: var(--photo-inset) 0;
+    grid-column: 1 / -1;
   }
 
-  /* Çizimsiz bölüm: metin tek kolonda, künye satırları okunur genişlikte kalır. */
+  /* Görsel dizisi, iki kolonlu bölümde de kolonların altında tam genişlikte durur. */
+  .gallery {
+    grid-column: 1 / -1;
+  }
+
+  /*
+   * Görselsiz bölüm: içerik bölümün tüm genişliğine yayılır. Giriş cümlesi solda, paragraflar sağda;
+   * künye (iki sütun) ve bağlantı ikisinin altında tam genişlikte durur.
+   */
   .solo .body {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .solo .copy {
-    max-inline-size: 52rem;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    column-gap: var(--chapter-gap);
+    row-gap: var(--space-md);
+    align-items: start;
+  }
+
+  .solo .lead {
+    grid-column: 1;
+  }
+
+  .solo .paragraphs {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2;
+    gap: var(--space-md);
+  }
+
+  .solo .factsBlock {
+    grid-column: 1 / -1;
+  }
+
+  .solo .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--chapter-gap);
+  }
+
+  .solo .link {
+    grid-column: 1 / -1;
+    justify-self: start;
   }
 }
 

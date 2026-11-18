@@ -17,6 +17,9 @@ function formatNumber(value: number) {
   return String(value).padStart(2, '0');
 }
 
+/** Bölümün altındaki görsel dizisinin bir öğesi. `name`, büyütme düğmesinin erişilebilir adında geçer. */
+export type ChapterGalleryItem = ChapterPhotoSource & { name: string };
+
 type SolutionChapterProps = {
   chapter: Chapter;
   index: number;
@@ -24,14 +27,17 @@ type SolutionChapterProps = {
   photo?: ChapterPhotoSource;
   /** Fotoğraf yerine bölüme özgü çizim (Zone plakası). İkisi de yoksa metin tek kolonda durur. */
   visual?: ReactNode;
+  /** Bölümün en altında tam genişlikte duran görsel dizisi (geniş ekranda üçlü). */
+  gallery?: readonly ChapterGalleryItem[];
 };
 
 /**
  * Bir çözüm bölümü: numara ve başlık, giriş cümlesi, metin, künye ve ilgili sayfaya bağlantı.
- * Varsa yanında bölüme özgü görsel durur. Geniş ekranda bölümler sırayla sağa ve sola yaslanır: giriş bölümü
- * solda olduğu için ilk bölüm (rakorlar) sağda başlar.
+ * Varsa yanında fotoğraf, altında görsel dizisi durur. Geniş ekranda bütün bölümler sola yaslıdır: başlık ve
+ * metin solda, fotoğraf sağdadır; ikinci bölümde (kombinasyon kutuları) fotoğraf
+ * sola geçer. İkili bölüm genişliğinde yatayda ortalanır.
  */
-export function SolutionChapter({ chapter, index, photo, visual }: SolutionChapterProps) {
+export function SolutionChapter({ chapter, index, photo, visual, gallery }: SolutionChapterProps) {
   const { i18n } = useTranslation('home');
   const copy = useHomeCopy().chapters[chapter.key];
   const { pathname } = useLocation();
@@ -96,7 +102,14 @@ export function SolutionChapter({ chapter, index, photo, visual }: SolutionChapt
     <section
       ref={rootRef}
       id={slug}
-      className={[styles.chapter, index % 2 === 0 && styles.mirrored, !photo && !visual && styles.solo].filter(Boolean).join(' ')}
+      className={[
+        styles.chapter,
+        photo && styles.withPhoto,
+        photo && index % 2 === 1 && styles.photoLeft,
+        !photo && !visual && styles.solo,
+      ]
+        .filter(Boolean)
+        .join(' ')}
       data-surface={surface}
       tabIndex={-1}
       aria-labelledby={`${slug}-title`}
@@ -115,11 +128,13 @@ export function SolutionChapter({ chapter, index, photo, visual }: SolutionChapt
       <div className={styles.body}>
         <div className={styles.copy}>
           <p className={styles.lead}>{copy.lead}</p>
-          {paragraphs.map((paragraph) => (
-            <p key={paragraph} className={styles.text}>
-              {paragraph}
-            </p>
-          ))}
+          <div className={styles.paragraphs}>
+            {paragraphs.map((paragraph) => (
+              <p key={paragraph} className={styles.text}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
 
           {!photo && factsBlock}
           {!photo && link}
@@ -135,6 +150,16 @@ export function SolutionChapter({ chapter, index, photo, visual }: SolutionChapt
 
         {photo && factsBlock}
       </div>
+
+      {gallery && gallery.length > 0 && (
+        <ul className={styles.gallery}>
+          {gallery.map((item) => (
+            <li key={item.src} className={styles.galleryItem}>
+              <ChapterPhoto {...item} />
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

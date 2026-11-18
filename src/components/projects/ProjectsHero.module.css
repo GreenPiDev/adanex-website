@@ -16,21 +16,36 @@
   display: grid;
   grid-row: 1 / -1;
   grid-column: 2;
-  /* Sarı karo her ekranda en üstte durur. */
-  grid-template-areas:
-    'second'
-    'first';
+  /*
+   * Tek satır grubun yüksekliğine sabitlenir: karo alanı içindeki yazıyla büyümez. Büyürse ölçüm her boyutu
+   * sığıyor sanar ve yazı taşar.
+   */
+  grid-template-rows: minmax(0, 1fr);
   grid-template-columns: minmax(0, 1fr);
-  /* Satırlar sıkışıp yazıyı kesmesin, ölçüm de gerçek yüksekliği görsün. */
-  grid-auto-rows: max-content;
-  gap: var(--space-sm);
-  align-content: space-between;
   align-self: center;
   block-size: calc(var(--unit) * 100);
   min-inline-size: 0;
   /* Başlıkla aynı dikey ortalamayı alır. */
   margin-top: calc((var(--header-height) - var(--hero-padding-end)) * -1);
   margin-inline-start: var(--space-sm);
+}
+
+/*
+ * Karolar grubu üstten alta doldurur: alttaki karo yazısı kadardır, sarı karo kalan yüksekliği alarak aşağı uzar.
+ * Sarı karonun en küçük boyu yazısı kadardır; yazı sığmazsa grup taşar ve ölçüm bunu görür.
+ */
+.tiles {
+  display: grid;
+  /* Sarı karo her ekranda en üstte durur. */
+  grid-template-areas:
+    'second'
+    'first';
+  grid-template-rows: minmax(max-content, 1fr) max-content;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-sm);
+  block-size: 100%;
+  min-block-size: 0;
+  min-inline-size: 0;
 }
 
 /* Mobilde belirteç kartların altındaki dar alana sığar. */
@@ -55,8 +70,10 @@
   border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
 }
 
+/* Sarı karo kalan yüksekliği alarak uzadığı için yazısı dikeyde ortalanır. */
 .second {
   grid-area: second;
+  align-items: center;
   color: var(--color-black);
   background: var(--color-amber);
   --selection-bg: var(--color-white);
@@ -85,10 +102,14 @@
 
     inset-block-start: 0;
     grid-row: auto;
-    align-content: normal;
     block-size: auto;
     margin-top: 0;
     margin-inline: var(--space-md);
+  }
+
+  .tiles {
+    align-content: normal;
+    block-size: auto;
   }
 
   .hero .cue {
@@ -132,5 +153,116 @@
 
   .second .text {
     font-size: var(--text-bento-accent-wide);
+  }
+}
+
+/*
+ * Geniş ekranda karoların sağında kare görsel durur (dar ekranda render edilmez). Karo grubu mobildeki gibi
+ * başlığın harf kenarlarına oturur: sarı karonun üst kenarı Z'nin, alttaki karonun alt kenarı Ç'nin hizasındadır.
+ * Yazı boyutu karonun genişliğinden gelir ve grubu dolduracak en büyük değere ölçülür. Karolar asimetriktir:
+ * sarı karo daha dar ve görsele yakın tarafa yaslıdır. Görsel grubun yüksekliğini aşmaz; sol üstteki sarı kesim
+ * işaretinin çizgisi sarı karonun üst kenarıyla hizalıdır ve görsel karolara yakın tarafa yaslanır.
+ */
+@media (min-width: 64rem) {
+  .withVisual {
+    --bento-fit: 1;
+
+    inset-block-start: calc(var(--page-title-size) * var(--title-ink-offset-em, 0));
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.55fr);
+    column-gap: var(--space-md);
+    block-size: calc(var(--unit) * 100);
+  }
+
+  .withVisual .tiles {
+    align-content: stretch;
+    block-size: 100%;
+  }
+
+  .withVisual .second {
+    justify-self: end;
+    inline-size: 78%;
+  }
+
+  .withVisual .first .text {
+    font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone));
+  }
+
+  .withVisual .second .text {
+    font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone-accent));
+  }
+
+  /* Kesim işareti görselin --visual-mark-offset kadar dışında çizilir; görsel o kadar aşağıda başlar. */
+  .withVisual .visual {
+    align-self: start;
+    margin-block-start: var(--visual-mark-offset);
+    justify-self: start;
+    max-inline-size: calc(var(--unit) * 100 - var(--visual-mark-offset) * 2);
+  }
+}
+
+.visual {
+  --visual-mark-offset: 0.75rem;
+
+  position: relative;
+  grid-row: 1;
+  grid-column: 2;
+  align-self: center;
+  inline-size: 100%;
+  margin: 0;
+  aspect-ratio: 1;
+}
+
+.visual::before {
+  position: absolute;
+  inset: calc(var(--visual-mark-offset) * -1);
+  z-index: 1;
+  background:
+    linear-gradient(var(--color-amber), var(--color-amber)) top left / 1.75rem 1px no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) top left / 1px 1.75rem no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) bottom right / 1.75rem 1px no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) bottom right / 1px 1.75rem no-repeat;
+  content: '';
+  pointer-events: none;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.image {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* Görselin tamamını kaplayan tıklama alanı; tam ekran görünümü açar. Odak halkası içeride çizilir. */
+.zoom {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  inline-size: 100%;
+}
+
+.zoom:focus-visible {
+  outline-offset: -0.5rem;
+}
+
+/* Üzerine gelince görsel çerçevenin içinde yaklaşır, kesim işaretleri dışa açılır. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .image,
+  .visual::before {
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .visual:hover .image {
+    transform: scale(1.06);
+  }
+
+  .visual:hover::before {
+    transform: scale(1.035);
   }
 }
