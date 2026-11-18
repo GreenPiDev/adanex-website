@@ -4,12 +4,12 @@ import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
 import { formatStageNumber, SERVICE_HERO_IMAGE, SERVICE_STATIONS } from '../../content/services';
 import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
+import { useSectionJump } from '../../hooks/useSectionJump';
 import { PageHero } from '../layout/PageHero/PageHero';
 import { RollText } from '../ui/RollText/RollText';
 import { ScrollCue } from '../ui/ScrollCue/ScrollCue';
 import { ProvinceCounter } from './ProvinceCounter';
 import styles from './ServicesHero.module.css';
-import { useStationJump } from './useStationJump';
 
 /** Aşağıyı gösteren ok: kart sayfa içinde aşağıdaki aşamaya götürür. */
 function DownArrow() {
@@ -28,7 +28,7 @@ export function ServicesHero() {
   // Telefonda kolon dar ve kısadır, görsel ve dalga sığmaz. Hiç kurulmadıkları için dosya inmez, tuval çalışmaz.
   const showImage = !useIsMobile();
   const rootRef = useRef<HTMLElement>(null);
-  const jump = useStationJump();
+  const jump = useSectionJump();
 
   // Cümle dil değişince yeniden bölünür. Kartlar sayaçla birlikte sırayla yerine oturur.
   useGSAP(

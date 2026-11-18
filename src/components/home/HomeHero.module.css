@@ -1,0 +1,167 @@
+/*
+ * Tam ekran ürün videosu. Ürünler karenin ortasında durduğu için yazılar alttaki zemin payına oturur,
+ * zemine eriyen gölge okunurluğu korur. Altta "Kaydır" belirtecine yer bırakılır.
+ */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-block-size: 100svh;
+  padding-block: calc(var(--header-height) + var(--space-lg)) calc(var(--space-md) * 2 + 4.75rem);
+  padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
+  overflow: hidden;
+  color: var(--surface-fg);
+  isolation: isolate;
+  background: var(--surface-bg);
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    var(--surface-bg) 0%,
+    color-mix(in srgb, var(--surface-bg) 60%, transparent) 38%,
+    transparent 68%
+  );
+  content: '';
+  pointer-events: none;
+}
+
+.content {
+  display: grid;
+  gap: var(--space-md);
+  /* Yazılar videonun alt kenarından biraz yukarıda durur. */
+  margin-block-end: clamp(1.5rem, 7svh, 5.5rem);
+}
+
+.title {
+  max-inline-size: 13em;
+  font-family: var(--font-display);
+  font-size: var(--text-home-title);
+  font-weight: var(--weight-display);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+
+/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse ş, ç, y gibi harflerin altı kesilir. */
+.title > *,
+.accent > * {
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+
+.accent {
+  color: var(--color-amber);
+}
+
+.aside {
+  display: grid;
+  gap: var(--space-md);
+  justify-items: start;
+}
+
+.lead {
+  max-inline-size: 26em;
+  font-size: var(--text-home-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.hero .cue {
+  --scroll-cue-track: 1.25rem;
+}
+
+/*
+ * Telefon ve dikey tablet: slogan üstte, açıklama altta "Kaydır" belirtecinin üzerinde ortalı.
+ * Ürünler karenin ortasında kalır. Üstteki yazı için zemine üstten de gölge eriyerek gelir.
+ */
+@media (max-width: 63.99rem) and (orientation: portrait) {
+  .hero::before {
+    background:
+      linear-gradient(to bottom, color-mix(in srgb, var(--surface-bg) 70%, transparent) 0%, transparent 42%),
+      linear-gradient(
+        to top,
+        var(--surface-bg) 0%,
+        color-mix(in srgb, var(--surface-bg) 60%, transparent) 28%,
+        transparent 50%
+      );
+  }
+
+  .content {
+    flex: 1;
+    grid-template-rows: auto 1fr;
+    margin-block-end: 0;
+  }
+
+  /* Slogan header'a yapışmaz, üstten biraz pay bırakır. */
+  .title {
+    margin-block-start: clamp(1rem, 6svh, 4rem);
+  }
+
+  .aside {
+    align-self: end;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .lead {
+    margin-inline: auto;
+  }
+}
+
+/* Yatay telefonda ekran kısadır: slogan ve açıklama yan yana, belirteç gizli. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero {
+    padding-block-end: var(--space-md);
+  }
+
+  .content {
+    margin-block-end: 0;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    align-items: end;
+  }
+
+  .hero .cue {
+    display: none;
+  }
+}
+
+/*
+ * Geniş ekranda çapraz yerleşim: slogan solda üstte, açıklama sağda altta.
+ * Sağ kolon sloganın bittiği yerin altından başlar, ikisi hizalı durmaz.
+ */
+@media (min-width: 64rem) {
+  .content {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    column-gap: var(--space-lg);
+    /* Slogan ile sağ kolon arasındaki dikey pay; ekran yüksekliğine göre büyür. */
+    row-gap: clamp(var(--space-lg), 22svh, 16rem);
+    margin-block-end: 0;
+  }
+
+  .title {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .aside {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}

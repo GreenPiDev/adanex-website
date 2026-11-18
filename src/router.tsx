@@ -1,7 +1,7 @@
 import { createBrowserRouter, type RouteObject } from 'react-router';
 import { RootLayout } from './components/layout/RootLayout';
 import { NAV_ITEMS } from './content/navigation';
-import { DemoPage } from './pages/DemoPage';
+import { HomePage } from './pages/HomePage';
 
 async function loadAboutPage() {
   const { AboutPage } = await import('./pages/AboutPage');
@@ -44,9 +44,9 @@ const PAGE_LOADERS: Record<PagePath, NonNullable<RouteObject['lazy']>> = {
   '/services': loadServicesPage,
 };
 
-// Ana sayfa henüz yazılmadığı için geçici test sayfasını gösterir.
+// Ana sayfa giriş noktası olduğu için ana paketle gelir, diğer sayfalar kendi parçalarıyla yüklenir.
 const pageRoutes: RouteObject[] = NAV_ITEMS.map(({ path }) =>
-  path === '/' ? { index: true, element: <DemoPage /> } : { path: path.slice(1), lazy: PAGE_LOADERS[path] },
+  path === '/' ? { index: true, element: <HomePage /> } : { path: path.slice(1), lazy: PAGE_LOADERS[path] },
 );
 
 // Header tek layout'ta durur, dil değişse de yeniden oluşturulmaz.

@@ -1,0 +1,80 @@
+{
+  "hero": {
+    "title": "ATEX-certified solutions for <accent>confidence in every environment.</accent>",
+    "lead": "With our ATEX-certified products, we help every facility raise its safety standards."
+  },
+  "intro": {
+    "statement": "Starting from Kocaeli, we serve critical industrial facilities all around the world.",
+    "body": "By bringing together trust, quality and durability in explosion-proof products and electrical equipment, we help your operations run without interruption.",
+    "indexLabel": "Our solutions"
+  },
+  "rail": {
+    "label": "Solutions"
+  },
+  "chapters": {
+    "glands": {
+      "short": "Glands",
+      "name": "Cable glands",
+      "title": "Explosion-proof and weatherproof cable glands",
+      "lead": "Based in Kocaeli, ADANEX ELEKTRİK is a brand offering a wide range of explosion-proof and weatherproof cable glands.",
+      "body": "Made in every size from M10 to M110 and in materials from brass to stainless steel, our ATEX-certified cable glands help businesses raise their safety standards and offer a long service life.\nWe supply the right product at the right time and in full, and with on-time delivery and technical support we help your operations run safely and without interruption.",
+      "facts": {
+        "sizes": "Size range",
+        "material": "Material",
+        "materialValue": "Brass · Stainless steel",
+        "zones": "Approved zones",
+        "ingress": "Ingress protection"
+      },
+      "factsNote": "Values vary by product.",
+      "link": "Product range"
+    },
+    "combination": {
+      "short": "Combination",
+      "name": "Combination boxes",
+      "title": "Explosion-proof combination boxes",
+      "lead": "Our Zone 1 and Zone 21 approved combination boxes are shipped to site fully equipped and ready to use.",
+      "body": "They come complete with ABB or Schneider internal switchgear and wiring, together with cable glands, plugs and sockets.\nYou choose the current ratings and the number of plugs and sockets, and we tailor single-phase and three-phase distribution to your needs. No extra installation is needed on site.",
+      "facts": {
+        "zones": "Approved zones",
+        "switchgear": "Internal switchgear"
+      },
+      "link": "Our services"
+    },
+    "lighting": {
+      "short": "Lighting",
+      "name": "Lighting",
+      "title": "Explosion-proof lighting",
+      "lead": "Explosion-proof luminaires are ATEX and IECEx certified industrial products designed for safe lighting in explosive gas and dust atmospheres.",
+      "body": "Used in hazardous areas covered by Zone 1, Zone 2, Zone 21 and Zone 22, these luminaires deliver long-lasting performance with LED technology that offers high luminous efficacy and energy savings.",
+      "facts": {
+        "certification": "Certification",
+        "technology": "Technology"
+      },
+      "link": "Our projects"
+    }
+  },
+  "photos": {
+    "glands": "Brass, nickel-plated and black plastic cable glands arranged on steps in front of an ADANEX sign"
+  },
+  "zones": {
+    "title": "Areas of use",
+    "media": {
+      "gas": "Gas",
+      "dust": "Dust"
+    },
+    "zoneLink": "What is Zone {{zone}}?",
+    "sectorsLabel": "Facilities where they are used",
+    "sectors": {
+      "refinery": "Refineries",
+      "chemical": "Chemical plants",
+      "paint": "Paint shops",
+      "food": "Food production areas",
+      "storage": "Storage sites"
+    }
+  },
+  "closing": {
+    "title": "The right product, at the right time, in full.",
+    "cta": "Contact us",
+    "note": "Which product is used in which area must be determined by competent experts based on the site's Zone classification."
+  }
+}

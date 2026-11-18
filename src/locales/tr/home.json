@@ -1,0 +1,80 @@
+{
+  "hero": {
+    "title": "ATEX sertifikalı çözümlerle <accent>her ortamda güven.</accent>",
+    "lead": "ATEX sertifikalı ürünlerimizle her tesisin güvenlik standartlarını yükseltiyoruz."
+  },
+  "intro": {
+    "statement": "Kocaeli’den başlayarak dünyanın dört bir yanındaki kritik endüstriyel tesislere hizmet veriyoruz.",
+    "body": "Exproof ürünler ve elektrik malzemelerinde güven, kalite ve dayanıklılığı bir araya getirerek işletmenizin kesintisiz çalışmasına katkı sağlıyoruz.",
+    "indexLabel": "Çözümlerimiz"
+  },
+  "rail": {
+    "label": "Çözümler"
+  },
+  "chapters": {
+    "glands": {
+      "short": "Rakorlar",
+      "name": "Kablo rakorları",
+      "title": "Exproof ve etanj kablo rakorları",
+      "lead": "Kocaeli merkezli ADANEX ELEKTRİK, exproof ve etanj kablo rakorlarında geniş ürün çeşitliliği sunan bir markadır.",
+      "body": "M10’dan M110’a kadar her ölçüde, pirinçten paslanmaz çeliğe farklı malzeme seçenekleriyle üretilen ATEX sertifikalı rakorlarımız, işletmelerin güvenlik standartlarını yükseltir ve uzun ömürlü kullanım sağlar.\nDoğru ürünü doğru zamanda ve eksiksiz tedarik ediyor, zamanında teslimat ve teknik destekle işletmenizin kesintisiz ve emniyetli çalışmasına katkı sağlıyoruz.",
+      "facts": {
+        "sizes": "Ölçü aralığı",
+        "material": "Malzeme",
+        "materialValue": "Pirinç · Paslanmaz çelik",
+        "zones": "Onaylı bölgeler",
+        "ingress": "Koruma sınıfı"
+      },
+      "factsNote": "Değerler ürüne göre değişir.",
+      "link": "Ürün gamı"
+    },
+    "combination": {
+      "short": "Kombinasyon",
+      "name": "Kombinasyon kutuları",
+      "title": "Exproof kombinasyon kutuları",
+      "lead": "Zone 1 ve Zone 21 onaylı kombinasyon kutularımız sahaya tam donanımlı ve doğrudan kullanıma hazır sevk edilir.",
+      "body": "ABB veya Schneider marka iç şalt malzemeler ve kablajlar; rakorlar, fiş ve prizlerle birlikte eksiksiz hazırlanır.\nFiş ve prizlerin amper değerlerini ve adedini siz belirlersiniz, trifaze ve monofaze dağılımı ihtiyacınıza göre özelleştiririz. Böylece sahada ek montaj gerekmez.",
+      "facts": {
+        "zones": "Onaylı bölgeler",
+        "switchgear": "İç şalt malzemesi"
+      },
+      "link": "Hizmetlerimiz"
+    },
+    "lighting": {
+      "short": "Aydınlatma",
+      "name": "Aydınlatma",
+      "title": "Exproof aydınlatma",
+      "lead": "Exproof armatürler, patlayıcı gaz ve toz ortamlarında güvenli aydınlatma için geliştirilmiş, ATEX ve IECEx sertifikalı endüstriyel ürünlerdir.",
+      "body": "Zone 1, Zone 2, Zone 21 ve Zone 22 kapsamındaki riskli bölgelerde kullanılan bu armatürler, yüksek ışık verimi ve enerji tasarrufu sağlayan LED teknolojisiyle uzun ömürlü performans sunar.",
+      "facts": {
+        "certification": "Sertifika",
+        "technology": "Teknoloji"
+      },
+      "link": "Çalışmalarımız"
+    }
+  },
+  "photos": {
+    "glands": "ADANEX tabelasının önünde basamaklara dizilmiş pirinç, nikel kaplı ve siyah plastik kablo rakorları"
+  },
+  "zones": {
+    "title": "Kullanım bölgeleri",
+    "media": {
+      "gas": "Gaz",
+      "dust": "Toz"
+    },
+    "zoneLink": "Zone {{zone}} nedir?",
+    "sectorsLabel": "Kullanıldığı tesisler",
+    "sectors": {
+      "refinery": "Rafineriler",
+      "chemical": "Kimya tesisleri",
+      "paint": "Boya atölyeleri",
+      "food": "Gıda üretim alanları",
+      "storage": "Depolama sahaları"
+    }
+  },
+  "closing": {
+    "title": "Doğru ürün, doğru zamanda, eksiksiz.",
+    "cta": "Bize ulaşın",
+    "note": "Hangi bölgede hangi ürünün kullanılacağı, tesisin Zone sınıflandırmasına göre yetkin uzmanlarca belirlenmelidir."
+  }
+}

@@ -157,9 +157,25 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - Video sessiz, bir kez oynar ve son karede durur (döngü yok), `playsInline`, dekoratif olduğu için ekran okuyuculardan gizli. `prefers-reduced-motion` açıksa durur ve poster görünür.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
+### 2026-11-17: Ana sayfa
+
+- Geçici `DemoPage` silindi, yerine `src/pages/HomePage.tsx` ve `src/components/home/` geldi. Ana sayfa giriş noktası olduğu için ana paketle yükleniyor. Metinler `src/locales/{tr,en}/home.json` içinde, yapı ve teknik değerler `src/content/home.ts` içinde. Kullanılmayan `demo` ve `device` çeviri anahtarları kaldırıldı.
+- İçerik, firmanın mevcut sitesinin ana sayfasından (`/`) alındı. Kullanıcının verdiği `/hakkinda/` adresinin içeriği Hakkımızda sayfasında zaten kullanılıyor.
+- **Kurgu:** Ana sayfa bir ürün kataloğunun **teknik çizim paftaları** gibi. Rakor bölümünün yanında ürün fotoğrafı, aydınlatmanın yanında Zone plakası var. Kombinasyon kutularının paftası yok, o bölümün metni tek kolonda okunuyor.
+- **Hero** (koyu): mevcut video olduğu gibi duruyor. Altta "ATEX sertifikalı çözümlerle her ortamda güven." sloganı (son kısım sarı), yanında kısa açıklama ve sarı "Bize ulaşın" düğmesi, en altta "Kaydır" belirteci. Slogan kelime kelime açılıyor. Yatay telefonda slogan ile açıklama yan yana, belirteç gizli.
+- **Giriş** (açık zemin): "Kocaeli'den başlayarak..." cümlesi büyük yazıyla, altında kısa açıklama ve üç satırlık içindekiler listesi (01 Kablo rakorları, 02 Kombinasyon kutuları, 03 Aydınlatma). Her satır kendi bölümüne kaydırıyor.
+- **Üç çözüm bölümü** (`SolutionChapter`): numara ve başlık, giriş cümlesi, metin, künye (teknik föy satırları: solda etiket, sağda değer) ve mevcut sitedeki düğmelere karşılık gelen bağlantı (Ürün gamı → Hakkımızda, Hizmetlerimiz, Çalışmalarımız). Geniş ekranda bölümler sırayla sağa ve sola yaslanıyor: giriş solda olduğu için rakorlar sağda (görsel solda, başlık ve metin sağ kolonda), kombinasyon kutuları solda, aydınlatma sağda. Sağda `SectionRail` üç bölümü gösteriyor.
+  - **01 Kablo rakorları** (koyu): yanında `anasayfa-2.webp` ürün fotoğrafı (ADANEX tabelası önünde rakorlar), köşelerinde sarı kesim işaretleri olan çerçevede. Künye (ölçü, malzeme, Zone, IP) ve "Değerler ürüne göre değişir" notu fotoğrafın altında, onunla aynı genişlikte; fotoğrafın boyu künye düşülerek bölüm ekran yüksekliğine oturacak şekilde hesaplanıyor. Ekrana gelince sarı perde yukarı toplanıyor, fotoğraf hafif büyükten yerine oturuyor; masaüstünde sayfa kaydıkça çerçeve içinde yavaşça kayıyor (telefonda yalnızca açılış). Önceki M10/M110 ölçek çizimi kullanıcı isteğiyle kaldırıldı.
+  - **02 Kombinasyon kutuları** (açık): yalnızca metin, künye ve bağlantı, yanında çizim yok. Priz adedi ve dağılım seçilen etkileşimli kutu yapılandırıcısı ("Yerleşimi siz seçin") kullanıcı isteğiyle kaldırıldı.
+  - **03 Aydınlatma** (koyu): gaz (Zone 1, 2) ve toz (Zone 21, 22) satırlı etiket plakası. Her hücre teknik bilgi merkezinde o Zone'un maddesine gidiyor. Altında kullanıldığı tesisler, eğik çizgiyle ayrılmış tek yazı bloğu.
+- **Kapanış** (sarı): "Doğru ürün, doğru zamanda, eksiksiz." (kaynaktaki tedarik sözünden), iletişim düğmesi ve Zone uyarısı.
+- Hizmetler sayfasındaki `useStationJump`, ortak `src/hooks/useSectionJump.ts` oldu.
+- İlk kurguda mevcut ana sayfadaki görseller kullanılmamıştı (yapay zekâ üretimi görünüyorlar). Kullanıcı isteğiyle `anasayfa-2.webp` rakor bölümüne eklendi. Görsel firmanın mevcut sitesinden alındığı için rozetleri ve kullanım hakkı kullanıcıya göre sorun değil.
+- **Yayından önce:** Metinler mevcut siteden düzenlenerek yazıldı, iki dil firma onayından geçmeli. Özellikle doğrulatılacaklar: kaynaktaki "Global Lider" ve "dünya çapında en geniş ürün çeşitliliği" ifadeleri ölçülebilir veriye dayanmadığı için "geniş ürün çeşitliliği" olarak yumuşatıldı, firma belgeleyebilirse geri alınabilir. "Maksimum dayanıklılık" ifadesi çıkarıldı. Rakorlardaki Zone 1/21 ve IP68/IP69K değerleri ürüne göre değişebilir, künyenin altına "Değerler ürüne göre değişir" notu kondu. Kombinasyon kutularındaki "D Type" ifadesi anlamı belirsiz olduğu için yazılmadı. "Her ortamda güven" sloganı mutlak ifadeye yakın, firmayla konuşulmalı. "Dünyanın dört bir yanındaki tesislere hizmet" ifadesi doğrulatılmalı.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
 ## Sıradaki Teknik İşler
 
-- Ana sayfa (`DemoPage` yerine).
 - Kalan sayfalarda rota bazlı code splitting (ana paket yaklaşık 534 kB, gzip 180 kB).
 - Dil ve sayfa bazlı meta açıklamaları, `canonical` ve `hreflang`.
 - Kurumsal renkler netleşince tokenları güncellemek.

@@ -1,0 +1,95 @@
+/*
+ * Ürün fotoğrafı, paftalardaki gibi köşelerinde sarı kesim işaretleri olan bir çerçevede.
+ * Çerçeve fotoğrafın oranındadır, fotoğraf kırpılmaz. Dikey fotoğraf ekran yüksekliğini aşmasın diye
+ * grubun genişliği yüksekliğe göre sınırlanır.
+ */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  inline-size: 100%;
+  /* Bölüm, ekran yüksekliğine oturmak için --photo-max-block ile fotoğrafın en büyük yüksekliğini verir. */
+  max-inline-size: min(100%, calc(var(--photo-max-block, 78svh) * var(--photo-ratio)));
+}
+
+.photo {
+  position: relative;
+  inline-size: 100%;
+  margin: 0;
+  aspect-ratio: var(--photo-ratio);
+}
+
+/* Boyu bulunduğu alana eşitlenen fotoğraf (ör. yanındaki metnin yüksekliği). Genişlik orandan gelir, kolonu aşmaz. */
+@media (min-width: 64rem) {
+  .fitHeight {
+    block-size: 100%;
+    inline-size: auto;
+    max-inline-size: 100%;
+    aspect-ratio: var(--photo-ratio);
+  }
+}
+
+/* Kesim işaretleri: sol üst ve sağ alt köşe. */
+.photo::before {
+  position: absolute;
+  inset: -0.5rem;
+  background:
+    linear-gradient(var(--color-amber), var(--color-amber)) top left / 1.25rem 1px no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) top left / 1px 1.25rem no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) bottom right / 1.25rem 1px no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) bottom right / 1px 1.25rem no-repeat;
+  content: '';
+  pointer-events: none;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+}
+
+.zoomLayer {
+  block-size: 100%;
+}
+
+.image {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* Açılış perdesi: üstten toplanarak fotoğrafı açar. Animasyon yoksa görünmez. */
+.cover {
+  position: absolute;
+  inset: 0;
+  background: var(--color-amber);
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+}
+
+/* Fotoğrafın tamamını kaplayan tıklama alanı; tam ekran görünümü açar. Odak halkası çerçevenin içinde çizilir. */
+.zoom {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  inline-size: 100%;
+}
+
+.zoom:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: -0.5rem;
+}
+
+/* Üzerine gelince fotoğraf çerçevenin içinde hafifçe yaklaşır. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .zoomLayer {
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .photo:hover .zoomLayer {
+    transform: scale(1.05);
+  }
+}

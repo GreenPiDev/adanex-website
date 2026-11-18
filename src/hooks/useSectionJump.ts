@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
-import { useSmoothScroll } from '../../hooks/useSmoothScroll';
+import { useSmoothScroll } from './useSmoothScroll';
 
-/** Aşamaya kaydırır ve odağı oraya taşır. Router'a haber verilmez, sayfa içinde perde çalışmaz. */
-export function useStationJump() {
+/** Sayfadaki bölüme kaydırır ve odağı oraya taşır. Router'a haber verilmez, sayfa içinde perde çalışmaz. */
+export function useSectionJump() {
   const lenisRef = useSmoothScroll();
 
   return useCallback(

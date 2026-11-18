@@ -97,6 +97,22 @@
   --text-ab-family: clamp(1.875rem, 1.3rem + 2.2vw, 3.75rem);
   --text-ab-fact: clamp(1.375rem, 1.1rem + 0.9vw, 2.25rem);
   --text-ab-stamp: clamp(2.25rem, 1.5rem + 2.8vw, 4.5rem);
+  /* Ana sayfa: hero sloganı geniş ekranda iki satıra, kısa ekranlarda videonun alt payına sığar. */
+  --text-home-title: min(clamp(2.25rem, 1rem + 4.4vw, 6.5rem), 9.5svh);
+  --text-home-lead: clamp(1.0625rem, 0.95rem + 0.45vw, 1.5rem);
+  --text-home-statement: clamp(2.25rem, 1.1rem + 4.4vw, 6.5rem);
+  --text-home-body-lead: clamp(1.125rem, 0.98rem + 0.55vw, 1.625rem);
+  --text-home-body: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --text-home-index: clamp(1.75rem, 1.2rem + 2.2vw, 3.75rem);
+  --text-home-number: clamp(1.5rem, 1.2rem + 1vw, 2.5rem);
+  /* En uzun tek kelime (weatherproof, kombinasyon) 360 px ekrana sığacak şekilde hesaplandı. */
+  --text-home-chapter: clamp(2.375rem, 1.3rem + 4.2vw, 7rem);
+  --text-home-fact: clamp(1.375rem, 1.1rem + 0.9vw, 2.25rem);
+  --text-home-link: clamp(1.25rem, 1.05rem + 0.6vw, 1.75rem);
+  --text-home-option: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+  --text-home-zone: clamp(3.5rem, 2rem + 5vw, 7rem);
+  --text-home-sectors: clamp(1.5rem, 1.15rem + 1.5vw, 2.75rem);
+  --text-home-closing: clamp(2.25rem, 1.2rem + 4.6vw, 7rem);
   --tracking-nav: -0.005em;
   --tracking-display: -0.035em;
 

@@ -24,12 +24,6 @@
     "closeMenu": "Menüyü kapat",
     "close": "Kapat"
   },
-  "device": {
-    "mobile": "Mobil",
-    "tabletPortrait": "Dikey tablet",
-    "tabletLandscape": "Yatay tablet",
-    "desktop": "Masaüstü"
-  },
   "scrollCue": "Kaydır",
   "projects": {
     "hero": {
@@ -133,17 +127,6 @@
       "companyLabel": "Firma",
       "addressLabel": "Adres",
       "directions": "Yol tarifi al"
-    }
-  },
-  "demo": {
-    "detectedDevice": "Algılanan cihaz: {{device}}",
-    "dark": {
-      "eyebrow": "Koyu zemin",
-      "title": "Bu bölümde header beyaz görünür."
-    },
-    "light": {
-      "eyebrow": "Açık zemin",
-      "title": "Bu bölümde header siyah görünür."
     }
   }
 }

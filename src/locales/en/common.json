@@ -24,12 +24,6 @@
     "closeMenu": "Close menu",
     "close": "Close"
   },
-  "device": {
-    "mobile": "Mobile",
-    "tabletPortrait": "Tablet portrait",
-    "tabletLandscape": "Tablet landscape",
-    "desktop": "Desktop"
-  },
   "scrollCue": "Scroll",
   "projects": {
     "hero": {
@@ -133,17 +127,6 @@
       "companyLabel": "Company",
       "addressLabel": "Address",
       "directions": "Get directions"
-    }
-  },
-  "demo": {
-    "detectedDevice": "Detected device: {{device}}",
-    "dark": {
-      "eyebrow": "Dark surface",
-      "title": "The header turns white on this section."
-    },
-    "light": {
-      "eyebrow": "Light surface",
-      "title": "The header turns black on this section."
     }
   }
 }

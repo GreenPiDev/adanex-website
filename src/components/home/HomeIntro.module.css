@@ -1,0 +1,109 @@
+/* Açık zeminde büyük tanım cümlesi, altında kısa açıklama ve üç satırlık içindekiler listesi. */
+.intro {
+  --hairline: color-mix(in srgb, currentColor 18%, transparent);
+
+  display: grid;
+  gap: calc(var(--space-lg) * 1.25);
+  padding-block: calc(var(--header-height) + var(--space-lg)) calc(var(--space-lg) * 1.5);
+  padding-inline: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+.statement {
+  max-inline-size: 18em;
+  font-family: var(--font-display);
+  font-size: var(--text-home-statement);
+  font-weight: var(--weight-display);
+  line-height: 1.02;
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+
+/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse ş, ç, y gibi harflerin altı kesilir. */
+.statement > * {
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+
+.columns {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.body {
+  max-inline-size: 28em;
+  font-size: var(--text-home-body-lead);
+  line-height: 1.45;
+  opacity: 0.78;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block-end: 1px solid var(--hairline);
+}
+
+/* Satırın tamamı bağlantıdır: numara, ad ve ok. Üzerine gelince ad sağa kayar, ok döner. */
+.link {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--space-md);
+  align-items: baseline;
+  min-block-size: var(--touch-target);
+  padding-block: var(--space-md);
+  font-size: var(--text-home-index);
+  border-block-start: 1px solid var(--hairline);
+}
+
+.link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.number {
+  font-family: var(--font-industrial);
+  font-size: 0.6em;
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.link > :last-child {
+  align-self: center;
+  font-size: 0.7em;
+}
+
+@media (min-width: 64rem) {
+  .columns {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    column-gap: var(--space-lg);
+    align-items: start;
+  }
+
+  /* Açıklamanın üstü listenin ilk çizgisiyle hizalıdır. */
+  .body {
+    padding-block-start: var(--space-md);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover .name {
+    transform: translateX(0.35em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name {
+    transition: none;
+  }
+}

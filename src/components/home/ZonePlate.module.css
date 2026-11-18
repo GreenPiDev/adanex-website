@@ -1,0 +1,171 @@
+/* Koyu zeminde etiket plakası: ince çerçeve, gaz ve toz satırları, büyük stencil Zone numaraları. */
+.wrapper {
+  --hairline: color-mix(in srgb, currentColor 18%, transparent);
+
+  display: grid;
+  gap: calc(var(--space-lg) * 1.25);
+}
+
+.plate {
+  position: relative;
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border: 1px solid var(--hairline);
+}
+
+/* Kesim işaretleri: sol üst ve sağ alt köşe. */
+.plate::before {
+  position: absolute;
+  inset: -0.5rem;
+  background:
+    linear-gradient(var(--color-amber), var(--color-amber)) top left / 1.25rem 1px no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) top left / 1px 1.25rem no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) bottom right / 1.25rem 1px no-repeat,
+    linear-gradient(var(--color-amber), var(--color-amber)) bottom right / 1px 1.25rem no-repeat;
+  content: '';
+  pointer-events: none;
+}
+
+.title {
+  font-family: var(--font-industrial);
+  font-size: var(--text-home-link);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--color-amber);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(3.5rem, 1fr) minmax(0, 4fr);
+  gap: var(--space-sm);
+  align-items: stretch;
+}
+
+.medium {
+  align-self: center;
+  font-size: var(--text-home-body);
+  line-height: 1.2;
+  opacity: 0.65;
+}
+
+.cells {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Hücre: sol üstte ZONE, altta büyük numara, sağ üstte ok. Üzerine gelince alttan sarı dolar. */
+.cell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  gap: 0.25rem;
+  min-block-size: clamp(6rem, 18vw, 9rem);
+  padding: var(--space-sm);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--hairline);
+  --roll-hover-color: var(--color-black);
+}
+
+.cell::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-amber);
+  content: '';
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.cell:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+}
+
+.zoneWord {
+  font-family: var(--font-industrial);
+  font-size: var(--text-home-body);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
+.zoneNumber {
+  grid-column: 1 / -1;
+  align-self: end;
+  font-family: var(--font-industrial);
+  font-size: var(--text-home-zone);
+  font-weight: var(--weight-heavy);
+  line-height: 0.85;
+  color: var(--color-amber);
+}
+
+.arrow {
+  font-size: var(--text-home-body);
+  color: var(--color-amber);
+}
+
+.sectors {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.sectorsLabel {
+  font-size: var(--text-home-body);
+  line-height: 1.3;
+  opacity: 0.6;
+}
+
+/* Hakkımızda ve bilgi merkezindeki tesis listesiyle aynı biçim: eğik çizgiyle ayrılmış tek bir yazı bloğu. */
+.sectorList {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-home-sectors);
+  font-weight: var(--weight-display);
+  line-height: 1.2;
+  list-style: none;
+}
+
+.sector {
+  display: inline;
+}
+
+.sector:not(:last-child)::after {
+  margin-inline: 0.28em;
+  color: var(--color-amber);
+  content: '/';
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cell:hover::before {
+    transform: none;
+  }
+
+  .cell:hover .zoneNumber,
+  .cell:hover .arrow,
+  .cell:hover .zoneWord {
+    color: var(--color-black);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell::before {
+    transition: none;
+  }
+}
