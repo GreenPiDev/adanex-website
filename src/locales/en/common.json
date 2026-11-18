@@ -25,6 +25,9 @@
     "close": "Close"
   },
   "scrollCue": "Scroll",
+  "cursor": {
+    "inspect": "View"
+  },
   "projects": {
     "hero": {
       "lead": "To keep industrial facilities running safely and efficiently, Adanex Elektrik provides all the explosion-proof products and electrical equipment they need, with a professional engineering approach.",

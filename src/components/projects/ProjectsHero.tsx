@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
 import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
@@ -49,6 +50,7 @@ function fitBento(bento: HTMLElement) {
 
 export function ProjectsHero() {
   const { t, i18n } = useTranslation();
+  const inspectCursor = useInspectCursor();
   const prefersReducedMotion = usePrefersReducedMotion();
   const rootRef = useRef<HTMLElement>(null);
   const bentoRef = useRef<HTMLDivElement>(null);
@@ -81,7 +83,10 @@ export function ProjectsHero() {
       const delay = getPageIntroDelay();
       const motion = { duration: MOTION.slow, ease: MOTION.ease };
 
-      gsap.from('[data-bento-tile], [data-bento-visual]', { y: 48, autoAlpha: 0, ...motion, delay });
+      // Karolar ekranın solundan, görsel sağından kayarak gelir.
+      const slide = { autoAlpha: 0, duration: MOTION.slow * 1.5, ease: MOTION.ease, delay };
+      gsap.from('[data-bento-tile]', { x: '-40vw', stagger: MOTION.stagger * 2, ...slide });
+      gsap.from('[data-bento-visual]', { x: '40vw', ...slide });
 
       SplitText.create(gsap.utils.toArray<HTMLElement>('[data-bento-text]'), {
         type: 'words',
@@ -128,6 +133,7 @@ export function ProjectsHero() {
             </span>
             <button
               className={styles.zoom}
+              {...inspectCursor}
               type="button"
               aria-label={t('projects.openImage', { title: visualAlt })}
               onClick={() => setIsVisualOpen(true)}

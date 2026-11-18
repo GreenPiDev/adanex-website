@@ -1,5 +1,6 @@
 import { type ComponentProps, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { type Project, PROJECT_AMBER_TONE, PROJECT_SURFACES } from '../../content/projects';
 import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
@@ -31,6 +32,7 @@ type ProjectPanelProps = {
 /** Tek bir çalışma dosyası. Masaüstünde bir sonraki dosya perde gibi bunun üstüne biner. */
 export function ProjectPanel({ project, index }: ProjectPanelProps) {
   const { t, i18n } = useTranslation();
+  const inspectCursor = useInspectCursor();
   const isNavCollapsed = useIsNavCollapsed();
   const prefersReducedMotion = usePrefersReducedMotion();
   const [isImageMissing, setIsImageMissing] = useState(false);
@@ -134,6 +136,7 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
           {!isImageMissing && (
             <button
               className={styles.zoom}
+              {...inspectCursor}
               type="button"
               aria-label={t('projects.openImage', { title })}
               onClick={() => setIsLightboxOpen(true)}

@@ -25,6 +25,9 @@
     "close": "Kapat"
   },
   "scrollCue": "Kaydır",
+  "cursor": {
+    "inspect": "İncele"
+  },
   "projects": {
     "hero": {
       "lead": "Adanex Elektrik, endüstriyel tesislerin güvenli ve verimli çalışması için gerekli tüm exproof ürünleri ve elektrik ekipmanlarını profesyonel mühendislik yaklaşımıyla sunar.",

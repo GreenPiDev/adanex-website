@@ -1,5 +1,6 @@
 import { type CSSProperties, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, useGSAP } from '../../animations/gsap';
 import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { Lightbox } from '../ui/Lightbox/Lightbox';
@@ -27,6 +28,7 @@ type ChapterPhotoProps = ChapterPhotoSource & {
  */
 export function ChapterPhoto({ src, width, height, alt, name, fitHeight = false }: ChapterPhotoProps) {
   const { t } = useTranslation();
+  const inspectCursor = useInspectCursor();
   const [isOpen, setIsOpen] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
   const isMobile = useIsMobile();
@@ -39,10 +41,11 @@ export function ChapterPhoto({ src, width, height, alt, name, fitHeight = false 
       if (!root) return;
       // Fotoğraf kaydırmayla yer değiştirdiği için ölçüm, durduğu kolondan yapılır.
       const trigger = root.parentElement ?? root;
+      // Açılış, fotoğrafın üst kenarı ekrana girmeden biraz önce başlar; göründüğünde perde zaten toplanıyordur.
 
       gsap
         .timeline({
-          scrollTrigger: { trigger, start: 'top 80%', once: true },
+          scrollTrigger: { trigger, start: 'top 115%', once: true },
           defaults: { ease: MOTION.ease, duration: MOTION.slow * 1.6 },
         })
         .fromTo('[data-photo-cover]', { scaleY: 1 }, { scaleY: 0 })
@@ -83,6 +86,7 @@ export function ChapterPhoto({ src, width, height, alt, name, fitHeight = false 
         </div>
         <button
           className={styles.zoom}
+          {...inspectCursor}
           type="button"
           aria-label={t('projects.openImage', { title: name })}
           onClick={() => setIsOpen(true)}

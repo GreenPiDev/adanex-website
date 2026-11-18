@@ -42,3 +42,42 @@
   background: color-mix(in srgb, var(--color-black) 12%, transparent);
   border-color: var(--color-black);
 }
+
+/* Tıklanabilir görselin üstünde imlecin yanındaki etiket ("İncele"): kutu yok. Halkadan sarı ince bir çizgi çıkar,
+   ucunda yazı büyük harf ve açık aralıklı durur. Fotoğrafın üstünde okunurluğu yumuşak gölge sağlar. Sağ kenarda
+   etiket sola geçer, çizgi de yazının sağına. */
+.label {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: var(--z-cursor);
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: var(--text-cursor-label);
+  font-weight: var(--weight-display);
+  letter-spacing: 0.12em;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow:
+    0 0 10px color-mix(in srgb, var(--color-carbon) 85%, transparent),
+    0 1px 2px color-mix(in srgb, var(--color-carbon) 90%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.label::before {
+  content: '';
+  flex: none;
+  inline-size: 22px;
+  block-size: 1px;
+  background: var(--color-amber);
+  box-shadow: 0 0 6px var(--color-amber);
+}
+
+.label.labelFlipped {
+  flex-direction: row-reverse;
+}

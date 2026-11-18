@@ -65,18 +65,21 @@ export function HomePage() {
   return (
     <>
       <HomeHero />
-      <HomeIntro />
+      {/* Giriş bölümü bu kapsayıcının sonuna kadar yapışık kalır, çözüm bölümleri sırayla üstüne biner. */}
+      <div>
+        <HomeIntro />
 
-      <div ref={sequenceRef}>
-        {HOME_CHAPTERS.map((chapter, index) => (
-          <SolutionChapter
-            key={chapter.key}
-            chapter={chapter}
-            index={index}
-            photo={chapterPhotos[chapter.key]}
-            gallery={chapterGalleries[chapter.key]}
-          />
-        ))}
+        <div ref={sequenceRef}>
+          {HOME_CHAPTERS.map((chapter, index) => (
+            <SolutionChapter
+              key={chapter.key}
+              chapter={chapter}
+              index={index}
+              photo={chapterPhotos[chapter.key]}
+              gallery={chapterGalleries[chapter.key]}
+            />
+          ))}
+        </div>
       </div>
 
       <SectionRail

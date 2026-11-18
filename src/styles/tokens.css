@@ -113,6 +113,8 @@
   --text-home-zone: clamp(3.5rem, 2rem + 5vw, 7rem);
   --text-home-sectors: clamp(1.5rem, 1.15rem + 1.5vw, 2.75rem);
   --text-home-closing: clamp(2.25rem, 1.2rem + 4.6vw, 7rem);
+  /* Tıklanabilir görselin üstünde imlecin yanındaki etiket. */
+  --text-cursor-label: clamp(0.8125rem, 0.7rem + 0.28vw, 1.0625rem);
   --tracking-nav: -0.005em;
   --tracking-display: -0.035em;
 

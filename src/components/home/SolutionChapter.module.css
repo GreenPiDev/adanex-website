@@ -7,14 +7,18 @@
   /* Koyu zeminde vurgu sarıdır. Açık zeminde sarı yazı okunmadığı için değerler zeminin yazı rengindedir. */
   --chapter-accent: var(--color-amber);
 
-  display: grid;
-  gap: calc(var(--space-lg) * 1.25);
-  padding-block: calc(var(--header-height) + var(--space-lg)) calc(var(--space-lg) * 1.75);
-  padding-inline: var(--gutter);
   color: var(--surface-fg);
   background: var(--surface-bg);
   /* Raydan veya içindekiler listesinden atlamada başlık header'ın altında kalmasın. */
   scroll-margin-top: 0;
+}
+
+/* Bölümün içeriği. Sıradaki bölüm üstüne binerken zemin yerinde kalır, yalnızca bu katman küçülüp solar. */
+.inner {
+  display: grid;
+  gap: calc(var(--space-lg) * 1.25);
+  padding-block: calc(var(--header-height) + var(--space-lg)) calc(var(--space-lg) * 1.75);
+  padding-inline: var(--gutter);
 }
 
 .chapter[data-surface='light'] {
@@ -221,13 +225,23 @@
 }
 
 @media (min-width: 64rem) {
-  /* Geniş ekranda her bölüm en az bir ekran boyundadır, içerik dikeyde ortalanır. İçerik daha uzunsa bölüm uzar. */
+  /*
+   * Geniş ekranda bölümler üst üste biner: her bölüm yapışır, sıradaki bölüm üstüne gelir. Ekrandan uzun bölümün
+   * yapışma payı (--stick-top) SolutionChapter içinde ölçülür.
+   */
   .chapter {
     --chapter-gap: calc(var(--space-lg) * 1.5);
 
+    position: sticky;
+    inset-block-start: var(--stick-top, 0px);
+  }
+
+  /* Her bölüm en az bir ekran boyundadır, içerik dikeyde ortalanır. İçerik daha uzunsa bölüm uzar. */
+  .inner {
     min-block-size: 100svh;
     align-content: center;
     padding-inline-end: calc(var(--gutter) + var(--rail-width) + var(--space-md));
+    will-change: transform;
   }
 
   .body {
@@ -242,7 +256,7 @@
    * Metin kolonu bölüm genişliğinin 5/11'idir, fotoğraf kolonu fotoğrafın ölçülen genişliği kadardır ve ikili
    * bölüm genişliğinde ortalanır. Metin kolonu sabit olduğundan fotoğrafın boyu değişmez, ölçüm döngüye girmez.
    */
-  .withPhoto {
+  .withPhoto .inner {
     grid-template-columns:
       calc((100% - var(--chapter-gap)) * 5 / 11)
       var(--photo-inline, calc((100% - var(--chapter-gap)) * 6 / 11));
@@ -273,7 +287,7 @@
   }
 
   /* Fotoğrafı solda olan bölüm: kolonlar yer değiştirir, fotoğraf metne yakın tarafa (sağa) yaslanır. */
-  .photoLeft {
+  .photoLeft .inner {
     grid-template-columns:
       var(--photo-inline, calc((100% - var(--chapter-gap)) * 6 / 11))
       calc((100% - var(--chapter-gap)) * 5 / 11);

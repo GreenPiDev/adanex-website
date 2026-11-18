@@ -1,5 +1,6 @@
 import { type MouseEvent, type ReactNode, useLayoutEffect, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import {
   KNOWLEDGE_IMAGES,
   type KnowledgeImageNumber,
@@ -134,6 +135,7 @@ const IMAGE_SIZE_CLASSES: Readonly<Record<KnowledgeImageSize, string>> = {
 
 export function KnowledgeImage({ number, className = '' }: { number: KnowledgeImageNumber; className?: string }) {
   const { t } = useTranslation();
+  const inspectCursor = useInspectCursor();
   const { images } = useKnowledge();
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const { src, width, height, size } = KNOWLEDGE_IMAGES[number];
@@ -143,6 +145,7 @@ export function KnowledgeImage({ number, className = '' }: { number: KnowledgeIm
     <figure className={`${styles.figure} ${IMAGE_SIZE_CLASSES[size]} ${className}`}>
       <button
         className={styles.zoom}
+        {...inspectCursor}
         type="button"
         aria-label={t('projects.openImage', { title: alt })}
         onClick={() => setIsLightboxOpen(true)}

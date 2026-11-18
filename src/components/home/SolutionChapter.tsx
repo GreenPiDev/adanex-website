@@ -3,8 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router';
 import { gsap, useGSAP } from '../../animations/gsap';
 import { revealWordsOnScroll } from '../../animations/reveal';
+import { recedeWhenCovered } from '../../animations/stack';
 import { HOME_CHAPTERS } from '../../content/home';
-import { usePrefersReducedMotion } from '../../hooks/useDevice';
+import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
+import { useStickTop } from '../../hooks/useStickTop';
 import { getLocaleFromPathname, localizePath } from '../../i18n/locale';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
 import { ChapterPhoto, type ChapterPhotoSource } from './ChapterPhoto';
@@ -42,7 +44,9 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
   const copy = useHomeCopy().chapters[chapter.key];
   const { pathname } = useLocation();
   const prefersReducedMotion = usePrefersReducedMotion();
+  const isNavCollapsed = useIsNavCollapsed();
   const rootRef = useRef<HTMLElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
   const { slug, surface, facts } = chapter;
   const locale = getLocaleFromPathname(pathname);
   const paragraphs = copy.body.split('\n');
@@ -53,7 +57,31 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
       if (prefersReducedMotion) return;
       gsap.utils.toArray<HTMLElement>('[data-chapter-title]').forEach(revealWordsOnScroll);
     },
-    { scope: rootRef, dependencies: [i18n.language, prefersReducedMotion], revertOnUpdate: true },
+    {
+      scope: rootRef,
+      dependencies: [i18n.language, prefersReducedMotion],
+      revertOnUpdate: true,
+    },
+  );
+
+  // Geniş ekranda bölüm yapışır, sıradaki bölüm üstüne biner.
+  useStickTop(rootRef);
+
+  // Sıradaki bölüm ekrana girerken bu bölümün içeriği geri çekilir. Mobilde doğal scroll korunur, efekt yoktur.
+  useGSAP(
+    () => {
+      const root = rootRef.current;
+      const inner = innerRef.current;
+      const next = root?.nextElementSibling;
+      if (prefersReducedMotion || isNavCollapsed || !inner || !next) return;
+
+      recedeWhenCovered(inner, next);
+    },
+    {
+      scope: rootRef,
+      dependencies: [isNavCollapsed, prefersReducedMotion],
+      revertOnUpdate: true,
+    },
   );
 
   // Değeri dile bağlı olan künye satırının (malzeme) değeri çeviriden gelir.
@@ -115,51 +143,53 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
       aria-labelledby={`${slug}-title`}
       style={photoStyle}
     >
-      <header className={styles.head}>
-        <p className={styles.number} aria-hidden="true">
-          {formatNumber(index + 1)}
-          <span className={styles.total}>/{formatNumber(HOME_CHAPTERS.length)}</span>
-        </p>
-        <h2 key={i18n.language} id={`${slug}-title`} className={styles.title} data-chapter-title>
-          {copy.title}
-        </h2>
-      </header>
+      <div ref={innerRef} className={styles.inner}>
+        <header className={styles.head}>
+          <p className={styles.number} aria-hidden="true">
+            {formatNumber(index + 1)}
+            <span className={styles.total}>/{formatNumber(HOME_CHAPTERS.length)}</span>
+          </p>
+          <h2 key={i18n.language} id={`${slug}-title`} className={styles.title} data-chapter-title>
+            {copy.title}
+          </h2>
+        </header>
 
-      <div className={styles.body}>
-        <div className={styles.copy}>
-          <p className={styles.lead}>{copy.lead}</p>
-          <div className={styles.paragraphs}>
-            {paragraphs.map((paragraph) => (
-              <p key={paragraph} className={styles.text}>
-                {paragraph}
-              </p>
-            ))}
+        <div className={styles.body}>
+          <div className={styles.copy}>
+            <p className={styles.lead}>{copy.lead}</p>
+            <div className={styles.paragraphs}>
+              {paragraphs.map((paragraph) => (
+                <p key={paragraph} className={styles.text}>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            {!photo && factsBlock}
+            {!photo && link}
           </div>
 
-          {!photo && factsBlock}
-          {!photo && link}
+          {photo ? (
+            <div ref={visualRef} className={`${styles.visual} ${styles.photoVisual}`}>
+              <ChapterPhoto {...photo} name={copy.name} fitHeight />
+            </div>
+          ) : (
+            visual && <div className={styles.visual}>{visual}</div>
+          )}
+
+          {photo && factsBlock}
         </div>
 
-        {photo ? (
-          <div ref={visualRef} className={`${styles.visual} ${styles.photoVisual}`}>
-            <ChapterPhoto {...photo} name={copy.name} fitHeight />
-          </div>
-        ) : (
-          visual && <div className={styles.visual}>{visual}</div>
+        {gallery && gallery.length > 0 && (
+          <ul className={styles.gallery}>
+            {gallery.map((item) => (
+              <li key={item.src} className={styles.galleryItem}>
+                <ChapterPhoto {...item} />
+              </li>
+            ))}
+          </ul>
         )}
-
-        {photo && factsBlock}
       </div>
-
-      {gallery && gallery.length > 0 && (
-        <ul className={styles.gallery}>
-          {gallery.map((item) => (
-            <li key={item.src} className={styles.galleryItem}>
-              <ChapterPhoto {...item} />
-            </li>
-          ))}
-        </ul>
-      )}
     </section>
   );
 }

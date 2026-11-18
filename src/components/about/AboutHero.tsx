@@ -1,5 +1,6 @@
 import { type MouseEvent, useCallback, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
 import { PRODUCT_FAMILIES } from '../../content/about';
@@ -43,6 +44,7 @@ const HERO_VISUAL_SIZE = { width: 1024, height: 1536 } as const;
 export function AboutHero() {
   const { t, i18n } = useTranslation('about');
   const { t: tCommon } = useTranslation();
+  const inspectCursor = useInspectCursor();
   const { ledger } = useAboutCopy();
   const prefersReducedMotion = usePrefersReducedMotion();
   const rootRef = useRef<HTMLElement>(null);
@@ -126,6 +128,7 @@ export function AboutHero() {
                 </span>
                 <button
                   className={styles.zoom}
+                  {...inspectCursor}
                   type="button"
                   aria-label={tCommon('projects.openImage', { title: t(`hero.visuals.${visual.key}`) })}
                   onClick={() => setOpenVisual(visual)}
