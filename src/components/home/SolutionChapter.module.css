@@ -112,14 +112,6 @@
   border-block-start: 1px solid var(--hairline);
 }
 
-/* Tablet ve üstünde fotoğraflı bölümün künyesi 2×2: satırlar iki sütuna dağılır. */
-@media (min-width: 37.5rem) {
-  .factsWide .facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: var(--chapter-gap, var(--space-lg));
-  }
-}
-
 .fact {
   display: flex;
   gap: var(--space-md);
@@ -182,6 +174,11 @@
   font-weight: var(--weight-heavy);
   letter-spacing: 0.02em;
   --roll-hover-color: var(--chapter-accent);
+}
+
+/* Görselsiz bölümde bağlantı, fotoğraflı bölümlerdeki gibi sağdadır. */
+.solo .link {
+  align-self: flex-end;
 }
 
 .link::after {
@@ -274,16 +271,31 @@
   }
 
   /*
-   * Fotoğraf yanındaki metnin (başlık dahil) yüksekliği kadardır: alan, satır yüksekliğine katkı vermez
+   * Fotoğraf yanındaki başlık ve metnin yüksekliği kadardır (--photo-block): alan, satır yüksekliğine katkı vermez
    * (contain: size), fotoğraf bu yüksekliği doldurur ve genişliğini oranından alır. Metne yakın tarafa yaslanır.
    */
   .photoVisual {
     display: grid;
-    grid-row: 1 / span 2;
+    grid-row: 1 / span 3;
     grid-column: 2;
-    grid-template-rows: minmax(0, 1fr);
+    grid-template-rows: var(--photo-block, 100%);
+    align-content: start;
     justify-items: start;
     contain: size;
+  }
+
+  /*
+   * Fotoğraf, başlıktan künyenin sonuna kadar uzanan alanın içinde yapışır: kaydırırken ekranda kalır, alt kenarı
+   * künyenin alt kenarına gelince alanla birlikte kayar.
+   */
+  .photoVisual > * {
+    position: sticky;
+    inset-block-start: var(--photo-stick, 0px);
+  }
+
+  /* Bölüm üstte yapışmadan önce fotoğrafın yol alacağı mesafe kadar kayar; yoksa fotoğraf hiç ilerleyemez. */
+  .withPhoto {
+    inset-block-start: min(var(--stick-top, 0px), calc(var(--photo-travel, 0px) * -1));
   }
 
   /* Fotoğrafı solda olan bölüm: kolonlar yer değiştirir, fotoğraf metne yakın tarafa (sağa) yaslanır. */
@@ -314,10 +326,14 @@
     text-align: end;
   }
 
-  /* Fotoğraflı bölümün künyesi metnin solundan fotoğrafın sağ kenarına kadar tek satır boyunca uzanır. */
+  /* Fotoğraflı bölümün künyesi metin kolonunda, metnin altındadır. */
   .factsWide {
     grid-row: 3;
-    grid-column: 1 / -1;
+    grid-column: 1;
+  }
+
+  .photoLeft .factsWide {
+    grid-column: 2;
   }
 
   /* Görsel dizisi, iki kolonlu bölümde de kolonların altında tam genişlikte durur. */
@@ -363,7 +379,7 @@
 
   .solo .link {
     grid-column: 1 / -1;
-    justify-self: start;
+    justify-self: end;
   }
 }
 

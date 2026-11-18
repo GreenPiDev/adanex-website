@@ -51,7 +51,8 @@ export function ChapterPhoto({ src, width, height, alt, name, fitHeight = false 
         .fromTo('[data-photo-cover]', { scaleY: 1 }, { scaleY: 0 })
         .from('[data-photo-image]', { scale: 1.25 }, 0);
 
-      if (isMobile) return;
+      // Telefonda ve yapışarak metni takip eden fotoğrafta kayma yoktur.
+      if (isMobile || fitHeight) return;
 
       gsap.fromTo(
         root,
@@ -63,11 +64,15 @@ export function ChapterPhoto({ src, width, height, alt, name, fitHeight = false 
         },
       );
     },
-    { scope: rootRef, dependencies: [prefersReducedMotion, isMobile], revertOnUpdate: true },
+    { scope: rootRef, dependencies: [prefersReducedMotion, isMobile, fitHeight], revertOnUpdate: true },
   );
 
   return (
-    <div ref={rootRef} className={`${styles.group} ${fitHeight ? styles.fitHeight : ''}`} style={{ '--photo-ratio': width / height } as CSSProperties}>
+    <div
+      ref={rootRef}
+      className={`${styles.group} ${fitHeight ? styles.fitHeight : ''}`}
+      style={{ '--photo-ratio': width / height } as CSSProperties}
+    >
       <figure className={styles.photo}>
         <div className={styles.frame}>
           <div className={styles.zoomLayer}>

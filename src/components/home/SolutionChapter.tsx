@@ -51,6 +51,9 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
   const locale = getLocaleFromPathname(pathname);
   const paragraphs = copy.body.split('\n');
   const visualRef = useRef<HTMLDivElement>(null);
+  const headRef = useRef<HTMLElement>(null);
+  const copyRef = useRef<HTMLDivElement>(null);
+  const factsRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -100,6 +103,36 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
     return () => observer.disconnect();
   }, [photo]);
 
+  /*
+   * Geniş ekranda fotoğraf kaydırırken metinle birlikte gelir: boyu başlık ve metin kadardır, künye metin kolonunda
+   * altta kalır. Fotoğraf yapışır ve alt kenarı künyenin alt kenarına gelene kadar ekranda kalır.
+   * --photo-block fotoğrafın boyu, --photo-stick yapıştığı yükseklik (bölümün üstünden başlığa kadar olan pay),
+   * --photo-travel fotoğrafın yol alacağı mesafedir. Bölüm, üstte yapışmadan önce en az bu mesafe kadar kayar.
+   */
+  useEffect(() => {
+    const root = rootRef.current;
+    const head = headRef.current;
+    const copyElement = copyRef.current;
+    const factsElement = factsRef.current;
+    if (!photo || !root || !head || !copyElement || !factsElement) return;
+
+    const update = () => {
+      const copyBottom = copyElement.offsetTop + copyElement.offsetHeight;
+      const factsBottom = factsElement.offsetTop + factsElement.offsetHeight;
+      root.style.setProperty('--photo-block', `${copyBottom - head.offsetTop}px`);
+      root.style.setProperty('--photo-travel', `${Math.max(0, factsBottom - copyBottom)}px`);
+      root.style.setProperty(
+        '--photo-stick',
+        `${head.getBoundingClientRect().top - root.getBoundingClientRect().top}px`,
+      );
+    };
+    update();
+
+    const observer = new ResizeObserver(update);
+    [root, head, copyElement, factsElement].forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, [photo]);
+
   const link = (
     <Link className={styles.link} to={localizePath(chapter.link, locale)}>
       <RollText text={copy.link.toLocaleUpperCase(i18n.language)} />
@@ -108,9 +141,9 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
   );
   const note = copy.factsNote && <p className={styles.factsNote}>{copy.factsNote}</p>;
 
-  // Fotoğraflı bölümde not künyenin sol üstünde, bağlantı sağ altındadır.
+  // Fotoğraflı bölümde künye tek kolondur; not üstünde, bağlantı sağ altındadır.
   const factsBlock = (
-    <div className={`${styles.factsBlock} ${photo ? styles.factsWide : ''}`}>
+    <div ref={photo ? factsRef : undefined} className={`${styles.factsBlock} ${photo ? styles.factsWide : ''}`}>
       {photo && note}
       <dl className={styles.facts}>
         {facts.map((fact) => (
@@ -144,7 +177,7 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
       style={photoStyle}
     >
       <div ref={innerRef} className={styles.inner}>
-        <header className={styles.head}>
+        <header ref={headRef} className={styles.head}>
           <p className={styles.number} aria-hidden="true">
             {formatNumber(index + 1)}
             <span className={styles.total}>/{formatNumber(HOME_CHAPTERS.length)}</span>
@@ -155,7 +188,7 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
         </header>
 
         <div className={styles.body}>
-          <div className={styles.copy}>
+          <div ref={copyRef} className={styles.copy}>
             <p className={styles.lead}>{copy.lead}</p>
             <div className={styles.paragraphs}>
               {paragraphs.map((paragraph) => (
