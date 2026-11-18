@@ -18,12 +18,16 @@
   visibility: hidden;
 }
 
+.list,
+.footer {
+  /* Yazı boyutu hem genişliğe hem yüksekliğe bağlı; yatay telefonda da altı satır sığar. */
+  font-size: clamp(1.5rem, min(8.2vw, 7.4svh), 4.5rem);
+}
+
 .list {
   display: flex;
   flex-direction: column;
   gap: 0.25em;
-  /* Yazı boyutu hem genişliğe hem yüksekliğe bağlı; yatay telefonda da altı satır sığar. */
-  font-size: clamp(1.5rem, min(8.2vw, 7.4svh), 4.5rem);
 }
 
 .item {
@@ -50,4 +54,16 @@
 
 .footer {
   flex-shrink: 0;
+}
+
+.languageLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+/* İkon büyük yazıda harf yüksekliğine yakın kalsın. */
+.languageLink svg {
+  inline-size: 0.8em;
+  block-size: 0.8em;
 }

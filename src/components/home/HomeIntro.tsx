@@ -16,7 +16,7 @@ function formatNumber(value: number) {
 
 /**
  * Firmanın kısa tanımı ve sayfanın içindekiler listesi: üç çözüm numaralı satırlardır,
- * her biri kendi bölümüne kaydırır. Geniş ekranda yapışır, ilk çözüm bölümü üstüne biner.
+ * her biri kendi bölümüne kaydırır. Yapışır, ilk çözüm bölümü üstüne biner.
  */
 export function HomeIntro() {
   const { t, i18n } = useTranslation('home');
@@ -28,13 +28,13 @@ export function HomeIntro() {
 
   useStickTop(rootRef);
 
-  // Çözüm bölümleri ekrana girerken içerik geri çekilir. Mobilde doğal scroll korunur, efekt yoktur.
+  // Çözüm bölümleri ekrana girerken içerik geri çekilir. Telefonda ve dikey tablette yalnızca solar.
   useGSAP(
     () => {
       const inner = innerRef.current;
       const next = rootRef.current?.nextElementSibling;
-      if (prefersReducedMotion || isNavCollapsed || !inner || !next) return;
-      recedeWhenCovered(inner, next);
+      if (prefersReducedMotion || !inner || !next) return;
+      recedeWhenCovered(inner, next, { fadeOnly: isNavCollapsed });
     },
     { scope: rootRef, dependencies: [isNavCollapsed, prefersReducedMotion], revertOnUpdate: true },
   );

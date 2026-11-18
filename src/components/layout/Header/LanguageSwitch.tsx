@@ -17,14 +17,19 @@ function GlobeIcon() {
   );
 }
 
-export function LanguageSwitch() {
+type LanguageSwitchProps = {
+  /** Varsayılan header stilinin yerine kullanılacak sınıf. */
+  className?: string;
+};
+
+export function LanguageSwitch({ className }: LanguageSwitchProps) {
   const { t } = useTranslation();
   const { pathname, search, hash } = useLocation();
   const targetLocale = getLocaleFromPathname(pathname) === 'tr' ? 'en' : 'tr';
 
   return (
     <Link
-      className={styles.switch}
+      className={className ?? styles.switch}
       to={{ pathname: localizePath(stripLocale(pathname), targetLocale), search, hash }}
       hrefLang={targetLocale}
       aria-label={t('language.switch')}

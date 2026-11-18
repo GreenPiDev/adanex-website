@@ -87,9 +87,9 @@ export function MobileMenu({ id, isOpen, onNavigate, onCoverChange }: MobileMenu
 
       <div className={styles.footer}>
         <div className={styles.item}>
-          <div className={styles.reveal} data-menu-reveal>
-            <LanguageSwitch />
-          </div>
+          <span className={styles.reveal} data-menu-reveal>
+            <LanguageSwitch className={`${styles.link} ${styles.languageLink}`} />
+          </span>
         </div>
       </div>
     </div>

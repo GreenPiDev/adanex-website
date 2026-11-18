@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap, MOTION, ScrollTrigger, useGSAP } from '../../animations/gsap';
-import { revealWordsOnScroll } from '../../animations/reveal';
+import { revealTrigger, revealWordsOnScroll } from '../../animations/reveal';
 import {
   formatStageNumber,
   SERVICE_SCOPE_KEYS,
@@ -69,7 +69,7 @@ export function ServiceStation({ station, index }: ServiceStationProps) {
         y: 24,
         autoAlpha: 0,
         ...motion,
-        scrollTrigger: { trigger: root.querySelector('[data-station-title]'), start: 'top 88%', once: true },
+        scrollTrigger: revealTrigger(root),
       });
 
       gsap.from('[data-station-reveal]', {
@@ -77,11 +77,11 @@ export function ServiceStation({ station, index }: ServiceStationProps) {
         autoAlpha: 0,
         ...motion,
         stagger: MOTION.stagger * 2,
-        scrollTrigger: { trigger: root, start: 'top 65%', once: true },
+        scrollTrigger: revealTrigger(root),
       });
 
       // Kapsam satırları teknik föy gibi tek tek çizilir.
-      const scopeTrigger = { trigger: root.querySelector('[data-scope-list]'), start: 'top 85%', once: true };
+      const scopeTrigger = revealTrigger(root);
       gsap.from('[data-scope-rule]', { scaleX: 0, ...motion, stagger: MOTION.stagger * 2, scrollTrigger: scopeTrigger });
       gsap.from('[data-scope-text]', {
         yPercent: 110,

@@ -1,7 +1,10 @@
 /* Açık zeminde büyük tanım cümlesi, altında kısa açıklama ve üç satırlık içindekiler listesi. */
+/* Yapışır, çözüm bölümleri üstüne biner. Ekrandan uzunsa yapışma payı ölçülür (--stick-top). */
 .intro {
   --hairline: color-mix(in srgb, currentColor 18%, transparent);
 
+  position: sticky;
+  inset-block-start: var(--stick-top, 0px);
   color: var(--surface-fg);
   background: var(--surface-bg);
 }
@@ -88,12 +91,7 @@
 }
 
 @media (min-width: 64rem) {
-  /* Geniş ekranda yapışır, çözüm bölümleri üstüne biner. Ekrandan uzunsa yapışma payı ölçülür (--stick-top). */
-  .intro {
-    position: sticky;
-    inset-block-start: var(--stick-top, 0px);
-  }
-
+  /* Geniş ekranda içerik küçülerek geri çekilir, telefonda yalnızca solar. */
   .inner {
     will-change: transform;
   }

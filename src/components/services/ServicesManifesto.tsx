@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
+import { revealTrigger } from '../../animations/reveal';
 import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
 import styles from './ServicesManifesto.module.css';
 
@@ -29,7 +30,7 @@ export function ServicesManifesto() {
             duration: MOTION.slow,
             ease: MOTION.ease,
             stagger: MOTION.stagger * 2,
-            scrollTrigger: { trigger: self.lines[0], start: 'top 88%', once: true },
+            scrollTrigger: revealTrigger(self.lines[0]),
           }),
       });
     },

@@ -1,7 +1,7 @@
 import { type RefObject, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap, MOTION, useGSAP } from '../../animations/gsap';
-import { revealMarkedOnScroll, revealWordsOnScroll } from '../../animations/reveal';
+import { revealMarkedOnScroll, revealTrigger, revealWordsOnScroll } from '../../animations/reveal';
 import { formatFactValue, formatIndex, PRODUCT_FAMILIES } from '../../content/about';
 import { usePrefersReducedMotion } from '../../hooks/useDevice';
 import styles from './ProductLedger.module.css';
@@ -51,7 +51,7 @@ export function ProductLedger({ sequenceRef }: ProductLedgerProps) {
 
       // Her satır kendi çizgisiyle çizilir, içeriği ardından yerine oturur.
       gsap.utils.toArray<HTMLElement>('[data-ledger-row]').forEach((row) => {
-        const scrollTrigger = { trigger: row, start: 'top 85%', once: true };
+        const scrollTrigger = revealTrigger(row);
         gsap.from(row.querySelector('[data-ledger-rule]'), { scaleX: 0, ...motion, scrollTrigger });
         gsap.from(row.querySelectorAll('[data-ledger-reveal]'), {
           y: 28,
@@ -65,7 +65,7 @@ export function ProductLedger({ sequenceRef }: ProductLedgerProps) {
 
       // Damga büyükten hızla iner, değdiği anda çevresine bir halka yayılır.
       gsap
-        .timeline({ scrollTrigger: { trigger: '[data-stamp]', start: 'top 82%', once: true } })
+        .timeline({ scrollTrigger: revealTrigger(root) })
         .from('[data-stamp]', { scale: 2.4, rotation: -10, autoAlpha: 0, duration: MOTION.base, ease: 'power4.in' })
         .fromTo(
           '[data-stamp-ring]',

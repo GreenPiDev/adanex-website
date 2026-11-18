@@ -202,6 +202,27 @@
   pointer-events: none;
 }
 
+/*
+ * Sarı dolgunun ortasındaki logo. Dolguyla aynı katmandadır, DOM'da sonra geldiği için onun üstünde, yazıların altında kalır.
+ * Dolgu kartı kapladıktan sonra belirir, ayrılırken önce o kaybolur.
+ */
+.cardLogo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  inline-size: auto;
+  max-inline-size: 60%;
+  block-size: 45%;
+  margin: auto;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity calc(var(--duration-base) * 0.5) var(--ease-out),
+    transform calc(var(--duration-base) * 0.5) var(--ease-out);
+}
+
 .card:focus-visible {
   outline-offset: -4px;
 }
@@ -376,6 +397,13 @@
     transform: none;
   }
 
+  .card:hover .cardLogo {
+    opacity: 1;
+    transform: none;
+    transition-duration: var(--duration-base);
+    transition-delay: calc(var(--duration-base) * 0.5);
+  }
+
   .card:hover .arrow {
     color: var(--color-black);
     opacity: 1;
@@ -385,6 +413,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .card::before,
+  .cardLogo,
   .arrow {
     transition: none;
   }

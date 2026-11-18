@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router';
 import { gsap, MOTION, useGSAP } from '../../animations/gsap';
-import { revealWordsOnScroll } from '../../animations/reveal';
+import { revealTrigger, revealWordsOnScroll } from '../../animations/reveal';
 import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { getLocaleFromPathname, localizePath } from '../../i18n/locale';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
@@ -21,7 +21,8 @@ export function ServicesClosing() {
 
   useGSAP(
     () => {
-      if (prefersReducedMotion) return;
+      const root = rootRef.current;
+      if (prefersReducedMotion || !root) return;
       gsap.utils.toArray<HTMLElement>('[data-closing-title]').forEach(revealWordsOnScroll);
 
       // Çağrı ve not başlığın ardından sırayla yerine oturur.
@@ -31,7 +32,7 @@ export function ServicesClosing() {
         duration: MOTION.slow,
         ease: MOTION.ease,
         stagger: MOTION.stagger * 2,
-        scrollTrigger: { trigger: '[data-closing-footer]', start: 'top 88%', once: true },
+        scrollTrigger: revealTrigger(root),
       });
     },
     { scope: rootRef, dependencies: [i18n.language, prefersReducedMotion], revertOnUpdate: true },

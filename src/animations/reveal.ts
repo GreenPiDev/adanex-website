@@ -1,7 +1,13 @@
 import { gsap, MOTION, SplitText } from './gsap';
 
-// Başlık ekrana bu kadar girince açılır.
-const REVEAL_START = 'top 88%';
+/**
+ * Bütün sayfalardaki giriş animasyonlarının ortak tetikleyicisi. Animasyonu öğenin kendisi değil, içinde durduğu
+ * tam genişlik bölüm (`data-surface`) başlatır: bölümün üst kenarı ekrana girdiği an içindeki bütün içerik gelmeye
+ * başlar, okurken içeriğin gelmesi beklenmez.
+ */
+export function revealTrigger(target: Element) {
+  return { trigger: target.closest('[data-surface]') ?? target, start: 'top bottom', once: true };
+}
 
 /** Başlık kelimeleri maskesinden çıkar. `useGSAP` içinde çağrılır, font ve dil değişiminde yeniden bölünür. */
 export function revealWordsOnScroll(target: HTMLElement) {
@@ -15,7 +21,7 @@ export function revealWordsOnScroll(target: HTMLElement) {
         duration: MOTION.slow,
         ease: MOTION.ease,
         stagger: MOTION.stagger,
-        scrollTrigger: { trigger: target, start: REVEAL_START, once: true },
+        scrollTrigger: revealTrigger(target),
       }),
   });
 }
@@ -35,7 +41,7 @@ export function revealUpOnScroll(target: HTMLElement) {
     duration: MOTION.slow,
     ease: MOTION.ease,
     stagger: isList ? MOTION.stagger * 2 : 0,
-    scrollTrigger: { trigger: target, start: REVEAL_START, once: true },
+    scrollTrigger: revealTrigger(target),
   });
 }
 

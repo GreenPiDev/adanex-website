@@ -2,6 +2,7 @@ import { type MouseEvent, useRef } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
+import { LOGO_FOR_TRANSITION } from '../../content/brand';
 import { formatStageNumber, SERVICE_HERO_IMAGE, SERVICE_STATIONS } from '../../content/services';
 import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { useSectionJump } from '../../hooks/useSectionJump';
@@ -107,6 +108,15 @@ export function ServicesHero() {
                   <a className={styles.card} href={`#${slug}`} onClick={(event) => handleCardClick(event, slug)}>
                     {/* Arka plan görseli dekoratiftir, kartın adı zaten metin olarak okunur. */}
                     <img className={styles.cardImage} src={cardImage} alt="" decoding="async" aria-hidden="true" />
+                    {/* Sarı dolgunun ortasında görünen logo da dekoratiftir. */}
+                    <img
+                      className={styles.cardLogo}
+                      {...LOGO_FOR_TRANSITION}
+                      alt=""
+                      decoding="async"
+                      loading="lazy"
+                      aria-hidden="true"
+                    />
                     <RollText className={styles.cardNumber} text={formatStageNumber(index + 1)} />
                     <RollText className={styles.cardLabel} text={t(`stations.${key}.short`)} />
                     <span className={styles.arrow}>

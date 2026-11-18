@@ -68,18 +68,18 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
     },
   );
 
-  // Geniş ekranda bölüm yapışır, sıradaki bölüm üstüne biner.
+  // Bölüm yapışır, sıradaki bölüm üstüne biner.
   useStickTop(rootRef);
 
-  // Sıradaki bölüm ekrana girerken bu bölümün içeriği geri çekilir. Mobilde doğal scroll korunur, efekt yoktur.
+  // Sıradaki bölüm ekrana girerken bu bölümün içeriği geri çekilir. Telefonda ve dikey tablette yalnızca solar.
   useGSAP(
     () => {
       const root = rootRef.current;
       const inner = innerRef.current;
       const next = root?.nextElementSibling;
-      if (prefersReducedMotion || isNavCollapsed || !inner || !next) return;
+      if (prefersReducedMotion || !inner || !next) return;
 
-      recedeWhenCovered(inner, next);
+      recedeWhenCovered(inner, next, { fadeOnly: isNavCollapsed });
     },
     {
       scope: rootRef,

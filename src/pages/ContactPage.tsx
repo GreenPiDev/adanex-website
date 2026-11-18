@@ -1,6 +1,7 @@
 import '@fontsource/barlow-semi-condensed/600.css';
 import { useRef } from 'react';
 import { gsap, MOTION, useGSAP } from '../animations/gsap';
+import { revealTrigger } from '../animations/reveal';
 import { ContactForm } from '../components/contact/ContactForm';
 import { ContactHero } from '../components/contact/ContactHero';
 import { ContactMap } from '../components/contact/ContactMap';
@@ -20,7 +21,7 @@ export function ContactPage() {
           autoAlpha: 0,
           duration: MOTION.slow,
           ease: MOTION.ease,
-          scrollTrigger: { trigger: element, start: 'top 88%', once: true },
+          scrollTrigger: revealTrigger(element),
         });
       });
     },

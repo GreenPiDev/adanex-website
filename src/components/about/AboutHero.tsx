@@ -139,7 +139,7 @@ export function AboutHero() {
         )}
       </div>
 
-      <ScrollCue className={styles.cue} />
+      <ScrollCue className={hasVisuals ? `${styles.cue} ${styles.cueAligned}` : styles.cue} />
 
       {openVisual && (
         <Lightbox src={openVisual.src} alt={t(`hero.visuals.${openVisual.key}`)} onClose={() => setOpenVisual(null)} />

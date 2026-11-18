@@ -4,6 +4,8 @@
  */
 .hero {
   --hero-padding-end: var(--header-height);
+  /* Afişin sarı kesim işaretlerinin görselden taşma payı. "Kaydır" belirteci de buna göre hizalanır. */
+  --bracket-offset: 0.75rem;
 }
 
 .panel {
@@ -34,7 +36,11 @@
  * alt kenarda karanlık zemine erir.
  */
 .visuals {
-  --primary-size: min(100cqi, 66cqb);
+  /*
+   * Afiş kolon genişliğine ya da yüksekliğine göre boyutlanır. Yükseklik sınırında, aşağı kaydırma payı (--space-lg,
+   * .primary) düşülür: alt kenar kolonun altını geçmez, sağ alttaki "Kaydır" belirtecinin üstüne hiçbir ekran oranında binmez.
+   */
+  --primary-size: min(100cqi, calc((100cqb - var(--space-lg) * 2) / 1.5));
 
   position: relative;
   min-inline-size: 0;
@@ -69,7 +75,7 @@
 /* Sarı kesim işaretleri: sol üst ve sağ alt köşe. */
 .primary::before {
   position: absolute;
-  inset: -0.75rem;
+  inset: calc(var(--bracket-offset) * -1);
   z-index: 1;
   background:
     linear-gradient(var(--color-amber), var(--color-amber)) top left / 1.75rem 1px no-repeat,
@@ -152,6 +158,14 @@
   --scroll-cue-track: 1.25rem;
 
   inset-block-end: var(--space-sm);
+}
+
+/*
+ * Afiş varken "Kaydır"ın son harfi afişin sağ alt kesim çizgisiyle hizalıdır. Afişin sağ kenarı panelin kenar payı
+ * (--space-md) kadar içeride, çizgi ise --bracket-offset kadar dışarıdadır.
+ */
+.hero .cueAligned {
+  padding-inline-end: calc(var(--gutter) + var(--space-md) - var(--bracket-offset));
 }
 
 @media (min-width: 37.5rem) {

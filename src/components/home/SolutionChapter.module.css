@@ -7,6 +7,10 @@
   /* Koyu zeminde vurgu sarıdır. Açık zeminde sarı yazı okunmadığı için değerler zeminin yazı rengindedir. */
   --chapter-accent: var(--color-amber);
 
+  /* Bölümler üst üste biner: her bölüm yapışır, sıradaki bölüm üstüne gelir. Ekrandan uzun bölüm alt kenarından
+     yapışır (--stick-top, SolutionChapter içinde ölçülür). */
+  position: sticky;
+  inset-block-start: var(--stick-top, 0px);
   color: var(--surface-fg);
   background: var(--surface-bg);
   /* Raydan veya içindekiler listesinden atlamada başlık header'ın altında kalmasın. */
@@ -222,15 +226,8 @@
 }
 
 @media (min-width: 64rem) {
-  /*
-   * Geniş ekranda bölümler üst üste biner: her bölüm yapışır, sıradaki bölüm üstüne gelir. Ekrandan uzun bölümün
-   * yapışma payı (--stick-top) SolutionChapter içinde ölçülür.
-   */
   .chapter {
     --chapter-gap: calc(var(--space-lg) * 1.5);
-
-    position: sticky;
-    inset-block-start: var(--stick-top, 0px);
   }
 
   /* Her bölüm en az bir ekran boyundadır, içerik dikeyde ortalanır. İçerik daha uzunsa bölüm uzar. */

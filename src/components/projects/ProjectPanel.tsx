@@ -2,6 +2,7 @@ import { type ComponentProps, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
+import { revealTrigger } from '../../animations/reveal';
 import { type Project, PROJECT_AMBER_TONE, PROJECT_SURFACES } from '../../content/projects';
 import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { Lightbox } from '../ui/Lightbox/Lightbox';
@@ -19,7 +20,6 @@ function SummaryLink({ children, ...rest }: ComponentProps<'a'>) {
 }
 
 // Dosya ekrana girer girmez içeriği gelir, yarıya kadar boş beklemez.
-const REVEAL_START = 'top 92%';
 const RECEDE_SCALE = 0.92;
 const RECEDE_OPACITY = 0.25;
 const IMAGE_START_SCALE = 1.18;
@@ -58,7 +58,7 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
       const curtain = curtainRef.current;
       if (prefersReducedMotion || !root || !inner || !titleElement || !media || !curtain) return;
 
-      const reveal = () => ({ trigger: root, start: REVEAL_START, once: true });
+      const reveal = () => revealTrigger(root);
       const motion = { duration: MOTION.slow, ease: MOTION.ease };
 
       gsap.fromTo(curtain, { scaleY: 1 }, { scaleY: 0, ...motion, scrollTrigger: reveal() });

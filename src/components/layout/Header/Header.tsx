@@ -6,7 +6,7 @@ import { MAIN_CONTENT_ID, NAV_ITEMS } from '../../../content/navigation';
 import { useDevice, useIsNavCollapsed } from '../../../hooks/useDevice';
 import { useHeaderSurface } from '../../../hooks/useHeaderSurface';
 import { useScrollLock } from '../../../hooks/useSmoothScroll';
-import { getLocaleFromPathname, localizePath } from '../../../i18n/locale';
+import { getLocaleFromPathname, localizePath, stripLocale } from '../../../i18n/locale';
 import styles from './Header.module.css';
 import { LanguageSwitch } from './LanguageSwitch';
 import { MobileMenu } from './MobileMenu';
@@ -26,11 +26,13 @@ export function Header() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuCovering, setIsMenuCovering] = useState(false);
-  const [previousPathname, setPreviousPathname] = useState(pathname);
+  // Dilden bağımsız sayfa yolu: dil değişiminde aynı kalır, menü açık kalsın diye buna bakılır.
+  const pagePath = stripLocale(pathname);
+  const [previousPagePath, setPreviousPagePath] = useState(pagePath);
 
-  // Sayfa değişince veya geniş düzene geçilince menü render sırasında kapanır.
-  if (pathname !== previousPathname) {
-    setPreviousPathname(pathname);
+  // Sayfa değişince veya geniş düzene geçilince menü render sırasında kapanır. Dil değişimi menüyü kapatmaz.
+  if (pagePath !== previousPagePath) {
+    setPreviousPagePath(pagePath);
     setIsMenuOpen(false);
   }
   if (isMenuOpen && !isNavCollapsed) setIsMenuOpen(false);

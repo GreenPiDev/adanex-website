@@ -2,6 +2,7 @@ import { type CSSProperties, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, useGSAP } from '../../animations/gsap';
+import { revealTrigger } from '../../animations/reveal';
 import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { Lightbox } from '../ui/Lightbox/Lightbox';
 import styles from './ChapterPhoto.module.css';
@@ -41,11 +42,11 @@ export function ChapterPhoto({ src, width, height, alt, name, fitHeight = false 
       if (!root) return;
       // Fotoğraf kaydırmayla yer değiştirdiği için ölçüm, durduğu kolondan yapılır.
       const trigger = root.parentElement ?? root;
-      // Açılış, fotoğrafın üst kenarı ekrana girmeden biraz önce başlar; göründüğünde perde zaten toplanıyordur.
+      // Açılış, bölüm ekrana girdiği an başlar.
 
       gsap
         .timeline({
-          scrollTrigger: { trigger, start: 'top 115%', once: true },
+          scrollTrigger: revealTrigger(root),
           defaults: { ease: MOTION.ease, duration: MOTION.slow * 1.6 },
         })
         .fromTo('[data-photo-cover]', { scaleY: 1 }, { scaleY: 0 })
