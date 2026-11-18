@@ -1,7 +1,7 @@
 import { type RefObject, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap, MOTION, useGSAP } from '../../animations/gsap';
-import { revealWordsOnScroll } from '../../animations/reveal';
+import { revealMarkedOnScroll, revealWordsOnScroll } from '../../animations/reveal';
 import { formatFactValue, formatIndex, PRODUCT_FAMILIES } from '../../content/about';
 import { usePrefersReducedMotion } from '../../hooks/useDevice';
 import styles from './ProductLedger.module.css';
@@ -45,6 +45,7 @@ export function ProductLedger({ sequenceRef }: ProductLedgerProps) {
       if (prefersReducedMotion || !root) return;
 
       gsap.utils.toArray<HTMLElement>('[data-ledger-title]').forEach(revealWordsOnScroll);
+      revealMarkedOnScroll();
 
       const motion = { duration: MOTION.slow, ease: MOTION.ease };
 
@@ -81,11 +82,13 @@ export function ProductLedger({ sequenceRef }: ProductLedgerProps) {
         <h2 key={i18n.language} id="product-ledger-title" className={styles.title} data-ledger-title>
           {ledger.title}
         </h2>
-        <p className={styles.lead}>{ledger.lead}</p>
+        <p className={styles.lead} data-reveal>
+          {ledger.lead}
+        </p>
       </header>
 
       {/* Sütun başlıkları yalnızca geniş ekranda görünür, her satır kendi içinde de okunur. */}
-      <div className={styles.columns} aria-hidden="true">
+      <div className={styles.columns} aria-hidden="true" data-reveal>
         <span />
         <span>{upper(ledger.columns.family)}</span>
         <span>{upper(ledger.columns.items)}</span>

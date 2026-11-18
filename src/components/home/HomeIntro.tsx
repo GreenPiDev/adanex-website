@@ -1,7 +1,7 @@
 import { type MouseEvent, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap, useGSAP } from '../../animations/gsap';
-import { revealWordsOnScroll } from '../../animations/reveal';
+import { revealMarkedOnScroll, revealWordsOnScroll } from '../../animations/reveal';
 import { recedeWhenCovered } from '../../animations/stack';
 import { HOME_CHAPTERS } from '../../content/home';
 import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
@@ -43,6 +43,7 @@ export function HomeIntro() {
     () => {
       if (prefersReducedMotion) return;
       gsap.utils.toArray<HTMLElement>('[data-intro-statement]').forEach(revealWordsOnScroll);
+      revealMarkedOnScroll();
     },
     { scope: rootRef, dependencies: [i18n.language, prefersReducedMotion], revertOnUpdate: true },
   );
@@ -60,10 +61,10 @@ export function HomeIntro() {
         </p>
 
         <div className={styles.columns}>
-          <p className={styles.body}>{t('intro.body')}</p>
+          <p className={styles.body} data-reveal>{t('intro.body')}</p>
 
           <nav className={styles.index} aria-label={t('intro.indexLabel')}>
-            <ol className={styles.list}>
+            <ol className={styles.list} data-reveal-items>
               {HOME_CHAPTERS.map(({ key, slug }, index) => (
                 <li key={key}>
                   <a className={styles.link} href={`#${slug}`} onClick={(event) => handleClick(event, slug)}>

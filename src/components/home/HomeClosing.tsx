@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router';
 import { gsap, useGSAP } from '../../animations/gsap';
-import { revealWordsOnScroll } from '../../animations/reveal';
+import { revealMarkedOnScroll, revealWordsOnScroll } from '../../animations/reveal';
 import { usePrefersReducedMotion } from '../../hooks/useDevice';
 import { getLocaleFromPathname, localizePath } from '../../i18n/locale';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
@@ -20,6 +20,7 @@ export function HomeClosing() {
     () => {
       if (prefersReducedMotion) return;
       gsap.utils.toArray<HTMLElement>('[data-closing-title]').forEach(revealWordsOnScroll);
+      revealMarkedOnScroll();
     },
     { scope: rootRef, dependencies: [i18n.language, prefersReducedMotion], revertOnUpdate: true },
   );
@@ -30,7 +31,7 @@ export function HomeClosing() {
         {t('closing.title')}
       </h2>
 
-      <div className={styles.footer}>
+      <div className={styles.footer} data-reveal-items>
         <Link className={styles.cta} to={contactPath}>
           <RollText text={t('closing.cta').toLocaleUpperCase(i18n.language)} />
           <RollArrow />

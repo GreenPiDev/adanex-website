@@ -2,7 +2,7 @@ import { type CSSProperties, type ReactNode, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router';
 import { gsap, useGSAP } from '../../animations/gsap';
-import { revealWordsOnScroll } from '../../animations/reveal';
+import { revealMarkedOnScroll, revealWordsOnScroll } from '../../animations/reveal';
 import { recedeWhenCovered } from '../../animations/stack';
 import { HOME_CHAPTERS } from '../../content/home';
 import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
@@ -59,6 +59,7 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
     () => {
       if (prefersReducedMotion) return;
       gsap.utils.toArray<HTMLElement>('[data-chapter-title]').forEach(revealWordsOnScroll);
+      revealMarkedOnScroll();
     },
     {
       scope: rootRef,
@@ -134,18 +135,18 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
   }, [photo]);
 
   const link = (
-    <Link className={styles.link} to={localizePath(chapter.link, locale)}>
+    <Link className={styles.link} data-reveal to={localizePath(chapter.link, locale)}>
       <RollText text={copy.link.toLocaleUpperCase(i18n.language)} />
       <RollArrow />
     </Link>
   );
-  const note = copy.factsNote && <p className={styles.factsNote}>{copy.factsNote}</p>;
+  const note = copy.factsNote && <p className={styles.factsNote} data-reveal>{copy.factsNote}</p>;
 
   // Fotoğraflı bölümde künye tek kolondur; not üstünde, bağlantı sağ altındadır.
   const factsBlock = (
     <div ref={photo ? factsRef : undefined} className={`${styles.factsBlock} ${photo ? styles.factsWide : ''}`}>
       {photo && note}
-      <dl className={styles.facts}>
+      <dl className={styles.facts} data-reveal-items>
         {facts.map((fact) => (
           <div key={fact.key} className={styles.fact}>
             <dt className={styles.factLabel}>{copy.facts[fact.key]}</dt>
@@ -178,7 +179,7 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
     >
       <div ref={innerRef} className={styles.inner}>
         <header ref={headRef} className={styles.head}>
-          <p className={styles.number} aria-hidden="true">
+          <p className={styles.number} aria-hidden="true" data-reveal>
             {formatNumber(index + 1)}
             <span className={styles.total}>/{formatNumber(HOME_CHAPTERS.length)}</span>
           </p>
@@ -189,10 +190,10 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
 
         <div className={styles.body}>
           <div ref={copyRef} className={styles.copy}>
-            <p className={styles.lead}>{copy.lead}</p>
+            <p className={styles.lead} data-reveal>{copy.lead}</p>
             <div className={styles.paragraphs}>
               {paragraphs.map((paragraph) => (
-                <p key={paragraph} className={styles.text}>
+                <p key={paragraph} className={styles.text} data-reveal>
                   {paragraph}
                 </p>
               ))}

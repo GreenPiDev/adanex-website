@@ -64,6 +64,14 @@ export function ServiceStation({ station, index }: ServiceStationProps) {
 
       const motion = { duration: MOTION.slow, ease: MOTION.ease };
 
+      // Aşama etiketi başlıkla birlikte, onun üstünden gelir.
+      gsap.from('[data-station-stage]', {
+        y: 24,
+        autoAlpha: 0,
+        ...motion,
+        scrollTrigger: { trigger: root.querySelector('[data-station-title]'), start: 'top 88%', once: true },
+      });
+
       gsap.from('[data-station-reveal]', {
         y: 32,
         autoAlpha: 0,
@@ -106,7 +114,7 @@ export function ServiceStation({ station, index }: ServiceStationProps) {
       </div>
 
       <header className={styles.head}>
-        <p className={styles.stage}>
+        <p className={styles.stage} data-station-stage>
           {t('station.stage', { number, total }).toLocaleUpperCase(i18n.language)}
         </p>
         <h2 key={i18n.language} id={`${station.slug}-title`} className={styles.title} data-station-title>

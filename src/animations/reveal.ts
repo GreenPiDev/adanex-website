@@ -19,3 +19,27 @@ export function revealWordsOnScroll(target: HTMLElement) {
       }),
   });
 }
+
+// Metin bloklarının yerine oturmadan önceki alt payı.
+const RISE = 40;
+
+/**
+ * Metin bloğu aşağıdan yerine oturur. `data-reveal-items` taşıyan liste kapsayıcısında satırlar sırayla gelir.
+ * `useGSAP` içinde çağrılır.
+ */
+export function revealUpOnScroll(target: HTMLElement) {
+  const isList = target.hasAttribute('data-reveal-items');
+  gsap.from(isList ? target.children : target, {
+    y: RISE,
+    autoAlpha: 0,
+    duration: MOTION.slow,
+    ease: MOTION.ease,
+    stagger: isList ? MOTION.stagger * 2 : 0,
+    scrollTrigger: { trigger: target, start: REVEAL_START, once: true },
+  });
+}
+
+/** Kapsam içindeki `data-reveal` ve `data-reveal-items` öğelerini bağlar. */
+export function revealMarkedOnScroll() {
+  gsap.utils.toArray<HTMLElement>('[data-reveal], [data-reveal-items]').forEach(revealUpOnScroll);
+}

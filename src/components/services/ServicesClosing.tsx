@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router';
-import { gsap, useGSAP } from '../../animations/gsap';
+import { gsap, MOTION, useGSAP } from '../../animations/gsap';
 import { revealWordsOnScroll } from '../../animations/reveal';
 import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { getLocaleFromPathname, localizePath } from '../../i18n/locale';
@@ -23,6 +23,16 @@ export function ServicesClosing() {
     () => {
       if (prefersReducedMotion) return;
       gsap.utils.toArray<HTMLElement>('[data-closing-title]').forEach(revealWordsOnScroll);
+
+      // Çağrı ve not başlığın ardından sırayla yerine oturur.
+      gsap.from('[data-closing-reveal]', {
+        y: 32,
+        autoAlpha: 0,
+        duration: MOTION.slow,
+        ease: MOTION.ease,
+        stagger: MOTION.stagger * 2,
+        scrollTrigger: { trigger: '[data-closing-footer]', start: 'top 88%', once: true },
+      });
     },
     { scope: rootRef, dependencies: [i18n.language, prefersReducedMotion], revertOnUpdate: true },
   );
@@ -44,12 +54,12 @@ export function ServicesClosing() {
         />
       )}
 
-      <div className={styles.footer}>
-        <Link className={styles.cta} to={contactPath}>
+      <div className={styles.footer} data-closing-footer>
+        <Link className={styles.cta} to={contactPath} data-closing-reveal>
           <RollText text={t('closing.cta').toLocaleUpperCase(i18n.language)} />
           <RollArrow />
         </Link>
-        <p className={styles.note}>{t('closing.note')}</p>
+        <p className={styles.note} data-closing-reveal>{t('closing.note')}</p>
       </div>
     </section>
   );
