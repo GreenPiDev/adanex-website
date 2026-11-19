@@ -114,16 +114,16 @@
       "messageLabel": "Mesaj",
       "consent": "Talebime dönüş yapılabilmesi için kişisel verilerimin işlenmesini kabul ediyorum.",
       "submit": "Gönder",
-      "prepared": "Mesajınız e-posta uygulamanızda hazırlandı, oradan gönderebilirsiniz.",
+      "status": {
+        "sending": "Mesajınız gönderiliyor…",
+        "sent": "Mesajınız bize ulaştı, en kısa sürede dönüş yapacağız.",
+        "error": "Mesajınız gönderilemedi. Lütfen tekrar deneyin ya da bize e-posta veya telefonla ulaşın."
+      },
       "errors": {
         "name": "Adınızı yazın.",
         "email": "Geçerli bir e-posta adresi yazın.",
         "message": "Mesajınızı en az 10 karakterle yazın.",
         "consent": "Devam etmek için onay vermeniz gerekiyor."
-      },
-      "mail": {
-        "subject": "Web sitesinden mesaj: {{name}}",
-        "body": "Ad: {{name}}\nE-posta: {{email}}\n\n{{message}}"
       }
     },
     "location": {

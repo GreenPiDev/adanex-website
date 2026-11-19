@@ -3,20 +3,24 @@ import { type ReactNode, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
-import { CONTACT } from '../../content/contact';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
 import styles from './ContactForm.module.css';
 
 const contactSchema = z.object({
-  name: z.string().trim().min(2),
-  email: z.email(),
-  message: z.string().trim().min(10),
+  name: z.string().trim().min(2).max(100),
+  email: z.email().max(200),
+  message: z.string().trim().min(10).max(5000),
   consent: z.boolean().refine(Boolean),
+  // Bal küpü alanı: gizlidir, yalnızca botlar doldurur.
+  company: z.string(),
 });
 
 type ContactValues = z.infer<typeof contactSchema>;
 
-const DEFAULT_VALUES: ContactValues = { name: '', email: '', message: '', consent: false };
+type SendStatus = 'idle' | 'sending' | 'sent' | 'error';
+
+const DEFAULT_VALUES: ContactValues = { name: '', email: '', message: '', consent: false, company: '' };
+
 
 type FieldProps = {
   id: string;
@@ -48,20 +52,31 @@ function Field({ id, number, label, error, children }: FieldProps) {
 
 export function ContactForm() {
   const { t, i18n } = useTranslation();
-  const [isPrepared, setIsPrepared] = useState(false);
+  const [status, setStatus] = useState<SendStatus>('idle');
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ContactValues>({ resolver: zodResolver(contactSchema), defaultValues: DEFAULT_VALUES });
 
-  // Form servisi seçilene kadar mesaj, kullanıcının e-posta uygulamasında hazırlanır.
-  const onSubmit = ({ name, email, message }: ContactValues) => {
-    const subject = encodeURIComponent(t('contact.form.mail.subject', { name }));
-    const body = encodeURIComponent(t('contact.form.mail.body', { name, email, message }));
-    window.location.assign(`mailto:${CONTACT.email}?subject=${subject}&body=${body}`);
-    setIsPrepared(true);
+  // Mesaj, Resend'e ileten Vercel fonksiyonuna (api/contact.ts) gönderilir.
+  const onSubmit = async (values: ContactValues) => {
+    setStatus('sending');
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...values, language: i18n.language }),
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      reset();
+      setStatus('sent');
+    } catch {
+      setStatus('error');
+    }
   };
+
 
   const describe = (id: string, hasError: boolean) => ({
     'aria-invalid': hasError,
@@ -145,13 +160,17 @@ export function ContactForm() {
           )}
         </div>
 
+        <div className={styles.trap} aria-hidden="true">
+          <input type="text" tabIndex={-1} autoComplete="off" {...register('company')} />
+        </div>
+
         <div data-reveal>
-          <button className={styles.submit} type="submit">
+          <button className={styles.submit} type="submit" disabled={status === 'sending'}>
             <RollText text={t('contact.form.submit').toLocaleUpperCase(i18n.language)} />
             <RollArrow />
           </button>
           <p className={styles.status} role="status">
-            {isPrepared ? t('contact.form.prepared') : ''}
+            {status === 'idle' ? '' : t(`contact.form.status.${status}`)}
           </p>
         </div>
       </form>

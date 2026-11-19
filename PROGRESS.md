@@ -56,7 +56,7 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - Akış: üç kolonlu (yan yatmış sarı stencil başlık, slogan, "bizi arayın" telefon ve e-posta bağlantıları) yapışık ve "kaydır" belirteçli hero, üstüne perde gibi binen numaralı form, koyu harita üzerinde adres plakası.
 - Sayfanın büyük yazılarında okunaklılık için Barlow Semi Condensed kullanılıyor. Big Shoulders Stencil sayfa geçişi perdesinde, hero başlığında ve kısa etiketlerde kullanılıyor.
 - `useHeaderSurface`, üst üste binen bölümlerde en üstte görüneni esas alacak şekilde güncellendi.
-- **Yayından önce:** Form servisi seçilene kadar gönderim kullanıcının e-posta uygulamasını açıyor. KVKK onay metni firma onayından geçmeli, `/privacy-notice` yazılınca forma bağlantısı eklenmeli. Google Maps gömmesi üçüncü taraf çerezi kullanabilir, çerez politikasına yansıtılmalı.
+- **Yayından önce:** Form Resend'e bağlandı (`api/contact.ts`, Vercel fonksiyonu, bal küpü alanıyla spam filtresi). Vercel'de `RESEND_API_KEY` tanımlanmalı. Gönderen adres şimdilik `onboarding@resend.dev`, `adanex.com.tr` Resend'de doğrulanınca `CONTACT_FROM` ile firma adresine çevrilmeli. KVKK onay metni firma onayından geçmeli, `/privacy-notice` yazılınca forma bağlantısı eklenmeli. Google Maps gömmesi üçüncü taraf çerezi kullanabilir, çerez politikasına yansıtılmalı.
 
 ### 2026-11-08: Sayfa başlıklı hero
 
@@ -185,7 +185,7 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - [ ] Kurumsal renkler, ürün kataloğu, sertifika belgeleri, referans listesi
 - [ ] SEO ve render: saf SPA mı, build sırasında prerender mı? (Öneri: `vite-react-ssg` veya eşdeğeri ile prerender)
 - [ ] İçerik yönetimi: çeviri dosyaları ve tipli veriyle devam mı, headless CMS mi?
-- [ ] Teklif/iletişim formunun gönderileceği servis (kendi API, Formspree, Resend vb.)
+- [x] Teklif/iletişim formunun gönderileceği servis: Resend (Vercel fonksiyonu üzerinden, ücretsiz plan)
 - [ ] Görsel kaynakları: profesyonel ürün fotoğrafı, video veya 3D model var mı?
 - [ ] Yayın ortamı (Vercel, Netlify, kendi sunucu)
 
