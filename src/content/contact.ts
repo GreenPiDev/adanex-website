@@ -8,6 +8,18 @@ export const CONTACT = {
   mapQuery: 'Koray Sk. No:16 D:a, Sanayi, 41040 İzmit/Kocaeli, Türkiye',
 } as const;
 
+/** Çalışma saatleri, 24 saat biçiminde. Kapalı günlerde saat yoktur. */
+export type OpeningHours = {
+  days: 'weekdays' | 'saturday' | 'sunday';
+  hours: { open: string; close: string } | null;
+};
+
+export const OPENING_HOURS: readonly OpeningHours[] = [
+  { days: 'weekdays', hours: { open: '09:00', close: '18:00' } },
+  { days: 'saturday', hours: { open: '09:00', close: '16:00' } },
+  { days: 'sunday', hours: null },
+];
+
 /** Footer bağlantısı varsayılan olarak ana siteye gider, burada yazan sayfalarda bu adrese gider. */
 export const FOOTER_LINK_OVERRIDES: Readonly<Record<string, string>> = {
   '/projects': 'https://www.adanex.com.tr/urun-kategori/exproof-urunler/',

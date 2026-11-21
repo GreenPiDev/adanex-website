@@ -176,6 +176,63 @@
   font-weight: var(--weight-medium);
 }
 
+.statusLink {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  white-space: nowrap;
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Onay paneli formun kolonunda durur, başlık gönder düğmesiyle aynı ölçektedir. */
+.sent {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-md);
+  min-inline-size: 0;
+}
+
+.sentTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-submit);
+  font-weight: var(--weight-display);
+  line-height: 1.2;
+  outline: none;
+}
+
+.sentText {
+  max-inline-size: 36ch;
+  font-size: var(--text-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+  letter-spacing: var(--tracking-nav);
+}
+
+.sentLink {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  min-block-size: var(--touch-target);
+  padding: 0;
+  font: inherit;
+  font-size: var(--text-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  border-block-end: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .submit:hover::before {
     transform: none;

@@ -1,11 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router';
 import { z } from 'zod';
+import { gsap, MOTION, useGSAP } from '../../animations/gsap';
+import { CONTACT } from '../../content/contact';
 import { PRODUCT_FAMILIES } from '../../content/products';
 import { isServicePrefillSlug, SERVICE_CONTACT_PARAM } from '../../content/services';
+import { usePrefersReducedMotion } from '../../hooks/useDevice';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
 import styles from './ContactForm.module.css';
 
@@ -48,6 +51,50 @@ function Field({ id, number, label, error, children }: FieldProps) {
           {error}
         </p>
       )}
+    </div>
+  );
+}
+
+/** Gönderim başarılı olunca formun yerini alan onay paneli. */
+function SentPanel({ onReset }: { onReset: () => void }) {
+  const { t, i18n } = useTranslation();
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useGSAP(
+    () => {
+      // Ekran okuyucu ve klavye kullanıcısı sonucu hemen duysun diye odak başlığa taşınır.
+      titleRef.current?.focus({ preventScroll: true });
+      if (prefersReducedMotion) return;
+
+      gsap.from('[data-sent-reveal]', {
+        y: 32,
+        autoAlpha: 0,
+        duration: MOTION.slow,
+        ease: MOTION.ease,
+        stagger: MOTION.stagger,
+      });
+    },
+    { scope: panelRef },
+  );
+
+  return (
+    <div ref={panelRef} className={styles.sent}>
+      <h3 ref={titleRef} className={styles.sentTitle} tabIndex={-1} data-sent-reveal>
+        {t('contact.form.sent.title').toLocaleUpperCase(i18n.language)}
+      </h3>
+      <p className={styles.sentText} data-sent-reveal>
+        {t('contact.form.sent.text')}
+      </p>
+      <a className={styles.sentLink} href={CONTACT.phone.href} data-sent-reveal>
+        <RollText text={CONTACT.phone.display} />
+        <RollArrow />
+      </a>
+      <button className={styles.sentLink} type="button" onClick={onReset} data-sent-reveal>
+        <RollText text={t('contact.form.sent.again')} />
+        <RollArrow />
+      </button>
     </div>
   );
 }
@@ -109,86 +156,106 @@ export function ContactForm() {
         </p>
       </div>
 
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Field
-          id="contact-name"
-          number="01"
-          label={t('contact.form.nameLabel')}
-          error={errors.name && t('contact.form.errors.name')}
-        >
-          <input
+      {status === 'sent' ? (
+        <SentPanel onReset={() => setStatus('idle')} />
+      ) : (
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+          <Field
             id="contact-name"
-            className={styles.input}
-            type="text"
-            autoComplete="name"
-            {...describe('contact-name', Boolean(errors.name))}
-            {...register('name')}
-          />
-        </Field>
-
-        <Field
-          id="contact-email"
-          number="02"
-          label={t('contact.form.emailLabel')}
-          error={errors.email && t('contact.form.errors.email')}
-        >
-          <input
-            id="contact-email"
-            className={styles.input}
-            type="email"
-            autoComplete="email"
-            {...describe('contact-email', Boolean(errors.email))}
-            {...register('email')}
-          />
-        </Field>
-
-        <Field
-          id="contact-message"
-          number="03"
-          label={t('contact.form.messageLabel')}
-          error={errors.message && t('contact.form.errors.message')}
-        >
-          <textarea
-            id="contact-message"
-            className={styles.input}
-            rows={3}
-            data-lenis-prevent
-            {...describe('contact-message', Boolean(errors.message))}
-            {...register('message')}
-          />
-        </Field>
-
-        <div data-reveal>
-          <label className={styles.consent}>
+            number="01"
+            label={t('contact.form.nameLabel')}
+            error={errors.name && t('contact.form.errors.name')}
+          >
             <input
-              className={styles.checkbox}
-              type="checkbox"
-              {...describe('contact-consent', Boolean(errors.consent))}
-              {...register('consent')}
+              id="contact-name"
+              className={styles.input}
+              type="text"
+              autoComplete="name"
+              {...describe('contact-name', Boolean(errors.name))}
+              {...register('name')}
             />
-            <span>{t('contact.form.consent')}</span>
-          </label>
-          {errors.consent && (
-            <p id="contact-consent-error" className={styles.error}>
-              {t('contact.form.errors.consent')}
+          </Field>
+
+          <Field
+            id="contact-email"
+            number="02"
+            label={t('contact.form.emailLabel')}
+            error={errors.email && t('contact.form.errors.email')}
+          >
+            <input
+              id="contact-email"
+              className={styles.input}
+              type="email"
+              autoComplete="email"
+              {...describe('contact-email', Boolean(errors.email))}
+              {...register('email')}
+            />
+          </Field>
+
+          <Field
+            id="contact-message"
+            number="03"
+            label={t('contact.form.messageLabel')}
+            error={errors.message && t('contact.form.errors.message')}
+          >
+            <textarea
+              id="contact-message"
+              className={styles.input}
+              rows={3}
+              data-lenis-prevent
+              {...describe('contact-message', Boolean(errors.message))}
+              {...register('message')}
+            />
+          </Field>
+
+          <div data-reveal>
+            <label className={styles.consent}>
+              <input
+                className={styles.checkbox}
+                type="checkbox"
+                {...describe('contact-consent', Boolean(errors.consent))}
+                {...register('consent')}
+              />
+              <span>{t('contact.form.consent')}</span>
+            </label>
+            {errors.consent && (
+              <p id="contact-consent-error" className={styles.error}>
+                {t('contact.form.errors.consent')}
+              </p>
+            )}
+          </div>
+
+          <div className={styles.trap} aria-hidden="true">
+            <input type="text" tabIndex={-1} autoComplete="off" {...register('company')} />
+          </div>
+
+          <div data-reveal>
+            <button className={styles.submit} type="submit" disabled={status === 'sending'}>
+              <RollText
+                text={t(status === 'sending' ? 'contact.form.submitting' : 'contact.form.submit').toLocaleUpperCase(
+                  i18n.language,
+                )}
+              />
+              <RollArrow />
+            </button>
+            {/* Gönderim sürerken düğme yazısı değişir, durum metni yalnızca ekran okuyucuya duyurulur. */}
+            <p className={`${styles.status} ${status === 'sending' ? styles.srOnly : ''}`} role="status">
+              {status === 'sending' && t('contact.form.status.sending')}
+              {status === 'error' && (
+                <Trans
+                  t={t}
+                  i18nKey="contact.form.status.error"
+                  values={{ phone: CONTACT.phone.display, email: CONTACT.email }}
+                  components={{
+                    phone: <a className={styles.statusLink} href={CONTACT.phone.href} />,
+                    email: <a className={styles.statusLink} href={`mailto:${CONTACT.email}`} />,
+                  }}
+                />
+              )}
             </p>
-          )}
-        </div>
-
-        <div className={styles.trap} aria-hidden="true">
-          <input type="text" tabIndex={-1} autoComplete="off" {...register('company')} />
-        </div>
-
-        <div data-reveal>
-          <button className={styles.submit} type="submit" disabled={status === 'sending'}>
-            <RollText text={t('contact.form.submit').toLocaleUpperCase(i18n.language)} />
-            <RollArrow />
-          </button>
-          <p className={styles.status} role="status">
-            {status === 'idle' ? '' : t(`contact.form.status.${status}`)}
-          </p>
-        </div>
-      </form>
+          </div>
+        </form>
+      )}
     </section>
   );
 }

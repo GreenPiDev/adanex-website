@@ -126,21 +126,33 @@
       },
       "status": {
         "sending": "Mesajınız gönderiliyor…",
-        "sent": "Mesajınız bize ulaştı, en kısa sürede dönüş yapacağız.",
-        "error": "Mesajınız gönderilemedi. Lütfen tekrar deneyin ya da bize e-posta veya telefonla ulaşın."
+        "error": "Mesajınız gönderilemedi. Lütfen tekrar deneyin ya da bize <phone>{{phone}}</phone> numarasından veya <email>{{email}}</email> adresinden ulaşın."
       },
       "errors": {
         "name": "Adınızı yazın.",
         "email": "Geçerli bir e-posta adresi yazın.",
         "message": "Mesajınızı en az 10 karakterle yazın.",
         "consent": "Devam etmek için onay vermeniz gerekiyor."
+      },
+      "submitting": "Gönderiliyor…",
+      "sent": {
+        "title": "Mesajınız ulaştı.",
+        "text": "En kısa sürede size dönüş yapacağız. Acil bir durum varsa bizi arayabilirsiniz.",
+        "again": "Yeni mesaj yaz"
       }
     },
     "location": {
       "mapTitle": "Adanex Elektrik konum haritası",
-      "companyLabel": "Firma",
       "addressLabel": "Adres",
-      "directions": "Yol tarifi al"
+      "directions": "Yol tarifi al",
+      "hoursLabel": "Çalışma saatleri",
+      "days": {
+        "weekdays": "Hafta içi",
+        "saturday": "Cumartesi",
+        "sunday": "Pazar"
+      },
+      "hoursRange": "{{open}}–{{close}}",
+      "closed": "Kapalı"
     }
   }
 }

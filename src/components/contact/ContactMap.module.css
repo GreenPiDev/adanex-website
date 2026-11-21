@@ -64,20 +64,33 @@
   font-weight: var(--weight-medium);
 }
 
-.company {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--text-plate);
-  font-weight: var(--weight-display);
-  line-height: 1.2;
-}
-
 .address {
   display: grid;
   margin: 0;
   font-size: var(--text-lead);
   font-weight: var(--weight-medium);
   line-height: 1.25;
+}
+
+.hours {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  font-size: var(--text-lead);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+}
+
+/* Gün solda, saat sağda: plaka üzerindeki teknik künye satırı gibi. */
+.hoursRow {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: space-between;
+}
+
+.hoursValue {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .directions {
