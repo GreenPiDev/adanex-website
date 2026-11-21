@@ -30,15 +30,7 @@
   /* info@adanex.com.tr (8,1 em) iletişim hero'sunun sağ kolonuna sığacak şekilde hesaplandı. */
   --text-contact-hero-line: min(10.5cqi, 12svh);
   --text-contact-hero-title: min(16cqi, 14svh);
-  /* Bento yazıları karo genişliğine, kısa ekranlarda ekran yüksekliğine bağlıdır. */
-  /* Telefonda oranlar sabittir, ölçek ProjectsHero içinde başlık boyuna göre hesaplanır. */
-  --text-bento-phone: 11cqi;
-  --text-bento-phone-accent: 13cqi;
-  --text-bento: min(9cqi, 3.2svh);
-  --text-bento-wide: min(5.2cqi, 5.4svh);
-  --text-bento-accent: min(11cqi, 3.9svh);
-  /* Tam genişlik karolarda Türkçe vurgular tek satıra sığar. */
-  --text-bento-accent-wide: min(4.9cqi, 6svh);
+  --text-bento-accent: clamp(1.375rem, 1rem + 1.6vw, 2.75rem);
   /* Üç satırlık en uzun başlık kısa ekranlarda da dosyaya sığsın diye yüksekliğe de bağlıdır. */
   --text-work-title: min(clamp(2.5rem, 1.5rem + 3.6vw, 6rem), 9svh);
   --text-work-stamp: min(34vw, 30svh, 14rem);

@@ -1,51 +1,34 @@
 .hero {
-  /* Alttaki kaydırma belirteci karoların üstüne binmesin. */
+  /* Alttaki kaydırma belirteci yazıların üstüne binmesin. */
   --hero-padding-end: calc(var(--space-md) + 5rem);
 }
 
 /*
- * Mobilde üst kenar başlıktaki Z'nin, alt kenar Ç'nin hizasındadır.
- * Yazı boyutu bu yüksekliğe ProjectsHero içinde ölçülerek oturtulur (--bento-fit).
+ * Sarı vurgu, giriş cümlesi ve görsel tek grup olarak kendi boylarında durur ve hero'nun ortasına oturur.
+ * Dikeyde başlıkla aynı payı alır: alt ve üst boşluk farklı olsa da grubun ortası ekranın ortasıdır.
  */
 .bento {
-  --unit: calc(var(--page-title-size) * var(--title-ink-em, 3.3) / 100);
-  --bento-fit: 1;
-
-  position: relative;
-  inset-block-start: calc(var(--page-title-size) * var(--title-ink-offset-em, 0));
-  display: grid;
+  display: flex;
   grid-row: 1 / -1;
   grid-column: 2;
-  /*
-   * Tek satır grubun yüksekliğine sabitlenir: karo alanı içindeki yazıyla büyümez. Büyürse ölçüm her boyutu
-   * sığıyor sanar ve yazı taşar.
-   */
-  grid-template-rows: minmax(0, 1fr);
-  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+  align-items: center;
   align-self: center;
-  block-size: calc(var(--unit) * 100);
+  justify-self: center;
+  inline-size: 100%;
   min-inline-size: 0;
-  /* Başlıkla aynı dikey ortalamayı alır. */
   margin-top: calc((var(--header-height) - var(--hero-padding-end)) * -1);
-  margin-inline-start: var(--space-sm);
+  padding-inline-start: var(--space-sm);
 }
 
-/*
- * Karolar grubu üstten alta doldurur: alttaki karo yazısı kadardır, sarı karo kalan yüksekliği alarak aşağı uzar.
- * Sarı karonun en küçük boyu yazısı kadardır; yazı sığmazsa grup taşar ve ölçüm bunu görür.
- */
+/* İki yazı da sağa yaslıdır. */
 .tiles {
-  display: grid;
-  /* Sarı karo her ekranda en üstte durur. */
-  grid-template-areas:
-    'second'
-    'first';
-  grid-template-rows: minmax(max-content, 1fr) max-content;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-sm);
-  block-size: 100%;
-  min-block-size: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  inline-size: 100%;
   min-inline-size: 0;
+  text-align: end;
 }
 
 /* Mobilde belirteç kartların altındaki dar alana sığar. */
@@ -55,61 +38,38 @@
   inset-block-end: var(--space-sm);
 }
 
-/* Yazı boyutu karonun genişliğinden gelir, karonun yüksekliği de yazının yüksekliği kadardır. */
-.tile {
-  display: flex;
-  justify-content: flex-end;
-  padding: var(--space-sm);
-  overflow: hidden;
-  text-align: end;
-  container-type: inline-size;
-}
-
-.first {
-  grid-area: first;
-  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
-}
-
-/* Sarı karo kalan yüksekliği alarak uzadığı için yazısı dikeyde ortalanır. */
+/* Sarı vurgu kartsızdır ve her ekranda giriş cümlesinin üstünde durur. */
 .second {
-  grid-area: second;
-  align-items: center;
-  color: var(--color-black);
-  background: var(--color-amber);
-  --selection-bg: var(--color-white);
+  order: -1;
+  color: var(--color-amber);
 }
 
 .text {
   font-family: var(--font-display);
-  font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone));
+  font-size: var(--text-bento-accent);
   font-weight: var(--weight-display);
   line-height: 1.05;
 }
 
+/* Giriş cümlesi kartsızdır, sarı vurgunun altında düz metin olarak durur. */
+.lead {
+  font-family: var(--font-display);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-display);
+  line-height: 1.3;
+}
+
 /* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse y, ş, p gibi harflerin altı kesilir. */
-.text > * {
+.text > *,
+.lead > * {
   padding-block: 0.15em;
   margin-block: -0.15em;
 }
 
-.second .text {
-  font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone-accent));
-}
-
 @media (min-width: 37.5rem) {
   .bento {
-    --bento-fit: 0;
-
-    inset-block-start: 0;
-    grid-row: auto;
-    block-size: auto;
-    margin-top: 0;
-    margin-inline: var(--space-md);
-  }
-
-  .tiles {
-    align-content: normal;
-    block-size: auto;
+    inline-size: min(100%, 32rem);
+    padding-inline-start: 0;
   }
 
   .hero .cue {
@@ -117,23 +77,11 @@
 
     inset-block-end: var(--space-md);
   }
-
-  .tile {
-    padding: var(--space-md);
-  }
-
-  .text {
-    font-size: var(--text-bento);
-  }
-
-  .second .text {
-    font-size: var(--text-bento-accent);
-  }
 }
 
 /*
  * Başlığın dikey ortalaması bu değer header yüksekliğini aştığında hero'yu iki katı kadar uzatır.
- * Eşit tutulunca hero tam ekran kalır, karolara binmeme payı yazı boyutlarının svh sınırındadır.
+ * Eşit tutulunca hero tam ekran kalır.
  */
 @media (min-width: 64rem) {
   .hero {
@@ -143,60 +91,24 @@
   .hero .cue {
     inset-block-end: calc(var(--space-md) + var(--space-sm));
   }
-}
 
-/* Masaüstü ve yatay ekranlarda karolar tam genişliktir, yazı boyutları buna göre ayarlanır. */
-@media (min-width: 64rem), (orientation: landscape) {
-  .first .text {
-    font-size: var(--text-bento-wide);
-  }
-
-  .second .text {
-    font-size: var(--text-bento-accent-wide);
-  }
-}
-
-/*
- * Geniş ekranda karoların sağında kare görsel durur (dar ekranda render edilmez). Karo grubu mobildeki gibi
- * başlığın harf kenarlarına oturur: sarı karonun üst kenarı Z'nin, alttaki karonun alt kenarı Ç'nin hizasındadır.
- * Yazı boyutu karonun genişliğinden gelir ve grubu dolduracak en büyük değere ölçülür. Karolar asimetriktir:
- * sarı karo daha dar ve görsele yakın tarafa yaslıdır. Görsel grubun yüksekliğini aşmaz; sol üstteki sarı kesim
- * işaretinin çizgisi sarı karonun üst kenarıyla hizalıdır ve görsel karolara yakın tarafa yaslanır.
- */
-@media (min-width: 64rem) {
+  /*
+   * Geniş ekranda yazıların sağında kare görsel durur (dar ekranda render edilmez). Grup başlık kolonunu
+   * değil sayfanın tamamını ortalar: soldaki negatif pay, başlık kolonunun genişliği kadar merkezi sola çeker.
+   */
   .withVisual {
-    --bento-fit: 1;
-
-    inset-block-start: calc(var(--page-title-size) * var(--title-ink-offset-em, 0));
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.55fr);
-    column-gap: var(--space-md);
-    block-size: calc(var(--unit) * 100);
+    gap: var(--space-lg);
+    inline-size: auto;
+    margin-inline-start: calc(var(--title-column) * -1);
   }
 
   .withVisual .tiles {
-    align-content: stretch;
-    block-size: 100%;
+    inline-size: clamp(18rem, 28vw, 32rem);
   }
 
-  .withVisual .second {
-    justify-self: end;
-    inline-size: 78%;
-  }
-
-  .withVisual .first .text {
-    font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone));
-  }
-
-  .withVisual .second .text {
-    font-size: calc(var(--bento-scale, 1) * var(--text-bento-phone-accent));
-  }
-
-  /* Kesim işareti görselin --visual-mark-offset kadar dışında çizilir; görsel o kadar aşağıda başlar. */
   .withVisual .visual {
-    align-self: start;
-    margin-block-start: var(--visual-mark-offset);
-    justify-self: start;
-    max-inline-size: calc(var(--unit) * 100 - var(--visual-mark-offset) * 2);
+    flex: none;
+    inline-size: min(clamp(20rem, 34vw, 40rem), 68svh);
   }
 }
 
@@ -204,10 +116,6 @@
   --visual-mark-offset: 0.75rem;
 
   position: relative;
-  grid-row: 1;
-  grid-column: 2;
-  align-self: center;
-  inline-size: 100%;
   margin: 0;
   aspect-ratio: 1;
 }
