@@ -21,6 +21,10 @@ export type EntryText = {
   more?: string;
   columns?: string[];
   rows?: { type: string; use: string }[];
+  /** Kod tablosundaki açıklamalar, anahtarlar `content/knowledge.ts` içindeki kodlardır. */
+  codes?: Record<string, string>;
+  /** Ex etiketi çözümleyicideki parçaların adı ve açıklaması. */
+  parts?: Record<string, { name: string; text: string }>;
   steps?: { title: string; text: string }[];
 };
 

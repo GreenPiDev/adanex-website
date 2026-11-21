@@ -1,0 +1,144 @@
+.decoder {
+  --hairline: color-mix(in srgb, currentColor 20%, transparent);
+
+  display: grid;
+  max-inline-size: var(--entry-measure);
+}
+
+/* İşaretleme, açıklamalar okunurken ekranın üstünde kalır. Zemin, altından geçen satırları örter. */
+.labelWrap {
+  position: sticky;
+  inset-block-start: var(--header-height);
+  z-index: 1;
+  display: grid;
+  gap: calc(var(--space-sm) / 2);
+  padding-block: var(--space-sm);
+  background: var(--surface-bg);
+}
+
+.label {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.25em;
+  align-items: center;
+  font-family: var(--font-industrial);
+  font-size: var(--text-kb-marking);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+}
+
+.segment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--touch-target);
+  min-block-size: var(--touch-target);
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* "2G" gibi bitişik yazılan parçalar ayrı düğmedir. Dokunma alanları korunur, yazıları birbirine yaslanır. */
+.joinsNext {
+  justify-content: flex-end;
+}
+
+.attached {
+  justify-content: flex-start;
+  margin-inline-start: -0.25em;
+}
+
+.glyph {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.06em 0.04em;
+  transition:
+    color var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+.active .glyph {
+  color: var(--color-black);
+  background: var(--color-amber);
+}
+
+.segment:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.symbol {
+  inline-size: 1.05em;
+  block-size: 1.05em;
+  overflow: visible;
+}
+
+.sample {
+  font-size: var(--text-nav);
+  opacity: 0.7;
+}
+
+.parts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.part {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 0.2rem var(--space-sm);
+  padding-block: var(--space-sm);
+  border-block-start: 1px solid var(--hairline);
+}
+
+.partCode {
+  grid-row: span 2;
+  justify-self: start;
+  padding-inline: 0.15em;
+  font-family: var(--font-industrial);
+  font-size: var(--text-kb-lead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.1;
+  transition:
+    color var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+.partActive .partCode {
+  color: var(--color-black);
+  background: var(--color-amber);
+}
+
+.partName {
+  font-family: var(--font-display);
+  font-size: var(--text-kb-lead);
+  font-weight: var(--weight-display);
+  line-height: 1.15;
+}
+
+.partText {
+  font-size: var(--text-kb-body);
+  line-height: 1.5;
+  opacity: 0.86;
+  hyphens: auto;
+}
+
+@media (min-width: 48rem) {
+  .part {
+    grid-template-columns: 5.5rem minmax(0, 14rem) minmax(0, 1fr);
+    align-items: baseline;
+  }
+
+  .partCode {
+    grid-row: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glyph,
+  .partCode {
+    transition: none;
+  }
+}

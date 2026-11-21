@@ -102,7 +102,7 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - Sağdaki ray `ProjectsNav` içinden ortak `src/components/ui/SectionRail/` bileşenine taşındı. Çalışmalar sayfası da bunu kullanıyor.
 - Metinler `src/locales/{tr,en}/knowledge.json` içinde ve yalnızca bu sayfayla yüklenir. Yapı ve bağlantılar `src/content/knowledge.ts` içinde.
 - Görseller `public/tbm-1..4.webp`, yerleri ve ölçüleri `KNOWLEDGE_IMAGES` içinde.
-- **Yayından önce:** İngilizce çeviri ve teknik içerik firma onayından geçmeli. Kaynak sayfa yalnızca Zone 1, 2, 21 ve 22'yi anlatıyor, Zone 0 ve 20 eklenecekse firma metni gerekir (`tbm-2` şemasında Zone 0 görünüyor). `tbm-3` görselindeki "Maksimum Güvenlik" ifadesi ve `tbm-4` veri föyündeki değerler firmaya doğrulatılmalı.
+- **Yayından önce:** İngilizce çeviri ve teknik içerik firma onayından geçmeli. Kaynak sayfa yalnızca Zone 1, 2, 21 ve 22'yi anlatıyordu, Zone 0 ve 20 2026-11-21'de eklendi (onay notu o tarihli kayıtta). `tbm-3` görselindeki "Maksimum Güvenlik" ifadesi ve `tbm-4` veri föyündeki değerler firmaya doğrulatılmalı.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
 ### 2026-11-10: Negatif header
@@ -191,6 +191,16 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - CLAUDE.md'den mutlak ifade yasağı kaldırıldı: firmanın istediği metinler olduğu gibi yazılıyor.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
+### 2026-11-21: Teknik bilgi merkezi sadeleştirmesi ve Ex işaretlemesi bölümü
+
+- **Tekrarlar çıkarıldı:** Uyarı cümlesi yalnızca Zone matrisinin altında kaldı, Aydınlatma bölümünün sonundaki ve sayfa sonundaki koyu not bölümü kalktı (`KnowledgePage.module.css` silindi, `Chapter`'ın `note` özelliği kalktı). 1.2'deki yedili liste tek cümleye indi, kontrol listesine "Bkz." ile bağlanıyor. Armatür türlerini tekrar sayan cümleler (4.1, 5.3) ve 5.3'teki ADANEX tanıtım paragrafı çıktı. Lineer ve glob maddelerindeki tekrar eden son paragraflar silindi. Türkçe metinlerde cümle içindeki "Exproof" küçük harfle yazılıyor.
+- **SSS:** Sayfayı tekrar eden üç soru (Exproof nedir, Zone 1/2 farkı, Zone 21/22) çıktı. Yerlerine Zone 1 ürünü Zone 2'de kullanılır mı, ATEX ile IECEx farkı, hangi belgeler istenmeli ve bakım soruları geldi.
+- **Zone matrisi altı Zone oldu:** Zone 0 ve 20 eklendi, satırlar sürekli / zaman zaman / kısa süreli. Her hücrede o Zone için gereken en düşük ekipman kategorisi ve EPL yazıyor (`ZONE_CELLS`). Maddeler 1, 2, 21, 22 sırasıyla numaralanıyor.
+- **Yeni bölüm, 03 Ex İşaretlemesi** (`MarkingChapter`, `MarkingDecoder`): Örnek `II 2G Ex db IIC T6 Gb` işaretlemesinin her parçası bir düğme. Altında dokuz parçanın açıklaması her zaman görünür, düğmeye dokununca veya fareyle üzerine gelince parça ve açıklaması birlikte vurgulanıyor. İşaretleme açıklamalar okunurken üstte yapışık kalıyor. Ardından koruma tipleri, gaz ve toz grupları ve sıcaklık sınıfları tabloları geliyor. Kodlar ve sıcaklıklar `src/content/knowledge.ts` içinde, aramada da bulunuyor (IIC, T6 gibi).
+- Bölüm zeminleri sırayla açık/koyu değişiyor: Ürün Çeşitleri koyu, Aydınlatma açık oldu. Hero dizini ve arama sonuçları bölüm sayısı kadar satır (7) gösteriyor. "Bkz." artık bütün bir bölüme de bağlanabiliyor (`resolveReference`). 3.5'teki listede bağlantısı olan ürünler bağlantılı.
+- **Yayından önce:** Zone 0/20 tanımları, Ex işaretlemesi bölümü, koruma tipi, grup ve sıcaklık sınıfı tabloları ile dört yeni SSS cevabı standartlara (2014/34/AB, 1999/92/AT, IEC 60079 serisi) göre yazıldı. İki dil de firma onayından geçmeli. Örnek işaretlemenin belirli bir ürüne ait olmadığı sayfada yazıyor.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
 ## Sıradaki Teknik İşler
 
 - Kalan sayfalarda rota bazlı code splitting (ana paket yaklaşık 534 kB, gzip 180 kB).
@@ -227,7 +237,7 @@ Aşağıdakiler Türkçe içeriğin yollarıdır, İngilizce içerik aynı yolla
 
 ### İmza Fikirler (öneri)
 
-- **Ex etiketi çözümleyici:** Gerçek bir işaretleme (`II 2G Ex db IIC T6 Gb`) scroll ile parça parça açılır, her parçanın anlamı anlatılır. Mobil kurgusu baştan tasarlanır.
+- **Ex etiketi çözümleyici:** 2026-11-21'de teknik bilgi merkezine scroll'suz, dokunarak çalışan bir sürümle eklendi (03 Ex İşaretlemesi).
 - **Zone haritası:** Tesis kesiti üzerinde Zone 0/1/2 ve 20/21/22 alanları scroll ile belirir, tıklanınca uygun ürünler listelenir. Mobil kurgusu baştan tasarlanır.
 - **Preloader:** Sektöre özel durum metinleri, gerçek yükleme ilerlemesi, oturum başına bir kez, en fazla yaklaşık 2 saniye.
 

@@ -1,7 +1,8 @@
-import { KNOWLEDGE_ENTRIES, type KnowledgeEntry } from '../../content/knowledge';
+import { KNOWLEDGE_CHAPTERS, KNOWLEDGE_ENTRIES, type KnowledgeEntry, MARKING_EXAMPLE } from '../../content/knowledge';
 import type { EntryText } from './knowledgeHooks';
 
-const MAX_RESULTS = 6;
+// Hero'daki sonuç listesi bölüm dizininin yerini alır, boyu değişmesin diye satır sayısı aynıdır.
+const MAX_RESULTS = KNOWLEDGE_CHAPTERS.length;
 
 const TITLE_START_SCORE = 3;
 const TITLE_SCORE = 2;
@@ -33,12 +34,17 @@ function collectStrings(value: unknown): string[] {
 export function buildSearchIndex(entries: Record<string, EntryText>, locale: string): SearchRecord[] {
   return KNOWLEDGE_ENTRIES.map((entry) => {
     const text = entries[entry.key];
+    // Tablolardaki kodlar (IIC, T6, Ex d) çeviri metninde değil yapı dosyasında durur, aranabilmeleri için eklenir.
+    const codes = [
+      ...(entry.codes?.map(({ code }) => code) ?? []),
+      ...(entry.key === 'markingRead' ? MARKING_EXAMPLE.map(({ code }) => code) : []),
+    ];
     return {
       entry,
       title: text.title,
       normalizedTitle: normalizeSearchText(text.title, locale),
       // Metindeki bağlantı etiketleri arama sonucunu etkilemesin.
-      haystack: normalizeSearchText(collectStrings(text).join(' ').replace(/<[^>]+>/g, ''), locale),
+      haystack: normalizeSearchText([...collectStrings(text), ...codes].join(' ').replace(/<[^>]+>/g, ''), locale),
     };
   });
 }

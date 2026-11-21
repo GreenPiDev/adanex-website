@@ -30,7 +30,7 @@ export const PRODUCT_LINKS = {
   catalog: 'https://www.adanex.com.tr/urun-kategori/exproof-urunler/',
 } as const;
 
-export type ChapterKey = 'basics' | 'zones' | 'products' | 'lighting' | 'selection' | 'faq';
+export type ChapterKey = 'basics' | 'zones' | 'marking' | 'products' | 'lighting' | 'selection' | 'faq';
 export type ListKind = 'numbered' | 'flow' | 'plain';
 
 type EntryDefinition = {
@@ -41,9 +41,16 @@ type EntryDefinition = {
   image?: KnowledgeImageNumber;
   /** Yan sütunlu ekranda görsel metnin yanında değil, sol sütunda madde dizininin altında durur. */
   imageInAside?: boolean;
-  /** "Bkz." satırında gösterilecek maddelerin anahtarları. */
+  /** "Bkz." satırında gösterilecek madde veya bölüm anahtarları. */
   seeAlso?: readonly string[];
+  /** Tablo satırlarının açtığı maddeler, satır sırasıyla aynıdır. */
+  rowTargets?: readonly string[];
+  /** Kod tablosu: kod buradan, açıklaması çeviri metnindeki `codes` alanından gelir. */
+  codes?: readonly CodeRow[];
 };
+
+/** Sıcaklık verilmişse açıklama yerine dile göre biçimlenmiş sıcaklık yazar. */
+export type CodeRow = { code: string; celsius?: number };
 
 type ChapterDefinition = {
   key: ChapterKey;
@@ -56,21 +63,52 @@ const CHAPTERS: readonly ChapterDefinition[] = [
     key: 'basics',
     slug: 'basics',
     entries: [
-      { key: 'whatIs', slug: 'what-is-exproof', image: 1, seeAlso: ['zone1', 'productChecklist'] },
-      { key: 'meaning', slug: 'exproof-meaning', image: 2, listKind: 'numbered', seeAlso: ['productChecklist'] },
+      { key: 'whatIs', slug: 'what-is-exproof', image: 1, seeAlso: ['zones', 'productChecklist'] },
+      { key: 'meaning', slug: 'exproof-meaning', image: 2, seeAlso: ['markingRead', 'productChecklist'] },
       { key: 'atex', slug: 'atex-and-exproof', seeAlso: ['faqAtex'] },
       { key: 'importance', slug: 'why-exproof-matters' },
-      { key: 'usage', slug: 'where-exproof-is-used', listKind: 'flow', seeAlso: ['zone1'] },
+      { key: 'usage', slug: 'where-exproof-is-used', listKind: 'flow', seeAlso: ['zones'] },
     ],
   },
   {
     key: 'zones',
     slug: 'zones',
     entries: [
+      { key: 'zone0', slug: 'zone-0' },
       { key: 'zone1', slug: 'zone-1' },
-      { key: 'zone21', slug: 'zone-21' },
       { key: 'zone2', slug: 'zone-2' },
+      { key: 'zone20', slug: 'zone-20' },
+      { key: 'zone21', slug: 'zone-21' },
       { key: 'zone22', slug: 'zone-22' },
+    ],
+  },
+  {
+    key: 'marking',
+    slug: 'ex-marking',
+    entries: [
+      { key: 'markingRead', slug: 'reading-ex-marking', seeAlso: ['zones'] },
+      {
+        key: 'protectionTypes',
+        slug: 'protection-types',
+        codes: [{ code: 'Ex d' }, { code: 'Ex e' }, { code: 'Ex i' }, { code: 'Ex m' }, { code: 'Ex p' }, { code: 'Ex t' }],
+      },
+      {
+        key: 'groups',
+        slug: 'gas-and-dust-groups',
+        codes: [{ code: 'IIA' }, { code: 'IIB' }, { code: 'IIC' }, { code: 'IIIA' }, { code: 'IIIB' }, { code: 'IIIC' }],
+      },
+      {
+        key: 'temperatureClasses',
+        slug: 'temperature-classes',
+        codes: [
+          { code: 'T1', celsius: 450 },
+          { code: 'T2', celsius: 300 },
+          { code: 'T3', celsius: 200 },
+          { code: 'T4', celsius: 135 },
+          { code: 'T5', celsius: 100 },
+          { code: 'T6', celsius: 85 },
+        ],
+      },
     ],
   },
   {
@@ -90,10 +128,14 @@ const CHAPTERS: readonly ChapterDefinition[] = [
     entries: [
       { key: 'lightingTypes', slug: 'lighting-types', image: 3, imageInAside: true },
       // Tablo genel bakıştır. Ayrıca iki görselli maddeyi ayırır, ilk görsel ekranda daha uzun kalır.
-      { key: 'whereToUse', slug: 'which-luminaire-where' },
+      {
+        key: 'whereToUse',
+        slug: 'which-luminaire-where',
+        rowTargets: ['floodlight', 'linear', 'weatherproof', 'globe', 'tank', 'highBay'],
+      },
       { key: 'floodlight', slug: 'floodlight', image: 4, imageInAside: true, seeAlso: ['whereToUse'] },
-      { key: 'linear', slug: 'linear-luminaire', seeAlso: ['zone1'] },
-      { key: 'weatherproof', slug: 'weatherproof-luminaire', seeAlso: ['atex'] },
+      { key: 'linear', slug: 'linear-luminaire', seeAlso: ['zones'] },
+      { key: 'weatherproof', slug: 'weatherproof-luminaire', seeAlso: ['markingRead'] },
       { key: 'globe', slug: 'globe-luminaire' },
       { key: 'tank', slug: 'tank-lighting' },
       { key: 'highBay', slug: 'high-bay-luminaire', seeAlso: ['lightingSelection'] },
@@ -103,8 +145,8 @@ const CHAPTERS: readonly ChapterDefinition[] = [
     key: 'selection',
     slug: 'selection',
     entries: [
-      { key: 'productChecklist', slug: 'product-checklist', seeAlso: ['faqAtex'] },
-      { key: 'lightingSelection', slug: 'lighting-selection', seeAlso: ['whereToUse'] },
+      { key: 'productChecklist', slug: 'product-checklist', seeAlso: ['markingRead', 'faqAtex'] },
+      { key: 'lightingSelection', slug: 'lighting-selection', seeAlso: ['markingRead', 'whereToUse'] },
       { key: 'rightLight', slug: 'right-light' },
     ],
   },
@@ -112,11 +154,12 @@ const CHAPTERS: readonly ChapterDefinition[] = [
     key: 'faq',
     slug: 'faq',
     entries: [
-      { key: 'faqWhat', slug: 'faq-what-is-exproof', seeAlso: ['whatIs'] },
-      { key: 'faqZone1', slug: 'faq-zone-1-products', seeAlso: ['zone1'] },
-      { key: 'faqZoneDiff', slug: 'faq-zone-1-vs-2', seeAlso: ['zone1', 'zone2'] },
-      { key: 'faqDust', slug: 'faq-dust-zones', seeAlso: ['zone21', 'zone22'] },
+      { key: 'faqZone1', slug: 'faq-zone-1-products', seeAlso: ['zones'] },
+      { key: 'faqHigherZone', slug: 'faq-zone-1-product-in-zone-2', seeAlso: ['zones', 'groups'] },
       { key: 'faqAtex', slug: 'faq-atex-certificate', seeAlso: ['productChecklist'] },
+      { key: 'faqIecex', slug: 'faq-atex-vs-iecex', seeAlso: ['atex'] },
+      { key: 'faqDocuments', slug: 'faq-documents', seeAlso: ['markingRead'] },
+      { key: 'faqMaintenance', slug: 'faq-maintenance', seeAlso: ['importance'] },
     ],
   },
 ];
@@ -156,20 +199,49 @@ export function getKnowledgeEntry(key: string): KnowledgeEntry {
   return entry;
 }
 
-/** "Hangi armatür nerede" tablosundaki satırların açtığı maddeler, satır sırasıyla aynıdır. */
-export const WHERE_TO_USE_TARGETS: readonly string[] = [
-  'floodlight',
-  'linear',
-  'weatherproof',
-  'globe',
-  'tank',
-  'highBay',
-];
+/** "Bkz." satırı bir maddeye veya bütün bir bölüme bağlanabilir. */
+export function resolveReference(key: string): { slug: string; chapterKey?: ChapterKey } {
+  const chapter = KNOWLEDGE_CHAPTERS.find((item) => item.key === key);
+  if (chapter) return { slug: chapter.slug, chapterKey: chapter.key };
+  return { slug: getKnowledgeEntry(key).slug };
+}
 
-/** Zone matrisinde satır ve sütun karşılığı: maddeler sırayla gaz/toz, sık/kısa. */
+/**
+ * Zone matrisinde satır ve sütun karşılığı ve o Zone'da kullanılabilecek en düşük ekipman kategorisi ile EPL.
+ * Kaynak: 2014/34/AB ve 1999/92/AT, IEC 60079-0. Üst kategorideki ekipman daha düşük riskli alanda da kullanılabilir.
+ */
 export const ZONE_CELLS = [
-  { key: 'zone1', medium: 'gas', frequency: 'occasional' },
-  { key: 'zone21', medium: 'dust', frequency: 'occasional' },
-  { key: 'zone2', medium: 'gas', frequency: 'brief' },
-  { key: 'zone22', medium: 'dust', frequency: 'brief' },
+  { key: 'zone0', medium: 'gas', frequency: 'continuous', category: '1G', epl: 'Ga' },
+  { key: 'zone1', medium: 'gas', frequency: 'occasional', category: '2G', epl: 'Gb' },
+  { key: 'zone2', medium: 'gas', frequency: 'brief', category: '3G', epl: 'Gc' },
+  { key: 'zone20', medium: 'dust', frequency: 'continuous', category: '1D', epl: 'Da' },
+  { key: 'zone21', medium: 'dust', frequency: 'occasional', category: '2D', epl: 'Db' },
+  { key: 'zone22', medium: 'dust', frequency: 'brief', category: '3D', epl: 'Dc' },
 ] as const;
+
+export type MarkingPartKey =
+  | 'symbol'
+  | 'group'
+  | 'category'
+  | 'atmosphere'
+  | 'ex'
+  | 'protection'
+  | 'gasGroup'
+  | 'temperature'
+  | 'epl';
+
+/**
+ * Ex etiketi çözümleyicideki örnek gaz işaretlemesi: II 2G Ex db IIC T6 Gb.
+ * Eğitim amaçlı bir örnektir, belirli bir ürüne ait değildir. `attached`, parçanın öncekine boşluksuz yazıldığını gösterir.
+ */
+export const MARKING_EXAMPLE: readonly { key: MarkingPartKey; code: string; attached?: boolean }[] = [
+  { key: 'symbol', code: 'εx' },
+  { key: 'group', code: 'II' },
+  { key: 'category', code: '2' },
+  { key: 'atmosphere', code: 'G', attached: true },
+  { key: 'ex', code: 'Ex' },
+  { key: 'protection', code: 'db' },
+  { key: 'gasGroup', code: 'IIC' },
+  { key: 'temperature', code: 'T6' },
+  { key: 'epl', code: 'Gb' },
+];

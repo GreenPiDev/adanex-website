@@ -5,7 +5,7 @@ import {
   KNOWLEDGE_IMAGES,
   type KnowledgeEntry,
   type ListKind,
-  WHERE_TO_USE_TARGETS,
+  resolveReference,
 } from '../../content/knowledge';
 import styles from './Chapter.module.css';
 import { EntryLink, KnowledgeImage, LeadRow, RichText } from './KnowledgeText';
@@ -39,8 +39,9 @@ type EntryProps = {
 /** Sözlük maddesi: numara, başlık, öne çıkan tanım ve ardından ayrıntılar. */
 export function Entry({ entry, className = '', children }: EntryProps) {
   const { i18n } = useTranslation();
-  const { entries, common } = useKnowledge();
+  const { entries, chapters, common } = useKnowledge();
   const text = entries[entry.key];
+  const celsius = new Intl.NumberFormat(i18n.language, { style: 'unit', unit: 'celsius' });
   // Geniş görsel metnin altında kalır, diğerleri büyük metinle aynı satırı paylaşır.
   const imageInfo = entry.image ? KNOWLEDGE_IMAGES[entry.image] : undefined;
 
@@ -129,14 +130,45 @@ export function Entry({ entry, className = '', children }: EntryProps) {
             </tr>
           </thead>
           <tbody>
-            {text.rows.map((row, index) => (
-              <tr key={row.type}>
-                <th scope="row">
-                  <EntryLink className={styles.tableLink} slug={getKnowledgeEntry(WHERE_TO_USE_TARGETS[index]).slug}>
-                    {row.type}
-                  </EntryLink>
+            {text.rows.map((row, index) => {
+              const target = entry.rowTargets?.[index];
+              return (
+                <tr key={row.type}>
+                  <th scope="row">
+                    {target ? (
+                      <EntryLink className={styles.tableLink} slug={getKnowledgeEntry(target).slug}>
+                        {row.type}
+                      </EntryLink>
+                    ) : (
+                      <span className={styles.tableKey}>{row.type}</span>
+                    )}
+                  </th>
+                  <td>{row.use}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
+
+      {entry.codes && text.columns && (
+        <table className={`${styles.table} ${styles.codeTable}`}>
+          <thead>
+            <tr>
+              {text.columns.map((column) => (
+                <th key={column} scope="col">
+                  {column}
                 </th>
-                <td>{row.use}</td>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {entry.codes.map((row) => (
+              <tr key={row.code}>
+                <th scope="row">
+                  <span className={styles.tableCode}>{row.code}</span>
+                </th>
+                <td>{row.celsius === undefined ? text.codes?.[row.code] : celsius.format(row.celsius)}</td>
               </tr>
             ))}
           </tbody>
@@ -160,11 +192,15 @@ export function Entry({ entry, className = '', children }: EntryProps) {
       {entry.seeAlso && (
         <p className={styles.seeAlso}>
           <span className={styles.seeAlsoLabel}>{common.seeAlso}</span>
-          {entry.seeAlso.map((key) => (
-            <EntryLink key={key} className={styles.seeAlsoLink} slug={getKnowledgeEntry(key).slug}>
-              {entries[key].title}
-            </EntryLink>
-          ))}
+          {entry.seeAlso.map((key) => {
+            const reference = resolveReference(key);
+            const label = reference.chapterKey ? chapters[reference.chapterKey].title : entries[key].title;
+            return (
+              <EntryLink key={key} className={styles.seeAlsoLink} slug={reference.slug}>
+                {label}
+              </EntryLink>
+            );
+          })}
         </p>
       )}
     </article>

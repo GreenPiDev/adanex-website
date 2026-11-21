@@ -16,12 +16,10 @@ type ChapterProps = {
   aside?: ReactNode;
   /** Verilmezse bölümün maddeleri sırayla yazılır. */
   children?: ReactNode;
-  /** Maddelerin altındaki uyarı. */
-  note?: string;
 };
 
 /** Sözlük düzeni: solda yapışık bölüm başlığı ve madde dizini, sağda akan maddeler. */
-export function Chapter({ chapter, surface, tone, className = '', aside, children, note }: ChapterProps) {
+export function Chapter({ chapter, surface, tone, className = '', aside, children }: ChapterProps) {
   const { i18n } = useTranslation();
   const { chapters, entries, common } = useKnowledge();
   const rootRef = useRef<HTMLElement>(null);
@@ -89,7 +87,6 @@ export function Chapter({ chapter, surface, tone, className = '', aside, childre
 
       <div ref={entriesRef} className={styles.entries}>
         {children ?? chapter.entries.map((entry) => <Entry key={entry.key} entry={entry} />)}
-        {note && <p className={styles.chapterNote}>{note}</p>}
       </div>
     </section>
   );

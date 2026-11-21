@@ -350,6 +350,33 @@
   color: var(--chapter-accent);
 }
 
+.tableKey {
+  font-family: var(--font-display);
+  font-size: var(--text-kb-lead);
+  font-weight: var(--weight-display);
+  line-height: 1.15;
+}
+
+/* Kod tablosunda dar ekranda da kod ile açıklama yan yanadır, kod kısa olduğu için sütun dar kalır. */
+.codeTable {
+  max-inline-size: var(--entry-measure);
+}
+
+.codeTable tr {
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: var(--space-sm);
+  align-items: baseline;
+}
+
+.tableCode {
+  font-family: var(--font-industrial);
+  font-size: var(--text-kb-lead);
+  font-weight: var(--weight-heavy);
+  line-height: 1.1;
+  color: var(--chapter-accent);
+  white-space: nowrap;
+}
+
 /* Dar ekranda metin ve görsel alt alta, daha geniş ekranlarda yan yanadır. */
 .leadRow {
   display: grid;
@@ -388,13 +415,6 @@
   display: block;
   inline-size: 100%;
   block-size: auto;
-}
-
-.chapterNote {
-  max-inline-size: var(--entry-measure);
-  font-size: var(--text-kb-body);
-  line-height: 1.5;
-  opacity: 0.7;
 }
 
 @media (min-width: 48rem) {
@@ -447,6 +467,10 @@
     grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
     gap: var(--space-md);
     align-items: center;
+  }
+  .codeTable tr {
+    grid-template-columns: 7rem minmax(0, 1fr);
+    align-items: baseline;
   }
 }
 
@@ -561,7 +585,6 @@
 .paragraph,
 .stepText,
 .callout,
-.chapterNote,
 .listFlow,
 .table td {
   hyphens: auto;
@@ -572,7 +595,6 @@
   .paragraph,
   .stepText,
   .callout,
-  .chapterNote,
   .table td {
     text-align: justify;
   }

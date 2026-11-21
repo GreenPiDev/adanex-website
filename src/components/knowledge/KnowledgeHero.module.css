@@ -97,12 +97,12 @@
   white-space: nowrap;
 }
 
-/* Sonuç sayısı en fazla bölüm sayısı kadardır, arama yazarken hero'nun boyu değişmez. */
+/* Sonuç sayısı en fazla bölüm sayısı kadardır, arama yazarken hero'nun boyu değişmez. --row-count bölüm sayısıdır (KnowledgeHero). */
 .list {
   display: grid;
   flex: 1;
   /* Telefonda satırlar ekranı doldurmak için uzamaz, uzun başlıklar gerekirse kendi boyunu alır. */
-  grid-template-rows: repeat(6, minmax(min-content, 3.75rem));
+  grid-template-rows: repeat(var(--row-count), minmax(min-content, 3.75rem));
   align-content: start;
   margin: 0;
   padding: 0;
@@ -215,7 +215,7 @@
   }
 
   .list {
-    grid-template-rows: repeat(6, minmax(min-content, 1fr));
+    grid-template-rows: repeat(var(--row-count), minmax(min-content, 1fr));
   }
 
   .meta {

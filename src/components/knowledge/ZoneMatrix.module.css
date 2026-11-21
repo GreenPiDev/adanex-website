@@ -40,9 +40,9 @@
 
 .cell {
   position: relative;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-sm);
-  align-content: start;
   padding-block: var(--space-md);
   border-block-start: 1px solid var(--hairline);
   scroll-margin-top: calc(var(--header-height) + var(--space-sm));
@@ -91,6 +91,16 @@
   line-height: 1.35;
 }
 
+/* Aynı satırdaki hücrelerde ekipman satırı aynı hizada, hücrenin dibinde durur. */
+.equipment {
+  margin-block-start: auto;
+  padding-block-start: var(--space-sm);
+  font-family: var(--font-industrial);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-heavy);
+  color: var(--color-amber);
+}
+
 .note {
   max-inline-size: 42em;
   font-size: var(--text-kb-body);
@@ -101,7 +111,7 @@
 @media (min-width: 48rem) {
   .matrix {
     grid-template-columns: var(--touch-target) repeat(2, minmax(0, 1fr));
-    grid-template-rows: auto repeat(2, auto);
+    grid-template-rows: auto repeat(3, auto);
   }
 
   .axis {
@@ -153,12 +163,16 @@
     grid-column: 3;
   }
 
-  .occasional {
+  .continuous {
     grid-row: 2;
   }
 
-  .brief {
+  .occasional {
     grid-row: 3;
+  }
+
+  .brief {
+    grid-row: 4;
   }
 
   .tags {

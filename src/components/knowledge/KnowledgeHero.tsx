@@ -1,4 +1,4 @@
-import { type FormEvent, type KeyboardEvent, useMemo, useRef, useState } from 'react';
+import { type CSSProperties, type FormEvent, type KeyboardEvent, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { gsap, MOTION, useGSAP } from '../../animations/gsap';
@@ -101,7 +101,11 @@ export function KnowledgeHero() {
             </Link>
           </p>
         ) : (
-          <ol className={styles.list} aria-label={isSearching ? hero.resultsLabel : hero.indexLabel}>
+          <ol
+            className={styles.list}
+            style={{ '--row-count': KNOWLEDGE_CHAPTERS.length } as CSSProperties}
+            aria-label={isSearching ? hero.resultsLabel : hero.indexLabel}
+          >
             {isSearching
               ? results.map(({ entry, title }) => (
                   <li key={entry.key} className={styles.item}>

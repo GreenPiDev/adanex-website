@@ -5,14 +5,14 @@ import chapterStyles from './Chapter.module.css';
 import { useChapterReveal, useKnowledge } from './knowledgeHooks';
 import styles from './ZoneMatrix.module.css';
 
-const FREQUENCY_ROWS = ['occasional', 'brief'] as const;
+const FREQUENCY_ROWS = ['continuous', 'occasional', 'brief'] as const;
 
 // Ölçüm farkları cümleyi ikinci satıra düşürmesin diye küçük bir pay bırakılır.
 const NOTE_FIT_MARGIN = 1.01;
 
-/** Dört Zone, ortam (gaz/toz) ve sıklık eksenli bir matristir. */
+/** Altı Zone, ortam (gaz/toz) ve sıklık eksenli bir matristir. */
 export function ZoneMatrix() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation('knowledge');
   const { chapters, entries, zoneAxes, common } = useKnowledge();
   const rootRef = useRef<HTMLElement>(null);
   const noteRef = useRef<HTMLParagraphElement>(null);
@@ -75,7 +75,7 @@ export function ZoneMatrix() {
           </p>
         ))}
 
-        {ZONE_CELLS.map(({ key, medium, frequency }) => {
+        {ZONE_CELLS.map(({ key, medium, frequency, category, epl }) => {
           const [word, number] = entries[key].title.split(' ');
 
           return (
@@ -96,6 +96,7 @@ export function ZoneMatrix() {
                 {zoneAxes[medium]} / {zoneAxes[frequency]}
               </p>
               <p className={styles.definition}>{entries[key].lead}</p>
+              <p className={styles.equipment}>{t('zoneAxes.equipment', { category, epl })}</p>
             </article>
           );
         })}
