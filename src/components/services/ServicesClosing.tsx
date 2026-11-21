@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router';
 import { gsap, MOTION, useGSAP } from '../../animations/gsap';
+import { CONTACT } from '../../content/contact';
 import { revealTrigger, revealWordsOnScroll } from '../../animations/reveal';
 import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { getLocaleFromPathname, localizePath } from '../../i18n/locale';
@@ -56,10 +57,17 @@ export function ServicesClosing() {
       )}
 
       <div className={styles.footer} data-closing-footer>
-        <Link className={styles.cta} to={contactPath} data-closing-reveal>
-          <RollText text={t('closing.cta').toLocaleUpperCase(i18n.language)} />
-          <RollArrow />
-        </Link>
+        {/* Sahadaki okuyucu için form kadar kısa bir yol da telefondur. */}
+        <div className={styles.actions} data-closing-reveal>
+          <Link className={styles.cta} to={contactPath}>
+            <RollText text={t('closing.cta').toLocaleUpperCase(i18n.language)} />
+            <RollArrow />
+          </Link>
+          <a className={styles.phone} href={CONTACT.phone.href}>
+            <span className={styles.phoneLabel}>{t('closing.phone')}</span>
+            <RollText className={styles.phoneNumber} text={CONTACT.phone.display} />
+          </a>
+        </div>
         <p className={styles.note} data-closing-reveal>{t('closing.note')}</p>
       </div>
     </section>

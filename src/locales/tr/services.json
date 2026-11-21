@@ -43,6 +43,16 @@
         "first": "Teknik şartname analizi",
         "second": "Mühendislik doğruluğuyla fiyatlandırma",
         "third": "Sahadaki ihtiyaca göre teklif"
+      },
+      "request": {
+        "title": "Teklif için gerekenler",
+        "items": {
+          "specification": "Teknik şartname veya ürün listesi",
+          "diagram": "Varsa tek hat şeması ve yerleşim planı",
+          "zone": "Tesisin Zone sınıflandırması"
+        },
+        "cta": "Teklif isteyin",
+        "files": "Dosyaları e-postayla gönderebilirsiniz: <email>{{email}}</email>"
       }
     },
     "implementation": {
@@ -64,7 +74,8 @@
   "closing": {
     "title": "Tesisinizi sahada birlikte değerlendirelim.",
     "cta": "İletişime geçin",
-    "note": "Zone sınıflandırması ve ürün seçimi, tesisinize özel olarak yetkin uzmanlarca yapılmalıdır."
+    "note": "Zone sınıflandırması ve ürün seçimi, tesisinize özel olarak yetkin uzmanlarca yapılmalıdır.",
+    "phone": "Ya da arayın"
   },
   "rail": {
     "label": "Hizmet aşamaları"

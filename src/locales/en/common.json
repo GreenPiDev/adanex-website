@@ -119,7 +119,10 @@
         "combination": "I would like a quote for explosion-proof combination boxes.",
         "glands": "I would like a quote for explosion-proof cable gland systems.",
         "control": "I would like a quote for explosion-proof control and safety equipment.",
-        "ventilation": "I would like a quote for explosion-proof ventilation products."
+        "ventilation": "I would like a quote for explosion-proof ventilation products.",
+        "services": {
+          "quotation": "I would like a quote for a project. I can send the specification and related documents by email."
+        }
       },
       "status": {
         "sending": "Sending your message…",

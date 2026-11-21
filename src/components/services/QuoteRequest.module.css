@@ -1,0 +1,128 @@
+/* Koyu zeminde, kapsam listesinin altında duran teklif eylemi. Sarı çerçeve onu kapsam satırlarından ayırır. */
+.request {
+  display: grid;
+  gap: var(--space-md);
+  margin-block-start: var(--space-lg);
+  padding: var(--space-md);
+  border: 1px solid color-mix(in srgb, var(--color-amber) 55%, transparent);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-industrial);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-heavy);
+  line-height: 1.2;
+  color: var(--color-amber);
+}
+
+.list {
+  display: grid;
+  gap: calc(var(--space-sm) / 2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Madde işareti kare bir klemenstir, bara şemasıyla aynı dil. */
+.item {
+  position: relative;
+  padding-inline-start: 1.25em;
+  font-size: var(--text-sv-body);
+  line-height: 1.5;
+}
+
+.item::before {
+  position: absolute;
+  inset-block-start: 0.6em;
+  inset-inline-start: 0;
+  inline-size: 0.45em;
+  block-size: 0.45em;
+  content: '';
+  background: var(--color-amber);
+}
+
+.actions {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+/* Düğme sarıdır, üzerine gelince alttan beyaz dolar. */
+.cta {
+  position: relative;
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: calc(var(--touch-target) * 1.25);
+  padding-inline: var(--space-md);
+  overflow: hidden;
+  font-family: var(--font-industrial);
+  font-size: var(--text-nav);
+  font-weight: var(--weight-heavy);
+  color: var(--color-black);
+  isolation: isolate;
+  background: var(--color-amber);
+  --roll-hover-color: var(--color-black);
+}
+
+.cta::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background: var(--color-white);
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+}
+
+.files {
+  margin: 0;
+  font-size: var(--text-sv-body);
+  line-height: 1.5;
+  opacity: 0.78;
+}
+
+/* Satır içi bağlantı: dokunma alanı satır yüksekliğinden büyük olsun diye dikey pay verilir. */
+.mail {
+  display: inline-block;
+  padding-block: 0.6em;
+  margin-block: -0.6em;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 37.5rem) {
+  .actions {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  .cta {
+    min-inline-size: 16rem;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover::before {
+    transform: none;
+  }
+
+  .mail:hover {
+    color: var(--color-amber);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta::before {
+    transition: none;
+  }
+}

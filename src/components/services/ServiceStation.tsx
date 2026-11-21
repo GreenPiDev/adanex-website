@@ -10,6 +10,7 @@ import {
 } from '../../content/services';
 import { useIsMobile, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { DOT_SHAPES } from './dotShapes';
+import { QuoteRequest } from './QuoteRequest';
 import styles from './ServiceStation.module.css';
 
 // Hattın dolan ucu her zaman ekranın bu yüksekliğindedir, klemensler bu çizgiyi geçince yanar.
@@ -160,6 +161,9 @@ export function ServiceStation({ station, index }: ServiceStationProps) {
             ))}
           </ol>
         </div>
+
+        {/* Teklif aşamasında okuyucu bir sonraki adımı doğrudan atabilir. */}
+        {station.key === 'quotation' && <QuoteRequest />}
       </div>
     </section>
   );

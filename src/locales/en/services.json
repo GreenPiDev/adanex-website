@@ -43,6 +43,16 @@
         "first": "Technical specification analysis",
         "second": "Pricing with engineering accuracy",
         "third": "Quotation based on site needs"
+      },
+      "request": {
+        "title": "What we need for a quote",
+        "items": {
+          "specification": "Technical specification or product list",
+          "diagram": "Single-line diagram and layout plan, if available",
+          "zone": "Zone classification of the facility"
+        },
+        "cta": "Request a quote",
+        "files": "You can send files by email: <email>{{email}}</email>"
       }
     },
     "implementation": {
@@ -64,7 +74,8 @@
   "closing": {
     "title": "Let’s assess your facility together, on site.",
     "cta": "Get in touch",
-    "note": "Zone classification and product selection must be carried out by competent experts, specifically for your facility."
+    "note": "Zone classification and product selection must be carried out by competent experts, specifically for your facility.",
+    "phone": "Or call us"
   },
   "rail": {
     "label": "Service stages"

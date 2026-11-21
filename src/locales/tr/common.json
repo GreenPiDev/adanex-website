@@ -119,7 +119,10 @@
         "combination": "Exproof kombinasyon kutuları için teklif almak istiyorum.",
         "glands": "Exproof kablo ve rakor sistemleri için teklif almak istiyorum.",
         "control": "Exproof kontrol ve güvenlik ekipmanları için teklif almak istiyorum.",
-        "ventilation": "Exproof havalandırma ürünleri için teklif almak istiyorum."
+        "ventilation": "Exproof havalandırma ürünleri için teklif almak istiyorum.",
+        "services": {
+          "quotation": "Proje için teklif almak istiyorum. Şartname ve ilgili belgeleri e-postayla iletebilirim."
+        }
       },
       "status": {
         "sending": "Mesajınız gönderiliyor…",

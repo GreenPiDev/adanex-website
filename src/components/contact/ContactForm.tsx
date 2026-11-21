@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router';
 import { z } from 'zod';
 import { PRODUCT_FAMILIES } from '../../content/products';
+import { isServicePrefillSlug, SERVICE_CONTACT_PARAM } from '../../content/services';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
 import styles from './ContactForm.module.css';
 
@@ -57,8 +58,12 @@ export function ContactForm() {
   const [searchParams] = useSearchParams();
 
   // Ürünler sayfasındaki teklif bağlantısından gelindiyse mesaj o ürün ailesinin teklif cümlesiyle başlar.
+  // Hizmetler sayfasındaki teklif bağlantısından gelindiyse o hizmetin cümlesiyle başlar.
   const family = PRODUCT_FAMILIES.find(({ slug }) => slug === searchParams.get('product'));
-  const initialMessage = family ? t(`contact.form.prefill.${family.key}`) : '';
+  const service = searchParams.get(SERVICE_CONTACT_PARAM);
+  let initialMessage = '';
+  if (family) initialMessage = t(`contact.form.prefill.${family.key}`);
+  else if (isServicePrefillSlug(service)) initialMessage = t(`contact.form.prefill.services.${service}`);
 
   const {
     register,

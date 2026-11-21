@@ -79,6 +79,45 @@
   outline-offset: 3px;
 }
 
+/* Düğme ve altındaki telefon tek bir eylem grubudur. */
+.actions {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+/* Telefon ikincil eylemdir: düğmenin altında, ince bir alt çizgiyle durur. */
+.phone {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-sm);
+  align-items: baseline;
+  justify-content: space-between;
+  min-block-size: var(--touch-target);
+  padding-block: var(--space-sm);
+  padding-inline: var(--space-md);
+  border-block-end: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  --roll-hover-color: var(--color-black);
+}
+
+.phoneLabel {
+  font-size: var(--text-nav);
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+}
+
+.phoneNumber {
+  font-family: var(--font-display);
+  font-size: var(--text-sv-lead);
+  font-weight: var(--weight-display);
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.phone:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 3px;
+}
+
 .note {
   max-inline-size: 36em;
   font-size: var(--text-sv-body);
@@ -92,9 +131,8 @@
     align-items: center;
   }
 
-  .cta {
+  .actions {
     order: 1;
-    inline-size: auto;
     min-inline-size: 22rem;
   }
 }
@@ -122,6 +160,10 @@
 @media (hover: hover) and (pointer: fine) {
   .cta:hover::before {
     transform: none;
+  }
+
+  .phone:hover {
+    border-block-end-color: currentColor;
   }
 }
 
