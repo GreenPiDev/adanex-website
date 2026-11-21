@@ -25,7 +25,7 @@ type ChapterPhotoProps = ChapterPhotoSource & {
 /**
  * Bölümün yanındaki ürün fotoğrafı. Ekrana gelince üstündeki sarı perde yukarı toplanır,
  * fotoğraf hafif büyükten yerine oturur. Ardından sayfa kaydıkça çerçeveyle birlikte metinden biraz yavaş kayar.
- * Çerçeve fotoğrafın oranındadır, fotoğraf kırpılmaz. Kayma, altındaki içeriğe değmeyecek kadar küçüktür. Telefonda yalnızca açılış çalışır, kayma yoktur. Tıklanınca tam ekran açılır (Hakkımızda'daki gibi).
+ * Çerçeve fotoğrafın oranındadır, fotoğraf kırpılmaz. Kayma, altındaki içeriğe değmeyecek kadar küçüktür. Telefonda yalnızca açılış çalışır, kayma yoktur. Tıklanınca tam ekran açılır (Ürünler sayfasındaki gibi).
  */
 export function ChapterPhoto({ src, width, height, alt, name, fitHeight = false }: ChapterPhotoProps) {
   const { t } = useTranslation();

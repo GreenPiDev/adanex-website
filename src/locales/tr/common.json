@@ -6,7 +6,7 @@
     "label": "Ana menü",
     "items": {
       "home": "Ana Sayfa",
-      "about": "Hakkımızda",
+      "products": "Ürünler",
       "services": "Hizmetlerimiz",
       "projects": "Çalışmalarımız",
       "contact": "İletişim",
@@ -114,6 +114,13 @@
       "messageLabel": "Mesaj",
       "consent": "Talebime dönüş yapılabilmesi için kişisel verilerimin işlenmesini kabul ediyorum.",
       "submit": "Gönder",
+      "prefill": {
+        "lighting": "Exproof aydınlatma ürünleri için teklif almak istiyorum.",
+        "combination": "Exproof kombinasyon kutuları için teklif almak istiyorum.",
+        "glands": "Exproof kablo ve rakor sistemleri için teklif almak istiyorum.",
+        "control": "Exproof kontrol ve güvenlik ekipmanları için teklif almak istiyorum.",
+        "ventilation": "Exproof havalandırma ürünleri için teklif almak istiyorum."
+      },
       "status": {
         "sending": "Mesajınız gönderiliyor…",
         "sent": "Mesajınız bize ulaştı, en kısa sürede dönüş yapacağız.",

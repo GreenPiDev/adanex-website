@@ -11,6 +11,8 @@
     "title": "Kutudan çıktığı gibi sahaya.",
     "lead": "Ürün gamımız geniştir. Ürünler sahada ek montaj veya aksesuar gerektirmeden, doğrudan kullanıma hazır şekilde sevk edilir.",
     "aliasLabel": "Sahada bilinen adları:",
+    "quote": "Teklif isteyin",
+    "quoteLabel": "{{product}} için teklif isteyin",
     "columns": {
       "family": "Ürün ailesi",
       "items": "İçerik",
@@ -184,7 +186,7 @@
       "food": "Gıda üretim alanları",
       "storage": "Depolama sahaları"
     },
-    "cta": "İletişime geçin",
+    "cta": "Ürün listesi isteyin",
     "note": "Hangi bölgede hangi ürünün kullanılacağı, tesisin Zone sınıflandırmasına göre yetkin uzmanlarca belirlenmelidir."
   },
   "rail": {

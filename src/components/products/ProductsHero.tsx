@@ -3,14 +3,14 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
-import { PRODUCT_FAMILIES } from '../../content/about';
+import { PRODUCT_FAMILIES } from '../../content/products';
 import { useDevice, useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { useSectionJump } from '../../hooks/useSectionJump';
 import { PageHero } from '../layout/PageHero/PageHero';
 import { Lightbox } from '../ui/Lightbox/Lightbox';
 import { ScrollCue } from '../ui/ScrollCue/ScrollCue';
-import styles from './AboutHero.module.css';
-import { useAboutCopy } from './useAboutCopy';
+import styles from './ProductsHero.module.css';
+import { useProductsCopy } from './useProductsCopy';
 
 // Hero görseli: tanıtım afişi kolonu doldurur. Dar ekranda hiç yüklenmez.
 const HERO_VISUALS = [{ key: 'poster', src: '/a1.webp' }] as const;
@@ -21,11 +21,11 @@ const HERO_VISUAL_SIZE = { width: 1024, height: 1536 } as const;
  * Sayfanın girişi: üstte slogan, altta firmayı anlatan kısa giriş ve beş ürün ailesi.
  * Aileler eğik çizgiyle ayrılmış bağlantılardır, her biri ürün gamındaki kendi satırına götürür.
  */
-export function AboutHero() {
-  const { t, i18n } = useTranslation('about');
+export function ProductsHero() {
+  const { t, i18n } = useTranslation('products');
   const { t: tCommon } = useTranslation();
   const inspectCursor = useInspectCursor();
-  const { ledger } = useAboutCopy();
+  const { ledger } = useProductsCopy();
   const prefersReducedMotion = usePrefersReducedMotion();
   const rootRef = useRef<HTMLElement>(null);
   const jump = useSectionJump();
@@ -68,7 +68,7 @@ export function AboutHero() {
     <PageHero
       ref={rootRef}
       className={styles.hero}
-      title={tCommon('nav.items.about').toLocaleUpperCase(i18n.language)}
+      title={tCommon('nav.items.products').toLocaleUpperCase(i18n.language)}
     >
       <div className={hasVisuals ? `${styles.panel} ${styles.withVisuals}` : styles.panel}>
         <div className={styles.copy}>

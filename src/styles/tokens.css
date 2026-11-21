@@ -76,7 +76,7 @@
   --text-sv-stat: min(36cqi, 18svh, 14rem);
   --text-sv-stat-caption: clamp(1rem, 4.2cqi, 2.25rem);
   --text-sv-closing: clamp(2.25rem, 1.2rem + 4.6vw, 7rem);
-  /* Hakkımızda: hero sloganı kolon genişliğine, kısa ekranlarda yüksekliğe bağlıdır. */
+  /* Ürünler: hero sloganı kolon genişliğine, kısa ekranlarda yüksekliğe bağlıdır. */
   --text-ab-statement: min(13cqi, 6svh);
   --text-ab-statement-wide: min(8.4cqi, 9svh);
   /* Hero'daki eğik çizgili ürün aileleri. */

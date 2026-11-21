@@ -1,5 +1,5 @@
 import 'i18next';
-import type about from '../locales/tr/about.json';
+import type products from '../locales/tr/products.json';
 import type common from '../locales/tr/common.json';
 import type home from '../locales/tr/home.json';
 import type knowledge from '../locales/tr/knowledge.json';
@@ -9,7 +9,7 @@ declare module 'i18next' {
   interface CustomTypeOptions {
     defaultNS: 'common';
     resources: {
-      about: typeof about;
+      products: typeof products;
       common: typeof common;
       home: typeof home;
       knowledge: typeof knowledge;

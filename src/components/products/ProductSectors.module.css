@@ -67,6 +67,11 @@
   --roll-hover-color: var(--color-black);
 }
 
+/* Dar ekranda uzun dillerde metin kesilmesin, alt satıra geçsin. */
+.cta .ctaText {
+  white-space: normal;
+}
+
 .cta::before {
   position: absolute;
   inset: 0;

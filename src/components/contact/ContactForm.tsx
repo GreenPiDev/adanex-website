@@ -2,7 +2,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { type ReactNode, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router';
 import { z } from 'zod';
+import { PRODUCT_FAMILIES } from '../../content/products';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
 import styles from './ContactForm.module.css';
 
@@ -20,7 +22,6 @@ type ContactValues = z.infer<typeof contactSchema>;
 type SendStatus = 'idle' | 'sending' | 'sent' | 'error';
 
 const DEFAULT_VALUES: ContactValues = { name: '', email: '', message: '', consent: false, company: '' };
-
 
 type FieldProps = {
   id: string;
@@ -53,12 +54,21 @@ function Field({ id, number, label, error, children }: FieldProps) {
 export function ContactForm() {
   const { t, i18n } = useTranslation();
   const [status, setStatus] = useState<SendStatus>('idle');
+  const [searchParams] = useSearchParams();
+
+  // Ürünler sayfasındaki teklif bağlantısından gelindiyse mesaj o ürün ailesinin teklif cümlesiyle başlar.
+  const family = PRODUCT_FAMILIES.find(({ slug }) => slug === searchParams.get('product'));
+  const initialMessage = family ? t(`contact.form.prefill.${family.key}`) : '';
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<ContactValues>({ resolver: zodResolver(contactSchema), defaultValues: DEFAULT_VALUES });
+  } = useForm<ContactValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: { ...DEFAULT_VALUES, message: initialMessage },
+  });
 
   // Mesaj, Resend'e ileten Vercel fonksiyonuna (api/contact.ts) gönderilir.
   const onSubmit = async (values: ContactValues) => {
@@ -70,13 +80,13 @@ export function ContactForm() {
         body: JSON.stringify({ ...values, language: i18n.language }),
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      reset();
+      // Gönderimden sonra önceden yazılmış mesaj geri gelmesin.
+      reset(DEFAULT_VALUES);
       setStatus('sent');
     } catch {
       setStatus('error');
     }
   };
-
 
   const describe = (id: string, hasError: boolean) => ({
     'aria-invalid': hasError,

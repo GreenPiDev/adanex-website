@@ -11,6 +11,8 @@
     "title": "Straight from the box to the site.",
     "lead": "Our product range is broad. Products are shipped ready to use on site, with no extra assembly or accessories required.",
     "aliasLabel": "Also known on site as:",
+    "quote": "Request a quote",
+    "quoteLabel": "Request a quote for {{product}}",
     "columns": {
       "family": "Product family",
       "items": "Contents",
@@ -184,7 +186,7 @@
       "food": "Food production areas",
       "storage": "Storage sites"
     },
-    "cta": "Get in touch",
+    "cta": "Request a product list",
     "note": "Which product is used in which area must be determined by competent experts based on the site's Zone classification."
   },
   "rail": {

@@ -9,7 +9,7 @@ export type HomeChapterKey = 'glands' | 'combination' | 'lighting';
 type ChapterFact = { key: string; value?: string };
 
 /**
- * Çözüm bölümleri sırasıyla. `slug` hem bölümün sayfa içi adresi hem de Hakkımızda'daki ürün gamında aynı ailenin
+ * Çözüm bölümleri sırasıyla. `slug` hem bölümün sayfa içi adresi hem de Ürünler sayfasındaki ürün gamında aynı ailenin
  * satırıdır: bölümün sonundaki bağlantı oraya gider.
  */
 export const HOME_CHAPTERS: readonly {

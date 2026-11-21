@@ -4,9 +4,9 @@ import { NAV_ITEMS } from './content/navigation';
 import { type Locale, localizePath } from './i18n/locale';
 import { HomePage } from './pages/HomePage';
 
-async function loadAboutPage() {
-  const { AboutPage } = await import('./pages/AboutPage');
-  return { Component: AboutPage };
+async function loadProductsPage() {
+  const { ProductsPage } = await import('./pages/ProductsPage');
+  return { Component: ProductsPage };
 }
 
 async function loadContactPage() {
@@ -38,7 +38,7 @@ type PagePath = Exclude<(typeof NAV_ITEMS)[number]['path'], '/home'>;
 
 // Her sayfa kendi parçasıyla yüklenir. Menüye eklenen yeni sayfanın yükleyicisi yoksa tip hatası verir.
 const PAGE_LOADERS: Record<PagePath, NonNullable<RouteObject['lazy']>> = {
-  '/about': loadAboutPage,
+  '/products': loadProductsPage,
   '/contact': loadContactPage,
   '/projects': loadProjectsPage,
   '/knowledge-center': loadKnowledgePage,

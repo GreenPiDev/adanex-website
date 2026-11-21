@@ -1,11 +1,14 @@
 import { type RefObject, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router';
 import { gsap, MOTION, useGSAP } from '../../animations/gsap';
 import { revealMarkedOnScroll, revealTrigger, revealWordsOnScroll } from '../../animations/reveal';
-import { formatFactValue, formatIndex, PRODUCT_FAMILIES } from '../../content/about';
+import { formatFactValue, formatIndex, PRODUCT_FAMILIES } from '../../content/products';
 import { usePrefersReducedMotion } from '../../hooks/useDevice';
+import { getLocaleFromPathname, localizePath } from '../../i18n/locale';
+import { RollArrow, RollText } from '../ui/RollText/RollText';
 import styles from './ProductLedger.module.css';
-import { useAboutCopy } from './useAboutCopy';
+import { useProductsCopy } from './useProductsCopy';
 
 /** Sahada bilinen adlar tırnak içinde, adın yanında soluk yazılır. Ekran okuyucu önce etiketi okur. */
 function Aliases({ aliases, label, className }: { aliases?: string[]; label: string; className: string }) {
@@ -33,10 +36,11 @@ type ProductLedgerProps = {
  * Liste bitince üzerine "sevke hazır" damgası basılır: ürünler kullanıma hazır sevk edilir.
  */
 export function ProductLedger({ sequenceRef }: ProductLedgerProps) {
-  const { t, i18n } = useTranslation('about');
-  const { ledger } = useAboutCopy();
+  const { t, i18n } = useTranslation('products');
+  const { ledger } = useProductsCopy();
   const prefersReducedMotion = usePrefersReducedMotion();
   const rootRef = useRef<HTMLElement>(null);
+  const locale = getLocaleFromPathname(useLocation().pathname);
   const upper = (text: string) => text.toLocaleUpperCase(i18n.language);
 
   useGSAP(
@@ -120,6 +124,15 @@ export function ProductLedger({ sequenceRef }: ProductLedgerProps) {
                 </h3>
                 <Aliases aliases={family.aliases} label={ledger.aliasLabel} className={styles.familyAliases} />
                 <p className={styles.text}>{family.text}</p>
+                {/* İletişim formu bu ailenin teklif mesajıyla açılır. */}
+                <Link
+                  className={styles.quote}
+                  to={`${localizePath('/contact', locale)}?product=${slug}`}
+                  aria-label={t('ledger.quoteLabel', { product: family.name })}
+                >
+                  <RollText text={upper(ledger.quote)} />
+                  <RollArrow />
+                </Link>
               </div>
 
               <ul className={styles.items} data-ledger-reveal>

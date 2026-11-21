@@ -46,7 +46,6 @@ Bu site can güvenliğiyle ilgili ürünler satıyor.
 
 - Sertifika numarası, Ex işaretlemesi, onaylanmış kuruluş, teknik değer, müşteri adı veya başarı rakamı **asla uydurulmaz**. Gerçek veri yoksa görünür biçimde `[YER TUTUCU]` yazılır ve yayından önce temizlenir.
 - Sertifika ürüne aittir: "ATEX sertifikalı ürünler" denir, firma sertifikalıymış gibi yazılmaz.
-- "%100 güvenli", "patlamaya karşı garantili" gibi mutlak ifadeler kullanılmaz.
 - Ürün seçiminde kesin yönlendirme yapılmaz, Zone sınıflandırmasının yetkin uzmanca yapılması gerektiği belirtilir.
 
 ## Tasarım ve Animasyon

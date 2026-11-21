@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import type { ProductFamilyKey } from '../../content/about';
-import type trAbout from '../../locales/tr/about.json';
+import type { ProductFamilyKey } from '../../content/products';
+import type trProducts from '../../locales/tr/products.json';
 
 /** Bir kalem ve varsa sahada bilinen diğer adları. */
 export type LedgerItem = { name: string; aliases?: string[] };
@@ -15,12 +15,12 @@ type FamilyCopy = {
   facts: Record<string, string>;
 };
 
-type AboutBundle = Omit<typeof trAbout, 'ledger'> & {
-  ledger: Omit<typeof trAbout.ledger, 'families'> & { families: Record<ProductFamilyKey, FamilyCopy> };
+type ProductsBundle = Omit<typeof trProducts, 'ledger'> & {
+  ledger: Omit<typeof trProducts.ledger, 'families'> & { families: Record<ProductFamilyKey, FamilyCopy> };
 };
 
 // Kalem ve sahadaki ad sayıları aileye göre değiştiği için listeler tek tek anahtar yerine dilin paketinden okunur.
-export function useAboutCopy(): AboutBundle {
-  const { i18n } = useTranslation('about');
-  return i18n.getResourceBundle(i18n.language, 'about');
+export function useProductsCopy(): ProductsBundle {
+  const { i18n } = useTranslation('products');
+  return i18n.getResourceBundle(i18n.language, 'products');
 }

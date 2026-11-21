@@ -106,9 +106,9 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
     return () => observer.disconnect();
   }, [photo]);
 
-  // Bağlantı, Hakkımızda'daki ürün gamında aynı ailenin satırına gider.
+  // Bağlantı, Ürünler sayfasındaki ürün gamında aynı ailenin satırına gider.
   const link = (
-    <Link className={styles.link} data-reveal to={`${localizePath('/about', locale)}#${slug}`}>
+    <Link className={styles.link} data-reveal to={`${localizePath('/products', locale)}#${slug}`}>
       <RollText text={homeCopy.chapterLink.toLocaleUpperCase(i18n.language)} />
       <RollArrow />
     </Link>

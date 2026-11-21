@@ -12,12 +12,12 @@ export function getLocaleFromPathname(pathname: string): Locale {
   return hasEnPrefix(pathname) ? 'en' : DEFAULT_LOCALE;
 }
 
-/** Yoldaki dil önekini kaldırır: `/en/about` → `/about`. */
+/** Yoldaki dil önekini kaldırır: `/en/products` → `/products`. */
 export function stripLocale(pathname: string): string {
   return hasEnPrefix(pathname) ? pathname.slice(EN_PREFIX.length) || '/' : pathname;
 }
 
-/** Dilden bağımsız yolu verilen dile çevirir: `/about` → `/en/about`. */
+/** Dilden bağımsız yolu verilen dile çevirir: `/products` → `/en/products`. */
 export function localizePath(path: string, locale: Locale): string {
   if (locale === DEFAULT_LOCALE) return path;
   return path === '/' ? EN_PREFIX : `${EN_PREFIX}${path}`;

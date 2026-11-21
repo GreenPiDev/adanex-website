@@ -1,7 +1,7 @@
 /** Yollar dilden bağımsızdır ve her zaman İngilizcedir. Etiketler `nav.items.<key>` çevirisinden gelir. */
 export const NAV_ITEMS = [
   { key: 'home', path: '/home' },
-  { key: 'about', path: '/about' },
+  { key: 'products', path: '/products' },
   { key: 'services', path: '/services' },
   { key: 'projects', path: '/projects' },
   { key: 'contact', path: '/contact' },

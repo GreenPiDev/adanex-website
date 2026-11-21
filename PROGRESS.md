@@ -183,6 +183,14 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - **Yayından önce:** Yeni ve değişen metinler (iki dil) firma onayından geçmeli.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
+### 2026-11-21: Hakkımızda sayfası Ürünler oldu
+
+- 2026-11-11'de yazılan Hakkımızda sayfası şirketi değil ürün gamını anlattığı için **Ürünler** oldu: yol `/products`, dosyalar `src/pages/ProductsPage.tsx`, `src/components/products/`, `src/content/products.ts`, çeviri paketi `products`. Menüde "Ürünler / Products". Ana sayfadaki "Ürün gamı" bağlantıları buraya gidiyor. Gerçek şirket bilgisiyle bir Hakkımızda sayfası daha sonra yazılacak.
+- Ürün gamındaki her satırda "Teklif isteyin" bağlantısı var: `/contact?product=<slug>` adresine gidiyor. İletişim formu bu durumda mesajı o ailenin teklif cümlesiyle (`contact.form.prefill.<key>`) önceden dolduruyor, gönderimden sonra form boşalıyor.
+- Kapanış düğmesi "İletişime geçin" yerine "Ürün listesi isteyin" oldu.
+- CLAUDE.md'den mutlak ifade yasağı kaldırıldı: firmanın istediği metinler olduğu gibi yazılıyor.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
 ## Sıradaki Teknik İşler
 
 - Kalan sayfalarda rota bazlı code splitting (ana paket yaklaşık 534 kB, gzip 180 kB).
@@ -207,7 +215,7 @@ Aşağıdakiler Türkçe içeriğin yollarıdır, İngilizce içerik aynı yolla
 - `/knowledge-center`: ATEX nedir, Zone seçimi, Ex etiketi nasıl okunur
 - `/services`, `/projects`
 - `/industries`: Petrol ve gaz, kimya, boya, madencilik, gıda ve tahıl, ilaç (firmanın gerçek sektörlerine göre netleşir)
-- `/about`, `/references`, `/contact`
+- `/about` (yazılmadı, gerçek şirket bilgisi bekleniyor), `/references`, `/contact`
 - `/privacy-notice` (KVKK aydınlatma metni), `/cookie-policy`
 
 Ürün detayında bulunacak veriler: Ex işaretlemesi, uygun Zone'lar, gaz/toz grubu, sıcaklık sınıfı, IP sınıfı, sertifika no, onaylanmış kuruluş, teknik föy ve sertifika PDF'leri, teklif iste butonu.

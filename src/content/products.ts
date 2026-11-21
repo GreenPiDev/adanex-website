@@ -1,5 +1,5 @@
 /**
- * Hakkımızda sayfasının yapısı ve dile bağlı olmayan teknik verisi. Metinler `about` çeviri paketindedir.
+ * Ürünler sayfasının yapısı ve dile bağlı olmayan teknik verisi. Metinler `products` çeviri paketindedir.
  * Kaynak: firmanın mevcut sitesindeki hakkında sayfası. Değerler yayından önce firmaya doğrulatılmalıdır.
  */
 
@@ -59,7 +59,7 @@ export const PRODUCT_FAMILIES: readonly { key: ProductFamilyKey; slug: string; f
 ];
 
 /** Kaynak metindeki saha türleri, `sectors.items.<key>` altındadır. */
-export const ABOUT_SECTOR_KEYS = ['refinery', 'chemical', 'paint', 'food', 'storage'] as const;
+export const SECTOR_KEYS = ['refinery', 'chemical', 'paint', 'food', 'storage'] as const;
 
 export function formatIndex(value: number): string {
   return String(value).padStart(2, '0');

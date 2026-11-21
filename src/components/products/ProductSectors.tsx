@@ -3,18 +3,18 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router';
 import { gsap, useGSAP } from '../../animations/gsap';
 import { revealMarkedOnScroll, revealWordsOnScroll } from '../../animations/reveal';
-import { ABOUT_SECTOR_KEYS } from '../../content/about';
+import { SECTOR_KEYS } from '../../content/products';
 import { usePrefersReducedMotion } from '../../hooks/useDevice';
 import { getLocaleFromPathname, localizePath } from '../../i18n/locale';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
-import styles from './AboutSectors.module.css';
+import styles from './ProductSectors.module.css';
 
 /**
  * Kapanış: ürünlerin çalıştığı sahalar eğik çizgiyle ayrılmış tek bir yazı bloğudur (bilgi merkezindeki tesis
  * listesiyle aynı biçim). Altında iletişime çağrı ve Zone uyarısı durur. Ürün önermez, uzman değerlendirmesine yönlendirir.
  */
-export function AboutSectors() {
-  const { t, i18n } = useTranslation('about');
+export function ProductSectors() {
+  const { t, i18n } = useTranslation('products');
   const { pathname } = useLocation();
   const prefersReducedMotion = usePrefersReducedMotion();
   const rootRef = useRef<HTMLElement>(null);
@@ -40,7 +40,7 @@ export function AboutSectors() {
       </h2>
 
       <ul className={styles.list} aria-label={t('sectors.listLabel')} data-reveal>
-        {ABOUT_SECTOR_KEYS.map((key) => (
+        {SECTOR_KEYS.map((key) => (
           <li key={key} className={styles.sector}>
             {t(`sectors.items.${key}`)}
           </li>
@@ -49,7 +49,7 @@ export function AboutSectors() {
 
       <div className={styles.footer}>
         <Link className={styles.cta} to={localizePath('/contact', locale)} data-reveal>
-          <RollText text={upper(t('sectors.cta'))} />
+          <RollText className={styles.ctaText} text={upper(t('sectors.cta'))} />
           <RollArrow />
         </Link>
         <p className={styles.note} data-reveal>
