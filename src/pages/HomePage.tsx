@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { ScrollTrigger } from '../animations/gsap';
 import type { ChapterPhotoSource } from '../components/home/ChapterPhoto';
 import { HomeClosing } from '../components/home/HomeClosing';
+import { HomeGuide } from '../components/home/HomeGuide';
 import { HomeHero } from '../components/home/HomeHero';
 import { HomeIntro } from '../components/home/HomeIntro';
 import { type ChapterGalleryItem, SolutionChapter } from '../components/home/SolutionChapter';
@@ -15,7 +16,7 @@ import { HOME_CHAPTERS, type HomeChapterKey } from '../content/home';
 // Rakor ve kombinasyon kutusu bölümlerinin fotoğrafları (public klasöründe, gerçek piksel ölçüsüyle).
 const GLANDS_PHOTO = { src: '/anasayfa-2.webp', width: 1254, height: 1254 } as const;
 const COMBINATION_PHOTO = { src: '/anasayfa-3.webp', width: 1254, height: 1254 } as const;
-// Endüstriyel çözümler bölümünün altındaki üçlü görsel dizisi (hepsi 1:1).
+// Aydınlatma bölümünün altındaki üçlü görsel dizisi (hepsi 1:1).
 const INDUSTRIAL_GALLERY = [
   { key: 'facility', src: '/anasayfa-4.webp' },
   { key: 'lighting', src: '/anasayfa-5.webp' },
@@ -25,7 +26,7 @@ const GALLERY_SIZE = 1254;
 
 /**
  * Ana sayfa: ürün videolu giriş, firmanın kısa tanımı ve içindekiler, üç çözüm (rakorlar, kombinasyon kutuları,
- * endüstriyel çözümler) ve iletişime çağrı. Kaynak: firmanın mevcut sitesindeki ana sayfa.
+ * aydınlatma), teknik bilgi merkezine köprü ve iletişime çağrı. Kaynak: firmanın mevcut sitesindeki ana sayfa.
  */
 export function HomePage() {
   const { t } = useTranslation('home');
@@ -65,7 +66,7 @@ export function HomePage() {
   return (
     <>
       <HomeHero />
-      {/* Giriş bölümü bu kapsayıcının sonuna kadar yapışık kalır, çözüm bölümleri sırayla üstüne biner. */}
+      {/* Giriş bölümü yapışır, ilk çözüm bölümü üstüne biner. Çözüm bölümleri yapışmaz, art arda kayar. */}
       <div>
         <HomeIntro />
 
@@ -88,6 +89,7 @@ export function HomePage() {
         label={rail.label}
       />
 
+      <HomeGuide />
       <HomeClosing />
     </>
   );

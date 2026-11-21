@@ -1,0 +1,213 @@
+/*
+ * Teknik bilgi merkezine köprü (açık zemin). Telefonda metin, bağlantı ve Zone plakası alt alta okunur.
+ * Geniş ekranda metin solda, plaka sağdadır. Yapışmaz, doğal akışta kayar.
+ */
+.guide {
+  --hairline: color-mix(in srgb, currentColor 18%, transparent);
+
+  display: grid;
+  gap: calc(var(--space-lg) * 1.25);
+  padding-block: calc(var(--header-height) + var(--space-lg)) calc(var(--space-lg) * 1.75);
+  padding-inline: var(--gutter);
+  color: var(--surface-fg);
+  background: var(--surface-bg);
+}
+
+.copy {
+  display: grid;
+  gap: var(--space-md);
+  align-content: start;
+  justify-items: start;
+}
+
+.label {
+  font-family: var(--font-industrial);
+  font-size: var(--text-home-body);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  opacity: 0.55;
+}
+
+.title {
+  max-inline-size: 13em;
+  font-family: var(--font-display);
+  font-size: var(--text-home-chapter);
+  font-weight: var(--weight-display);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+
+/* SplitText'in kelime maskesi satır kutusu kadardır. Pay verilmezse ş, ç, y gibi harflerin altı kesilir. */
+.title > * {
+  padding-block: 0.12em;
+  margin-block: -0.12em;
+}
+
+.body {
+  max-inline-size: 30em;
+  font-size: var(--text-home-body-lead);
+  line-height: 1.45;
+  opacity: 0.78;
+}
+
+/* Metin bağlantısı: çözüm bölümlerindekiyle aynı, alt çizgi üzerine gelince kısalır. */
+.link {
+  position: relative;
+  display: inline-flex;
+  gap: var(--space-sm);
+  align-items: center;
+  min-block-size: var(--touch-target);
+  font-family: var(--font-industrial);
+  font-size: var(--text-home-link);
+  font-weight: var(--weight-heavy);
+  letter-spacing: 0.02em;
+}
+
+.link::after {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0.35rem;
+  block-size: 2px;
+  background: currentColor;
+  content: '';
+  transform-origin: 0 50%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+/*
+ * Zone matrisi: kart çerçevesi yoktur. Üstte oluşma sıklığı sütunları, solda gaz ve toz satırları.
+ * Hücreler arasındaki boşluk border-spacing ile verilir, tablonun dış kenarı bu boşluk kadar içeri çekilir.
+ */
+.matrix {
+  --matrix-gap: var(--space-sm);
+
+  align-self: start;
+  inline-size: calc(100% + var(--matrix-gap) * 2);
+  margin: calc(var(--matrix-gap) * -1);
+  border-collapse: separate;
+  border-spacing: var(--matrix-gap);
+  table-layout: fixed;
+}
+
+/* Satır başlığı sütunu dar, iki Zone sütunu eşit genişliktedir. */
+.corner {
+  inline-size: 22%;
+}
+
+.colHead,
+.rowHead {
+  font-size: var(--text-home-body);
+  font-weight: var(--weight-regular);
+  line-height: 1.25;
+  text-align: start;
+  opacity: 0.65;
+}
+
+.colHead {
+  padding-block-end: 0.25rem;
+  vertical-align: bottom;
+  border-block-end: 1px solid var(--hairline);
+}
+
+.rowHead {
+  padding-inline-end: 0.25rem;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.cellWrap {
+  padding: 0;
+  block-size: 1px;
+}
+
+/* Hücre: sol üstte ZONE, sağ üstte ok, altta büyük numara. Üzerine gelince alttan sarı dolar. */
+.cell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  gap: 0.25rem;
+  block-size: 100%;
+  min-block-size: clamp(6rem, 16vw, 9rem);
+  box-sizing: border-box;
+  padding: var(--space-sm);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--hairline);
+}
+
+.cell::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-amber);
+  content: '';
+  transform: scaleY(0);
+  transform-origin: 50% 100%;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.cell:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.zoneWord {
+  font-family: var(--font-industrial);
+  font-size: var(--text-home-body);
+  font-weight: var(--weight-heavy);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
+.arrow {
+  font-size: var(--text-home-body);
+}
+
+/* Açık zeminde sarı yazı okunmadığı için numara zeminin yazı rengindedir. */
+.zoneNumber {
+  grid-column: 1 / -1;
+  align-self: end;
+  font-family: var(--font-industrial);
+  font-size: var(--text-home-zone);
+  font-weight: var(--weight-heavy);
+  line-height: 0.85;
+}
+
+@media (min-width: 64rem) {
+  .guide {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    column-gap: calc(var(--space-lg) * 1.5);
+    align-items: center;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover::after {
+    transform: scaleX(0.35);
+  }
+
+  .cell:hover::before {
+    transform: none;
+  }
+
+  .cell:hover .zoneWord {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link::after,
+  .cell::before {
+    transition: none;
+  }
+}

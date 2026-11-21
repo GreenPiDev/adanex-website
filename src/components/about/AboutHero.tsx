@@ -1,36 +1,16 @@
-import { type MouseEvent, useCallback, useRef, useState } from 'react';
+import { type MouseEvent, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
 import { PRODUCT_FAMILIES } from '../../content/about';
 import { useDevice, useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
-import { useSmoothScroll } from '../../hooks/useSmoothScroll';
+import { useSectionJump } from '../../hooks/useSectionJump';
 import { PageHero } from '../layout/PageHero/PageHero';
 import { Lightbox } from '../ui/Lightbox/Lightbox';
 import { ScrollCue } from '../ui/ScrollCue/ScrollCue';
 import styles from './AboutHero.module.css';
 import { useAboutCopy } from './useAboutCopy';
-
-/** Ürün gamındaki satıra kaydırır ve odağı oraya taşır. Satırın üst boşluğu header kadardır (scroll-margin-top). */
-function useFamilyJump() {
-  const lenisRef = useSmoothScroll();
-
-  return useCallback(
-    (slug: string) => {
-      const element = document.getElementById(slug);
-      if (!element) return;
-
-      element.focus({ preventScroll: true });
-      const offset = parseFloat(getComputedStyle(element).scrollMarginTop) || 0;
-      const target = element.getBoundingClientRect().top + window.scrollY - offset;
-
-      if (lenisRef.current) lenisRef.current.scrollTo(target, { force: true });
-      else window.scrollTo(0, target);
-    },
-    [lenisRef],
-  );
-}
 
 // Hero görseli: tanıtım afişi kolonu doldurur. Dar ekranda hiç yüklenmez.
 const HERO_VISUALS = [{ key: 'poster', src: '/a1.webp' }] as const;
@@ -48,7 +28,7 @@ export function AboutHero() {
   const { ledger } = useAboutCopy();
   const prefersReducedMotion = usePrefersReducedMotion();
   const rootRef = useRef<HTMLElement>(null);
-  const jump = useFamilyJump();
+  const jump = useSectionJump();
   const hasVisuals = !useIsNavCollapsed();
   const isDesktop = useDevice() === 'desktop';
   const [openVisual, setOpenVisual] = useState<(typeof HERO_VISUALS)[number] | null>(null);

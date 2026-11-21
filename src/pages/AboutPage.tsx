@@ -8,6 +8,7 @@ import { ProductLedger } from '../components/about/ProductLedger';
 import { useAboutCopy } from '../components/about/useAboutCopy';
 import { SectionRail } from '../components/ui/SectionRail/SectionRail';
 import { PRODUCT_FAMILIES } from '../content/about';
+import { useSectionJump } from '../hooks/useSectionJump';
 
 /**
  * Hakkımızda: girişte slogan, firmanın kısa tanımı ve ürün aileleri; ardından kutudan çıktığı gibi
@@ -16,13 +17,18 @@ import { PRODUCT_FAMILIES } from '../content/about';
 export function AboutPage() {
   const { ledger, rail } = useAboutCopy();
   const sequenceRef = useRef<HTMLDivElement>(null);
+  const jump = useSectionJump();
 
-  // Büyük başlıklar font inince boy değiştirir, tetikleyici konumları yeniden ölçülür.
+  // Büyük başlıklar font inince boy değiştirir, tetikleyici konumları yeniden ölçülür. Ana sayfadaki bölümlerden
+  // ürün ailesinin adresiyle (#cable-glands gibi) gelindiyse konum, ölçüm bittikten sonra o satıra alınır.
   useEffect(() => {
     let isCancelled = false;
     document.fonts.ready.then(
       () => {
-        if (!isCancelled) ScrollTrigger.refresh();
+        if (isCancelled) return;
+        ScrollTrigger.refresh();
+        const slug = window.location.hash.slice(1);
+        if (slug) jump(slug, { immediate: true });
       },
       () => undefined,
     );
@@ -30,7 +36,7 @@ export function AboutPage() {
     return () => {
       isCancelled = true;
     };
-  }, []);
+  }, [jump]);
 
   return (
     <>

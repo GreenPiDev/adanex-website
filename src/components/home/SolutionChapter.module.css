@@ -7,17 +7,15 @@
   /* Koyu zeminde vurgu sarıdır. Açık zeminde sarı yazı okunmadığı için değerler zeminin yazı rengindedir. */
   --chapter-accent: var(--color-amber);
 
-  /* Bölümler üst üste biner: her bölüm yapışır, sıradaki bölüm üstüne gelir. Ekrandan uzun bölüm alt kenarından
-     yapışır (--stick-top, SolutionChapter içinde ölçülür). */
-  position: sticky;
-  inset-block-start: var(--stick-top, 0px);
+  /* Bölümler yapışmaz, doğal akışta art arda kayar. Yalnızca ilk bölüm, yapışık giriş bölümünün üstüne biner. */
+  position: relative;
   color: var(--surface-fg);
   background: var(--surface-bg);
   /* Raydan veya içindekiler listesinden atlamada başlık header'ın altında kalmasın. */
   scroll-margin-top: 0;
 }
 
-/* Bölümün içeriği. Sıradaki bölüm üstüne binerken zemin yerinde kalır, yalnızca bu katman küçülüp solar. */
+/* Bölümün içeriği. */
 .inner {
   display: grid;
   gap: calc(var(--space-lg) * 1.25);
@@ -235,7 +233,6 @@
     min-block-size: 100svh;
     align-content: center;
     padding-inline-end: calc(var(--gutter) + var(--rail-width) + var(--space-md));
-    will-change: transform;
   }
 
   .body {
@@ -288,11 +285,6 @@
   .photoVisual > * {
     position: sticky;
     inset-block-start: var(--photo-stick, 0px);
-  }
-
-  /* Bölüm üstte yapışmadan önce fotoğrafın yol alacağı mesafe kadar kayar; yoksa fotoğraf hiç ilerleyemez. */
-  .withPhoto {
-    inset-block-start: min(var(--stick-top, 0px), calc(var(--photo-travel, 0px) * -1));
   }
 
   /* Fotoğrafı solda olan bölüm: kolonlar yer değiştirir, fotoğraf metne yakın tarafa (sağa) yaslanır. */

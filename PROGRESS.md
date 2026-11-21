@@ -174,6 +174,15 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - **Yayından önce:** Metinler mevcut siteden düzenlenerek yazıldı, iki dil firma onayından geçmeli. Özellikle doğrulatılacaklar: kaynaktaki "Global Lider" ve "dünya çapında en geniş ürün çeşitliliği" ifadeleri ölçülebilir veriye dayanmadığı için "geniş ürün çeşitliliği" olarak yumuşatıldı, firma belgeleyebilirse geri alınabilir. "Maksimum dayanıklılık" ifadesi çıkarıldı. Rakorlardaki Zone 1/21 ve IP68/IP69K değerleri ürüne göre değişebilir, künyenin altına "Değerler ürüne göre değişir" notu kondu. Kombinasyon kutularındaki "D Type" ifadesi anlamı belirsiz olduğu için yazılmadı. "Her ortamda güven" sloganı mutlak ifadeye yakın, firmayla konuşulmalı. "Dünyanın dört bir yanındaki tesislere hizmet" ifadesi doğrulatılmalı.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
+### 2026-11-21: Ana sayfa sadeleştirmesi
+
+- Çözüm bölümlerinin bağlantıları ("Ürün gamında inceleyin") artık Hakkımızda'daki ürün gamında aynı ailenin satırına gidiyor (`/about#cable-glands` gibi). Hakkımızda açılışta adresteki satıra iniyor. `AboutHero`'daki kopya atlama kancası kaldırıldı, ortak `useSectionJump` `scroll-margin-top` payını ve anında geçişi destekliyor.
+- Kapanıştan önce teknik bilgi merkezine köprü bölümü eklendi (`HomeGuide`, açık zemin, yapışık değil): kısa metin, bilgi merkezi bağlantısı ve gaz/toz satırlı Zone 1 · 2 · 21 · 22 plakası. Her hücre bilgi merkezindeki maddeye gidiyor.
+- Hero posteri videonun son karesi oldu (`home-hero-poster.webp`, 28 KB). Hero alt metni başlığı tekrar etmek yerine ürün ailelerini sayıyor.
+- Tekrar eden metinler temizlendi: rakor bölümü firmayı yeniden tanıtmıyor, teslimat ve teknik destek sözü giriş metnine taşındı, künyede yazan Zone ve şalt markası kombinasyon kutusu metninden çıktı. Üçüncü bölümün adı "Exproof aydınlatma" oldu.
+- **Yayından önce:** Yeni ve değişen metinler (iki dil) firma onayından geçmeli.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
 ## Sıradaki Teknik İşler
 
 - Kalan sayfalarda rota bazlı code splitting (ana paket yaklaşık 534 kB, gzip 180 kB).

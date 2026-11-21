@@ -12,7 +12,6 @@ type ChapterCopy = {
   /** Künye etiketleri. Değeri dile bağlı satırların değeri `<anahtar>Value` altındadır. */
   facts: Record<string, string>;
   factsNote?: string;
-  link: string;
 };
 
 type HomeBundle = Omit<typeof trHome, 'chapters'> & { chapters: Record<HomeChapterKey, ChapterCopy> };

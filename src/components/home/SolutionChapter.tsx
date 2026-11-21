@@ -3,10 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router';
 import { gsap, useGSAP } from '../../animations/gsap';
 import { revealMarkedOnScroll, revealWordsOnScroll } from '../../animations/reveal';
-import { recedeWhenCovered } from '../../animations/stack';
 import { HOME_CHAPTERS } from '../../content/home';
-import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
-import { useStickTop } from '../../hooks/useStickTop';
+import { usePrefersReducedMotion } from '../../hooks/useDevice';
 import { getLocaleFromPathname, localizePath } from '../../i18n/locale';
 import { RollArrow, RollText } from '../ui/RollText/RollText';
 import { ChapterPhoto, type ChapterPhotoSource } from './ChapterPhoto';
@@ -41,19 +39,17 @@ type SolutionChapterProps = {
  */
 export function SolutionChapter({ chapter, index, photo, visual, gallery }: SolutionChapterProps) {
   const { i18n } = useTranslation('home');
-  const copy = useHomeCopy().chapters[chapter.key];
+  const homeCopy = useHomeCopy();
+  const copy = homeCopy.chapters[chapter.key];
   const { pathname } = useLocation();
   const prefersReducedMotion = usePrefersReducedMotion();
-  const isNavCollapsed = useIsNavCollapsed();
   const rootRef = useRef<HTMLElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
   const { slug, surface, facts } = chapter;
   const locale = getLocaleFromPathname(pathname);
   const paragraphs = copy.body.split('\n');
   const visualRef = useRef<HTMLDivElement>(null);
   const headRef = useRef<HTMLElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
-  const factsRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -64,26 +60,6 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
     {
       scope: rootRef,
       dependencies: [i18n.language, prefersReducedMotion],
-      revertOnUpdate: true,
-    },
-  );
-
-  // Bölüm yapışır, sıradaki bölüm üstüne biner.
-  useStickTop(rootRef);
-
-  // Sıradaki bölüm ekrana girerken bu bölümün içeriği geri çekilir. Telefonda ve dikey tablette yalnızca solar.
-  useGSAP(
-    () => {
-      const root = rootRef.current;
-      const inner = innerRef.current;
-      const next = root?.nextElementSibling;
-      if (prefersReducedMotion || !inner || !next) return;
-
-      recedeWhenCovered(inner, next, { fadeOnly: isNavCollapsed });
-    },
-    {
-      scope: rootRef,
-      dependencies: [isNavCollapsed, prefersReducedMotion],
       revertOnUpdate: true,
     },
   );
@@ -107,21 +83,17 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
   /*
    * Geniş ekranda fotoğraf kaydırırken metinle birlikte gelir: boyu başlık ve metin kadardır, künye metin kolonunda
    * altta kalır. Fotoğraf yapışır ve alt kenarı künyenin alt kenarına gelene kadar ekranda kalır.
-   * --photo-block fotoğrafın boyu, --photo-stick yapıştığı yükseklik (bölümün üstünden başlığa kadar olan pay),
-   * --photo-travel fotoğrafın yol alacağı mesafedir. Bölüm, üstte yapışmadan önce en az bu mesafe kadar kayar.
+   * --photo-block fotoğrafın boyu, --photo-stick yapıştığı yükseklik (bölümün üstünden başlığa kadar olan pay).
    */
   useEffect(() => {
     const root = rootRef.current;
     const head = headRef.current;
     const copyElement = copyRef.current;
-    const factsElement = factsRef.current;
-    if (!photo || !root || !head || !copyElement || !factsElement) return;
+    if (!photo || !root || !head || !copyElement) return;
 
     const update = () => {
       const copyBottom = copyElement.offsetTop + copyElement.offsetHeight;
-      const factsBottom = factsElement.offsetTop + factsElement.offsetHeight;
       root.style.setProperty('--photo-block', `${copyBottom - head.offsetTop}px`);
-      root.style.setProperty('--photo-travel', `${Math.max(0, factsBottom - copyBottom)}px`);
       root.style.setProperty(
         '--photo-stick',
         `${head.getBoundingClientRect().top - root.getBoundingClientRect().top}px`,
@@ -130,13 +102,14 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
     update();
 
     const observer = new ResizeObserver(update);
-    [root, head, copyElement, factsElement].forEach((element) => observer.observe(element));
+    [root, head, copyElement].forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, [photo]);
 
+  // Bağlantı, Hakkımızda'daki ürün gamında aynı ailenin satırına gider.
   const link = (
-    <Link className={styles.link} data-reveal to={localizePath(chapter.link, locale)}>
-      <RollText text={copy.link.toLocaleUpperCase(i18n.language)} />
+    <Link className={styles.link} data-reveal to={`${localizePath('/about', locale)}#${slug}`}>
+      <RollText text={homeCopy.chapterLink.toLocaleUpperCase(i18n.language)} />
       <RollArrow />
     </Link>
   );
@@ -144,7 +117,7 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
 
   // Fotoğraflı bölümde künye tek kolondur; not üstünde, bağlantı sağ altındadır.
   const factsBlock = (
-    <div ref={photo ? factsRef : undefined} className={`${styles.factsBlock} ${photo ? styles.factsWide : ''}`}>
+    <div className={`${styles.factsBlock} ${photo ? styles.factsWide : ''}`}>
       {photo && note}
       <dl className={styles.facts} data-reveal-items>
         {facts.map((fact) => (
@@ -177,7 +150,7 @@ export function SolutionChapter({ chapter, index, photo, visual, gallery }: Solu
       aria-labelledby={`${slug}-title`}
       style={photoStyle}
     >
-      <div ref={innerRef} className={styles.inner}>
+      <div className={styles.inner}>
         <header ref={headRef} className={styles.head}>
           <p className={styles.number} aria-hidden="true" data-reveal>
             {formatNumber(index + 1)}

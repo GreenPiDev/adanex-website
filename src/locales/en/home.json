@@ -1,23 +1,24 @@
 {
   "hero": {
     "title": "ATEX-certified solutions for <accent>confidence in every environment.</accent>",
-    "lead": "With our ATEX-certified products, we help every facility raise its safety standards."
+    "lead": "From cable glands to combination boxes and lighting: explosion-proof products for explosive gas and dust atmospheres."
   },
   "intro": {
     "statement": "Starting from Kocaeli, we serve critical industrial facilities all around the world.",
-    "body": "By bringing together trust, quality and durability in explosion-proof products and electrical equipment, we help your operations run without interruption.",
+    "body": "By combining quality and durability in explosion-proof products and electrical equipment with on-time delivery and technical support, we help your operations run safely and without interruption.",
     "indexLabel": "Our solutions"
   },
   "rail": {
     "label": "Solutions"
   },
+  "chapterLink": "View in product range",
   "chapters": {
     "glands": {
       "short": "Glands",
       "name": "Cable glands",
       "title": "Explosion-proof and weatherproof cable glands",
-      "lead": "Based in Kocaeli, ADANEX ELEKTRİK is a brand offering a wide range of explosion-proof and weatherproof cable glands.",
-      "body": "Made in every size from M10 to M110 and in materials from brass to stainless steel, our ATEX-certified cable glands help businesses raise their safety standards and offer a long service life.\nWe supply the right product at the right time and in full, and with on-time delivery and technical support we help your operations run safely and without interruption.",
+      "lead": "We offer a wide range of cable glands for different cable types and installation conditions.",
+      "body": "Made in every size from M10 to M110 and in materials from brass to stainless steel, our ATEX-certified cable glands are designed for a long service life.",
       "facts": {
         "sizes": "Size range",
         "material": "Material",
@@ -25,32 +26,29 @@
         "zones": "Approved zones",
         "ingress": "Ingress protection"
       },
-      "factsNote": "Values vary by product.",
-      "link": "Product range"
+      "factsNote": "Values vary by product."
     },
     "combination": {
       "short": "Combination",
       "name": "Combination boxes",
       "title": "Explosion-proof combination boxes",
-      "lead": "Our Zone 1 and Zone 21 approved combination boxes are shipped to site fully equipped and ready to use.",
-      "body": "They come complete with ABB or Schneider internal switchgear and wiring, together with cable glands, plugs and sockets.\nYou choose the current ratings and the number of plugs and sockets, and we tailor single-phase and three-phase distribution to your needs. No extra installation is needed on site.",
+      "lead": "Our combination boxes are shipped to site fully equipped and ready to use.",
+      "body": "Internal switchgear and wiring come fully assembled, together with cable glands, plugs and sockets.\nYou choose the current ratings and the number of plugs and sockets, and we tailor single-phase and three-phase distribution to your needs.",
       "facts": {
         "zones": "Approved zones",
         "switchgear": "Internal switchgear"
-      },
-      "link": "Our services"
+      }
     },
     "lighting": {
-      "short": "Industrial",
-      "name": "Industrial solutions",
-      "title": "Explosion-proof industrial solutions",
-      "lead": "Explosion-proof luminaires are ATEX and IECEx certified industrial products designed for safe lighting in explosive gas and dust atmospheres.",
-      "body": "Used in hazardous areas covered by Zone 1, Zone 2, Zone 21 and Zone 22, these luminaires deliver long-lasting performance with LED technology that offers high luminous efficacy and energy savings.",
+      "short": "Lighting",
+      "name": "Lighting",
+      "title": "Explosion-proof lighting",
+      "lead": "Our luminaires are designed for lighting in explosive gas and dust atmospheres.",
+      "body": "Used in hazardous areas covered by Zone 1, Zone 2, Zone 21 and Zone 22, these luminaires offer high luminous efficacy, energy savings and a long service life with LED technology.",
       "facts": {
         "certification": "Certification",
         "technology": "Technology"
-      },
-      "link": "Our projects"
+      }
     }
   },
   "photos": {
@@ -70,6 +68,22 @@
       }
     },
     "combination": "Explosion-proof combination box with a switched main enclosure and two plug and socket units, on a black platform against an industrial plant backdrop"
+  },
+  "guide": {
+    "label": "Knowledge center",
+    "title": "Know your zone before choosing a product.",
+    "body": "Zone classes, what Ex marking means and what to check when choosing a product are all in the knowledge center.",
+    "zonesLabel": "Zone classes",
+    "media": {
+      "gas": "Gas, vapour, mist",
+      "dust": "Combustible dust"
+    },
+    "frequency": {
+      "occasional": "May occur occasionally",
+      "brief": "Short-lived if it occurs"
+    },
+    "zoneLink": "Zone {{zone}}: read in the knowledge center",
+    "link": "Knowledge center"
   },
   "closing": {
     "title": "The right product, at the right time, in full.",

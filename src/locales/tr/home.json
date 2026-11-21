@@ -1,23 +1,24 @@
 {
   "hero": {
     "title": "ATEX sertifikalı çözümlerle <accent>her ortamda güven.</accent>",
-    "lead": "ATEX sertifikalı ürünlerimizle her tesisin güvenlik standartlarını yükseltiyoruz."
+    "lead": "Kablo rakorlarından kombinasyon kutularına ve aydınlatmaya, patlayıcı gaz ve toz ortamları için exproof ürünler."
   },
   "intro": {
     "statement": "Kocaeli’den başlayarak dünyanın dört bir yanındaki kritik endüstriyel tesislere hizmet veriyoruz.",
-    "body": "Exproof ürünler ve elektrik malzemelerinde güven, kalite ve dayanıklılığı bir araya getirerek işletmenizin kesintisiz çalışmasına katkı sağlıyoruz.",
+    "body": "Exproof ürünler ve elektrik malzemelerinde kalite ve dayanıklılığı, zamanında teslimat ve teknik destekle bir araya getirerek işletmenizin kesintisiz ve emniyetli çalışmasına katkı sağlıyoruz.",
     "indexLabel": "Çözümlerimiz"
   },
   "rail": {
     "label": "Çözümler"
   },
+  "chapterLink": "Ürün gamında inceleyin",
   "chapters": {
     "glands": {
       "short": "Rakorlar",
       "name": "Kablo rakorları",
       "title": "Exproof ve etanj kablo rakorları",
-      "lead": "Kocaeli merkezli ADANEX ELEKTRİK, exproof ve etanj kablo rakorlarında geniş ürün çeşitliliği sunan bir markadır.",
-      "body": "M10’dan M110’a kadar her ölçüde, pirinçten paslanmaz çeliğe farklı malzeme seçenekleriyle üretilen ATEX sertifikalı rakorlarımız, işletmelerin güvenlik standartlarını yükseltir ve uzun ömürlü kullanım sağlar.\nDoğru ürünü doğru zamanda ve eksiksiz tedarik ediyor, zamanında teslimat ve teknik destekle işletmenizin kesintisiz ve emniyetli çalışmasına katkı sağlıyoruz.",
+      "lead": "Farklı kablo tipleri ve kurulum koşulları için geniş bir rakor çeşitliliği sunuyoruz.",
+      "body": "M10’dan M110’a kadar her ölçüde, pirinçten paslanmaz çeliğe farklı malzeme seçenekleriyle üretilen ATEX sertifikalı rakorlarımız uzun ömürlü kullanım için tasarlanır.",
       "facts": {
         "sizes": "Ölçü aralığı",
         "material": "Malzeme",
@@ -25,32 +26,29 @@
         "zones": "Onaylı bölgeler",
         "ingress": "Koruma sınıfı"
       },
-      "factsNote": "Değerler ürüne göre değişir.",
-      "link": "Ürün gamı"
+      "factsNote": "Değerler ürüne göre değişir."
     },
     "combination": {
       "short": "Kombinasyon",
       "name": "Kombinasyon kutuları",
       "title": "Exproof kombinasyon kutuları",
-      "lead": "Zone 1 ve Zone 21 onaylı kombinasyon kutularımız sahaya tam donanımlı ve doğrudan kullanıma hazır sevk edilir.",
-      "body": "ABB veya Schneider marka iç şalt malzemeler ve kablajlar; rakorlar, fiş ve prizlerle birlikte eksiksiz hazırlanır.\nFiş ve prizlerin amper değerlerini ve adedini siz belirlersiniz, trifaze ve monofaze dağılımı ihtiyacınıza göre özelleştiririz. Böylece sahada ek montaj gerekmez.",
+      "lead": "Kombinasyon kutularımız sahaya tam donanımlı ve doğrudan kullanıma hazır sevk edilir.",
+      "body": "İç şalt malzemeleri ve kablajı; rakorlar, fiş ve prizlerle birlikte eksiksiz hazırlanır.\nFiş ve prizlerin amper değerlerini ve adedini siz belirlersiniz, trifaze ve monofaze dağılımı ihtiyacınıza göre özelleştiririz.",
       "facts": {
         "zones": "Onaylı bölgeler",
         "switchgear": "İç şalt malzemesi"
-      },
-      "link": "Hizmetlerimiz"
+      }
     },
     "lighting": {
-      "short": "Endüstriyel",
-      "name": "Endüstriyel çözümler",
-      "title": "Exproof endüstriyel çözümler",
-      "lead": "Exproof armatürler, patlayıcı gaz ve toz ortamlarında güvenli aydınlatma için geliştirilmiş, ATEX ve IECEx sertifikalı endüstriyel ürünlerdir.",
-      "body": "Zone 1, Zone 2, Zone 21 ve Zone 22 kapsamındaki riskli bölgelerde kullanılan bu armatürler, yüksek ışık verimi ve enerji tasarrufu sağlayan LED teknolojisiyle uzun ömürlü performans sunar.",
+      "short": "Aydınlatma",
+      "name": "Aydınlatma",
+      "title": "Exproof aydınlatma",
+      "lead": "Armatürlerimiz patlayıcı gaz ve toz ortamlarında aydınlatma için geliştirilmiştir.",
+      "body": "Zone 1, Zone 2, Zone 21 ve Zone 22 kapsamındaki tehlikeli bölgelerde kullanılan bu armatürler, LED teknolojisiyle yüksek ışık verimi, enerji tasarrufu ve uzun ömür sunar.",
       "facts": {
         "certification": "Sertifika",
         "technology": "Teknoloji"
-      },
-      "link": "Çalışmalarımız"
+      }
     }
   },
   "photos": {
@@ -70,6 +68,22 @@
       }
     },
     "combination": "Endüstriyel tesis arka planında, siyah bir platform üzerinde şalterli ana kutu ve iki fiş-priz ünitesinden oluşan exproof kombinasyon kutusu"
+  },
+  "guide": {
+    "label": "Teknik bilgi merkezi",
+    "title": "Ürün seçmeden önce bölgenizi tanıyın.",
+    "body": "Zone sınıfları, Ex işaretlemesinin anlamı ve ürün seçerken kontrol edilecek maddeler teknik bilgi merkezinde.",
+    "zonesLabel": "Zone sınıfları",
+    "media": {
+      "gas": "Gaz, buhar, sis",
+      "dust": "Yanıcı toz"
+    },
+    "frequency": {
+      "occasional": "Zaman zaman oluşabilir",
+      "brief": "Oluşursa kısa süreli"
+    },
+    "zoneLink": "Zone {{zone}}: teknik bilgi merkezinde okuyun",
+    "link": "Teknik bilgi merkezi"
   },
   "closing": {
     "title": "Doğru ürün, doğru zamanda, eksiksiz.",
