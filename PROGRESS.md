@@ -201,6 +201,15 @@ Proje kuruldu. Header, layout, çok dil altyapısı, özel imleç ve scrollbar h
 - **Yayından önce:** Zone 0/20 tanımları, Ex işaretlemesi bölümü, koruma tipi, grup ve sıcaklık sınıfı tabloları ile dört yeni SSS cevabı standartlara (2014/34/AB, 1999/92/AT, IEC 60079 serisi) göre yazıldı. İki dil de firma onayından geçmeli. Örnek işaretlemenin belirli bir ürüne ait olmadığı sayfada yazıyor.
 - Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
 
+### 2026-11-21: Çalışmalarımız, Ürünler sayfasına katıldı
+
+- Çalışmalarımız sayfası proje değil fotoğraflı ürün tanıtımı içerdiği için Ürünler'e katıldı. Sayfa akışı: Hero → **Vitrin** (6 fotoğraflı ürün dosyası, sayfanın tek imza anı) → Ürün gamı (sevk listesi) → Saha.
+- **Katmanlar:** Hero yapışır, vitrin üstüne biner. Vitrindeki dosyalar birbirinin üstüne binmez, aynı hizada akar. Vitrin bütün olarak yapışır, son dosya ekranı doldurunca ürün gamı üstüne biner. Ekrandan uzun bölümler önce sonuna kadar okunur (`useStickTop`), örtülen bölümün içeriği geri çekilir (telefonda yalnızca solar). CLAUDE.md'deki yapışık hero istisnasına Ürünler eklendi.
+- Dosyalar `src/components/products/ShowcasePanel.tsx` ve `ShowcaseNav.tsx`, veri `src/content/showcase.ts`, metinler `products` paketinde `showcase` altında. `ProjectsHero`, `ProjectsPage` ve Çalışmalar'ın sayfa sonu Zone notu silindi (uyarı saha bölümünde zaten var).
+- Her dosyada başlığın üstünde ailesinin numaralı etiketi var, ürün gamındaki satıra kaydırıyor. Altta "Teklif isteyin" bağlantısı formu o ailenin mesajıyla açıyor. Pano ve bağlantı kutuları hiçbir aileye tam oturmadığı için etiketsiz, teklif bağlantısı ön doldurmasız.
+- Menüden "Çalışmalarımız" kalktı. `/projects` ve `/en/projects` Ürünler'e yönleniyor. Footer'ın ürün kategorisi bağlantısı Ürünler sayfasına geçti. Görsel büyütme etiketi ortak `a11y.openImage` oldu, ray katmanı `--z-rail`.
+- Tip kontrolü, lint ve build temiz geçti. Tarayıcıda görsel kontrol yapılmadı.
+
 ## Sıradaki Teknik İşler
 
 - Kalan sayfalarda rota bazlı code splitting (ana paket yaklaşık 534 kB, gzip 180 kB).
@@ -223,7 +232,7 @@ Aşağıdakiler Türkçe içeriğin yollarıdır, İngilizce içerik aynı yolla
 - `/` Ana sayfa: Hero → Firma özeti → Ürün grupları → ATEX'e kısa giriş ve Zone anlatımı → Kanıt ve rakamlar → Çalışma süreci → Sektörler → Referanslar → Teklif formu
 - `/products`, `/products/:category`, `/products/:category/:slug`
 - `/knowledge-center`: ATEX nedir, Zone seçimi, Ex etiketi nasıl okunur
-- `/services`, `/projects`
+- `/services` (Çalışmalarımız `/products` içine katıldı)
 - `/industries`: Petrol ve gaz, kimya, boya, madencilik, gıda ve tahıl, ilaç (firmanın gerçek sektörlerine göre netleşir)
 - `/about` (yazılmadı, gerçek şirket bilgisi bekleniyor), `/references`, `/contact`
 - `/privacy-notice` (KVKK aydınlatma metni), `/cookie-policy`

@@ -137,7 +137,7 @@
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Katmanlar */
-  --z-project-nav: 90;
+  --z-rail: 90;
   --z-header: 100;
   --z-lightbox: 900;
   --z-cursor: 1000;

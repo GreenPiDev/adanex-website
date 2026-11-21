@@ -14,11 +14,6 @@ async function loadContactPage() {
   return { Component: ContactPage };
 }
 
-async function loadProjectsPage() {
-  const { ProjectsPage } = await import('./pages/ProjectsPage');
-  return { Component: ProjectsPage };
-}
-
 async function loadKnowledgePage() {
   const { KnowledgePage } = await import('./pages/KnowledgePage');
   return { Component: KnowledgePage };
@@ -40,7 +35,6 @@ type PagePath = Exclude<(typeof NAV_ITEMS)[number]['path'], '/home'>;
 const PAGE_LOADERS: Record<PagePath, NonNullable<RouteObject['lazy']>> = {
   '/products': loadProductsPage,
   '/contact': loadContactPage,
-  '/projects': loadProjectsPage,
   '/knowledge-center': loadKnowledgePage,
   '/services': loadServicesPage,
 };
@@ -56,6 +50,11 @@ const homeRedirect = (locale: Locale): RouteObject => ({
   loader: () => replace(localizePath('/home', locale)),
 });
 
+// Çalışmalarımız sayfası Ürünler'e katıldı, eski adresler oraya yönlenir.
+const legacyRedirects = (locale: Locale): RouteObject[] => [
+  { path: 'projects', loader: () => replace(localizePath('/products', locale)) },
+];
+
 // Header tek layout'ta durur, dil değişse de yeniden oluşturulmaz.
 export const router = createBrowserRouter([
   {
@@ -66,7 +65,8 @@ export const router = createBrowserRouter([
     children: [
       homeRedirect('tr'),
       ...pageRoutes,
-      { path: 'en', children: [homeRedirect('en'), ...pageRoutes] },
+      ...legacyRedirects('tr'),
+      { path: 'en', children: [homeRedirect('en'), ...pageRoutes, ...legacyRedirects('en')] },
       { path: '*', lazy: loadNotFoundPage },
     ],
   },

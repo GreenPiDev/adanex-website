@@ -2,8 +2,12 @@
  * Hizmetler hero'suyla aynı paylar: kolonun üst kenarı yan yatmış başlığın ilk harfinin, alt kenarı son harfinin
  * hizasıdır (PageHero harf kenarlarını ölçer). İçerik sığmazsa kolon uzar, hero da onunla uzar, hiçbir şey kesilmez.
  */
+/* Yapışır, vitrin üstüne biner. Ekrandan uzunsa yapışma payı ölçülür (--stick-top). */
 .hero {
   --hero-padding-end: var(--header-height);
+
+  position: sticky;
+  inset-block-start: var(--stick-top, 0px);
   /* Afişin sarı kesim işaretlerinin görselden taşma payı. "Kaydır" belirteci de buna göre hizalanır. */
   --bracket-offset: 0.75rem;
 }

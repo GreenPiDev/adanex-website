@@ -101,8 +101,11 @@ export function SectionRail({ sequenceRef, items, label, isAmber }: SectionRailP
     if (!(panel instanceof HTMLElement)) return;
 
     // Mobilde adres çubuğu yüzünden innerHeight ile ScrollTrigger yüksekliği sapabilir.
-    // Yapışık (sticky) bölümde kendi konumu değil, akıştaki yeri esas alınır.
-    const isSticky = getComputedStyle(panel).position === 'sticky';
+    // Yapışık (sticky) bölümde veya yapışık bir kapsayıcının içinde kendi konumu değil, akıştaki yeri esas alınır.
+    const sequence = sequenceRef.current;
+    const isSticky = [panel, sequence, sequence?.parentElement].some(
+      (element) => element instanceof HTMLElement && getComputedStyle(element).position === 'sticky',
+    );
     const target = isSticky
       ? trigger.start + (window.innerHeight * ACTIVE_LINE_PERCENT) / 100
       : panel.getBoundingClientRect().top + window.scrollY;

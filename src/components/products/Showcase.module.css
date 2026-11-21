@@ -1,0 +1,8 @@
+/*
+ * Hero'dan sonra geldiği için onun üstüne biner. Bütün olarak yapışır: ekrandan uzun olduğu için önce sonuna kadar
+ * akar (--stick-top), son dosya ekranı doldurunca yerinde kalır ve ürün gamı üstüne biner.
+ */
+.showcase {
+  position: sticky;
+  inset-block-start: var(--stick-top, 0px);
+}

@@ -3,7 +3,7 @@
   position: fixed;
   inset-block-end: 0;
   inset-inline: 0;
-  z-index: var(--z-project-nav);
+  z-index: var(--z-rail);
   padding-block-end: env(safe-area-inset-bottom);
   color: var(--color-white);
   visibility: hidden;

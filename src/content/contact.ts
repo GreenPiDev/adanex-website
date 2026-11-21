@@ -22,5 +22,5 @@ export const OPENING_HOURS: readonly OpeningHours[] = [
 
 /** Footer bağlantısı varsayılan olarak ana siteye gider, burada yazan sayfalarda bu adrese gider. */
 export const FOOTER_LINK_OVERRIDES: Readonly<Record<string, string>> = {
-  '/projects': 'https://www.adanex.com.tr/urun-kategori/exproof-urunler/',
+  '/products': 'https://www.adanex.com.tr/urun-kategori/exproof-urunler/',
 };

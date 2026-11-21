@@ -3,9 +3,11 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { getPageIntroDelay } from '../../animations/pageIntro';
+import { recedeWhenCovered } from '../../animations/stack';
 import { PRODUCT_FAMILIES } from '../../content/products';
 import { useDevice, useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
 import { useSectionJump } from '../../hooks/useSectionJump';
+import { useStickTop } from '../../hooks/useStickTop';
 import { PageHero } from '../layout/PageHero/PageHero';
 import { Lightbox } from '../ui/Lightbox/Lightbox';
 import { ScrollCue } from '../ui/ScrollCue/ScrollCue';
@@ -32,6 +34,21 @@ export function ProductsHero() {
   const hasVisuals = !useIsNavCollapsed();
   const isDesktop = useDevice() === 'desktop';
   const [openVisual, setOpenVisual] = useState<(typeof HERO_VISUALS)[number] | null>(null);
+
+  // Hero yapışır, vitrin üstüne biner. Ekrandan uzun hero önce sonuna kadar okunur (--stick-top).
+  useStickTop(rootRef);
+
+  // Vitrin ekrana girerken hero'nun içeriği geri çekilir. Telefonda ve dikey tablette yalnızca solar.
+  useGSAP(
+    () => {
+      const root = rootRef.current;
+      const inner = root?.querySelector<HTMLElement>('[data-page-hero-inner]');
+      const cover = root?.nextElementSibling;
+      if (prefersReducedMotion || !inner || !cover) return;
+      recedeWhenCovered(inner, cover, { fadeOnly: !hasVisuals });
+    },
+    { scope: rootRef, dependencies: [hasVisuals, prefersReducedMotion], revertOnUpdate: true },
+  );
 
   // Slogan dil değişince yeniden bölünür. Ardından paragraf ve aileler sırayla aşağıdan yerine oturur.
   useGSAP(
@@ -111,7 +128,7 @@ export function ProductsHero() {
                   className={styles.zoom}
                   {...inspectCursor}
                   type="button"
-                  aria-label={tCommon('projects.openImage', { title: t(`hero.visuals.${visual.key}`) })}
+                  aria-label={tCommon('a11y.openImage', { title: t(`hero.visuals.${visual.key}`) })}
                   onClick={() => setOpenVisual(visual)}
                 />
               </figure>

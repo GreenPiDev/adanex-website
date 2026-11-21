@@ -25,7 +25,7 @@ React, Vite, TypeScript (`strict`), GSAP + `@gsap/react`, Lenis, React Router, i
 
 - Dosya ve tanımlayıcılar İngilizce, kod yorumları Türkçe. `any` kullanılmaz.
 - Header yalnızca `RootLayout` içinde durur, sayfalara eklenmez.
-- Ana sayfa dışındaki her sayfa `PageHero` ile başlar: solda yan yatmış sayfa adı, sağında sayfanın içeriği. Hero scroll'da yukarıda kalır, yapışık değildir (iletişim sayfası istisnadır).
+- Ana sayfa dışındaki her sayfa `PageHero` ile başlar: solda yan yatmış sayfa adı, sağında sayfanın içeriği. Hero scroll'da yukarıda kalır, yapışık değildir (iletişim ve ürünler sayfaları istisnadır: ürünlerde vitrin hero'nun üstüne biner).
 - `main` içindeki her tam genişlik bölüm `data-surface="dark"` veya `data-surface="light"` taşır, header rengi buradan belirlenir.
 - Renk, boşluk, font boyutu, süre ve easing token'dan gelir (`src/styles/tokens.css`).
 - Büyük/küçük harf dönüşümünde aktif dil kullanılır: `toLocaleUpperCase(i18n.language)` (i/İ, ı/I sorunu).

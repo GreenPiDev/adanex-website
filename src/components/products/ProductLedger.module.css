@@ -2,7 +2,10 @@
  * Sevk listesi. Telefonda her satır kart gibi alt alta okunur: numara, ad ve açıklama, kalemler, değerler.
  * Dikey tablette kalemler ile değerler yan yana, masaüstünde tüm sütunlar tek satırdadır.
  */
+/* Yapışık vitrinin üstüne biner. */
 .ledger {
+  position: relative;
+  z-index: 1;
   --hairline: color-mix(in srgb, currentColor 16%, transparent);
   --row-columns: minmax(0, 1fr);
 

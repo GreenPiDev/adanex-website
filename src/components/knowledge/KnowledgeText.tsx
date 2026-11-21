@@ -147,7 +147,7 @@ export function KnowledgeImage({ number, className = '' }: { number: KnowledgeIm
         className={styles.zoom}
         {...inspectCursor}
         type="button"
-        aria-label={t('projects.openImage', { title: alt })}
+        aria-label={t('a11y.openImage', { title: alt })}
         onClick={() => setIsLightboxOpen(true)}
       >
         <img className={styles.image} src={src} width={width} height={height} alt="" loading="lazy" decoding="async" />

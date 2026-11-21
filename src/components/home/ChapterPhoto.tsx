@@ -94,7 +94,7 @@ export function ChapterPhoto({ src, width, height, alt, name, fitHeight = false 
           className={styles.zoom}
           {...inspectCursor}
           type="button"
-          aria-label={t('projects.openImage', { title: name })}
+          aria-label={t('a11y.openImage', { title: name })}
           onClick={() => setIsOpen(true)}
         />
       </figure>

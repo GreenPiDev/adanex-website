@@ -5,14 +5,16 @@ import { ScrollTrigger } from '../animations/gsap';
 import { ProductsHero } from '../components/products/ProductsHero';
 import { ProductSectors } from '../components/products/ProductSectors';
 import { ProductLedger } from '../components/products/ProductLedger';
+import { Showcase } from '../components/products/Showcase';
 import { useProductsCopy } from '../components/products/useProductsCopy';
 import { SectionRail } from '../components/ui/SectionRail/SectionRail';
 import { PRODUCT_FAMILIES } from '../content/products';
 import { useSectionJump } from '../hooks/useSectionJump';
 
 /**
- * Ürünler: girişte slogan, firmanın kısa tanımı ve ürün aileleri; ardından kutudan çıktığı gibi
- * sevk edilen ürün aileleri (ürünlerin sahada bilinen adlarıyla) ve ürünlerin çalıştığı sahalar.
+ * Ürünler: girişte slogan, firmanın kısa tanımı ve ürün aileleri; ardından fotoğraflı öne çıkan ürünlerin vitrini
+ * (sayfanın tek imza anı), kutudan çıktığı gibi sevk edilen ürün aileleri (sahada bilinen adlarıyla) ve
+ * ürünlerin çalıştığı sahalar.
  */
 export function ProductsPage() {
   const { ledger, rail } = useProductsCopy();
@@ -41,6 +43,8 @@ export function ProductsPage() {
   return (
     <>
       <ProductsHero />
+      {/* Hero, vitrin ve ürün gamı sırayla bir öncekinin üstüne biner. */}
+      <Showcase />
       <ProductLedger sequenceRef={sequenceRef} />
 
       <SectionRail

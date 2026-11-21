@@ -1,4 +1,7 @@
+/* Yapışık hero ve vitrin ekranda kalmaya devam eder, bu bölüm de onların üstünden geçer. */
 .sectors {
+  position: relative;
+  z-index: 1;
   --surface-bg: var(--color-amber);
   --surface-fg: var(--color-black);
   --selection-bg: var(--color-white);

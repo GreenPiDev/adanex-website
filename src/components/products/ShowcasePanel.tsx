@@ -1,13 +1,18 @@
-import { type ComponentProps, useRef, useState } from 'react';
+import { type ComponentProps, type MouseEvent, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router';
 import { useInspectCursor } from '../ui/CustomCursor/useInspectCursor';
 import { gsap, MOTION, SplitText, useGSAP } from '../../animations/gsap';
 import { revealTrigger } from '../../animations/reveal';
-import { type Project, PROJECT_AMBER_TONE, PROJECT_SURFACES } from '../../content/projects';
+import { formatIndex, PRODUCT_FAMILIES } from '../../content/products';
+import { type ShowcaseItem, SHOWCASE_AMBER_TONE, SHOWCASE_SURFACES } from '../../content/showcase';
 import { useIsNavCollapsed, usePrefersReducedMotion } from '../../hooks/useDevice';
+import { useSectionJump } from '../../hooks/useSectionJump';
+import { getLocaleFromPathname, localizePath } from '../../i18n/locale';
 import { Lightbox } from '../ui/Lightbox/Lightbox';
-import { InlineLinkArrow } from '../ui/RollText/RollText';
-import styles from './ProjectPanel.module.css';
+import { InlineLinkArrow, RollArrow, RollText } from '../ui/RollText/RollText';
+import styles from './ShowcasePanel.module.css';
+import { useProductsCopy } from './useProductsCopy';
 
 /** Özet metnindeki dış bağlantı. Yazısı çeviri metninden `Trans` ile gelir. */
 function SummaryLink({ children, ...rest }: ComponentProps<'a'>) {
@@ -19,44 +24,50 @@ function SummaryLink({ children, ...rest }: ComponentProps<'a'>) {
   );
 }
 
-// Dosya ekrana girer girmez içeriği gelir, yarıya kadar boş beklemez.
-const RECEDE_SCALE = 0.92;
-const RECEDE_OPACITY = 0.25;
 const IMAGE_START_SCALE = 1.18;
 
-type ProjectPanelProps = {
-  project: Project;
+type ShowcasePanelProps = {
+  item: ShowcaseItem;
   index: number;
 };
 
-/** Tek bir çalışma dosyası. Masaüstünde bir sonraki dosya perde gibi bunun üstüne biner. */
-export function ProjectPanel({ project, index }: ProjectPanelProps) {
-  const { t, i18n } = useTranslation();
+/**
+ * Vitrindeki tek bir ürün dosyası. Dosyalar birbirinin üstüne binmez, aynı hizada akar.
+ * Ailesinin etiketi ürün gamındaki satıra götürür, teklif bağlantısı formu o ailenin mesajıyla açar.
+ */
+export function ShowcasePanel({ item, index }: ShowcasePanelProps) {
+  const { t, i18n } = useTranslation('products');
+  const { t: tCommon } = useTranslation();
+  const { ledger } = useProductsCopy();
+  const jump = useSectionJump();
+  const locale = getLocaleFromPathname(useLocation().pathname);
   const inspectCursor = useInspectCursor();
   const isNavCollapsed = useIsNavCollapsed();
   const prefersReducedMotion = usePrefersReducedMotion();
   const [isImageMissing, setIsImageMissing] = useState(false);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const rootRef = useRef<HTMLElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const mediaRef = useRef<HTMLSpanElement>(null);
   const curtainRef = useRef<HTMLSpanElement>(null);
 
   const number = index + 1;
-  const title = t(`projects.items.${project.key}.title`);
-  const tone = index % PROJECT_SURFACES.length;
+  const title = t(`showcase.items.${item.key}.title`);
+  const familyIndex = PRODUCT_FAMILIES.findIndex(({ key }) => key === item.family);
+  const family = PRODUCT_FAMILIES[familyIndex];
+  const quotePath = localizePath('/contact', locale);
+  const upper = (text: string) => text.toLocaleUpperCase(i18n.language);
+  const tone = index % SHOWCASE_SURFACES.length;
   const isReversed = index % 2 === 1;
 
   // Dil değişince metin boyu değiştiği için bölme ve tetikleyiciler yeniden kurulur.
   useGSAP(
     () => {
       const root = rootRef.current;
-      const inner = innerRef.current;
       const titleElement = titleRef.current;
       const media = mediaRef.current;
       const curtain = curtainRef.current;
-      if (prefersReducedMotion || !root || !inner || !titleElement || !media || !curtain) return;
+      if (prefersReducedMotion || !root || !titleElement || !media || !curtain) return;
 
       const reveal = () => revealTrigger(root);
       const motion = { duration: MOTION.slow, ease: MOTION.ease };
@@ -84,7 +95,7 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
           }),
       });
 
-      // Mobilde doğal scroll hafif kalsın diye scroll'a bağlı hareketler yok.
+      // Mobilde doğal scroll hafif kalsın diye scroll'a bağlı hareket yok.
       if (isNavCollapsed) return;
 
       gsap.fromTo(
@@ -92,29 +103,23 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
         { scale: IMAGE_START_SCALE },
         { scale: 1, ease: 'none', scrollTrigger: { trigger: root, start: 'top bottom', end: 'top top', scrub: true } },
       );
-
-      const next = root.nextElementSibling;
-      if (!next) return;
-
-      gsap.to(inner, {
-        scale: RECEDE_SCALE,
-        autoAlpha: RECEDE_OPACITY,
-        transformOrigin: '50% 100%',
-        ease: 'none',
-        scrollTrigger: { trigger: next, start: 'top bottom', end: 'top top', scrub: true },
-      });
     },
     { scope: rootRef, dependencies: [i18n.language, isNavCollapsed, prefersReducedMotion], revertOnUpdate: true },
   );
 
+  const handleFamilyClick = (event: MouseEvent<HTMLAnchorElement>, slug: string) => {
+    event.preventDefault();
+    jump(slug);
+  };
+
   return (
     <article
       ref={rootRef}
-      className={`${styles.panel} ${tone === PROJECT_AMBER_TONE ? styles.amber : ''}`}
-      data-surface={PROJECT_SURFACES[tone]}
-      data-tone={tone === PROJECT_AMBER_TONE ? 'amber' : undefined}
+      className={`${styles.panel} ${tone === SHOWCASE_AMBER_TONE ? styles.amber : ''}`}
+      data-surface={SHOWCASE_SURFACES[tone]}
+      data-tone={tone === SHOWCASE_AMBER_TONE ? 'amber' : undefined}
     >
-      <div ref={innerRef} className={styles.inner}>
+      <div className={styles.inner} data-showcase-inner>
         <div className={`${styles.frame} ${isReversed ? styles.frameEnd : ''}`}>
           <span ref={mediaRef} className={styles.media}>
             {/* Görsel eklenene kadar yerinde sıra numarası görünür. */}
@@ -124,7 +129,7 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
             {!isImageMissing && (
               <img
                 className={styles.image}
-                src={project.image}
+                src={item.image}
                 alt={title}
                 loading="lazy"
                 decoding="async"
@@ -138,7 +143,7 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
               className={styles.zoom}
               {...inspectCursor}
               type="button"
-              aria-label={t('projects.openImage', { title })}
+              aria-label={tCommon('a11y.openImage', { title })}
               onClick={() => setIsLightboxOpen(true)}
             />
           )}
@@ -147,6 +152,21 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
         </div>
 
         <div className={styles.body}>
+          {family && (
+            <a
+              className={styles.family}
+              href={`#${family.slug}`}
+              aria-label={t('showcase.familyLabel', { family: ledger.families[family.key].name })}
+              onClick={(event) => handleFamilyClick(event, family.slug)}
+              data-panel-reveal
+            >
+              <span className={styles.familyCode} aria-hidden="true">
+                {formatIndex(familyIndex + 1)}
+              </span>
+              {upper(ledger.families[family.key].name)}
+            </a>
+          )}
+
           <h2 key={i18n.language} ref={titleRef} className={styles.title}>
             {title}
           </h2>
@@ -154,15 +174,16 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
           <div className={styles.details}>
             <p className={styles.summary} data-panel-reveal>
               <Trans
-                i18nKey={`projects.items.${project.key}.summary`}
+                i18nKey={`showcase.items.${item.key}.summary`}
+                t={t}
                 components={{
-                  anchor: project.link ? (
+                  anchor: item.link ? (
                     <SummaryLink
                       className={styles.inlineLink}
-                      href={project.link.href}
+                      href={item.link.href}
                       target="_blank"
                       rel="noopener"
-                      aria-label={t('projects.linkLabel', { text: t(`projects.links.${project.link.labelKey}`) })}
+                      aria-label={t('showcase.linkLabel', { text: t(`showcase.links.${item.link.labelKey}`) })}
                     />
                   ) : (
                     <span />
@@ -172,18 +193,29 @@ export function ProjectPanel({ project, index }: ProjectPanelProps) {
             </p>
 
             <dl className={styles.specs}>
-              {project.specs.map(({ label, value }) => (
+              {item.specs.map(({ label, value }) => (
                 <div key={label} className={styles.spec} data-panel-reveal>
-                  <dt className={styles.specLabel}>{t(`projects.specs.${label}`).toLocaleUpperCase(i18n.language)}</dt>
+                  <dt className={styles.specLabel}>{upper(t(`showcase.specs.${label}`))}</dt>
                   <dd className={styles.specValue}>{value}</dd>
                 </div>
               ))}
             </dl>
+
+            {/* Ailesi olmayan ürünlerde form ön doldurmasız açılır. */}
+            <Link
+              className={styles.quote}
+              to={family ? `${quotePath}?product=${family.slug}` : quotePath}
+              aria-label={t('showcase.quoteLabel', { product: title })}
+              data-panel-reveal
+            >
+              <RollText text={upper(ledger.quote)} />
+              <RollArrow />
+            </Link>
           </div>
         </div>
       </div>
 
-      {isLightboxOpen && <Lightbox src={project.image} alt={title} onClose={() => setIsLightboxOpen(false)} />}
+      {isLightboxOpen && <Lightbox src={item.image} alt={title} onClose={() => setIsLightboxOpen(false)} />}
     </article>
   );
 }
